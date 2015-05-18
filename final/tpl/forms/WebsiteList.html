@@ -1,0 +1,30 @@
+<td>
+	<span class="glyphicon glyphicon-globe"></span>
+</td>
+
+<td>
+	<span class='website_content'> <%= title %> </span>
+	<span class='website_form hide'>
+		<input id="website_new_name" class="website_form form-control" type="text" value="<%= title %>">
+	</span>
+</td>
+
+<td>
+	<span> <%= domains %> </span>
+</td>
+
+<td>
+	<span class='website_content'> <%= description %> </span>
+	<span class='website_form hide'>
+		<input id="website_new_description" class="website_form form-control" type="text" value="<%= description %>">
+	</span>
+</td>
+
+<td>
+	<button class='update-website btn btn-primary website_content'><span class="glyphicon glyphicon-pencil"></span></button>
+	<a href="#websites/<%= id %>" class="btn btn-success website_content" role="button"><span class="glyphicon glyphicon-globe"></span></a>
+	<button class='cancel-website btn btn-primary website_form hide'>Cancel</button>
+	<button class='submit-website btn btn-success website_form hide'>Submit</button>
+	<button type="button" class="delete-website btn btn-danger website_form hide" aria-hidden="true">&times;</button>
+</td>
+

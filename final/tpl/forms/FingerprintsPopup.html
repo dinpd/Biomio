@@ -1,0 +1,23 @@
+<div class="toPopup row text-center">
+	<div class="close"></div>
+	<span class="ecs_tooltip">Press Esc to close <span class="arrow"></span></span>
+	
+	<div class="popup_content">
+  		<!-- Train Finger -->
+  		<h2>Train <%= hand %> <%= finger %></h2>
+
+		<!-- Save -->
+		<div class="policies-form">
+			<input type="button" class="btn btn-primary user-fingerprints-camera" value="1. Turn on camera" />
+			<input type="button" class="btn btn-primary user-fingerprints-snap" value="2. Snap Photo" />
+			<input type="button" class="btn btn-primary user-fingerprints-done" value="3. Turn camera off" />
+			<input type="button" class="btn btn-primary user-fingerprints-save" value="4. Save figerprint" />
+		</div>
+
+		<video id="video" width="400" height="300" autoplay></video>
+		<canvas id="canvas" width="400" height="300"></canvas>
+
+	</div>
+</div>
+<div class="loader"></div>
+<div class="backgroundPopup"></div>

@@ -1,0 +1,28 @@
+<style>
+	.report {
+		padding: 6px;
+		border-radius: 6px;
+		min-height: 20px; border: 1px solid #E3E3E3;
+		border-radius: 4px;
+		box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05) inset;
+	}
+</style>
+<% 
+	if (type == 'incoming') {
+		print('<div class="row">' +
+					'<div class="small text-right col-md-12">' + dateCreated + '</div>' +
+				'</div>' +
+				'<div class="row text-right">' +
+					'<p class="col-md-7 col-md-offset-5 bg-success report">' + description + '</p>' +
+				'</div>'
+		);
+	} else if (type == 'outgoing') {
+		print('<div class="row">' +
+					'<div class="small text-left col-md-12">' + dateCreated + '</div>' +
+				'</div>' +
+				'<div class="row">' +
+					'<p class="col-md-7 bg-primary report">' + description + '</p>' +
+				'</div>'
+		);
+	} 
+%>

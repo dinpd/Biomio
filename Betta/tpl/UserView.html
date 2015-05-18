@@ -1,0 +1,130 @@
+<div class="well">
+	<legend><h2 class="form-signin-heading"><%= firstName %> <%= lastName %></h2></legend>
+	<form class="form-horizontal font16">
+		<fieldset>
+			<div class="col-sm-4 col-sm-offset-0 text-center">
+					<div>
+					  	<span id="user_image_preview">
+							
+					  	</span>
+				  	</div>
+			</div> <!-- right div -->
+
+			<div class="col-sm-7">
+
+				<!-- Date of Birth-->
+				<% if (bday != '' && bday != '0000-00-00') { %>
+			    <div class="form-group">
+					<label class="col-sm-3 control-label">Birthday</label>
+					<div class="col-sm-9">
+						<p id="span_bday"  class="content form-control-static"><%= bday %></p>
+					</div>
+				</div>
+				<% } %>
+
+				<!-- Motto-->
+				<% if (motto != '') { %>
+			    <div class="form-group">
+					<label class="col-sm-3 control-label">Motto</label>
+					<div class="col-sm-9">
+						<p id="span_motto"  class="content form-control-static"><%= motto %></p>
+					</div>
+				</div>
+				<% } %>
+
+				<!-- Occupation-->
+				<% if (occupation != '') { %>
+			    <div class="form-group">
+					<label class="col-sm-3 control-label">Occupation</label>
+					<div class="col-sm-9">
+						<p id="span_occupation"  class="content form-control-static"><%= occupation %></p>
+					</div>
+				</div>
+				<% } %>
+
+				<!-- Education-->
+				<% if (education != '') { %>
+			    <div class="form-group">
+					<label class="col-sm-3 control-label">Education</label>
+					<div class="col-sm-9">
+						<p id="span_education"  class="content form-control-static"><%= education %></p>
+					</div>
+				</div>
+				<% } %>
+
+				<!-- Address-->
+				<% if (address.street1 != '' || address.street2 != '' || address.continent != '' ||
+								address.country != '' || address.province != '' || address.region != '' ||
+								 address.city != '' || address.postcode != '') { %>
+			    <div class="form-group">
+					<label class="col-sm-3 control-label">Address</label>
+					<div class="col-sm-9">
+						<% if (address.street1 == '' && address.street2 == '' && address.continent == '' &&
+								address.country == '' && address.province == '' && address.region == '' &&
+								 address.city == '' && address.postcode == '') { print('<p class="content small-align">no information</p>'); }%>
+
+						<div><p id="span_street1"  class="content form-control-static"><%= address.street1 %></span></div>
+						<!--to avoid extra white space we print 2nd address line only if it has some content in it -->
+						<div id="span_street2">
+							<% if (address.street2 != '') {
+							    print('<span class="content">' + address.street2 + '</span>');
+							}%>
+						</div>
+						<div class="content">
+							<% if (address.country != '') {
+								print('<span id="span_country">' + address.country + '</span>');
+							}%>	
+							<% if (address.province != '') {
+								print('<span id="span_province">, ' + address.province + '</span>');
+							}%>	
+							<% if (address.city != '') {
+								print('<span id="span_city">, ' + address.city + '</span>');
+							}%>	
+							<% if (address.postcode != '') {
+								print('<span id="span_postcode">, ' + address.postcode + '</span>');
+							}%>
+						</div>
+					</div>
+				</div>
+				<% } %>
+
+				<!--Email-->
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Email list</label>
+					<div class="col-sm-9">
+						<div class="emails">
+							<% for(var one_email in emails) { %>
+					           <div id="email<%= one_email %>">
+						           	<p class="content form-control-static"><%= emails[one_email] %></p>
+					           </div>
+					        <% } %>
+				        </div>
+					</div>
+				</div>
+
+				<!-- Social Networks-->
+				<% if (socialBar.facebook != '' || socialBar.twitter != '' || socialBar.linkedin != '' || socialBar.facebook != '') { %>
+			    <div class="form-group">
+					<label class="col-sm-3 control-label">Networks</label>
+					<div class="col-sm-9">
+						<% if (socialBar.facebook == '' && socialBar.twitter == '' && socialBar.linkedin == '' && socialBar.facebook == '') { print('<small class="content small-align">no social networks added</small>'); }%>
+						
+						<% if (socialBar.facebook != '') {%>
+							<a href='https://www.facebook.com/<%= socialBar.facebook %>' class='content'> <img src='img/facebook.png' alt=''/></a>
+						<% } %>
+						<% if (socialBar.twitter != '') {%>
+							<a href='www.twitter.com/<%= socialBar.twitter %>' class='content'> <img src='img/twitter.png' alt=''/></a>
+						<% } %>
+						<% if (socialBar.linkedin != '') {%>
+							<a href='https://www.linkedin.com/profile/view?id=<%= socialBar.linkedin %>' class='content'> <img src='img/linkedin.png' alt=''/></a>
+						<% } %>
+						<% if (socialBar.google != '') {%>
+							<a href='https://plus.google.com/<%= socialBar.google %>' rel='publisher' class='content'> <img src='img/google.png' alt=''/></a>
+						<% } %>
+					</div>
+				</div>
+				<% } %>
+			</div> <!-- left div -->
+		</fieldset>
+	</form>
+</div>

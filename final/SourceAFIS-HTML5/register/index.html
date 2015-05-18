@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Registration</title>
+<link rel="stylesheet" type="text/css" href="../styles/main-style.css">
+<script src="../scripts/jquery.min.js"></script>
+<script src="../scripts/register.js"></script>
+<script src="../scripts/common.js"></script>
+</head>
+<body>
+<p id="titlebar">Adding <span id="hand-position">some</span> <span id="finger-position">finger</span> for <span id="first-name"></span> <span id="last-name"></span> (<span id="email"></span>)<p>
+
+<div id="content">
+
+<div id="preview-div">
+
+<video id="preview" autoplay></video>
+<img id="image-preview" src="../img/black-pixel.png" />
+
+<div id="nocam-sign"><img src="../img/no-camera-sign.svg" /></div>
+
+<div id="image-upload">
+<label for="file-input"><img src="../img/folder-open.svg" /> Upload file...</label>
+<input id="file-input" type="file"/>
+</div>
+
+</div>
+
+<div id="progress-bar"><div id="progress-value"></div></div>
+
+<p id="registration-buttons">
+<input id="start-registration" type="button" value="Start" />
+<input id="stop-registration" type="button" value="Stop" />
+</p>
+
+<div id="tips">
+<p>Tips:</p>
+<ul>
+<li>Find focus and rotate your finger slowly until you receive "success" message.</li>
+<li>Try moving the finger closer or further away from the camera until the ridges come into focus.</li>
+<li>If lighting is insufficient, shine some light onto your finger.</li>
+<li>If you cannot get a clear image, try an external webcam.</li>
+</ul>
+</div>
+
+</div>
+<canvas id="scratchpad"></canvas>
+<div id="invisible-video">
+<video id="capture-frame" autoplay></video>
+</div>
+</body>
+</html>

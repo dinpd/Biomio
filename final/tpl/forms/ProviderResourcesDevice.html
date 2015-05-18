@@ -1,0 +1,38 @@
+<td>
+	<div class="
+		<% if (lastPing == 1) {
+		    print('device-on');
+		}
+		else if (lastPing == 0) {
+		    print('device-off');
+		} %>
+	">
+	</div>
+</td>
+
+<td>
+	<span> <%= id %> </span>
+</td>
+<td>
+	<span class='device_content'> <%= name %> </span>
+	<span class='device_form hide'>
+		<input id="device_new_name" class="device_form form-control" type="text" value="<%= name %>">
+	</span>
+</td>
+<td>
+	<span> <%= type %> </span>
+</td>
+<td>
+	<span> <%= serialNumber %> </span>
+</td>
+<td>
+	<span> <%= mac %> </span>
+</td>
+<td>
+	<button class='provider-resources-update-device btn btn-primary device_content'>Update</button>
+	<button class='provider-resources-cancel-device btn btn-primary device_form hide'>Cancel</button>
+	<button class='provider-resources-submit-device btn btn-success device_form hide'>Submit</button>
+</td>
+<td>
+	<button type="button" class="close provider-resources-delete-device" aria-hidden="true">&times;</button>
+</td>

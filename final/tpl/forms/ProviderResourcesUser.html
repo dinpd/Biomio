@@ -1,0 +1,36 @@
+<td>
+	<span> <%= userId %> </span>
+</td>
+<td>
+	<span> <%= userName %> </span>
+</td>
+<td>
+	<span> <%= userEmail %> </span>
+</td>
+<td>
+	<span class='user_content edit-resources-user link'> <%= timeRestriction %> </span>
+	<span class="user_form hide"> from <input class="time-start form-control" type="time"> to <input class="time-end form-control" type="time"> </span>
+	<!--<select class="form-control user_form hide timeRestriction">
+    	<option><%= timeRestriction %></option>
+    	<option>24/7</option>
+    	<option>24/5</option>
+    	<option>days/5</option>
+    	<option>nights/5</option>
+	</select>-->
+	<button class='save-resources-user btn btn-success user_form hide'>Submit</button>
+	<button class='cancel-resources-user btn btn user_form hide'>Cancel</button>
+</td>
+<td>
+	<%  
+		if (status == "pending" && type == "invitation") {
+			print('<button type="button" class="close delete-resources-user" aria-hidden="true">&times;</button>');
+		} else if(status == "pending" && type =="application") {
+			print('<button type="button" class="btn btn-success accept-resources-user" aria-hidden="true">Accept</button>');
+			print('<button type="button" class="btn btn-danger delete-resources-user" aria-hidden="true">Refuse</button>');
+		} else if (status == "accepted") {
+			print('<button type="button" class="close delete-resources-user" aria-hidden="true">&times;</button>');
+		} else {
+			print('<button type="button" class="btn btn-warning restore-resources-user" aria-hidden="true">Restore</button>');
+		}
+	%>
+</td>

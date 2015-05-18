@@ -1,0 +1,92 @@
+<tr>
+    <td>
+        <span class="glyphicon glyphicon-home"></span>
+    </td>
+    <td>
+        <span class="content"><%= name %></span>
+        <div class='hide form'>
+            <input class="form-control location_name" type="text" value="<%= name %>"> 
+        </div>
+    </td>
+    <td>
+        <% if (address.street1 == '' && address.street2 == '' && address.continent == '' &&
+                address.country == '' && address.province == '' && address.region == '' &&
+                 address.city == '' && address.postcode == '') { print('<p class="content small-align">no information</p>'); }%>
+
+        <div><p id="span_street1"  class="content form-control-static"><%= address.street1 %></span></div>
+        <!--to avoid extra white space we print 2nd address line only if it has some content in it -->
+        <div id="span_street2">
+            <% if (address.street2 != '') {
+                print('<span class="content">' + address.street2 + '</span>');
+            }%>
+        </div>
+        <div class="content">
+            <% if (address.country != '') {
+                print('<span id="span_country">' + address.country + '</span>');
+            }%> 
+            <% if (address.province != '') {
+                print('<span id="span_province">, ' + address.province + '</span>');
+            }%> 
+            <% if (address.city != '') {
+                print('<span id="span_city">, ' + address.city + '</span>');
+            }%> 
+            <% if (address.postcode != '') {
+                print('<span id="span_postcode">, ' + address.postcode + '</span>');
+            }%>
+        </div>
+
+        <div class="form hide">
+            <input id="address_street1" class="form-control" type="text" value="<%= address.street1 %>">
+            <p class='help-block'><small>street line</small></p>
+            <input id="address_street2" class="form-control" type="text" value="<%= address.street2 %>">
+            <p class='help-block'><small>second street line (optional)</small></p>
+            
+            <select id="continent" name="continent" class="form-control provider-location-geolocation"></select>
+            <p class='help-block'><small>continent</small></p>
+
+            <select id="country" name="country" class="form-control provider-location-geolocation"></select>
+            <p class='help-block'><small>country</small></p>
+
+            <select id="province" name="province" class="form-control provider-location-geolocation"></select>
+            <p class='help-block'><small>state / province</small></p>
+
+            <select id="region" name="region" class="form-control provider-location-geolocation"></select>
+            <p class='help-block'><small>country / region</small></p>
+
+            <select id="city" name="city" class="form-control provider-location-geolocation"></select>
+            <p class='help-block'><small>city</small></p>
+
+            <input id="address_postcode" class="form-control" type="text" value="<%= address.postcode %>">
+            <p class='help-block'><small>postcode</small></p>
+        </div>
+    </td>
+    <td class='policy-<%= id %>'>
+        <span class="policy-show content">
+            <% if (policy == 0) print("");
+               else print(policyName);
+            %>
+        </span>
+        <div class='hide form'>
+            <select class='form-control location_policy'>
+                <option value='0'></option>
+            </select>
+        </div>
+    </td>
+    <td>
+        <div>
+            <button class='provider-locations-edit btn btn-primary content'><span class="glyphicon glyphicon-pencil"></span></button>
+            <a href="#locations/<%= id %>" data-toggle="tooltip" class="btn btn-success content" role="button"><span class="glyphicon glyphicon-globe"></span></a>
+        </div>
+        <div>
+            <a href="#provider-users/<%= id %>" class="btn btn-warning content" role="button"><span class="glyphicon glyphicon-user"></span></a>
+            <button class='provider-show-devices btn btn-warning content'><span class="glyphicon glyphicon-hdd"></span></button>
+        </div>
+
+        <button class='provider-locations-save btn btn-success hide form'>Save</button>
+        <button class='provider-locations-cancel btn btn-primary hide form'>Cancel</button>
+        <button class='provider-locations-delete btn btn-danger hide form'>&times;</button>
+    </td>
+</tr>
+<tr class="list hide">
+    <td colspan='5' class='location-details'></td>
+</tr>

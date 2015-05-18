@@ -1,0 +1,38 @@
+<div class="well">
+	<legend><h2 class="form-signin-heading">BIOMIO Captcha Implementation</h2></legend>
+	<div class="text-center"><img src="img/captcha-screenshot.png"></div>
+    <ul class="list-group">
+
+        <li class="list-group-item">
+        	<h5><strong> 1. Copy and paste this code right before your <code>&lt/body&gt</code> tag:</strong></h5>
+<pre>
+&lt;!-- jQuery is required, but if you already have it on your website, drop this line
+&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;
+--&gt;
+&lt;!-- The main script --&gt;
+&lt;script src="http://biom.io/biomio_captcha/main.js"&gt;&lt;/script&gt;
+</pre>
+        </li>
+
+        <li class="list-group-item">
+        	<h5><strong> 2. Copy and paste the code below into your page, wherever you would like the BIOMIO captcha to appear. </h5></strong>
+<pre>
+&lt;div class="bio-captcha"&gt;&lt;/div&gt;
+</pre>
+        </li>        
+
+        <li class="list-group-item">
+        	<h5><strong> 3. Add class <code>.biomio-captcha-success</code> to the submit button of the form where BIOMIO captcha is used</h5></strong>
+        </li>
+
+        <li class="list-group-item">
+        	<h5><strong> 4. Add the following function right before your on-submit function: </h5></strong>
+<pre>
+// this function will be triggered after successful captcha response
+function bio-captcha-success() {
+	//from here you can call your on-success function
+}
+</pre>
+        </li>
+    </ul>
+</div>

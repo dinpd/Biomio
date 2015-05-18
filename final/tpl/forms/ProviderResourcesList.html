@@ -1,0 +1,65 @@
+<tr>
+    <td><span class="font16"><%= id %></span></td>
+    <td>
+        <span class="content provider-resources-show font16 link resource_name_show"><%= name %></span>
+        <div class='hide form'>
+            <input class="form-control resource_name" type="text" value="<%= name %>"> 
+        </div>
+    </td>
+    <td>
+        <span class="font16 content resource_address_show">
+
+            <% if (address.street1 == '' && address.street2 == '' && address.continent == '' &&
+                address.country == '' && address.province == '' && address.region == '' &&
+                 address.city == '' && address.postcode == '') { print('<p class="content small-align">no information</p>'); }%>
+
+            <div><p id="span_street1"  class="content form-control-static"><%= address.street1 %></span></div>
+            <!--to avoid extra white space we print 2nd address line only if it has some content in it -->
+            <div id="span_street2">
+                <% if (address.street2 != '') {
+                    print('<span class="content">' + address.street2 + '</span>');
+                }%>
+            </div>
+            <div class="content">
+                <% if (address.country != '') {
+                    print('<span id="span_country">' + address.country + '</span>');
+                }%> 
+                <% if (address.province != '') {
+                    print('<span id="span_province">, ' + address.province + '</span>');
+                }%> 
+                <% if (address.city != '') {
+                    print('<span id="span_city">, ' + address.city + '</span>');
+                }%> 
+                <% if (address.postcode != '') {
+                    print('<span id="span_postcode">, ' + address.postcode + '</span>');
+                }%>
+            </div>
+
+        </span>
+        <div class='hide form'>
+            <input class="form-control resource_address" type="text" value="<%= address %>"> 
+        </div>
+    </td>
+    <td class='policy'>
+        <span class="policy-show font16 content hide">
+            <% if (policy == 0) print("");
+               else print(policy);
+            %>
+        </span>
+        <div class='hide form'>
+            <select class='form-control avaliable-policies resource_policy'>
+                <option value='0'></option>
+            </select>
+        </div>
+    </td>
+    <td>
+        <button class='provider-resources-edit btn btn-primary content'>Edit</button>
+        <button class='provider-resources-save btn btn-success hide form'>Save</button>
+        <button class='provider-resources-cancel btn btn-primary hide form'>Cancel</button>
+        <button class='provider-resources-delete btn btn-danger'>&times;</button>
+    </td>
+</tr>
+<tr class="list hide">
+    <td></td>
+    <td colspan='5' class='resource-details'></td>
+</tr>

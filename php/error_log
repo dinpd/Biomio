@@ -1,0 +1,42 @@
+[14-Apr-2014 05:54:09 America/Nassau] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_FUNCTION in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 125
+[14-Apr-2014 05:55:06 America/Nassau] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_FUNCTION in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 125
+[14-Apr-2014 05:57:10 America/Nassau] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_FUNCTION in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 125
+[14-Apr-2014 05:57:19 America/Nassau] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_FUNCTION in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 125
+[14-Apr-2014 05:57:25 America/Nassau] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_FUNCTION in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 125
+[14-Apr-2014 05:57:25 America/Nassau] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_FUNCTION in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 125
+[14-Apr-2014 05:57:26 America/Nassau] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_FUNCTION in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 125
+[14-Apr-2014 05:59:40 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 149
+[14-Apr-2014 05:59:40 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 149
+[14-Apr-2014 05:59:41 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 149
+[14-Apr-2014 05:59:46 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 149
+[14-Apr-2014 06:00:16 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 155
+[14-Apr-2014 06:00:19 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 155
+[14-Apr-2014 06:00:23 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 155
+[14-Apr-2014 06:00:27 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 155
+[14-Apr-2014 06:00:30 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 155
+[14-Apr-2014 06:00:32 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 155
+[14-Apr-2014 06:00:32 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 155
+[14-Apr-2014 06:00:32 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 155
+[14-Apr-2014 06:00:51 America/Nassau] PHP Parse error:  syntax error, unexpected T_ECHO in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 180
+[14-Apr-2014 06:01:06 America/Nassau] PHP Fatal error:  Function name must be a string in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 24
+[14-Apr-2014 06:41:06 America/Nassau] PHP Fatal error:  Call to undefined method UserController::login() in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 40
+[14-Apr-2014 06:56:05 America/Nassau] PHP Warning:  mysqli_query() expects at least 2 parameters, 1 given in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 197
+[14-Apr-2014 06:56:05 America/Nassau] PHP Warning:  mysqli_error() expects exactly 1 parameter, 0 given in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 197
+[14-Apr-2014 07:04:43 America/Nassau] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 175
+[14-Apr-2014 07:04:43 America/Nassau] PHP Fatal error:  Class 'UserSession' not found in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 178
+[14-Apr-2014 07:05:31 America/Nassau] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 175
+[14-Apr-2014 07:06:17 America/Nassau] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, resource given in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 175
+[14-Apr-2014 07:08:52 America/Nassau] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, resource given in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 175
+[16-Apr-2014 03:45:33 America/Nassau] PHP Fatal error:  Call to undefined method UserController::verify() in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 31
+[16-Apr-2014 03:46:50 America/Nassau] PHP Fatal error:  Call to undefined method UserController::verify() in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 31
+[16-Apr-2014 03:47:08 America/Nassau] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, null given in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 159
+[16-Apr-2014 04:58:20 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:20 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:20 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:20 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:20 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:29 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:29 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:29 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:29 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:29 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135

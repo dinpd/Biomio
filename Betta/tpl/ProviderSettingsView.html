@@ -1,0 +1,75 @@
+<div class="row">
+    <div class='col-md-8'>
+        <div class="panel panel-default">
+          <!-- Default panel contents -->
+          <div class="panel-heading"><h3>Notification Settings</h3></div>
+          <div class="panel-body">
+            <form role="form">
+				<fieldset>
+					<div class="form-group">
+	                	<label class="control-label col-sm-3">Notify me on</label>
+	                	<div class="col-sm-9 notifications-checkbox">
+	                        <label class="checkbox" for="notifications-0">
+	                          <input name="notifications" id="notifications-0" type="checkbox" <% if (notifications[0] != 0) print('checked'); %>>
+	                          Application to secure location
+	                        </label>
+
+	                        <label class="checkbox" for="notifications-1">
+	                          <input name="notifications" id="notifications-1" type="checkbox" <% if (notifications[1] != 0) print('checked'); %>>
+	                          New unique user on website
+	                        </label>
+
+	                        <label class="checkbox" for="notifications-2">
+	                          <input name="notifications" id="notifications-2" type="checkbox" <% if (notifications[2] != 0) print('checked'); %>>
+	                           Status change of my invitation
+	                        </label>
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                	<label class="control-label col-sm-3"></label>
+	                	<div class="col-sm-9 website-checkbox">
+	                    	<span id="span_notification" class="text-success"></span>
+	                    </div>
+	                </div>
+				</fieldset>
+			</form>
+          </div>
+        </div>
+
+    </div><!-- col end -->
+    <div class='col-md-4'>
+
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading"><h3>Change Password</h3></div>
+            <div class="panel-body">
+                <form role="form">
+					<fieldset>
+
+						<div id = "change_old_password_group" class="form-group">
+							<input id ="change_old_password" type="password" value="" class="form-control" maxlength="10" placeholder="Old Password">
+							<span id="change_span_old_password" class="help-inline"></span>
+						</div>
+
+						<div id = "change_new_password_group" class="form-group">
+							<input id ="change_new_password" type="password" value="" class="form-control" maxlength="10" placeholder="New Password">
+							<span id="change_span_new_password" class="help-inline"></span>
+						</div>
+
+						<div id = "change_repeat_password_group" class="form-group">
+							<input id="change_repeat_password" type="password" value="" class="form-control" maxlength="10" placeholder="Repeat New Passwords">
+							<span id="change_span_repeat_password" class="help-inline"></span>
+						</div>
+						
+					</fieldset>
+
+					<div id = "change_submit_group" class="form-group text-center">
+						<button id="change_submit" class="btn btn-lg btn-block btn-primary" type="submit">Change Password</button>
+						<span id="change_span_submit" class="text-danger"></span>
+					</div>
+				 </form>
+            </div>
+        </div>
+
+    </div><!-- col end -->
+</div><!-- row end -->
