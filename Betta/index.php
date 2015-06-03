@@ -177,8 +177,8 @@
 <script src="js/forms/paginator.js"></script>
 <!--<script src="js/forms/biomio-verify.js"></script>-->
 <!--<script src="js/forms/fingerprint-common.js"></script>-->
-<script src="js/forms/register-fingerprint.js"></script>
-<script src="js/forms/verify-fingerprint.js"></script>
+<!--<script src="js/forms/register-fingerprint.js"></script>-->
+<!--<script src="js/forms/verify-fingerprint.js"></script>-->
 
 <!-- Routers -->
 <script src="js/home/main.js"></script>

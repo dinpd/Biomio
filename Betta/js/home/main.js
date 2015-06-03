@@ -195,11 +195,13 @@ var AppRouter = Backbone.Router.extend({
     user_services: function () {
         this.interface_navigation('User', 'user-services-menu');
         if (!this.userServices) this.userServices = new App.Views.userServices();
+        this.userServices.render();
         this.footer();
     },
     user_mobile_devices: function () {
         this.interface_navigation('User', 'user-mobile-devices-menu');
         if (!this.userMobileDevices) this.userMobileDevices = new App.Views.userMobileDevices();
+        this.userMobileDevices.render();
         this.footer();
     },
     user_fingerprints: function () {

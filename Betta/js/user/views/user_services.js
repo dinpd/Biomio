@@ -1,11 +1,12 @@
 App.Views.userServices = Backbone.View.extend({
     el: $("#content"),
     initialize:function () {
-        this.render();
+
     },
     render:function (type) {
         var template = render('UserServicesView', {});
         this.$el.html( template );
+        this.get_user_extensions();
         this.get_user_emails();
     },
     events: {
@@ -14,19 +15,32 @@ App.Views.userServices = Backbone.View.extend({
         "click .user-services .extention-email .plus"   : "plus_email",
         "click .user-services .extention-email .minus"  : "minus_email",
         "click .user-services .extention-email .remove" : "delete_email",
-        "click .user-services .extention-email .verify" : "send_email_verification_code",
+        "click .user-services .extention-email .verify" : "get_email_for_verification",
         "click .user-services .form-2-2 button"         : "verify_email",
         "click .user-services .verify-extention button" : "verify_extention",
         "click .user-services .form-2-1"                : "generate_extention_code"
     },
     
     // Chrome Extention
+    get_user_extensions: function () {
+        $.ajax({
+            type: 'POST',
+            url: 'php/login.php',
+            dataType: "json",
+            data: {cmd: "get_user_extensions"},
+            success: function(data) {
+                if (data == 0) $('.verified-extensions').html('<span class="text-info"><strong>No extencions yet registered from this account</strong></span>');
+                else if (data == 1) $('.verified-extensions').html('<span class="text-success"><strong>' + data + ' extencion is already registered from this account</strong></span>');
+                else if (data > 1) $('.verified-extensions').html('<span class="text-success"><strong>' + data + ' extencions are already registered from this account</strong></span>');
+            }
+        });
+    },
     get_user_emails: function () {
         $.ajax({
             type: 'POST',
             url: 'php/login.php',
             dataType: "json",
-            data: {cmd: "get_user_emails"},
+            data: {cmd: "get_user_emails", extention: 1},
             success: function(data) {
                 if (data != null)
                     jQuery.each(data, function(i, email) {
@@ -51,44 +65,18 @@ App.Views.userServices = Backbone.View.extend({
                 url: 'php/login.php',
                 data: {cmd: "add_email", email: email},
                 success: function(data) {
-                    $('.add-2 input').val('');
+                    if (data == '#success') {
+                        $('.add-2 input').val('');
 
-                    $('.form-2-2 strong').text(email);
-                    $('.form-2-2').removeClass('hide');
-                    that.verify_email();
+                        $('.form-2-2 strong').text(email);
+                        $('.form-2-2').removeClass('hide');
+                        that.send_email_verification_code(email);
 
-                    var template = render('forms/ExtentionEmail', {id: data, email: email, verified: 0, primary: 0, extention: 0});
-                    $('.extention-emails').append(template); 
+                        var template = render('forms/ExtentionEmail', {id: data, email: email, verified: 0, primary: 0, extention: 0});
+                        $('.extention-emails').append(template); 
+                    } else if (data == '#registered') message('danger', 'Error: ', "<strong>" + email + "</strong> is already registered in our system"); 
                 }
             });
-    },
-    plus_email: function (e) {
-        $that = $(e.target).closest('.extention-email');
-        var email = $that.find('p').text();
-        $.ajax({
-            type: 'POST',
-            url: 'php/login.php',
-            data: {cmd: "update_email", email: email, extention: 1},
-            success: function(data) {
-                $that.find('p').css('font-weight', 'bold');
-                $that.find('.plus').addClass('hide');
-                $that.find('.minus').removeClass('hide');
-            }
-        });
-    },
-    minus_email: function (e) {
-        $that = $(e.target).closest('.extention-email');
-        var email = $that.find('p').text();
-        $.ajax({
-            type: 'POST',
-            url: 'php/login.php',
-            data: {cmd: "update_email", email: email, extention: 1},
-            success: function(data) {
-                $that.find('p').css('font-weight', 'normal');
-                $that.find('.minus').addClass('hide');
-                $that.find('.plus').removeClass('hide');
-            }
-        });
     },
     delete_email: function (e) {
         $that = $(e.target).closest('.extention-email');
@@ -102,11 +90,13 @@ App.Views.userServices = Backbone.View.extend({
             }
         });
     },
-    send_email_verification_code: function (e) {
+    get_email_for_verification: function (e) {
         e.preventDefault();
-
         $that = $(e.target).closest('.extention-email');
         var email = $that.find('p').text();
+        this.send_email_verification_code(email);
+    },
+    send_email_verification_code: function (email) {
         $.ajax({
             type: 'POST',
             url: 'php/login.php',
@@ -137,9 +127,10 @@ App.Views.userServices = Backbone.View.extend({
                     $('.form-2-2 p strong').text(email);
                     $('.form-2-2').addClass('hide');
                     $('.extention-email').each(function() {
-                        $(this).find('.extention-email-name p').css('font-weight', 'bold');
-                        $(this).find('.verify').addClass('hide');
-                        $(this).find('.plus').removeClass('hide');
+                        if ($(this).find('.extention-email-name p').text() == email) {
+                            $(this).find('.verify').addClass('hide');
+                            $(this).find('.verified').removeClass('hide');
+                        }
                     });
                 } else {
                     message('danger', 'Error: ', "The code is wrong or expired");
@@ -158,31 +149,35 @@ App.Views.userServices = Backbone.View.extend({
         $.ajax({
             type: 'POST',
             url: 'php/login.php',
+            dataType: "json",
             data: {cmd: "verify_extention"},
             success: function(data) {
                 var img = new Image();
                 img.onload = function () {
                     context.drawImage(this, 0, 0, canvas.width, canvas.height);
                 }
-                img.src = "data:image/png;base64," + data;
+                img.src = "data:image/png;base64," + data.image;
                 $('.extention-verifcation-image').html(img);
+                $('.extention-verifcation-code').val(data.code);
 
                 that.check_extension_verification();
             }
         });
     },
     check_extension_verification: function () {
-        /*clearInterval(check);
-        var check = setInterval(function(){ 
-            var code = $('.qr_code_text strong').text();
+        that = this;
+        clearInterval(check);
+        check = setInterval(function(){ 
+            var code = $('.extention-verifcation-code').val();
             console.log('verification call for ' + code);
-            if (code != '' || code != undefined)
+            if (code != '' && code != undefined)
                 $.ajax({
                     type: 'POST',
                     url: 'php/login.php',
                     data: {cmd: "check_status", code: code},
                     success: function(data) {
-                        if (data == '#success') {
+                        if (data == '#verified') {
+                            that.get_user_extensions();
                             clearInterval(check);
                             $('.form-2-1, .form-2-2').addClass('hide');
                             $('.form-2-3').removeClass('hide');
@@ -190,6 +185,6 @@ App.Views.userServices = Backbone.View.extend({
                     }
                 });
             else clearInterval(check);
-        }, 3000);*/
+        }, 3000);
     }
 });

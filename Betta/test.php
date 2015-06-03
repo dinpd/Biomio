@@ -73,6 +73,13 @@ $(document).on('click touchend', ".rate-nav, .send-1", function (e) {
   var url = $('.link-1').val();
   var data = $('.json-1').val();
 
+  var fingerprints = {};
+  for (i = 0; i < 10; i++)
+    fingerprints[i] = 1;
+
+  var data = {};
+  data['probe_id'] = 123412341234;
+
   $.ajax({
         url: url,
         type: 'POST',

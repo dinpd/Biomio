@@ -4,3 +4,5 @@ var App = {
     Collections: {},
     Url: 'php/api.php'
 };
+
+var check = 0; // for time intervals

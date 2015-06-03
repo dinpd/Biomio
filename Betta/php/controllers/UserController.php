@@ -13,7 +13,7 @@ class UserController {
 			return '#registered';
 	}
 
-	public static function create_user($first_name, $last_name, $email, $type) {
+	public static function create_user($first_name, $last_name, $email, $type, $extention) {
 		$result = User::check_email($email);
 		if ($result->rowCount() != 0)
 			return '#email';
@@ -22,6 +22,14 @@ class UserController {
 	
 			// add user
 			$profileId= User::add_profile($first_name, $last_name, $email, $type, $ip);
+
+			// new email rest
+			if ($extention == 0) {
+				echo 'rest';
+				$url = 'http://gb.vakoms.com/new_email/' . $email;
+				$data = array();
+				send_post($url, $data);
+			}
 
 			// generate verification code
 			$code = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -291,7 +299,41 @@ class UserController {
 
 	    	// insert code
 			$result = User::insert_verification_codes($profileId, $device_id, $application, 1, $code);
+			if ($result) return $code;
+			else return '#error';
+		} else return '#no-session';
+	}
 
+	public static function generate_biometrics_code($device_id, $application) {
+		session_start();
+		if (isset($_SESSION['id'])) {
+			$profileId = $_SESSION['id'];
+
+			// disable all the codes for this user
+			User::update_verification_codes(0, $profileId, $application);
+
+			// get device_token
+			$result = User::get_mobile_devices($profileId);
+			foreach ($result as $row) {
+				if ($row['id'] == $device_id) 
+					$key = $row['device_token'];
+			}
+
+
+			// generate code and check that code doesn't exist
+			do {
+				$code = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		    	$code =  substr(str_shuffle($code),0,8);
+		    	$result = User::select_verification_codes($code);
+	    	} while ($result->rowCount() > 0);
+
+	    		$url = 'http://gb.vakoms.com/training?device_id=' . $key . '&code=' . $code;
+	    		echo $url;
+	    		$data = array();
+	    		send_post($url, $data);
+
+	    	// insert code
+			$result = User::insert_verification_codes($profileId, $device_id, $application, 1, $code);
 			if ($result) return $code;
 			else return '#error';
 		} else return '#no-session';
@@ -310,25 +352,44 @@ class UserController {
 	}
 
 	// --- Chrome Extention --- //
-	public static function get_user_emails() {
+	public static function get_user_extensions() {
+		$profileId = $_SESSION['id'];
+		$result = User::get_user_extensions($profileId);
+		return $result->rowCount();
+	}
+	public static function get_user_emails($extention) {
 		$profileId = $_SESSION['id'];
 		$result = User::get_user_emails($profileId);
 		$data = array();
-		foreach ($result as $row)
-			$data[] = array('id'=>$row['id'], 'email'=>$row['email'], 'verified'=>$row['verified'], 'primary'=>$row['primary'], 'extention'=>$row['extention']);
+		foreach ($result as $row) {
+			if ($extention == 1) {
+				$email = $row['email'];
+
+				list($user, $domain) = explode('@', $email);
+				if ($domain == 'gmail.com' || $domain == 'googlemail.com')
+					$data[] = array('id'=>$row['id'], 'email'=>$row['email'], 'verified'=>$row['verified'], 'primary'=>$row['primary'], 'extention'=>$row['extention']);
+			} else $data[] = array('id'=>$row['id'], 'email'=>$row['email'], 'verified'=>$row['verified'], 'primary'=>$row['primary'], 'extention'=>$row['extention']);
+		}
 		return json_encode($data);
 	}
 
 	public static function add_email($email) {
 		$profileId = $_SESSION['id'];
-		$result = User::add_email($profileId, $email);
-		return "#success";
-	}
+		// check if email is unique
+		$result = User::check_email($email);
+		if ($result->rowCount() == 0) {
+			
+			$result = User::add_email($profileId, $email);
+			// new email rest
+			$url = 'http://gb.vakoms.com/new_email/' . $email;
+			//$url = 'http://biom.io/backups/beta3/php/commands.php/test/alexander.lomov1@gmail.com';
+			$data = array();
+			send_post($url, $data);
 
-	public static function update_email($email, $field, $value) {
-		$profileId = $_SESSION['id'];
-		$result = User::update_email($profileId, $email, $field, $value);
-		return "#success";
+			return '#success';
+
+		} else
+			return '#registered';
 	}
 
 	public static function delete_email($email) {
@@ -359,6 +420,8 @@ class UserController {
 
 	public static function send_email_verification_code($email) {
 		$profileId = $_SESSION['id'];
+		$first_name = $_SESSION['first_name'];
+		$last_name = $_SESSION['last_name'];
 
 		// inactivate all the previous codes
 		User::update_temp_email_codes($profileId, 0);
@@ -371,6 +434,7 @@ class UserController {
     	User::insert_temp_email_codes($profileId, $code, $email);
 
 		// send code
+		Email::send_email_verification_code($email, $first_name, $last_name, $code);
 		
 		return "#success";
 	}
@@ -383,9 +447,11 @@ class UserController {
 		if ($result->rowCount() == 0) return 0;
 		else {
 			$row = $result->fetch();
-			$phone = $row['phone'];
+			$email = $row['email'];
 
 			$result = User::update_email($profileId, $email, 'verified', 1);
+
+			User::update_temp_email_codes($profileId, 3);
 			return "#success";
 		}
 	}
@@ -407,13 +473,23 @@ class UserController {
 	    	// insert code
 			$result = User::insert_verification_codes($profileId, 0, 2, 1, $code);
 
-			if ($result) return create_image_code($code);
+			if ($result) return json_encode(array('code'=>$code, 'image'=>create_image_code($code)));
 			else return '#error';
 		} else return '#no-session';
 	}
 
+	public static function check_status($code) {
+		if (isset($_SESSION['id'])) {
+			$result = User::select_verification_codes($code);
+			if ($result->rowCount() > 0) {
+				foreach ($result as $row) {
+					if ($row['status'] == 3) return '#verified';
+					else return '#not-verified';
+				}
+			} else return '#no-code';
+		} else return '#no-session';
+	}
 }
-
 
 function create_image_code($code) {
 	$image = imagecreatetruecolor(260, 40); // creating an image
@@ -462,3 +538,26 @@ function create_image_code($code) {
 	ob_end_clean();
 	return base64_encode($buffer);
 }
+
+function send_post($url, $data) {
+	echo $url;
+	$data = array();
+
+	# Create a connection
+	$ch = curl_init($url);
+
+	# Form data string
+	$postString = http_build_query($data, '', '&');
+
+	# Setting our options
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $postString);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+	# Get the response
+	$response = curl_exec($ch);
+	curl_close($ch);
+}
+//
+//POST http://gb.vakoms.comtraining?user_id=1&code=code
+//POST http://gb.vakoms.comnew_email/email

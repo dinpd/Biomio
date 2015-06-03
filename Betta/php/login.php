@@ -1,4 +1,9 @@
 <?php
+/*
+ini_set('display_errors',1);
+ini_set('display_startup_errors',1);
+error_reporting(-1);
+*/
 require ('controllers/EmailController.php');
 require ('controllers/SessionController.php');
 require ('controllers/UserController.php');
@@ -19,7 +24,7 @@ if (isset($_POST['cmd'])) {
 			$first_name = $_POST['first_name'];
 			$last_name = $_POST['last_name'];
 			$email = $_POST['email'];
-			$result = UserController::create_user($first_name, $last_name, $email, $type);
+			$result = UserController::create_user($first_name, $last_name, $email, $type, 0);
 			echo $result;
 		break;
 
@@ -135,9 +140,9 @@ if (isset($_POST['cmd'])) {
 		break;
 
 		case 'generate_biometrics_code':
-			$device_id = $_POST['id'];
+			$device_id = $_POST['device_id'];;
 			$application = $_POST['application'];
-			$result = UserController::generate_qr_code($device_id, $application);
+			$result = UserController::generate_biometrics_code($device_id, $application);
 			echo $result;
 		break;
 
@@ -154,21 +159,19 @@ if (isset($_POST['cmd'])) {
 			echo $result;
 		break;
 			// --- Chrome Extention --- //
+		case 'get_user_extensions':
+			$result = UserController::get_user_extensions();
+			echo $result;
+		break;
 		case 'get_user_emails':
-			$result = UserController::get_user_emails();
+			$extention = $_POST['extention'];
+			$result = UserController::get_user_emails($extention);
 			echo $result;
 		break;
 
 		case 'add_email':
 			$email = $_POST['email'];
 			$result = UserController::add_email($email);
-			echo $result;
-		break;
-
-		case 'update_email':
-			$email = $_POST['email'];
-			$extention = $_POST['extention'];
-			$result = UserController::update_email($email, 'extention', $extention);
 			echo $result;
 		break;
 
@@ -218,10 +221,9 @@ if (isset($_POST['cmd'])) {
 		break;
 
 		case 'check_status':
-			$service_id = $_POST['service_id'];
 			$code = $_POST['code'];
 
-			$result = UserController::check_status($service_id, $code);
+			$result = UserController::check_status($code);
 			echo $result;
 		break;
 

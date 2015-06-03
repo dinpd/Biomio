@@ -61,9 +61,9 @@ App.Views.Login = Backbone.View.extend({
                         var face = data.face; // 1 or 0
                         var profilePhone = data.phone; // 1 or 0
 
-                        if (face != 0) {
+                        if (face == 12341234) {
                             // check for fingerprints
-                            biomio_verify();
+                            //biomio_verify();
                         } else {
                             alert('Biometrics Login is coming soon');
                             // open buttons

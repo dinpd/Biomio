@@ -12,8 +12,12 @@ class SessionController {
 	}
 
 	public static function get_user_session() {
-		$result = array('id'=>$_SESSION['id'], 'type'=>$_SESSION['type'], 'first_name'=>$_SESSION['first_name'], 'last_name'=>$_SESSION['last_name']);
-		return $result;
+		if (!isset($_SESSION['id']))
+			return array("id"=>null,"type"=>null,"first_name"=>null,"last_name"=>null);
+		else {
+			$result = array('id'=>$_SESSION['id'], 'type'=>$_SESSION['type'], 'first_name'=>$_SESSION['first_name'], 'last_name'=>$_SESSION['last_name']);
+			return $result;
+		}
 	}
 
 	public static function destroy_session() {

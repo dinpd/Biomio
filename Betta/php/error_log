@@ -1,0 +1,415 @@
+[14-Apr-2014 05:54:09 America/Nassau] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_FUNCTION in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 125
+[14-Apr-2014 05:55:06 America/Nassau] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_FUNCTION in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 125
+[14-Apr-2014 05:57:10 America/Nassau] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_FUNCTION in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 125
+[14-Apr-2014 05:57:19 America/Nassau] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_FUNCTION in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 125
+[14-Apr-2014 05:57:25 America/Nassau] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_FUNCTION in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 125
+[14-Apr-2014 05:57:25 America/Nassau] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_FUNCTION in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 125
+[14-Apr-2014 05:57:26 America/Nassau] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_FUNCTION in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 125
+[14-Apr-2014 05:59:40 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 149
+[14-Apr-2014 05:59:40 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 149
+[14-Apr-2014 05:59:41 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 149
+[14-Apr-2014 05:59:46 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 149
+[14-Apr-2014 06:00:16 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 155
+[14-Apr-2014 06:00:19 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 155
+[14-Apr-2014 06:00:23 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 155
+[14-Apr-2014 06:00:27 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 155
+[14-Apr-2014 06:00:30 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 155
+[14-Apr-2014 06:00:32 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 155
+[14-Apr-2014 06:00:32 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 155
+[14-Apr-2014 06:00:32 America/Nassau] PHP Parse error:  syntax error, unexpected '}' in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 155
+[14-Apr-2014 06:00:51 America/Nassau] PHP Parse error:  syntax error, unexpected T_ECHO in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 180
+[14-Apr-2014 06:01:06 America/Nassau] PHP Fatal error:  Function name must be a string in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 24
+[14-Apr-2014 06:41:06 America/Nassau] PHP Fatal error:  Call to undefined method UserController::login() in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 40
+[14-Apr-2014 06:56:05 America/Nassau] PHP Warning:  mysqli_query() expects at least 2 parameters, 1 given in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 197
+[14-Apr-2014 06:56:05 America/Nassau] PHP Warning:  mysqli_error() expects exactly 1 parameter, 0 given in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 197
+[14-Apr-2014 07:04:43 America/Nassau] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 175
+[14-Apr-2014 07:04:43 America/Nassau] PHP Fatal error:  Class 'UserSession' not found in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 178
+[14-Apr-2014 07:05:31 America/Nassau] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 175
+[14-Apr-2014 07:06:17 America/Nassau] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, resource given in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 175
+[14-Apr-2014 07:08:52 America/Nassau] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, resource given in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 175
+[16-Apr-2014 03:45:33 America/Nassau] PHP Fatal error:  Call to undefined method UserController::verify() in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 31
+[16-Apr-2014 03:46:50 America/Nassau] PHP Fatal error:  Call to undefined method UserController::verify() in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 31
+[16-Apr-2014 03:47:08 America/Nassau] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, null given in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 159
+[16-Apr-2014 04:58:20 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:20 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:20 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:20 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:20 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:29 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:29 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:29 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:29 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[16-Apr-2014 04:58:29 America/Nassau] PHP Warning:  session_destroy() [<a href='function.session-destroy'>function.session-destroy</a>]: Trying to destroy uninitialized session in /home/alexa449/public_html/biom/websitez/php/updateData.php on line 135
+[03-Apr-2015 16:50:26 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 14
+[03-Apr-2015 16:51:11 America/Chicago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE), expecting function (T_FUNCTION) in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 20
+[03-Apr-2015 16:51:55 America/Chicago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE), expecting function (T_FUNCTION) in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 20
+[03-Apr-2015 16:52:24 America/Chicago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE), expecting function (T_FUNCTION) in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 20
+[03-Apr-2015 16:53:01 America/Chicago] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/biom/public_html/backups/beta/php/models/User.php on line 24
+[03-Apr-2015 16:54:07 America/Chicago] PHP Fatal error:  Cannot redeclare User::get_user_info() in /home/biom/public_html/backups/beta/php/models/User.php on line 184
+[06-Apr-2015 08:49:54 America/Chicago] PHP Fatal error:  Cannot redeclare User::get_user_info() in /home/biom/public_html/backups/beta/php/models/User.php on line 184
+[06-Apr-2015 08:51:01 America/Chicago] PHP Fatal error:  Cannot redeclare User::get_user_info() in /home/biom/public_html/backups/beta/php/models/User.php on line 184
+[06-Apr-2015 08:51:15 America/Chicago] PHP Fatal error:  Cannot redeclare User::get_user_info() in /home/biom/public_html/backups/beta/php/models/User.php on line 184
+[06-Apr-2015 09:00:53 America/Chicago] PHP Warning:  PDOStatement::execute(): SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in /home/biom/public_html/backups/beta/php/models/User.php on line 28
+[06-Apr-2015 09:07:02 America/Chicago] PHP Warning:  PDOStatement::execute(): SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in /home/biom/public_html/backups/beta/php/models/User.php on line 28
+[06-Apr-2015 09:07:41 America/Chicago] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 193
+[06-Apr-2015 09:08:29 America/Chicago] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 193
+[06-Apr-2015 09:15:49 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ip' in 'field list'' in /home/biom/public_html/backups/beta/php/models/User.php:21
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(21): PDO->prepare('INSERT INTO Pro...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(24): User::add_profile('betatest', 'betatest', 'betatest@betate...', 'USER', '50.43.34.130')
+#2 /home/biom/public_html/backups/beta/php/login.php(22): UserController::create_user('betatest', 'betatest', 'betatest@betate...', 'USER')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 21
+[06-Apr-2015 09:16:41 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ip' in 'field list'' in /home/biom/public_html/backups/beta/php/models/User.php:18
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(18): PDO->prepare('INSERT INTO Pro...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(24): User::add_profile('betatest', 'betatest', 'betatest@betate...', 'USER', '50.43.34.130')
+#2 /home/biom/public_html/backups/beta/php/login.php(22): UserController::create_user('betatest', 'betatest', 'betatest@betate...', 'USER')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 18
+[06-Apr-2015 09:17:27 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'first_name' in 'field list'' in /home/biom/public_html/backups/beta/php/models/User.php:25
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(25): PDO->prepare('INSERT INTO Use...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(24): User::add_profile('betatest', 'betatest', 'betatest@betate...', 'USER', '50.43.34.130')
+#2 /home/biom/public_html/backups/beta/php/login.php(22): UserController::create_user('betatest', 'betatest', 'betatest@betate...', 'USER')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 25
+[06-Apr-2015 09:20:23 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary) VALUES (?, ?, 1)' at line 1' in /home/biom/public_html/backups/beta/php/models/User.php:29
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(29): PDO->prepare('INSERT INTO Ema...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(24): User::add_profile('betatest', 'betatest', 'betatest@betate...', 'USER', '50.43.34.130')
+#2 /home/biom/public_html/backups/beta/php/login.php(22): UserController::create_user('betatest', 'betatest', 'betatest@betate...', 'USER')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 29
+[06-Apr-2015 09:22:59 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary) VALUES (?, ?, 1)' at line 1' in /home/biom/public_html/backups/beta/php/models/User.php:29
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(29): PDO->prepare('INSERT INTO Ema...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(24): User::add_profile('betatest2', 'betatest2', 'betatest2@betat...', 'USER', '50.43.34.130')
+#2 /home/biom/public_html/backups/beta/php/login.php(22): UserController::create_user('betatest2', 'betatest2', 'betatest2@betat...', 'USER')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 29
+[06-Apr-2015 09:24:25 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary) VALUES (?, ?, '1')' at line 1' in /home/biom/public_html/backups/beta/php/models/User.php:29
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(29): PDO->prepare('INSERT INTO Ema...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(24): User::add_profile('betatest2', 'betatest2', 'betatest2@betat...', 'USER', '50.43.34.130')
+#2 /home/biom/public_html/backups/beta/php/login.php(22): UserController::create_user('betatest2', 'betatest2', 'betatest2@betat...', 'USER')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 29
+[06-Apr-2015 09:29:14 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary) VALUES (?, ?, 1)' at line 1' in /home/biom/public_html/backups/beta/php/models/User.php:33
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(33): PDO->prepare('INSERT INTO Ema...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(24): User::add_profile('betatest2', 'betatest2', 'betatest2@betat...', 'USER', '50.43.34.130')
+#2 /home/biom/public_html/backups/beta/php/login.php(22): UserController::create_user('betatest2', 'betatest2', 'betatest2@betat...', 'USER')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 33
+[06-Apr-2015 09:29:30 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary) VALUES (?, ?, 1)' at line 1' in /home/biom/public_html/backups/beta/php/models/User.php:33
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(33): PDO->prepare('INSERT INTO Ema...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(24): User::add_profile('betatest2', 'betatest2', 'betatest2@betat...', 'USER', '50.43.34.130')
+#2 /home/biom/public_html/backups/beta/php/login.php(22): UserController::create_user('betatest2', 'betatest2', 'betatest2@betat...', 'USER')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 33
+[06-Apr-2015 09:31:44 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary) VALUES (?, ?, ?)' at line 1' in /home/biom/public_html/backups/beta/php/models/User.php:27
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(27): PDO->prepare('INSERT INTO Ema...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(24): User::add_profile('betatest3', 'betatest3', 'betatest3@betat...', 'USER', '50.43.34.130')
+#2 /home/biom/public_html/backups/beta/php/login.php(22): UserController::create_user('betatest3', 'betatest3', 'betatest3@betat...', 'USER')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 27
+[06-Apr-2015 09:33:11 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary) VALUES (?, ?, ?)' at line 1' in /home/biom/public_html/backups/beta/php/models/User.php:27
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(27): PDO->prepare('INSERT INTO Ema...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(24): User::add_profile('betatest3', 'betatest3', 'betatest3@betat...', 'USER', '50.43.34.130')
+#2 /home/biom/public_html/backups/beta/php/login.php(22): UserController::create_user('betatest3', 'betatest3', 'betatest3@betat...', 'USER')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 27
+[06-Apr-2015 09:36:43 America/Chicago] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 193
+[06-Apr-2015 09:36:43 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'profileId' in 'where clause'' in /home/biom/public_html/backups/beta/php/models/User.php:37
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(37): PDO->prepare('SELECT * FROM P...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(202): User::get_phones('120')
+#2 /home/biom/public_html/backups/beta/php/login.php(94): UserController::get_phones(NULL)
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 37
+[06-Apr-2015 09:39:39 America/Chicago] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, object given in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 252
+[06-Apr-2015 09:54:15 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'profileId' in 'where clause'' in /home/biom/public_html/backups/beta/php/models/User.php:151
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(151): PDO->prepare('DELETE FROM Pho...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(265): User::delete_phone('120', '\nWarning:  mysq...')
+#2 /home/biom/public_html/backups/beta/php/login.php(114): UserController::delete_phone('\nWarning:  mysq...')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 151
+[06-Apr-2015 09:55:29 America/Chicago] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 193
+[06-Apr-2015 09:56:00 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE profileId = ? AND phone = ?' at line 1' in /home/biom/public_html/backups/beta/php/models/User.php:144
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(144): PDO->prepare('INSERT INTO Pho...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(256): User::add_phone('120', '15039840867')
+#2 /home/biom/public_html/backups/beta/php/login.php(108): UserController::verify_phone_code('ftU9KEyuqc')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 144
+[06-Apr-2015 09:57:12 America/Chicago] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 193
+[06-Apr-2015 10:00:58 America/Chicago] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 193
+[06-Apr-2015 10:01:43 America/Chicago] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 193
+[06-Apr-2015 10:51:57 America/Chicago] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 193
+[06-Apr-2015 10:53:15 America/Chicago] PHP Fatal error:  Call to undefined method UserController::login_check() in /home/biom/public_html/backups/beta/php/login.php on line 29
+[06-Apr-2015 10:53:20 America/Chicago] PHP Fatal error:  Call to undefined method UserController::login_check() in /home/biom/public_html/backups/beta/php/login.php on line 29
+[06-Apr-2015 11:02:34 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[08004] [1040] Too many connections' in /home/biom/public_html/backups/beta/php/connect.php:9
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/connect.php(9): PDO->__construct('mysql:dbname=bi...', 'biom_admin', 'uFa-rEm-6a8-fuD')
+#1 /home/biom/public_html/backups/beta/php/splash.php(2): include('/home/biom/publ...')
+#2 {main}
+  thrown in /home/biom/public_html/backups/beta/php/connect.php on line 9
+[06-Apr-2015 11:02:39 America/Chicago] PHP Warning:  mysqli_connect(): (HY000/1040): Too many connections in /home/biom/public_html/backups/beta/php/connect.php on line 6
+[06-Apr-2015 11:07:04 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND email = ?' at line 1' in /home/biom/public_html/backups/beta/php/models/User.php:72
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(72): PDO->prepare('SELECT * FROM E...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(110): User::select_temp_login_email(NULL, 'betatest3@betat...')
+#2 /home/biom/public_html/backups/beta/php/login.php(43): UserController::send_email_login_code(NULL, 'betatest3@betat...')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 72
+[06-Apr-2015 11:15:12 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: parameter was not defined' in /home/biom/public_html/backups/beta/php/models/User.php:80
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(80): PDOStatement->execute(Array)
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(136): User::select_temp_login_code('120', 'O9gnhVw6Tb')
+#2 /home/biom/public_html/backups/beta/php/login.php(50): UserController::check_login_code('120', 'O9gnhVw6Tb')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 80
+[06-Apr-2015 11:15:48 America/Chicago] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 194
+[06-Apr-2015 11:16:23 America/Chicago] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 194
+[06-Apr-2015 11:20:02 America/Chicago] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 194
+[06-Apr-2015 15:11:41 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'status' cannot be null' in /home/biom/public_html/backups/beta/php/models/User.php:120
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(120): PDOStatement->execute(Array)
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(182): User::insert_verification_codes('121', '1', NULL, 'kvm9VIqf')
+#2 /home/biom/public_html/backups/beta/php/login.php(73): UserController::generate_qr_code('1')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 120
+[07-Apr-2015 12:32:41 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1' in /home/biom/public_html/backups/beta/php/models/User.php:119
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(119): PDO->prepare('INSERT INTO Ver...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(279): User::insert_verification_codes('121', NULL, '1', 1, 'VpfyvsXY')
+#2 /home/biom/public_html/backups/beta/php/login.php(128): UserController::generate_qr_code(NULL, '1')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 119
+[07-Apr-2015 12:33:10 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1' in /home/biom/public_html/backups/beta/php/models/User.php:119
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(119): PDO->prepare('INSERT INTO Ver...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(279): User::insert_verification_codes('121', NULL, '1', 1, 'jFDvoOPg')
+#2 /home/biom/public_html/backups/beta/php/login.php(128): UserController::generate_qr_code(NULL, '1')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 119
+[07-Apr-2015 12:33:13 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1' in /home/biom/public_html/backups/beta/php/models/User.php:119
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(119): PDO->prepare('INSERT INTO Ver...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(279): User::insert_verification_codes('121', NULL, '1', 1, 'EJ21IiwB')
+#2 /home/biom/public_html/backups/beta/php/login.php(128): UserController::generate_qr_code(NULL, '1')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 119
+[07-Apr-2015 12:55:23 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1' in /home/biom/public_html/backups/beta/php/models/User.php:119
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(119): PDO->prepare('INSERT INTO Ver...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(282): User::insert_verification_codes('121', '3', '1', 1, 'tb59yvEA')
+#2 /home/biom/public_html/backups/beta/php/login.php(128): UserController::generate_qr_code('3', '1')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 119
+[07-Apr-2015 12:56:37 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1' in /home/biom/public_html/backups/beta/php/models/User.php:119
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(119): PDO->prepare('INSERT INTO Ver...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(282): User::insert_verification_codes('121', '4', '1', 1, 'MDHjGVcB')
+#2 /home/biom/public_html/backups/beta/php/login.php(128): UserController::generate_qr_code('4', '1')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 119
+[07-Apr-2015 13:35:19 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'device_id' in 'where clause'' in /home/biom/public_html/backups/beta/php/models/User.php:185
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(185): PDO->prepare('DELETE FROM Use...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(297): User::delete_mobile_device('121', NULL)
+#2 /home/biom/public_html/backups/beta/php/login.php(141): UserController::delete_mobile_device(NULL)
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 185
+[07-Apr-2015 13:35:23 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'device_id' in 'where clause'' in /home/biom/public_html/backups/beta/php/models/User.php:185
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(185): PDO->prepare('DELETE FROM Use...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(297): User::delete_mobile_device('121', NULL)
+#2 /home/biom/public_html/backups/beta/php/login.php(141): UserController::delete_mobile_device(NULL)
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 185
+[07-Apr-2015 13:42:40 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list'' in /home/biom/public_html/backups/beta/php/models/User.php:178
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(178): PDO->prepare('UPDATE UserServ...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(291): User::rename_mobile_device('121', '', 'device5')
+#2 /home/biom/public_html/backups/beta/php/login.php(135): UserController::rename_mobile_device('', 'device5')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 178
+[07-Apr-2015 13:46:50 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list'' in /home/biom/public_html/backups/beta/php/models/User.php:178
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(178): PDO->prepare('UPDATE UserServ...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(291): User::rename_mobile_device('121', '7', 'device5')
+#2 /home/biom/public_html/backups/beta/php/login.php(135): UserController::rename_mobile_device('7', 'device5')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 178
+[07-Apr-2015 13:47:05 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list'' in /home/biom/public_html/backups/beta/php/models/User.php:178
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(178): PDO->prepare('UPDATE UserServ...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(291): User::rename_mobile_device('121', '7', 'device5')
+#2 /home/biom/public_html/backups/beta/php/login.php(135): UserController::rename_mobile_device('7', 'device5')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 178
+[07-Apr-2015 13:47:24 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list'' in /home/biom/public_html/backups/beta/php/models/User.php:178
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(178): PDO->prepare('UPDATE UserServ...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(291): User::rename_mobile_device('121', '7', 'device5')
+#2 /home/biom/public_html/backups/beta/php/login.php(135): UserController::rename_mobile_device('7', 'device5')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 178
+[07-Apr-2015 14:36:03 America/Chicago] PHP Warning:  Missing argument 2 for User::get_user_emails(), called in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 304 and defined in /home/biom/public_html/backups/beta/php/models/User.php on line 190
+[07-Apr-2015 14:58:16 America/Chicago] PHP Fatal error:  Call to undefined method User::add_email() in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 313
+[07-Apr-2015 15:06:16 America/Chicago] PHP Fatal error:  Call to undefined method User::get_mobile_devices() in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 253
+[07-Apr-2015 15:06:16 America/Chicago] PHP Fatal error:  Call to undefined method User::get_user_emails() in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 304
+[07-Apr-2015 15:09:01 America/Chicago] PHP Fatal error:  Call to undefined method UserController::get_mobile_devices() in /home/biom/public_html/backups/beta/php/login.php on line 115
+[07-Apr-2015 15:09:01 America/Chicago] PHP Fatal error:  Call to undefined method UserController::get_user_emails() in /home/biom/public_html/backups/beta/php/login.php on line 146
+[07-Apr-2015 15:09:34 America/Chicago] PHP Fatal error:  Call to undefined method UserController::get_mobile_devices() in /home/biom/public_html/backups/beta/php/login.php on line 115
+[07-Apr-2015 15:09:34 America/Chicago] PHP Fatal error:  Call to undefined method UserController::get_user_emails() in /home/biom/public_html/backups/beta/php/login.php on line 146
+[07-Apr-2015 15:12:40 America/Chicago] PHP Catchable fatal error:  Object of class PDOStatement could not be converted to string in /home/biom/public_html/backups/beta/php/login.php on line 153
+[07-Apr-2015 16:51:31 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: parameter was not defined' in /home/biom/public_html/backups/beta/php/models/User.php:207
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(207): PDOStatement->execute(Array)
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(319): User::update_email('121', 'betatest4@betat...', 'extention', '1')
+#2 /home/biom/public_html/backups/beta/php/login.php(159): UserController::update_email('betatest4@betat...', 'extention', '1')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 207
+[07-Apr-2015 16:52:21 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: parameter was not defined' in /home/biom/public_html/backups/beta/php/models/User.php:207
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(207): PDOStatement->execute(Array)
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(319): User::update_email('121', 'betatest4@betat...', 'extention', '1')
+#2 /home/biom/public_html/backups/beta/php/login.php(159): UserController::update_email('betatest4@betat...', 'extention', '1')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 207
+[08-Apr-2015 10:57:43 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'email' cannot be null' in /home/biom/public_html/backups/beta/php/models/User.php:228
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(228): PDOStatement->execute(Array)
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(360): User::insert_temp_email_codes('121', 'zRpi8d4gWn', 'qwerty@qwerty.c...')
+#2 /home/biom/public_html/backups/beta/php/login.php(192): UserController::send_email_verification_code('qwerty@qwerty.c...')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 228
+[08-Apr-2015 11:04:37 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@qwerty.com = ? AND code = ? AND status = 1 AND date_created > DATE_SUB(now(), I' at line 1' in /home/biom/public_html/backups/beta/php/models/User.php:234
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/models/User.php(234): PDO->prepare('SELECT * FROM T...')
+#1 /home/biom/public_html/backups/beta/php/controllers/UserController.php(370): User::select_temp_email_codes('121', 'qwerty@qwerty.c...', '5OA3ZK1TlM')
+#2 /home/biom/public_html/backups/beta/php/login.php(199): UserController::verify_email('qwerty@qwerty.c...', '5OA3ZK1TlM')
+#3 {main}
+  thrown in /home/biom/public_html/backups/beta/php/models/User.php on line 234
+[10-Apr-2015 13:44:21 America/Chicago] PHP Parse error:  syntax error, unexpected ';' in /home/biom/public_html/backups/beta/php/commands.php on line 21
+[10-Apr-2015 13:46:54 America/Chicago] PHP Parse error:  syntax error, unexpected ';' in /home/biom/public_html/backups/beta/php/commands.php on line 21
+[10-Apr-2015 13:49:22 America/Chicago] PHP Parse error:  syntax error, unexpected ';' in /home/biom/public_html/backups/beta/php/commands.php on line 21
+[10-Apr-2015 13:56:47 America/Chicago] PHP Parse error:  syntax error, unexpected ';' in /home/biom/public_html/backups/beta/php/commands.php on line 21
+[10-Apr-2015 13:57:47 America/Chicago] PHP Parse error:  syntax error, unexpected ';' in /home/biom/public_html/backups/beta/php/commands.php on line 21
+[10-Apr-2015 13:58:01 America/Chicago] PHP Parse error:  syntax error, unexpected ';' in /home/biom/public_html/backups/beta/php/commands.php on line 58
+[10-Apr-2015 15:46:41 America/Chicago] PHP Fatal error:  Function name must be a string in /home/biom/public_html/backups/beta/php/commands.php on line 61
+[15-Apr-2015 18:18:12 America/Chicago] PHP Warning:  mysqli_error() expects exactly 1 parameter, 0 given in /home/biom/public_html/backups/beta/php/splash.php on line 40
+[15-Apr-2015 18:18:46 America/Chicago] PHP Warning:  mysqli_error() expects exactly 1 parameter, 0 given in /home/biom/public_html/backups/beta/php/splash.php on line 40
+[15-Apr-2015 18:21:16 America/Chicago] PHP Warning:  mysqli_error() expects exactly 1 parameter, 0 given in /home/biom/public_html/backups/beta/php/splash.php on line 40
+[15-Apr-2015 18:24:26 America/Chicago] PHP Warning:  mysqli_error() expects exactly 1 parameter, 0 given in /home/biom/public_html/backups/beta/php/splash.php on line 40
+[15-Apr-2015 18:36:12 America/Chicago] PHP Warning:  mysqli_error() expects exactly 1 parameter, 0 given in /home/biom/public_html/backups/beta/php/splash.php on line 40
+[21-May-2015 12:46:53 America/Chicago] PHP Warning:  file_get_contents(https://gb.vakoms.com:8080/training?user_id=$profileId&amp;code=$code): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 512
+[22-May-2015 03:12:09 America/Chicago] PHP Warning:  file_get_contents(https://gb.vakoms.com:8080/training?device_id=54&amp;code=gMPCHB40): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 532
+[22-May-2015 08:05:57 America/Chicago] PHP Warning:  file_get_contents(https://gb.vakoms.com:8080/training?device_id=57&amp;code=wyHlJXQS): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 532
+[22-May-2015 09:17:53 America/Chicago] PHP Warning:  file_get_contents(https://gb.vakoms.com:8080/training?device_id=58&amp;code=EGF8pV5g): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 532
+[22-May-2015 09:30:37 America/Chicago] PHP Warning:  file_get_contents(https://gb.vakoms.com:8080/training?device_id=59&amp;code=7Ttq8LN4): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 532
+[22-May-2015 09:31:51 America/Chicago] PHP Warning:  file_get_contents(https://gb.vakoms.com:8080/training?device_id=59&amp;code=HwKyGBkA): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 532
+[22-May-2015 12:12:22 America/Chicago] PHP Warning:  file_get_contents(http://...@vakoms.com.ua): failed to open stream: operation failed in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 532
+[25-May-2015 00:28:22 America/Chicago] PHP Warning:  file_get_contents(http://...@gmail.com): failed to open stream: operation failed in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 532
+[25-May-2015 01:21:04 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888training?device_id=64&amp;code=Y5aGWf4B): failed to open stream: operation failed in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 532
+[25-May-2015 01:26:08 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888training?device_id=66&amp;code=iGeExyaC): failed to open stream: operation failed in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 532
+[25-May-2015 01:26:18 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888training?device_id=66&amp;code=zKcfBSNs): failed to open stream: operation failed in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 532
+[25-May-2015 01:26:27 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888training?device_id=66&amp;code=5zDwLNaO): failed to open stream: operation failed in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 532
+[25-May-2015 01:28:26 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888training?device_id=66&amp;code=EDlCFh2p): failed to open stream: operation failed in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 532
+[25-May-2015 01:30:12 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888training?device_id=66&amp;code=f9TuPnYL): failed to open stream: operation failed in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 532
+[25-May-2015 01:31:54 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888training?device_id=66&amp;code=9xYIlfBW): failed to open stream: operation failed in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 532
+[25-May-2015 03:30:11 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888training?device_id=61&amp;code=lyHvLOTb): failed to open stream: operation failed in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 532
+[25-May-2015 10:22:21 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[08004] [1040] Too many connections' in /home/biom/public_html/backups/beta/php/connect.php:13
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/connect.php(13): PDO->__construct('mysql:dbname=bi...', 'biom_admin', 'uFa-rEm-6a8-fuD')
+#1 /home/biom/public_html/backups/beta/php/models/User.php(115): include('/home/biom/publ...')
+#2 /home/biom/public_html/backups/beta/php/controllers/UserController.php(460): User::select_verification_codes('http://gb.vakom...')
+#3 /home/biom/public_html/backups/beta/php/login.php(223): UserController::check_status('http://gb.vakom...')
+#4 {main}
+  thrown in /home/biom/public_html/backups/beta/php/connect.php on line 13
+[25-May-2015 10:42:42 America/Chicago] PHP Fatal error:  Class 'UserController' not found in /home/biom/public_html/backups/beta/php/login.php on line 223
+[27-May-2015 11:27:45 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888/training?device_id=6c88181e61f12f0791eeddbd0d537d83&amp;code=1jahkjsdh): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 574
+[27-May-2015 11:27:46 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888/training?device_id=6c88181e61f12f0791eeddbd0d537d83&amp;code=1jahkjsdh): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 574
+[27-May-2015 11:28:33 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888/training?device_id=6c88181e61f12f0791eeddbd0d537d83&amp;code=1jahkjsdh): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 574
+[27-May-2015 11:28:35 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888/training?device_id=6c88181e61f12f0791eeddbd0d537d83&amp;code=1jahkjsdh): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 574
+[27-May-2015 11:30:36 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888/training?device_id=6c88181e61f12f0791eeddbd0d537d83&amp;code=1jahkjsdh): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 574
+[27-May-2015 11:30:42 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888/training?device_id=6c88181e61f12f0791eeddbd0d537d83&amp;code=1jahkjsdh): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 574
+[27-May-2015 11:32:54 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888/training?device_id=6c88181e61f12f0791eeddbd0d537d83&amp;code=1jahkjsdh): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 574
+[27-May-2015 11:32:55 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888/training?device_id=6c88181e61f12f0791eeddbd0d537d83&amp;code=1jahkjsdh): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 574
+[27-May-2015 11:32:56 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888/training?device_id=6c88181e61f12f0791eeddbd0d537d83&amp;code=1jahkjsdh): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 574
+[27-May-2015 11:32:57 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888/training?device_id=6c88181e61f12f0791eeddbd0d537d83&amp;code=1jahkjsdh): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 574
+[27-May-2015 11:36:46 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888/training?device_id=6c88181e61f12f0791eeddbd0d537d83&amp;code=1jahkjsdh): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 599
+[27-May-2015 11:36:47 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888/training?device_id=6c88181e61f12f0791eeddbd0d537d83&amp;code=1jahkjsdh): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 599
+[27-May-2015 11:36:49 America/Chicago] PHP Warning:  file_get_contents(http://gb.vakoms.com:8888/training?device_id=6c88181e61f12f0791eeddbd0d537d83&amp;code=1jahkjsdh): failed to open stream: Connection refused in /home/biom/public_html/backups/beta/php/controllers/UserController.php on line 599
+[27-May-2015 12:50:00 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1040] Too many connections' in /home/biom/public_html/backups/beta/php/connect.php:13
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/connect.php(13): PDO->__construct('mysql:dbname=bi...', 'biom_admin', 'uFa-rEm-6a8-fuD')
+#1 /home/biom/public_html/backups/beta/php/models/User.php(115): include('/home/biom/publ...')
+#2 /home/biom/public_html/backups/beta/php/controllers/UserController.php(485): User::select_verification_codes('http://gb.vakom...')
+#3 /home/biom/public_html/backups/beta/php/login.php(221): UserController::check_status('http://gb.vakom...')
+#4 {main}
+  thrown in /home/biom/public_html/backups/beta/php/connect.php on line 13
+[27-May-2015 12:50:03 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[08004] [1040] Too many connections' in /home/biom/public_html/backups/beta/php/connect.php:13
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/connect.php(13): PDO->__construct('mysql:dbname=bi...', 'biom_admin', 'uFa-rEm-6a8-fuD')
+#1 /home/biom/public_html/backups/beta/php/models/User.php(115): include('/home/biom/publ...')
+#2 /home/biom/public_html/backups/beta/php/controllers/UserController.php(485): User::select_verification_codes('http://gb.vakom...')
+#3 /home/biom/public_html/backups/beta/php/login.php(221): UserController::check_status('http://gb.vakom...')
+#4 {main}
+  thrown in /home/biom/public_html/backups/beta/php/connect.php on line 13
+[27-May-2015 12:50:06 America/Chicago] PHP Warning:  mysqli_connect(): (HY000/1040): Too many connections in /home/biom/public_html/backups/beta/php/connect.php on line 21
+[27-May-2015 12:50:07 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1040] Too many connections' in /home/biom/public_html/backups/beta/php/connect.php:13
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/connect.php(13): PDO->__construct('mysql:dbname=bi...', 'biom_admin', 'uFa-rEm-6a8-fuD')
+#1 /home/biom/public_html/backups/beta/php/models/User.php(115): include('/home/biom/publ...')
+#2 /home/biom/public_html/backups/beta/php/controllers/UserController.php(485): User::select_verification_codes('http://gb.vakom...')
+#3 /home/biom/public_html/backups/beta/php/login.php(221): UserController::check_status('http://gb.vakom...')
+#4 {main}
+  thrown in /home/biom/public_html/backups/beta/php/connect.php on line 13
+[27-May-2015 12:50:08 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[08004] [1040] Too many connections' in /home/biom/public_html/backups/beta/php/connect.php:13
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/connect.php(13): PDO->__construct('mysql:dbname=bi...', 'biom_admin', 'uFa-rEm-6a8-fuD')
+#1 /home/biom/public_html/backups/beta/php/models/User.php(115): include('/home/biom/publ...')
+#2 /home/biom/public_html/backups/beta/php/controllers/UserController.php(485): User::select_verification_codes('http://gb.vakom...')
+#3 /home/biom/public_html/backups/beta/php/login.php(221): UserController::check_status('http://gb.vakom...')
+#4 {main}
+  thrown in /home/biom/public_html/backups/beta/php/connect.php on line 13
+[27-May-2015 12:50:08 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[08004] [1040] Too many connections' in /home/biom/public_html/backups/beta/php/connect.php:13
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/connect.php(13): PDO->__construct('mysql:dbname=bi...', 'biom_admin', 'uFa-rEm-6a8-fuD')
+#1 /home/biom/public_html/backups/beta/php/models/User.php(115): include('/home/biom/publ...')
+#2 /home/biom/public_html/backups/beta/php/controllers/UserController.php(485): User::select_verification_codes('http://gb.vakom...')
+#3 /home/biom/public_html/backups/beta/php/login.php(221): UserController::check_status('http://gb.vakom...')
+#4 {main}
+  thrown in /home/biom/public_html/backups/beta/php/connect.php on line 13
+[27-May-2015 12:50:08 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1040] Too many connections' in /home/biom/public_html/backups/beta/php/connect.php:13
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/connect.php(13): PDO->__construct('mysql:dbname=bi...', 'biom_admin', 'uFa-rEm-6a8-fuD')
+#1 /home/biom/public_html/backups/beta/php/models/User.php(115): include('/home/biom/publ...')
+#2 /home/biom/public_html/backups/beta/php/controllers/UserController.php(485): User::select_verification_codes('http://gb.vakom...')
+#3 /home/biom/public_html/backups/beta/php/login.php(221): UserController::check_status('http://gb.vakom...')
+#4 {main}
+  thrown in /home/biom/public_html/backups/beta/php/connect.php on line 13
+[27-May-2015 12:50:08 America/Chicago] PHP Warning:  mysqli_connect(): (HY000/1040): Too many connections in /home/biom/public_html/backups/beta/php/connect.php on line 21
+[27-May-2015 12:50:08 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1040] Too many connections' in /home/biom/public_html/backups/beta/php/connect.php:13
+Stack trace:
+#0 /home/biom/public_html/backups/beta/php/connect.php(13): PDO->__construct('mysql:dbname=bi...', 'biom_admin', 'uFa-rEm-6a8-fuD')
+#1 /home/biom/public_html/backups/beta/php/models/User.php(115): include('/home/biom/publ...')
+#2 /home/biom/public_html/backups/beta/php/controllers/UserController.php(485): User::select_verification_codes('http://gb.vakom...')
+#3 /home/biom/public_html/backups/beta/php/login.php(221): UserController::check_status('http://gb.vakom...')
+#4 {main}
+  thrown in /home/biom/public_html/backups/beta/php/connect.php on line 13
+[27-May-2015 12:50:09 America/Chicago] PHP Warning:  mysqli_connect(): (08004/1040): Too many connections in /home/biom/public_html/backups/beta/php/connect.php on line 21
+[27-May-2015 12:50:10 America/Chicago] PHP Warning:  mysqli_connect(): (08004/1040): Too many connections in /home/biom/public_html/backups/beta/php/connect.php on line 21
+[27-May-2015 13:19:51 America/Chicago] PHP Fatal error:  Class 'UserController' not found in /home/biom/public_html/backups/beta/php/login.php on line 221
+[27-May-2015 13:19:51 America/Chicago] PHP Fatal error:  Class 'UserController' not found in /home/biom/public_html/backups/beta/php/login.php on line 221
+[27-May-2015 13:19:54 America/Chicago] PHP Fatal error:  Class 'UserController' not found in /home/biom/public_html/backups/beta/php/login.php on line 140
+[27-May-2015 13:19:54 America/Chicago] PHP Fatal error:  Class 'UserController' not found in /home/biom/public_html/backups/beta/php/login.php on line 221
+[27-May-2015 13:19:54 America/Chicago] PHP Fatal error:  Class 'UserController' not found in /home/biom/public_html/backups/beta

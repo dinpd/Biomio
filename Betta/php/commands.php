@@ -70,7 +70,7 @@ $app->post('/get_user(/:email)', function($email) use ($app, $db) {
 		if ($domain != 'gmail.com' && $domain != 'googlemail.com') {
 			header("HTTP/1.0 400 not gmail");
 		} else {
-			$result = UserController::create_user('', '', $email, 'USER');
+			$result = UserController::create_user('', '', $email, 'USER', 1);
 			echo $result;
 		}
 	}
@@ -79,7 +79,7 @@ $app->post('/get_user(/:email)', function($email) use ($app, $db) {
 $app->post('/verify_service(/:code)', function($code) use ($app, $db) {
 	require ('connect.php');
 	// 1) check if application code apc_exists;
-	$result = $pdo->prepare("SELECT * FROM VerificationCodes WHERE code = :code AND status = 1");
+	$result = $pdo->prepare("SELECT * FROM VerificationCodes WHERE code = :code AND status > 0");
 	$result->execute(array('code'=>$code));
 	if ($result->rowCount() == 0) header("HTTP/1.0 400 wrong code");
 	// 2) change status of the application
@@ -90,24 +90,33 @@ $app->post('/verify_service(/:code)', function($code) use ($app, $db) {
 			$device_id = $row['device_id'];
 		}
 
-		$result = $pdo->prepare("UPDATE VerificationCodes SET status = 3 WHERE code = :code");
-		$result->execute(array('code'=>$code));
+		if (isset($_POST['probe_id'])) {
+			$key = $_POST['probe_id'];
+			$result = $pdo->prepare("UPDATE UserServices SET device_token = :key WHERE id = :device_id AND profileId = :profileId");
+			$result->execute(array('key'=>$key, 'device_id'=>$device_id, 'profileId'=>$profileId));
+			echo json_encode(array('response'=>'#success'));
+		} else {
 
-		// 3 add new service
+			$result = $pdo->prepare("UPDATE VerificationCodes SET status = 3 WHERE code = :code");
+			$result->execute(array('code'=>$code));
 
-		if ($application == 1) {
-			$result = $pdo->prepare("UPDATE UserServices SET status = 1 WHERE id = :device_id AND profileId = :profileId");
-			$result->execute(array('device_id'=>$device_id, 'profileId'=>$profileId));
-		} else if ($application == 2) {
-			$result = $pdo->prepare("INSERT INTO UserServices (profileId, serviceId, status) VALUES (:profileId, :serviceId, 1)");
-			$result->execute(array('profileId'=>$profileId, 'serviceId'=>$application));
+			// 3 add new service
+
+			if ($application == 1) {
+				$result = $pdo->prepare("UPDATE UserServices SET status = 1 WHERE id = :device_id AND profileId = :profileId");
+				$result->execute(array('device_id'=>$device_id, 'profileId'=>$profileId));
+			} else if ($application == 2) {
+				$result = $pdo->prepare("INSERT INTO UserServices (profileId, serviceId, status) VALUES (:profileId, :serviceId, 1)");
+				$result->execute(array('profileId'=>$profileId, 'serviceId'=>$application));
+			}
+
+			echo json_encode(array('user_id'=>$profileId));
 		}
-
-		echo json_encode(array('user_id'=>$profileId));
 	}
 });
 
 $app->post('/register_biometrics(/:code)', function($code) use ($app, $db) {
+	require ('connect.php');
 	//1) get user from code
 	$result = $pdo->prepare("SELECT * FROM VerificationCodes WHERE code = :code AND status = 1");
 	$result->execute(array('code'=>$code));
@@ -122,10 +131,9 @@ $app->post('/register_biometrics(/:code)', function($code) use ($app, $db) {
 		$result->execute(array('code'=>$code));	
 
 		//3) update biometrics flags
-		$biometrics = json_decode($_POST('biometrics'));
-			$fingerprints = json_encode($biometrics['fingerprints']);
-			$face = $biometrics['face'];
-			$voice = $biometrics['voice'];
+			$fingerprints = json_encode($_POST['fingerprints']);
+			$face = $_POST['face'];
+			$voice = $_POST['voice'];
 		
 		$result = $pdo->prepare("UPDATE UserInfo SET fingerprints = :fingerprints, face = :face, voice = :voice WHERE profileId = :profileId");
 		$result->execute(array('fingerprints'=>$fingerprints, 'face'=>$face, 'voice'=>$voice, 'profileId'=>$profileId));	
@@ -138,8 +146,13 @@ $app->get('/test', function() use ($app, $db) {
 	echo json_encode(array('response'=>true));
 });
 
-$app->post('/test', function() use ($app, $db){
+$app->post('/test(/:email)', function($email) use ($app, $db) {
 	echo json_encode(array('response'=>true));
+
+	$myfile = fopen("test.txt", "w") or die("Unable to open file!");
+	$txt = $email;
+	fwrite($myfile, $txt);
+	fclose($myfile);
 });
 
 $app->run();

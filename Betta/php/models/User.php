@@ -31,6 +31,10 @@ class User {
   	$result = $pdo->prepare("INSERT INTO Emails (profileId, email, `primary`) VALUES (:profileId, :email, :primary)");
   	$result->execute(array('profileId'=>$profileId, 'email'=>$email, 'primary'=>1));
 
+  	// insert into emails data
+  	$result = $pdo->prepare("INSERT INTO EmailsData (user, email) VALUES (:profileId, :email)");
+	$result->execute(array('profileId'=>$profileId, 'email'=>$email));
+
   	return $profileId;
   }
 
@@ -80,7 +84,7 @@ class User {
 
   public static function select_temp_login_code($profileId, $code) {
 	include ('connect.php');
-	$result = $pdo->prepare("SELECT * FROM TempLoginCodes WHERE profileId = :profileId AND code = :code AND status = 1 /*AND date_created > DATE_SUB(now(), INTERVAL 15 MINUTE*/)");
+	$result = $pdo->prepare("SELECT * FROM TempLoginCodes WHERE profileId = :profileId AND code = :code AND status = 1 /*AND date_created > DATE_SUB(now(), INTERVAL 15 MINUTE)*/");
 	$result->execute(array('profileId'=>$profileId, 'code'=>$code));
 	return $result;
   }
@@ -187,6 +191,13 @@ class User {
 	return $result;
   }
   	// --- Chrome Extention --- //
+  public static function get_user_extensions($profileId) {
+	include ('connect.php');
+	$result = $pdo->prepare("SELECT id, title, status FROM UserServices WHERE profileId = :profileId AND serviceId = 2");
+	$result->execute(array('profileId'=>$profileId));
+	return $result;
+  }
+
   public static function get_user_emails($profileId) {
 	include ('connect.php');
 	$result = $pdo->prepare("SELECT * FROM Emails WHERE profileId = :profileId");
@@ -197,6 +208,9 @@ class User {
   public static function add_email($profileId, $email) {
 	include ('connect.php');
 	$result = $pdo->prepare("INSERT INTO Emails (profileId, email) VALUES (:profileId, :email)");
+	$result->execute(array('profileId'=>$profileId, 'email'=>$email));
+
+	$result = $pdo->prepare("INSERT INTO EmailsData (user, email) VALUES (:profileId, :email)");
 	$result->execute(array('profileId'=>$profileId, 'email'=>$email));
 	return $result;
   }
@@ -212,12 +226,15 @@ class User {
 	include ('connect.php');
 	$result = $pdo->prepare("DELETE FROM Emails WHERE profileId = :profileId AND email = :email");
 	$result->execute(array('profileId'=>$profileId, 'email'=>$email));
+
+	$result = $pdo->prepare("DELETE FROM EmailsData WHERE user = :profileId AND email = :email");
+	$result->execute(array('profileId'=>$profileId,'email'=>$email));
 	return $result;
   }
 
   public static function update_temp_email_codes($profileId, $status) {
 	include ('connect.php');
-	$result = $pdo->prepare("UPDATE TempEmailCodes SET status = :status WHERE profileId = :profileId");
+	$result = $pdo->prepare("UPDATE TempEmailCodes SET status = :status WHERE profileId = :profileId AND status = 1");
 	$result->execute(array('status'=>$status, 'profileId'=>$profileId));
 	return $result;
   }

@@ -1,7 +1,7 @@
 App.Views.userMobileDevices = Backbone.View.extend({
     el: $("#content"),
     initialize:function () {
-        this.render();
+
     },
     render:function (type) {
         var template = render('UserMobileDevicesView', {});
@@ -55,7 +55,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
                     $('.form-1-1').removeClass('hide');
                     that.generate_code();
 
-                    var template = render('forms/MobileDevice', {id: id, title: name, status: 0});
+                    var template = render('forms/MobileDevice', {id: data, title: name, status: 0});
                     $('.mobile-devices').append(template); 
                 }
             });
@@ -134,6 +134,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
     register_face: function(e) {
         var that = this;
 
+        var device_id = $(e.target).closest('.mobile-device').attr('id').substring(7);
         var name = $(e.target).closest('.mobile-device').find('.mobile-device-name p').text();
         $('.form-1-2 p strong').text(name);
 
@@ -141,11 +142,11 @@ App.Views.userMobileDevices = Backbone.View.extend({
         $.ajax({
             type: 'POST',
             url: 'php/login.php',
-            data: {cmd: "generate_biometrics_code", application: 0},
+            data: {cmd: "generate_biometrics_code", application: 0, device_id: device_id},
             success: function(data) {
                 $('.form-1-1, .form-1-3, form-1-4').addClass('hide');
                 $('.form-1-2').removeClass('hide');
-
+                $('.form-1-2 input').val(data);
                 // send rest here
                 that.check_biometrics_verification();
             }
@@ -153,18 +154,21 @@ App.Views.userMobileDevices = Backbone.View.extend({
     },
     check_device_verification: function () {
         var check = setInterval(function(){ 
-            var code = $('.qr_code_text strong').text();
+            var code = $('#qr_code_text strong').text();
             console.log('verification call for ' + code);
-            if (code != '' || code != undefined)
+            if (code != '' && code != undefined)
                 $.ajax({
                     type: 'POST',
                     url: 'php/login.php',
                     data: {cmd: "check_status", code: code},
                     success: function(data) {
-                        if (data == '#success') {
+                        if (data == '#verified') {
                             clearInterval(check);
                             $('.form-1-1, .form-1-2, form-1-4').addClass('hide');
                             $('.form-1-3').removeClass('hide');
+                            var id = $('.form-1-1 input').val();
+                            $('#device_' + id + ' .mobile-device-verify').addClass('hide');
+                            $('#device_' + id + ' .mobile-device-face').removeClass('hide');
                         }
                     }
                 });
@@ -172,16 +176,17 @@ App.Views.userMobileDevices = Backbone.View.extend({
         }, 3000);
     },
     check_biometrics_verification: function () {
-        var check = setInterval(function(){ 
-            var code = $('.qr_code_text strong').text();
+        clearInterval(check);
+        check = setInterval(function(){ 
+            var code = $('.form-1-2 input').val();
             console.log('verification call for ' + code);
-            if (code != '' || code != undefined)
+            if (code != '' && code != undefined)
                 $.ajax({
                     type: 'POST',
                     url: 'php/login.php',
                     data: {cmd: "check_status", code: code},
                     success: function(data) {
-                        if (data == '#success') {
+                        if (data == '#verified') {
                             clearInterval(check);
                             $('.form-1-1, .form-1-2, form-1-3').addClass('hide');
                             $('.form-1-4').removeClass('hide');

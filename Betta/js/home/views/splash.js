@@ -62,7 +62,7 @@ App.Views.Splash = Backbone.View.extend({
                         alert("wrong invitation code");
                     } else {
                         alert("Welcome " + data);
-                        window.location = '/';
+                        window.location = './';
                     }
                 }
             });

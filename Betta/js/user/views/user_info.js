@@ -344,7 +344,7 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         });
     },
     delete_email: function (e) {
-        $that = $(e.target).closest('.extention-email');
+        $that = $(e.target).closest('.profile-email');
         var email = $that.find('p').text();
         $.ajax({
             type: 'POST',
