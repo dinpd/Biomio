@@ -22,12 +22,6 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">Json String</label>
-			<div class="col-sm-9">
-				<input type='text' class="form-control json-1">
-			</div>
-		</div>
-		<div class="form-group">
 			<label class="col-sm-3 control-label"></label>
 			<div class="col-sm-9">
 				<button class="pull-right btn btn-success send-1">Send</button>
@@ -44,12 +38,6 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">Json String</label>
-			<div class="col-sm-9">
-				<input type='text' class="form-control json-2">
-			</div>
-		</div>
-		<div class="form-group">
 			<label class="col-sm-3 control-label"></label>
 			<div class="col-sm-9">
 				<button class="pull-right btn btn-success send-2">Send</button>
@@ -60,8 +48,6 @@
 </div>
 
 <div class="footer hide">
-    <p>&copy; COPYRIGHT 2015, Alexander L </p>
-    <p>ALL RIGHTS RESERVED.</p>
 </div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>

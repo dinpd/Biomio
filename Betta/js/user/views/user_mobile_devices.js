@@ -6,7 +6,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
     render:function (type) {
         var template = render('UserMobileDevicesView', {});
         this.$el.html( template );
-        this.get_mobile_devices();
+        this.get_face();
     },
     events: {
         // mobile application
@@ -18,6 +18,19 @@ App.Views.userMobileDevices = Backbone.View.extend({
         "click .mobile-device-verify"          :  "mobile_device_verify",
         "click .mobile-device-face"            :  "register_face",
     },
+    get_face: function () {
+        that = this;
+        $.ajax({
+            type: 'POST',
+            url: 'php/login.php',
+            dataType: "json",
+            data: {cmd: "get_biometrics", biometrics: 'face'},
+            success: function(data) {
+                window.face = data.face;
+                that.get_mobile_devices();
+            }
+        });
+    },
     get_mobile_devices: function () {
         $.ajax({
             type: 'POST',
@@ -27,7 +40,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
             success: function(data) {
                 if (data != null)
                     jQuery.each(data, function(i, device) {
-                        var template = render('forms/MobileDevice', {id: device.id, title: device.title, status: device.status});
+                        var template = render('forms/MobileDevice', {id: device.id, title: device.title, status: device.status, face: window.face});
                         $('.mobile-devices').append(template); 
                     });
             }
@@ -35,13 +48,13 @@ App.Views.userMobileDevices = Backbone.View.extend({
     },
     add_application: function (e) {
         e.preventDefault();
-        $('.form-1-2, .form-1-3, form-1-4').addClass('hide');
+        $('.form-1-2, .form-1-3, .form-1-4, .form-1-5').addClass('hide');
         $('.form-1-1').removeClass('hide');
 
         that = this;
         var id = $('.form-1-1 input').val();
         var name = $('.add-1 input').val();
-        if (name.length < 3) message('danger', 'Error: ', "Device name should be at least 2 symbols");
+        if (name.length < 2) message('danger', 'Error: ', "Device name should be at least 2 symbols");
         else 
             $.ajax({
                 type: 'POST',
@@ -119,7 +132,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
         });
     },
     mobile_device_verify: function(e) {
-        $('.form-1-2, .form-1-3, form-1-4').addClass('hide');
+        $('.form-1-2, .form-1-3, .form-1-4, .form-1-5').addClass('hide');
         $('.form-1-1').removeClass('hide');
 
         var id = $(e.target).closest('.mobile-device').attr('id').substring(7);
@@ -144,7 +157,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
             url: 'php/login.php',
             data: {cmd: "generate_biometrics_code", application: 0, device_id: device_id},
             success: function(data) {
-                $('.form-1-1, .form-1-3, form-1-4').addClass('hide');
+                $('.form-1-1, .form-1-3, .form-1-4, .form-1-5').addClass('hide');
                 $('.form-1-2').removeClass('hide');
                 $('.form-1-2 input').val(data);
                 // send rest here
@@ -164,7 +177,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
                     success: function(data) {
                         if (data == '#verified') {
                             clearInterval(check);
-                            $('.form-1-1, .form-1-2, form-1-4').addClass('hide');
+                            $('.form-1-1, .form-1-2, .form-1-4, .form-1-5').addClass('hide');
                             $('.form-1-3').removeClass('hide');
                             var id = $('.form-1-1 input').val();
                             $('#device_' + id + ' .mobile-device-verify').addClass('hide');
@@ -176,6 +189,8 @@ App.Views.userMobileDevices = Backbone.View.extend({
         }, 3000);
     },
     check_biometrics_verification: function () {
+        var timer = 300;
+
         clearInterval(check);
         check = setInterval(function(){ 
             var code = $('.form-1-2 input').val();
@@ -186,14 +201,25 @@ App.Views.userMobileDevices = Backbone.View.extend({
                     url: 'php/login.php',
                     data: {cmd: "check_status", code: code},
                     success: function(data) {
-                        if (data == '#verified') {
-                            clearInterval(check);
-                            $('.form-1-1, .form-1-2, form-1-3').addClass('hide');
+                        if (data == '#in-process') {
+                            $('.form-1-1, .form-1-2, .form-1-3, .form-1-5').addClass('hide');
                             $('.form-1-4').removeClass('hide');
+                        } else if (data == '#verified') {
+                            clearInterval(check);
+                            $('.form-1-1, .form-1-2, .form-1-3, .form-1-4').addClass('hide');
+                            $('.form-1-5').removeClass('hide');
                         }
                     }
                 });
             else clearInterval(check);
+
+            console.log(timer);
+            timer = timer - 3;
+            if (timer <= 0) {
+                $('.form-1-1, .form-1-2, .form-1-3, .form-1-4, .form-1-5').addClass('hide');
+                alert('Registration session has been expired. Please try again.');
+                clearInterval(check);
+            }
         }, 3000);
     }
 });

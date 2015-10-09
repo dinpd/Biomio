@@ -4,10 +4,12 @@ App.Views.userServices = Backbone.View.extend({
 
     },
     render:function (type) {
+        var that = this;
         var template = render('UserServicesView', {});
         this.$el.html( template );
         this.get_user_extensions();
         this.get_user_emails();
+        this.get_extension_settings();
     },
     events: {
         // chrome extention
@@ -18,10 +20,117 @@ App.Views.userServices = Backbone.View.extend({
         "click .user-services .extention-email .verify" : "get_email_for_verification",
         "click .user-services .form-2-2 button"         : "verify_email",
         "click .user-services .verify-extention button" : "verify_extention",
-        "click .user-services .form-2-1"                : "generate_extention_code"
+        "click .user-services .form-2-1 button"         : "generate_extention_code"
     },
-    
     // Chrome Extention
+    get_extension_settings: function () {
+        var that = this;
+        $.ajax({
+            type: 'POST',
+            url: 'php/login.php',
+            dataType: "json",
+            data: {cmd: "get_extension_settings"},
+            success: function(data) {
+                var checkbox_id = true;
+                var checkbox_location = true;
+                var checkbox_face = true;
+                var checkbox_face2 = true;
+                var checkbox_secret = true;
+                var checkbox_bio = true;
+                var checkbox_option = true;
+
+                console.log(data.auth_types);
+                console.log(jQuery.inArray( 'fp', data.auth_types));
+                console.log(jQuery.inArray( 'face', data.auth_types ));
+
+                if (data.response != '#no-data') {
+                    if (jQuery.inArray( 'fp', data.auth_types) == -1)
+                        var checkbox_id = false;
+                    if (jQuery.inArray( 'face', data.auth_types) == -1)
+                        var checkbox_face = false;
+                    if (data.condition == 'all')
+                        var checkbox_bio = false;
+                }
+
+                $(".checkbox-id").bootstrapSwitch({
+                  size: 'mini',
+                  onText: 'On',
+                  offText: 'Off',
+                  handleWidth: 20,
+                  labelWidth: 20,
+                  onColor: 'success',
+                  offColor: 'default',
+                  state: checkbox_id
+                });
+                $(".checkbox-face").bootstrapSwitch({
+                  size: 'mini',
+                  onText: 'On',
+                  offText: 'Off',
+                  handleWidth: 20,
+                  labelWidth: 20,
+                  onColor: 'success',
+                  offColor: 'default',
+                  state: checkbox_face
+                });
+                $(".checkbox-location, .checkbox-secret").bootstrapSwitch({
+                  size: 'mini',
+                  onText: 'On',
+                  offText: 'Off',
+                  handleWidth: 20,
+                  labelWidth: 20,
+                  onColor: 'success',
+                  offColor: 'default',
+                  state: true
+                });
+
+                $(".checkbox-face2").bootstrapSwitch({
+                  size: 'mini',
+                  onText: 'yes',
+                  offText: 'no',
+                  handleWidth: 20,
+                  labelWidth: 20,
+                  onColor: 'info',
+                  offColor: 'default',
+                  state: true
+                });
+
+                $(".checkbox-bio").bootstrapSwitch({
+                  size: 'mini',
+                  onText: 'ANY',
+                  offText: 'ALL',
+                  handleWidth: 25,
+                  labelWidth: 25,
+                  onColor: 'primary',
+                  offColor: 'warning',
+                  state: checkbox_bio
+                });
+
+                $(".checkbox-option").bootstrapSwitch({
+                  size: 'small',
+                  onText: 'AND',
+                  offText: 'OR',
+                  handleWidth: 25,
+                  labelWidth: 25,
+                  onColor: 'primary',
+                  offColor: 'warning',
+                  state: true
+                });
+
+                $('.user-services input[type="checkbox"]').on('switchChange.bootstrapSwitch', function() {
+                  that.change_events();
+                });
+
+                var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
+                port.postMessage({command: "is_registered"});
+                port.onMessage.addListener(function(response){
+                    if (response.is_registered) {
+                        $('.verify-extention').addClass('hide');
+                        $('.verify-header').addClass('hide');
+                    }
+                });
+            }
+        });
+    },
     get_user_extensions: function () {
         $.ajax({
             type: 'POST',
@@ -29,9 +138,9 @@ App.Views.userServices = Backbone.View.extend({
             dataType: "json",
             data: {cmd: "get_user_extensions"},
             success: function(data) {
-                if (data == 0) $('.verified-extensions').html('<span class="text-info"><strong>No extencions yet registered from this account</strong></span>');
-                else if (data == 1) $('.verified-extensions').html('<span class="text-success"><strong>' + data + ' extencion is already registered from this account</strong></span>');
-                else if (data > 1) $('.verified-extensions').html('<span class="text-success"><strong>' + data + ' extencions are already registered from this account</strong></span>');
+                if (data == 0) $('.verified-extensions').html('<span class="text-info">No extensions yet registered from this account</span>');
+                else if (data == 1) $('.verified-extensions').html('<span class="text-success">' + data + ' extension is already registered from this account</span>');
+                else if (data > 1) $('.verified-extensions').html('<span class="text-success">' + data + ' extensions are already registered from this account</span>');
             }
         });
     },
@@ -65,7 +174,7 @@ App.Views.userServices = Backbone.View.extend({
                 url: 'php/login.php',
                 data: {cmd: "add_email", email: email},
                 success: function(data) {
-                    if (data == '#success') {
+                    if (data == 'gmail') {
                         $('.add-2 input').val('');
 
                         $('.form-2-2 strong').text(email);
@@ -74,7 +183,8 @@ App.Views.userServices = Backbone.View.extend({
 
                         var template = render('forms/ExtentionEmail', {id: data, email: email, verified: 0, primary: 0, extention: 0});
                         $('.extention-emails').append(template); 
-                    } else if (data == '#registered') message('danger', 'Error: ', "<strong>" + email + "</strong> is already registered in our system"); 
+                    } else if (data == 'not gmail') message('info', 'Info: ', "<strong>" + email + "</strong> is added to your account, but it can't be used in the extension");
+                    else if (data == '#registered') message('danger', 'Error: ', "<strong>" + email + "</strong> is already registered in our system"); 
                 }
             });
     },
@@ -152,12 +262,7 @@ App.Views.userServices = Backbone.View.extend({
             dataType: "json",
             data: {cmd: "verify_extention"},
             success: function(data) {
-                var img = new Image();
-                img.onload = function () {
-                    context.drawImage(this, 0, 0, canvas.width, canvas.height);
-                }
-                img.src = "data:image/png;base64," + data.image;
-                $('.extention-verifcation-image').html(img);
+                $('.extention-verifcation h2').text(data.code);
                 $('.extention-verifcation-code').val(data.code);
 
                 that.check_extension_verification();
@@ -166,25 +271,77 @@ App.Views.userServices = Backbone.View.extend({
     },
     check_extension_verification: function () {
         that = this;
-        clearInterval(check);
-        check = setInterval(function(){ 
-            var code = $('.extention-verifcation-code').val();
-            console.log('verification call for ' + code);
-            if (code != '' && code != undefined)
+
+        /*
+        var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
+        port.postMessage({command: "is_registered"});
+        port.onMessage.addListener(function(response){
+            console.log(response);
+        });
+        */
+        var code = $('.extention-verifcation-code').val();
+        var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
+        port.postMessage({command: "register_biomio_extension", "data": {"secret_code":code}});
+        port.onMessage.addListener(function(response){
+            if (response.result == true) 
                 $.ajax({
                     type: 'POST',
                     url: 'php/login.php',
                     data: {cmd: "check_status", code: code},
                     success: function(data) {
                         if (data == '#verified') {
-                            that.get_user_extensions();
-                            clearInterval(check);
                             $('.form-2-1, .form-2-2').addClass('hide');
                             $('.form-2-3').removeClass('hide');
+                            $('.verify-extention').addClass('hide');
                         }
                     }
                 });
-            else clearInterval(check);
-        }, 3000);
+            else if (response.result == false) {
+                alert('registration failure');
+                $('.form-2-1, .form-2-2').addClass('hide');
+            }
+        });
+    },
+    change_events: function () {
+        var checkbox_id = $('.checkbox-id').bootstrapSwitch('state');
+        var checkbox_face = $('.checkbox-face').bootstrapSwitch('state');
+        var checkbox_face2 = $('.checkbox-face2').bootstrapSwitch('state');
+        var checkbox_bio = $('.checkbox-bio').bootstrapSwitch('state');
+        var checkbox_option = $('.checkbox-option').bootstrapSwitch('state');
+        var checkbox_secret = $('.checkbox-secret').bootstrapSwitch('state');
+
+        if (checkbox_bio == true) var condition = "any";
+        else var condition = "all";
+
+        var auth_types = [];
+
+        console.log(checkbox_id);
+        console.log(checkbox_face);
+        if (checkbox_id == true) auth_types.push("fp");
+        if (checkbox_face == true) auth_types.push("face");
+
+        if (!checkbox_id && !checkbox_face) {
+            alert("you need to have at least one method selected");
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: 'php/login.php',
+                data: {cmd: "change_extention_settings", condition: condition, auth_types: auth_types},
+                success: function(data) {
+                    
+                }
+            });
+        }
     }
+});
+
+
+var timer = Math.floor((Math.random() * 6) + 3); 
+timer = timer * 1000;
+setTimeout(function(){  }, timer);
+
+$(document).on('click touchend', ".service-block button", function (e) {
+    $('.service-content').removeClass('in');
+    $('.service-content').attr('aria-expanded', "false");
+    $('.service-content').css("height", '0px');
 });

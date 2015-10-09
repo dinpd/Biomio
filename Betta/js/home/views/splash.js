@@ -5,7 +5,7 @@ App.Views.Splash = Backbone.View.extend({
     },
     render:function () {
         var template = render('SplashPageView', {});
-        $("body").append( template );
+        $("#content").html( template );
         this.changeVideoHeight();
     },
     events: {

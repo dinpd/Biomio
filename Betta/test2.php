@@ -3,6 +3,7 @@ ini_set('display_errors',1);
 ini_set('display_startup_errors',1);
 error_reporting(-1);
 
+/*
 $url = 'http://gb.vakoms.com:8888/new_email/qwerty2@gmail.com';
 $data = array();
 
@@ -66,6 +67,7 @@ $url = 'http://gb.vakoms.com:8888/new_email/qwerty2@gmail.com';
 print_r(get_headers($url));
 print_r(get_headers($url, 1));*/
 
+/*
 $url = 'http://gb.vakoms.com:80/new_email/qwerty2@gmail.com';
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_HEADER, true);    // we want headers
@@ -103,9 +105,13 @@ $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
 
 echo 'HTTP code: ' . $httpcode . '<br>';
+*/
 
 
+$url = 'http://10.209.33.61:90/set_condition/';
 $url = 'http://gb.vakoms.com/new_email/qwerty2@gmail.com';
+$url = 'http://gate.biom.io/training';
+$url = 'http://gate.biom.io:90/set_condition/';
 $data = array();
 
 # Create a connection
@@ -125,3 +131,8 @@ $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
 
 echo 'HTTP code: ' . $httpcode . '<br>';
+
+
+
+$json = file_get_contents('https://gate.biom.io:4433/set_condition/');
+print_r ($json);

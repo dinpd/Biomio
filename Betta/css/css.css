@@ -191,7 +191,7 @@ GRIDS
 }
 
 
-/*footer*/
+/*footer
 .footer {
     background: #101010;
     color: #999!important;
@@ -218,7 +218,7 @@ GRIDS
   color: #888!important;
   margin-top: 17px;
 }
-
+*/
 
 /* Webcam/Microphone allow */
   .enable-media .media-allow {

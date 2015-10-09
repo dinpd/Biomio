@@ -18,7 +18,7 @@ if (isset($_POST['cmd'])) {
 		case 'profilePictureUpload':
 			if ($_FILES["file"]["error"] > 0) //checks if theres a file
 	  			echo "Error: " . $_FILES["file"]["error"] . "<br>";
-	  		else if($_FILES["file"]["size"] < 500000) {
+	  		else if($_FILES["file"]["size"] < 3000000) {
 				$temp = explode(".", $_FILES["file"]["name"]);
 				$extension = end($temp);
 				move_uploaded_file($_FILES["file"]["tmp_name"], "../profileData/profilePicture/".$_POST['user'].".jpg");
@@ -35,7 +35,7 @@ if (isset($_POST['cmd'])) {
 		case 'providerLogoUpload':
 			if ($_FILES["file"]["error"] > 0) //checks if theres a file
 	  			echo "Error: " . $_FILES["file"]["error"] . "<br>";
-	  		else if ($_FILES["file"]["size"] < 500000) {
+	  		else if ($_FILES["file"]["size"] < 3000000) {
 				$temp = explode(".", $_FILES["file"]["name"]);
 				$extension = end($temp);
 				move_uploaded_file($_FILES["file"]["tmp_name"], "../profileData/companyLogo/".$_POST['provider'].".jpg");
@@ -52,7 +52,7 @@ if (isset($_POST['cmd'])) {
 		case 'locationPictureUpload':
 			if ($_FILES["file"]["error"] > 0) //checks if theres a file
 	  			echo "Error: " . $_FILES["file"]["error"] . "<br>";
-	  		else if($_FILES["file"]["size"] < 500000){
+	  		else if($_FILES["file"]["size"] < 3000000){
 				$temp = explode(".", $_FILES["file"]["name"]);
 				$extension = end($temp);
 				move_uploaded_file($_FILES["file"]["tmp_name"], "../profileData/locationPicture/".$_POST['location'].".jpg");

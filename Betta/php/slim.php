@@ -2,7 +2,7 @@
 
 require_once 'NotORM.php';
 
-$pdo = new PDO('mysql:dbname=alexa449_backbone;host=localhost', 'alexa449_Alt', 'fkmntdhbn13');
+$pdo = new PDO('mysql:dbname=biomio_db; host=6da7f2ba42c999a5da5b0937632bd595a03f65c1.rackspaceclouddb.com', 'biomio_admin', 'admin');
 
 $db = new NotORM($pdo);
 

@@ -6,10 +6,14 @@ App.Views.Header = Backbone.View.extend({
         var template = render('HeaderView');
         this.$el.html( template );
 
+        $('.tooltipster-dev').tooltipster({'maxWidth': 250, theme: 'tooltipster-light', delay: 50, content: $('<p>This page is in development</p>')});
+
         if (window.profileId != '' && window.profileId != null) {
             $('.profile-on').removeClass("hide");
             $('.profile-off').addClass("hide");
-            if (window.profileFirstName == '' && window.profileLastName == '') $('.profile').html('User');
+            if ((window.profileFirstName == null && window.profileLastName == null) || (window.profileFirstName == '' && window.profileLastName == '')) $('.profile').html('User');
+            else if (window.profileFirstName == null || window.profileFirstName == '') $('.profile').html(window.profileLastName);
+            else if (window.profileLastName == null || window.profileLastName == '') $('.profile').html(window.profileFirstName);
             else $('.profile').html(window.profileFirstName + ' ' + window.profileLastName);
         } else {
             $('.profile-off').removeClass("hide");

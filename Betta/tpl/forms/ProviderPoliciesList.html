@@ -1,4 +1,425 @@
+<td class="hide">
+	<span class="link align show-info title policy_name"><%= name %></span>
+	<form class="form-horizontal list hide">
+		<fieldset>
+		<!-- Name -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="name">Name</label>
+		  <div class="col-sm-8 provider_policies_name">
+		  	<p class="content form-control-static"><strong><%= name %></strong></p>
+		    <input name="name" class="form-control hide form" value="<%= name %>" type="text">
+		  </div>
+		</div>
+
+		<!-- Supported Bio Auth -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="bio_auth">Max Combined CER</label>
+		  <div class="col-sm-8 provider_policies_cer">
+		  	<p class="content form-control-static">1</p>
+		    <select name="bio_auth" class="form-control policies-form hide form" multiple="multiple">
+		      <option value=""></option>
+		      <option>Webcam based fingerprint</option>
+		      <option>Dedicated fingerprint scanner</option>
+		      <option>Voice</option>
+		      <option>Face</option>
+		      <option>Iris scan</option>
+		    </select>
+		  </div>
+		</div>
+
+		<!-- Min Auth -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="min_auth">Modes</label>
+		  <div class="col-sm-8 provider_policies_modes">
+		  	<p class="content form-control-static">3</p>
+		    <input name="min_auth" class="form-control hide form" placeholder="number" type="text">
+		  </div>
+		</div>
+
+		<!-- Max Auth -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="max_auth">Mode selection</label>
+		  <div class="col-sm-8 provider_policies_max" style="padding-top: 7px">
+		  	<p class="content form-control-mode-sel">client biom | server biom + context + otp, context + otp + password</p>
+		    <input name="max_auth" class="form-control col-md-3 hide form" placeholder="number" type="text">
+		  </div>
+		</div>
+
+		<!-- Match certainty -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="match_certainty">Max attempts</label>
+		  <div class="col-sm-8 provider_policies_certainty" style="padding-top: 7px">
+		  	<p class="content form-control-attempts">3</p>
+		    <div class="input-group hide form">
+		      <input name="match_certainty" class="form-control col-md-3" placeholder="number from 1 to 100" type="text">
+		      <span class="input-group-addon">%</span>
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Geo restrictions -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="geo_restr">Max time</label>
+		  <div class="col-sm-8 provider_policies_geo" style="padding-top: 7px">
+		    <p class="content form-control-time">60 sec</p>
+		    <select name="geo_restr" class="form-control policies-form hide form">
+		      <option value=""></option>
+		      <option>orldwide</option>
+		      <option>U.S. only</option>
+		      <option>Within 50 miles</option>
+		      <option>Within 10 miles</option>
+		    </select>
+		  </div>
+		</div>
+
+		<!-- Time restrictions -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="time_rest">Re-auth on</label>
+		  <div class="col-sm-8 provider_policies_time" style="padding-top: 7px">
+		    <p class="content form-control-reauthon">yes</p>
+		    <select name="time_rest" class="form-control policies-form hide form">
+		      <option value=""></option>
+		      <option>Anytime</option>
+		      <option>Business days</option>
+		      <option>Weekends</option>
+		    </select>
+		  </div>
+		</div>
+
+		<!-- Time restrictions -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="time_rest">Re-auth frequency</label>
+		  <div class="col-sm-8 provider_policies_time" style="padding-top: 7px">
+		    <p class="content form-control-reauthon">30 sec</p>
+		    <select name="time_rest" class="form-control policies-form hide form">
+		      <option value=""></option>
+		      <option>Anytime</option>
+		      <option>Business days</option>
+		      <option>Weekends</option>
+		    </select>
+		  </div>
+		</div>
+
+		<!-- Time restrictions -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="time_rest">Re-auth methods</label>
+		  <div class="col-sm-8 provider_policies_time" style="padding-top: 7px">
+		    <p class="content form-control-reauthmethod">server biom</p>
+		    <select name="time_rest" class="form-control policies-form hide form">
+		      <option value=""></option>
+		      <option>Anytime</option>
+		      <option>Business days</option>
+		      <option>Weekends</option>
+		    </select>
+		  </div>
+		</div>
+
+		</fieldset>
+
+		<!-- Submit -->
+		<div class="form-group form hide">
+		  <label class="col-sm-4 control-label"></label>
+		  <div class="col-sm-8">
+		    <button class='cancel btn-primary btn'>Cancel</button>
+		    <button class='save btn btn-success'>Save Changes</button>
+		  </div>
+		</div>
+
+		<!-- Delete -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label"></label>
+		  <div class="col-sm-8">
+			<button class='hide-list btn btn-primary content list'>Cancel</button>
+			<button class='edit btn-success btn content list'>Edit</button>
+		    <button class='delete btn btn-danger content list'>&times;</button>
+		  </div>
+		</div>
+	</form>
+</td>
+
+
+
+<td class="hide">
+	<span class="link align show-info title policy_name"><%= name %></span>
+	<form class="form-horizontal list hide">
+		<fieldset>
+		<!-- Name -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="name">Name</label>
+		  <div class="col-sm-8 provider_policies_name">
+		  	<p class="content form-control-static"><strong><%= name %></strong></p>
+		    <input name="name" class="form-control hide form" value="<%= name %>" type="text">
+		  </div>
+		</div>
+
+		<!-- Supported Bio Auth -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="bio_auth">Max Combined CER</label>
+		  <div class="col-sm-8 provider_policies_cer">
+		  	<p class="content form-control-static">2</p>
+		    <select name="bio_auth" class="form-control policies-form hide form" multiple="multiple">
+		      <option value=""></option>
+		      <option>Webcam based fingerprint</option>
+		      <option>Dedicated fingerprint scanner</option>
+		      <option>Voice</option>
+		      <option>Face</option>
+		      <option>Iris scan</option>
+		    </select>
+		  </div>
+		</div>
+
+		<!-- Min Auth -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="min_auth">Modes</label>
+		  <div class="col-sm-8 provider_policies_modes">
+		  	<p class="content form-control-static">2</p>
+		    <input name="min_auth" class="form-control hide form" placeholder="number" type="text">
+		  </div>
+		</div>
+
+		<!-- Max Auth -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="max_auth">Mode selection</label>
+		  <div class="col-sm-8 provider_policies_max" style="padding-top: 7px">
+		  	<p class="content form-control-mode-sel">client biom | server biom + context, client biom | server biom + knowledge, client biom | server biom + otp, otp + knowledge</p>
+		    <input name="max_auth" class="form-control col-md-3 hide form" placeholder="number" type="text">
+		  </div>
+		</div>
+
+		<!-- Match certainty -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="match_certainty">Max attempts</label>
+		  <div class="col-sm-8 provider_policies_certainty" style="padding-top: 7px">
+		  	<p class="content form-control-attempts">3</p>
+		    <div class="input-group hide form">
+		      <input name="match_certainty" class="form-control col-md-3" placeholder="number from 1 to 100" type="text">
+		      <span class="input-group-addon">%</span>
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Geo restrictions -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="geo_restr">Max time</label>
+		  <div class="col-sm-8 provider_policies_geo" style="padding-top: 7px">
+		    <p class="content form-control-time">30 sec</p>
+		    <select name="geo_restr" class="form-control policies-form hide form">
+		      <option value=""></option>
+		      <option>orldwide</option>
+		      <option>U.S. only</option>
+		      <option>Within 50 miles</option>
+		      <option>Within 10 miles</option>
+		    </select>
+		  </div>
+		</div>
+
+		<!-- Time restrictions -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="time_rest">Re-auth on</label>
+		  <div class="col-sm-8 provider_policies_time" style="padding-top: 7px">
+		    <p class="content form-control-reauthon">yes</p>
+		    <select name="time_rest" class="form-control policies-form hide form">
+		      <option value=""></option>
+		      <option>Anytime</option>
+		      <option>Business days</option>
+		      <option>Weekends</option>
+		    </select>
+		  </div>
+		</div>
+
+		<!-- Time restrictions -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="time_rest">Re-auth frequency</label>
+		  <div class="col-sm-8 provider_policies_time" style="padding-top: 7px">
+		    <p class="content form-control-reauthon">60 sec</p>
+		    <select name="time_rest" class="form-control policies-form hide form">
+		      <option value=""></option>
+		      <option>Anytime</option>
+		      <option>Business days</option>
+		      <option>Weekends</option>
+		    </select>
+		  </div>
+		</div>
+
+		<!-- Time restrictions -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="time_rest">Re-auth methods</label>
+		  <div class="col-sm-8 provider_policies_time" style="padding-top: 7px">
+		    <p class="content form-control-reauthmethod">server biom</p>
+		    <select name="time_rest" class="form-control policies-form hide form">
+		      <option value=""></option>
+		      <option>Anytime</option>
+		      <option>Business days</option>
+		      <option>Weekends</option>
+		    </select>
+		  </div>
+		</div>
+
+		</fieldset>
+
+		<!-- Submit -->
+		<div class="form-group form hide">
+		  <label class="col-sm-4 control-label"></label>
+		  <div class="col-sm-8">
+		    <button class='cancel btn-primary btn'>Cancel</button>
+		    <button class='save btn btn-success'>Save Changes</button>
+		  </div>
+		</div>
+
+		<!-- Delete -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label"></label>
+		  <div class="col-sm-8">
+			<button class='hide-list btn btn-primary content list'>Cancel</button>
+			<button class='edit btn-success btn content list'>Edit</button>
+		    <button class='delete btn btn-danger content list'>&times;</button>
+		  </div>
+		</div>
+	</form>
+</td>
+
+
 <td>
+	<span class="link align show-info title policy_name"><%= name %></span>
+	<form class="form-horizontal list hide">
+		<fieldset>
+		<!-- Name -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="name">Name</label>
+		  <div class="col-sm-8 provider_policies_name">
+		  	<p class="content form-control-static"><strong><%= name %></strong></p>
+		    <input name="name" class="form-control hide form" value="<%= name %>" type="text">
+		  </div>
+		</div>
+
+		<!-- Supported Bio Auth -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="bio_auth">Max Combined CER</label>
+		  <div class="col-sm-8 provider_policies_cer">
+		  	<p class="content form-control-static">3</p>
+		    <select name="bio_auth" class="form-control policies-form hide form" multiple="multiple">
+		      <option value=""></option>
+		      <option>Webcam based fingerprint</option>
+		      <option>Dedicated fingerprint scanner</option>
+		      <option>Voice</option>
+		      <option>Face</option>
+		      <option>Iris scan</option>
+		    </select>
+		  </div>
+		</div>
+
+		<!-- Min Auth -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="min_auth">Modes</label>
+		  <div class="col-sm-8 provider_policies_modes">
+		  	<p class="content form-control-static">1</p>
+		    <input name="min_auth" class="form-control hide form" placeholder="number" type="text">
+		  </div>
+		</div>
+
+		<!-- Max Auth -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="max_auth">Mode selection</label>
+		  <div class="col-sm-8 provider_policies_max" style="padding-top: 7px">
+		  	<p class="content form-control-mode-sel">client biom, server biom, knowledge, password</p>
+		    <input name="max_auth" class="form-control col-md-3 hide form" placeholder="number" type="text">
+		  </div>
+		</div>
+
+		<!-- Match certainty -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="match_certainty">Max attempts</label>
+		  <div class="col-sm-8 provider_policies_certainty" style="padding-top: 7px">
+		  	<p class="content form-control-attempts">3</p>
+		    <div class="input-group hide form">
+		      <input name="match_certainty" class="form-control col-md-3" placeholder="number from 1 to 100" type="text">
+		      <span class="input-group-addon">%</span>
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Geo restrictions -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="geo_restr">Max time</label>
+		  <div class="col-sm-8 provider_policies_geo" style="padding-top: 7px">
+		    <p class="content form-control-time">15 sec</p>
+		    <select name="geo_restr" class="form-control policies-form hide form">
+		      <option value=""></option>
+		      <option>orldwide</option>
+		      <option>U.S. only</option>
+		      <option>Within 50 miles</option>
+		      <option>Within 10 miles</option>
+		    </select>
+		  </div>
+		</div>
+
+		<!-- Time restrictions -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="time_rest">Re-auth on</label>
+		  <div class="col-sm-8 provider_policies_time" style="padding-top: 7px">
+		    <p class="content form-control-reauthon">yes</p>
+		    <select name="time_rest" class="form-control policies-form hide form">
+		      <option value=""></option>
+		      <option>Anytime</option>
+		      <option>Business days</option>
+		      <option>Weekends</option>
+		    </select>
+		  </div>
+		</div>
+
+		<!-- Time restrictions -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="time_rest">Re-auth frequency</label>
+		  <div class="col-sm-8 provider_policies_time" style="padding-top: 7px">
+		    <p class="content form-control-reauthon">120 sec</p>
+		    <select name="time_rest" class="form-control policies-form hide form">
+		      <option value=""></option>
+		      <option>Anytime</option>
+		      <option>Business days</option>
+		      <option>Weekends</option>
+		    </select>
+		  </div>
+		</div>
+
+		<!-- Time restrictions -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label" for="time_rest">Re-auth methods</label>
+		  <div class="col-sm-8 provider_policies_time" style="padding-top: 7px">
+		    <p class="content form-control-reauthmethod">context</p>
+		    <select name="time_rest" class="form-control policies-form hide form">
+		      <option value=""></option>
+		      <option>Anytime</option>
+		      <option>Business days</option>
+		      <option>Weekends</option>
+		    </select>
+		  </div>
+		</div>
+
+		</fieldset>
+
+		<!-- Submit -->
+		<div class="form-group form hide">
+		  <label class="col-sm-4 control-label"></label>
+		  <div class="col-sm-8">
+		    <button class='cancel btn-primary btn'>Cancel</button>
+		    <button class='save btn btn-success'>Save Changes</button>
+		  </div>
+		</div>
+
+		<!-- Delete -->
+		<div class="form-group">
+		  <label class="col-sm-4 control-label"></label>
+		  <div class="col-sm-8">
+			<button class='hide-list btn btn-primary content list'>Cancel</button>
+			<button class='edit btn-success btn content list'>Edit</button>
+		    <button class='delete btn btn-danger content list'>&times;</button>
+		  </div>
+		</div>
+	</form>
+</td>
+
+
+<td class="hide">
 	<span class="link align show-info title policy_name"><%= name %></span>
 	<form class="form-horizontal list hide">
 		<fieldset>

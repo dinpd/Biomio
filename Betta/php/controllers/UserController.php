@@ -25,23 +25,23 @@ class UserController {
 
 			// new email rest
 			if ($extention == 0) {
-				echo 'rest';
-				$url = 'http://gb.vakoms.com/new_email/' . $email;
-				$data = array();
-				send_post($url, $data);
+				//echo 'rest';
+				$url = 'http://10.209.33.61/new_email/' . $email;
+				send_post($url);
 			}
 
 			// generate verification code
-			$code = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	    	$code =  substr(str_shuffle($code),0,10);
+			$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+	    	$code =  substr(str_shuffle($code),0,8);
 	    	// save verification code
 	    	// TO DO
 	    	// send verification email
-			Email::send_email_verification_code($email, $first_name, $last_name, $code);
+			Email::welcome_email($email, $first_name, $last_name, $code);
 
 			// start session
-			$result = SessionController::start_session($profileId, $type, $first_name, $last_name);
-
+			if ($extention == 0) {
+				$result = SessionController::start_session($profileId, $type, $first_name, $last_name);
+			}
 			// return profileId
 			return $profileId;
 		}
@@ -55,6 +55,22 @@ class UserController {
 			return json_encode(array('response'=>'#fine'));
 		else if ($result->rowCount() == 1) {
 			foreach ($result as $row) {
+				$profileId = $row['profileId'];
+
+				$ip = getenv('REMOTE_ADDR');
+				User::update_user($profileId, 'last_ip', $ip);
+
+				$result2 = User::get_user_info($profileId);
+				foreach ($result2 as $row2) {
+					$first_name = $row2['firstName'];
+					$last_name = $row2['lastName'];
+				}
+
+				//$result = SessionController::start_session($profileId, 'USER', $first_name, $last_name);
+				//$result = SessionController::get_user_session();
+				//return json_encode($result);
+			
+				
 				$data = array();
 				// get profileId
 				$profileId = $row['profileId'];
@@ -76,6 +92,78 @@ class UserController {
 		} else return '#something is wroing';
 	}
 
+	public static function generate_bioauth_code($email) {
+
+		$result = User::check_email($email);
+		if ($result->rowCount() == 0)
+			return '#email';
+		else {
+			$row = $result->fetch();
+			$profileId = $row['profileId'];
+
+			// disable all the codes for this user
+			User::update_verification_codes(0, $profileId, 3);
+
+			// generate code and check that code doesn't exist
+			do {
+				$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+		    	$code =  substr(str_shuffle($code),0,8);
+		    	$result = User::select_verification_codes($code);
+	    	} while ($result->rowCount() > 0);
+
+	    	// insert code
+			$result = User::insert_verification_codes($profileId, 0, 3, 1, $code);
+
+			if ($result) return $code;
+			else return '#error';
+		}
+
+	}
+
+	public static function check_bioauth_code($code) {
+		$result = User::select_verification_codes($code);
+		if ($result->rowCount() > 0) {
+			foreach ($result as $row) {
+				if ($row['status'] == 3) {
+					// login
+					$profileId = $row['profileId'];
+					$result2 = User::find_user('id', $profileId);
+					foreach ($result2 as $row2) {
+						$type = $row2['type'];
+
+						$ip = getenv('REMOTE_ADDR');
+						User::update_user($profileId, 'last_ip', $ip);
+
+						$result3 = User::get_user_info($profileId);
+						foreach ($result3 as $row3) {
+							$first_name = $row3['firstName'];
+							$last_name = $row3['lastName'];
+						}
+
+						$result = SessionController::start_session($profileId, $type, $first_name, $last_name);
+						$result = SessionController::get_user_session();
+						$result['response'] = '#verified';
+						return json_encode($result);
+					}
+				} else return json_encode(array('response'=>'#not-verified'));
+			}
+		} else return json_encode(array('response'=>'#no-code'));
+	}
+
+	public static function update_name($first_name, $last_name) {
+		if (isset($_SESSION['id'])) {
+			$profileId = $_SESSION['id'];
+
+			$result = User::update_profile('first_name', $first_name, $profileId);
+			$result = User::update_profile('last_name', $last_name, $profileId);
+
+			$_SESSION['first_name'] = $first_name;
+			$_SESSION['last_name'] = $last_name;
+
+			return '#success';
+		} else return '#no-session';
+	}
+
 	public static function send_phone_login_code($profileId, $phone) {
 		// check phone
 		$result = User::select_temp_login_phone($profileId, $phone);
@@ -86,8 +174,8 @@ class UserController {
 			User::update_temp_login_code($profileId, 0);
 
 			// generate code
-			$code = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	    	$code =  substr(str_shuffle($code),0,10);
+			$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+	    	$code =  substr(str_shuffle($code),0,8);
 
 			// save code in the table
 			User::insert_temp_login_codes($profileId, $code);
@@ -125,8 +213,8 @@ class UserController {
 			User::update_temp_login_code($profileId, 0);
 
 			// generate code
-			$code = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	    	$code =  substr(str_shuffle($code),0,10);
+			$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+	    	$code =  substr(str_shuffle($code),0,8);
 
 			// save code in the table
 	    	User::insert_temp_login_codes($profileId, $code);
@@ -143,7 +231,7 @@ class UserController {
 		// check code
 		$result = User::select_temp_login_code($profileId, $code);
 
-		if ($result->rowCount() == 0) return '#code';
+		if ($result->rowCount() == 0) return json_encode(array('response'=>'#code'));
 		else {
 			User::update_temp_login_code($profileId, 0);
 
@@ -178,6 +266,51 @@ class UserController {
 		$result = SessionController::start_session($profileId, $type, $first_name, $last_name);
 		$result = SessionController::get_user_session();
 		return json_encode($result);
+	}
+
+	public static function test_login() {
+		$profileId = 23;
+		$type = "USER";
+		$first_name = "Test";
+		$last_name = "Acc";
+
+		$result = SessionController::start_session($profileId, $type, $first_name, $last_name);
+		$result = SessionController::get_user_session();
+		return json_encode($result);
+	}
+
+	public static function get_state($type) {
+		if (isset($_SESSION['id'])) {
+			$profileId = $_SESSION['id'];
+
+			// get state
+			$result = User::get_profile($profileId);
+			$row = $result->fetch();
+			$state = json_decode($row['training']);
+
+			$result = 0;
+			foreach ($state as $id=>$s) {
+				if ($id == $type) $result = $s;
+			}
+
+			return $result;
+		}
+	}
+
+	public static function save_state($type, $s) {
+		if (isset($_SESSION['id'])) {
+			$profileId = $_SESSION['id'];
+
+			// get state
+			$result = User::get_profile($profileId);
+			$row = $result->fetch();
+			$state = json_decode($row['training']);
+			$state[$type] = $s;
+			$state = json_encode($state);
+
+			$result = User::update_profile('training', $state, $profileId);
+			return '#success';
+		}
 	}
 
 	// ------ Other cool stuff -------
@@ -215,8 +348,8 @@ class UserController {
 		User::update_temp_phone_codes($profileId, 0);
 
 		// generate code
-		$code = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    	$code =  substr(str_shuffle($code),0,10);
+		$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+    	$code =  substr(str_shuffle($code),0,8);
 
     	// put code to the database
     	User::insert_temp_phone_codes($profileId, $code, $phone);
@@ -283,7 +416,6 @@ class UserController {
 	}
 
 	public static function generate_qr_code($device_id, $application) {
-		session_start();
 		if (isset($_SESSION['id'])) {
 			$profileId = $_SESSION['id'];
 
@@ -292,7 +424,7 @@ class UserController {
 
 			// generate code and check that code doesn't exist
 			do {
-				$code = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+				$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
 		    	$code =  substr(str_shuffle($code),0,8);
 		    	$result = User::select_verification_codes($code);
 	    	} while ($result->rowCount() > 0);
@@ -305,7 +437,6 @@ class UserController {
 	}
 
 	public static function generate_biometrics_code($device_id, $application) {
-		session_start();
 		if (isset($_SESSION['id'])) {
 			$profileId = $_SESSION['id'];
 
@@ -319,18 +450,26 @@ class UserController {
 					$key = $row['device_token'];
 			}
 
+			//if ($profileId == 23)
+			// TEST TEST TEST
+			//{
+				//$url = 'http://10.209.33.61/training?device_id=88b960b1c9805fb586810f270def7378&code=magiccode';
+				//send_post($url);
+			//} else {
+			// TEST TEST TEST
 
 			// generate code and check that code doesn't exist
-			do {
-				$code = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		    	$code =  substr(str_shuffle($code),0,8);
-		    	$result = User::select_verification_codes($code);
-	    	} while ($result->rowCount() > 0);
-
-	    		$url = 'http://gb.vakoms.com/training?device_id=' . $key . '&code=' . $code;
-	    		echo $url;
-	    		$data = array();
-	    		send_post($url, $data);
+			//{
+				do {
+					$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+			    	$code =  substr(str_shuffle($code),0,8);
+			    	$result = User::select_verification_codes($code);
+		    	} while ($result->rowCount() > 0);
+		    		//echo 'key: ' . $key;
+		    		$url = 'http://10.209.33.61/training?device_id=' . $key . '&code=' . $code;
+		    		//echo $url;
+		    		send_post($url);
+		    //}
 
 	    	// insert code
 			$result = User::insert_verification_codes($profileId, $device_id, $application, 1, $code);
@@ -351,6 +490,12 @@ class UserController {
 		return "#success";
 	}
 
+	public static function get_biometrics($biometrics) {
+		$profileId = $_SESSION['id'];
+		$result = User::get_biometrics($profileId, $biometrics);
+		return $result;
+	}
+
 	// --- Chrome Extention --- //
 	public static function get_user_extensions() {
 		$profileId = $_SESSION['id'];
@@ -366,7 +511,7 @@ class UserController {
 				$email = $row['email'];
 
 				list($user, $domain) = explode('@', $email);
-				if ($domain == 'gmail.com' || $domain == 'googlemail.com')
+				if (is_google_mx($domain))
 					$data[] = array('id'=>$row['id'], 'email'=>$row['email'], 'verified'=>$row['verified'], 'primary'=>$row['primary'], 'extention'=>$row['extention']);
 			} else $data[] = array('id'=>$row['id'], 'email'=>$row['email'], 'verified'=>$row['verified'], 'primary'=>$row['primary'], 'extention'=>$row['extention']);
 		}
@@ -378,15 +523,21 @@ class UserController {
 		// check if email is unique
 		$result = User::check_email($email);
 		if ($result->rowCount() == 0) {
-			
-			$result = User::add_email($profileId, $email);
-			// new email rest
-			$url = 'http://gb.vakoms.com/new_email/' . $email;
-			//$url = 'http://biom.io/backups/beta3/php/commands.php/test/alexander.lomov1@gmail.com';
-			$data = array();
-			send_post($url, $data);
+			list($user, $domain) = explode('@', $email);
+			if (is_google_mx($domain)) {
+				echo 'gmail';
+				$result = User::add_gmail_email($profileId, $email);
+				// new email rest
+				$url = 'http://10.209.33.61/new_email/' . $email;
+				//$url = 'http://biom.io/backups/beta3/php/commands.php/test/alexander.lomov1@gmail.com';
+				//echo $url;
+				send_post($url);
+			} else {
+				echo 'not gmail';
+				$result = User::add_not_gmail_email($profileId, $email);
+			}
 
-			return '#success';
+			//return '#success';
 
 		} else
 			return '#registered';
@@ -427,8 +578,8 @@ class UserController {
 		User::update_temp_email_codes($profileId, 0);
 
 		// generate code
-		$code = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    	$code =  substr(str_shuffle($code),0,10);
+		$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+    	$code =  substr(str_shuffle($code),0,8);
 
     	// put code to the database
     	User::insert_temp_email_codes($profileId, $code, $email);
@@ -465,7 +616,7 @@ class UserController {
 
 			// generate code and check that code doesn't exist
 			do {
-				$code = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+				$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
 		    	$code =  substr(str_shuffle($code),0,8);
 		    	$result = User::select_verification_codes($code);
 	    	} while ($result->rowCount() > 0);
@@ -478,11 +629,39 @@ class UserController {
 		} else return '#no-session';
 	}
 
+	public static function get_extension_settings() {
+		if (isset($_SESSION['id'])) {
+			$profileId = $_SESSION['id'];
+			$result = User::get_extension_settings($profileId);
+			if ($result->rowCount() != 0) {
+				$row = $result->fetch();
+				$data = json_decode($row['settings']);
+				return json_encode($data);
+			} else {
+				return json_encode(array('response'=>'#no-data'));
+			}
+		} else return json_encode(array('response'=>'#no-session'));
+	}
+
+	public static function save_extension_settings($settings) {
+		if (isset($_SESSION['id'])) {
+			$profileId = $_SESSION['id'];
+
+			$result = User::get_extension_settings($profileId);
+			if ($result->rowCount() != 0) {
+				$result = User::save_extension_settings($profileId, $settings);
+			} else {
+				$result = User::insert_extension_settings($profileId, $settings);
+			}
+		} else return '#no-session';
+	}
+
 	public static function check_status($code) {
 		if (isset($_SESSION['id'])) {
 			$result = User::select_verification_codes($code);
 			if ($result->rowCount() > 0) {
 				foreach ($result as $row) {
+					if ($row['status'] == 4) return '#in-process';
 					if ($row['status'] == 3) return '#verified';
 					else return '#not-verified';
 				}
@@ -539,8 +718,8 @@ function create_image_code($code) {
 	return base64_encode($buffer);
 }
 
-function send_post($url, $data) {
-	echo $url;
+function send_post($url) {
+	//echo $url;
 	$data = array();
 
 	# Create a connection
@@ -558,6 +737,28 @@ function send_post($url, $data) {
 	$response = curl_exec($ch);
 	curl_close($ch);
 }
+
+function send_get($url) {
+	$ch = curl_init();
+
+	// Set query data here with the URL
+	curl_setopt($ch, CURLOPT_URL, $url); 
+
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_TIMEOUT, '3');
+	$content = trim(curl_exec($ch));
+	curl_close($ch);
+	//print $content;
+}
 //
-//POST http://gb.vakoms.comtraining?user_id=1&code=code
-//POST http://gb.vakoms.comnew_email/email
+//POST http://10.209.33.61training?user_id=1&code=code
+//POST http://10.209.33.61new_email/email
+
+function is_google_mx($host) {
+    $records = dns_get_record($host, DNS_MX);
+    foreach ($records as $record) {
+        if (substr(strtolower($record['target']), -11) == '.google.com') return true;
+        if (substr(strtolower($record['target']), -15) == '.googlemail.com') return true;
+    }
+    return false;
+}

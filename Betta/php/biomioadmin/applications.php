@@ -21,7 +21,7 @@
 <?php 
 include ('../connect.php');
 
-	$result = mysqli_query($db_conx, "SELECT * FROM Applications ORDER BY dateCreated DESC") or die (mysqli_error());
+	$result = mysqli_query($db_conx, "SELECT * FROM Splash ORDER BY dateCreated DESC") or die (mysqli_error());
 	echo "<table class='table table-striped panel tablesorter'>";
 	echo 	"<thead>";
 	echo 		"<th>Name</th>";

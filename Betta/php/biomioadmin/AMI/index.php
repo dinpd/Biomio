@@ -12,6 +12,7 @@
 <body style="margin: 0 auto; text-align: center">
 
 <div class="container well">
+
 	<div class="row">
 		  <div>
 		    <h2>Applications Management Interface</h2>
@@ -19,32 +20,40 @@
 		  <div class="panel-footer table-responsive">
 
 <?php 
-include ('../connect.php');
+include ('../../connect.php');
 
-	$result = mysqli_query($db_conx, "SELECT * FROM Applications ORDER BY dateCreated DESC") or die (mysqli_error());
+ini_set('display_errors',1);
+ini_set('display_startup_errors',1);
+error_reporting(-1);
+
+	$result = $pdo->prepare("SELECT * FROM Splash ORDER BY id DESC");
+	$result->execute();
+
 	echo "<table class='table table-striped panel tablesorter'>";
 	echo 	"<thead>";
 	echo 		"<th>Name</th>";
 	echo 		"<th>Email</th>";
 	echo 		"<th>Type</th>";
 	echo 		"<th>Code</th>";
-	echo 		"<th>Invitation</th>";
 	echo 		"<th>Date</th>";
+	echo 		"<th>Invitation</th>";
+
 	echo 		"<th></th>";
 	echo 	"</thead>";
 	echo 	"</tbody>";
-	while ($row = mysqli_fetch_array($result)) {
+	foreach ($result as $row) {
 		echo 	"<tr>";
 		echo 		"<th>" . $row['name'] . "</th>";
 		echo 		"<th>" . $row['email'] . "</th>";
 		echo 		"<th>" . $row['type'] . "</th>";
 		echo 		"<th>" . $row['code'] . "</th>";
+		echo 		"<th>" . $row['date_created'] . "</th>";
 		if ($row['invitation'] == 'no') {
 			echo 		"<th><a href='http://www.biom.io/php/splash.php?u=" . $row['name'] . "&c=" . $row['code'] . "' class='btn btn-success btn-xs' role='button'>Send Invitation</a></th>";
 		} else {
 			echo 		"<th>" . $row['invitation'] . "</th>";
 		}
-		echo 		"<th>" . $row['dateCreated'] . "</th>";
+
 		echo 		"<th>
 						<button class='close' role='button'>&times;</button>
 						<button class='btn btn-default btn-xs options no hide' role='button'>Cancel</button>

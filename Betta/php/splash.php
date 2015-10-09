@@ -1,5 +1,6 @@
 <?php
 include ('connect.php');
+
 session_start();
 if (isset($_POST['name'])) {
 	$name = $_POST['name'];
@@ -11,18 +12,25 @@ if (isset($_POST['name'])) {
 		$code = '';
 			for ($i=0; $i<15; $i++) { $code = $code . $charset[rand(0, count($charset))-1]; }
 
-	mysqli_query($db_conx, "INSERT INTO Splash (name, email, type, code) VALUES ('$name', '$email', '$type', '$code')") or die (mysqli_error());
+	mysqli_query($db_conx, "INSERT INTO Splash (name, email, type, code, date_created) VALUES ('$name', '$email', '$type', '$code', now())") or die (mysqli_error());
 	
-	$to = 'ditkis@gmail.com';
-	$from = "Splash@biom.io";
+	$from = "splash@biom.io";
+	$from_name = "Splash BIOMIO";
 	$subject = "BIOMIO: New application";
 
-	$body = file_get_contents("../tpl/forms/NewApplication.html");
+	$body = file_get_contents("../tpl/emails/NewApplication.html");
 	$body = str_replace('%name%', $name, $body);
 	$body = str_replace('%email%', $email, $body);
 	$body = str_replace('%type%', $type, $body);
 	$body = str_replace('%code%', $code, $body);
 
+	$to = "alexander.lomov1@gmail.com";
+	monkey_mail($to, $subject, $body, $from, $from_name);
+
+	$to = "ditkis@gmail.com";
+	monkey_mail($to, $subject, $body, $from, $from_name);
+
+	/*
 	$headers = "From: $from\n";
 	        $headers .= "MIME-Version: 1.0\n";
 	        $headers .= "Content-type: text/html; charset=iso-8859-1\n";
@@ -30,12 +38,15 @@ if (isset($_POST['name'])) {
 
 	$to = 'alexander.lomov1@gmail.com';	
 	mail($to, $subject, $body, $headers);
+	*/
 
 
 	echo 'success';
 
 } else if (isset($_POST['code'])) {
 	$code = $_POST['code'];
+
+	//echo $code;
 	
 	$result = mysqli_query($db_conx, "SELECT * FROM Splash WHERE code = '$code'") or die (mysqli_error());
 	if (mysqli_num_rows($result) == 0) {
@@ -78,19 +89,26 @@ if (isset($_POST['name'])) {
 			$email = $row['email'];
 			$type = $row['type'];
 
+			echo '<br>email: ' . $email . '<br>';
+
 			//send a message
 			$to = $email;	 
 			$from = "Splash@biom.io";
+			$from_name = "BIOMIO service";
 			$subject = "BIOMIO: Application accepted";
 
-			$body = file_get_contents("../tpl/forms/NewInvitation.html");
+			$body = file_get_contents("../tpl/emails/NewInvitation.html");
 			$body = str_replace('%name%', $name, $body);
 			$body = str_replace('%code%', $code, $body);
 
+			/*
 			$headers = "From: $from\n";
 			        $headers .= "MIME-Version: 1.0\n";
 			        $headers .= "Content-type: text/html; charset=iso-8859-1\n";
 			mail($to, $subject, $body, $headers);
+			*/
+
+			monkey_mail($to, $subject, $body, $from, $from_name);
 
 			mysqli_query($db_conx, "UPDATE Splash SET invitation = 'yes' WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
 
@@ -136,4 +154,34 @@ if (isset($_POST['name'])) {
 	}
 } else {
 	echo 'Wrong place to be';
+}
+
+
+
+function monkey_mail($to, $subject, $body, $from, $from_name) {
+
+	require_once 'mandrill/Mandrill.php';
+	try {
+	    $mandrill = new Mandrill('vyS5QUBZJP9bstzF1zeVNA');
+	    $message = array(
+	        'html' => $body,
+	        'subject' => $subject,
+	        'from_email' => $from,
+	        'from_name' => $from_name,
+	        'to' => array(
+	            array(
+	                'email' => $to,
+	                'type' => 'to'
+	            )
+	        )  
+	    );
+	    $async = false;
+	    $result = $mandrill->messages->send($message, $async);
+	} catch(Mandrill_Error $e) {
+	    // Mandrill errors are thrown as exceptions
+	    //echo 'A mandrill error occurred: ' . get_class($e) . ' - ' . $e->getMessage();
+	    // A mandrill error occurred: Mandrill_Unknown_Subaccount - No subaccount exists with the id 'customer-123'
+	    throw $e;
+	}
+
 }

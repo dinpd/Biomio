@@ -1,73 +1,48 @@
-<style>
-
-.on {
-  background: #5CB85C;
-  /*background: #77B55A;*/
-}
-
-.off {
-  background: #D9534F;
-  /*background: #CC3333;*/
-}
-
-.part {
-  background: #F0AD4E;
-}
-
-.show-box {
-	width: 40px;
-	height: 12px;
-	display: inline-block;
-}
-
-.show-span {
-	margin-left: 5px;
-}
-
-</style>
-
-<div class="well">
+<div class="well user-face">
 	<input id="fingeprints_snapshots" class="hide" type="text" />
 
 	<legend><h2 class="form-signin-heading">User - Face</h2></legend>
 
-	<form class="form-horizontal font16">
-		<fieldset>
-			<div class="col-sm-8">
-				<!-- if face exist in the database -->
-				<% if (face == 2) { %>
-			    <div class="form-group">
-					<label class="col-sm-3 control-label"><div class="show-box on"></div></label>
-					<div class="col-sm-9">
-						<p>Face is successfully registred</p>
-						<p><button class="train-face btn btn-primary col-sm-4 disabled">Retrain</button></p>
-					</div>
-				</div>
-				<% } %>
+	<div class="col-sm-7">
+		<form class="form-horizontal font16">
+			<fieldset>
+				<div class="col-sm-8">
+					<div class="form-group">
+						<div class="col-sm-9">
+							<img class="face-status" width="300" src="img/avatar-grey.png">
+							
+							<p style="margin-top: 15px">
+								<select class="form-control devices" style="width:300px">
 
-				<!-- if face stored incorrectly -->
-				<% if (face == 1) { %>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><div class="show-box part"></div></label>
-					<div class="col-sm-9">
-						<p>Face is registration is incomplete; please, retrain</p>
-						<p><button class="train-face btn btn-warning col-sm-4 disabled">Retrain</button></p>
+								</select>
+							</p>
+							<p><button class="train-face btn btn-default disabled" style="width:300px">Retrain</button></p>
+							<small class="no-devices hide">No registered devices</small>
+						</div>
 					</div>
 				</div>
-				<% } %>
+			</fieldset>
+		</form>
+	</div>
 
-				<!-- if face stored correctly -->
-				<% if (face == 0) { %>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><div class="show-box off"></div></label>
-					<div class="col-sm-9">
-						<p>Face is not registed</p>
-						<p><button class="train-face btn btn-primary col-sm-4 disabled">Train</button></p>
-					</div>
-				</div>
-				<% } %>
-			</div>
-		</fieldset>
-	</form>
+	<div class="col-sm-5">
+		<div class="form-1-2 col-sm-12 text-center hide">
+			<h3>Face Registration</h3>
+			<p><strong>My Device</strong></p>
+			<br>
+			<p><img src="img/large-progress.gif"></p>
+			<br>
+			<p><small>Please, open the application to register biometrics data</small></p>
+			<input class="hide" type="text">
+		</div>
+
+		<div class="form-1-4 col-sm-12 text-center hide text-info">
+			<h3>Registration started</h3>
+		</div>
+
+		<div class="form-1-5 col-sm-12 text-center hide text-success">
+			<h3>Biometrics data was successfully registered</h3>
+		</div>
+	</div>
 
 </div>

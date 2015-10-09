@@ -7,3 +7,13 @@ App.Views.Page404 = Backbone.View.extend({
         return this;
     }
 });
+
+App.Views.Session = Backbone.View.extend({
+    initialize:function () {
+        this.render();
+    },
+    render:function () {
+        $(this.el).html( render('SessionView', {}) );
+        return this;
+    }
+});

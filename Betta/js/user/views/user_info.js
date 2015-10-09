@@ -25,6 +25,8 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         //profile handling
         'click .user-update-info': 'updateInfo',
         'click .user-save-changes': 'saveChanges',
+        'click .edit-name': 'edit_name',
+        'click .save-name': 'save_name',
         'click .user-cancel-changes': 'cancelChanges',
         'change .user-geolocation': 'geolocation',
         //webcam image upload
@@ -48,6 +50,50 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         "click .user-emails .profile-email .verify" : "send_email_verification_code",
         "click .user-emails .form-2-2 button"         : "verify_email",
         "click .user-emails .profile-email .remove" : "delete_email",
+    },
+    edit_name: function (e) {
+        e.preventDefault();
+        $(".content").addClass('hide');
+        $(".form").removeClass('hide');
+        $('.edit-name').addClass('hide');
+        $('.save-name').removeClass('hide');
+    },
+    save_name: function (e) {
+        e.preventDefault();
+
+        var first_name = $('#firstName').val();
+        var last_name = $('#lastName').val();
+
+        $.ajax({
+            type: 'POST',
+            url: 'php/login.php',
+            data: {cmd: "update_name", first_name: first_name, last_name: last_name},
+            success: function(data) {
+                if (data == '#success') {
+                    message('danger', 'Success: ', 'name has been successfully updated');
+
+                    window.profileFirstName = first_name;
+                    window.profileLastName = last_name;
+
+                    if ((window.profileFirstName == null && window.profileLastName == null) || (window.profileFirstName == '' && window.profileLastName == '')) 
+                        { $('.profile').html('User'); $('#span_name').html('<p class="content small-align">no information</p>'); }
+                    else if (window.profileFirstName == null || window.profileFirstName == '') 
+                        { $('.profile').html(window.profileLastName); $('#span_name').html(window.profileLastName); }
+                    else if (window.profileLastName == null || window.profileLastName == '') 
+                        { $('.profile').html(window.profileFirstName); $('#span_name').html(window.profileFirstName); }
+                    else 
+                        { $('.profile').html(window.profileFirstName + ' ' + window.profileLastName); $('#span_name').html(window.profileFirstName + ' ' + window.profileLastName); }
+                } else 
+                    message('danger', 'Error: ', 'reload the page and try again');
+
+                $(".form").addClass('hide');
+                $(".content").removeClass('hide');
+                $('.save-name').addClass('hide');
+                $('.edit-name').removeClass('hide');
+
+            }
+        });
+
     },
     updateInfo: function (e) {
         e.preventDefault();
@@ -269,7 +315,7 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
             type: 'POST',
             url: 'php/login.php',
             dataType: "json",
-            data: {cmd: "get_user_emails"},
+            data: {cmd: "get_user_emails", extention: 0},
             success: function(data) {
                 if (data != null)
                     jQuery.each(data, function(i, email) {
@@ -525,7 +571,7 @@ function userSaveImage () {
                 $("#user_image_delete").removeClass('disabled');
             }
             else{
-                $('#user_image_progress').text("File size must be less than 500 kB.");
+                $('#user_image_progress').text("File size must be less than 3 mB.");
                 $('#user_image_progress').css("color","red");
             }
         }

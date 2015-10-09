@@ -12,12 +12,12 @@ App.Views.Login = Backbone.View.extend({
         $('.biomio-email input').val(email);
     },
     events: {
-        "keyup .biomio-email input": "clear_notifications",
-        "click .biomio-submit": "submit",
-        "keyup .login-buttons .login-phone": "biomio_login_phone",
-        "keyup .login-buttons .login-email": "biomio_login_email",
-        "click .login-send-code": "login_send_code",
-        "click .submit-login-code button": "submit_login_code",
+        "keyup .biomio-email input"         : "clear_notifications",
+        "click .biomio-submit"              : "submit",
+        "keyup .login-buttons .login-phone" : "biomio_login_phone",
+        "keyup .login-buttons .login-email" : "biomio_login_email",
+        "click .login-send-code"            : "login_send_code",
+        "click .submit-login-code button"   : "submit_login_code",
 
         "keyup .login-phone .country-code"  : "verify_country_code",
         "keyup .login-phone .region-code"   : "verify_region_code",
@@ -25,12 +25,15 @@ App.Views.Login = Backbone.View.extend({
         "keyup .login-phone .second-part"   : "verify_second_part",
 
         "click .guest-login button": "guest_login",
+        "click .test-login button": "test_login",
+        "click .switch_methods"   : "switch_methods",
     },
     clear_notification: function() {
         $('.biomio-email span').text();
     },
     submit: function(e) {
         e.preventDefault();
+        var that = this;
 
         $('.biomio-email span').text('');
         $('#sign_in_email_span').text('');
@@ -57,20 +60,28 @@ App.Views.Login = Backbone.View.extend({
                         set_cookie('biomio_email', email, 360);
                         $('#sign_in_email_group').removeClass("has-success").addClass("has-warning");
 
-                        window.profileId = data.id;
+                        window.tempId = data.id;
                         var face = data.face; // 1 or 0
-                        var profilePhone = data.phone; // 1 or 0
+                        var profilePhone = data.phone; // number of phones
 
-                        if (face == 12341234) {
-                            // check for fingerprints
-                            //biomio_verify();
+                        $('.login-phone-code').removeClass('hide');
+                        
+                        console.log(face);
+                        if (face != 999) {
+                            $('.biometrics-login').removeClass('hide');
+                            that.biometric_authentication();
+
+                            $('.login-email').val(email);
+                            if (profilePhone == 0)
+                                $('.login-phone-code').addClass('hide');
+
                         } else {
                             alert('Biometrics Login is coming soon');
                             // open buttons
                             $('.login-buttons').removeClass('hide');
                             $('.login-email').val(email);
                             // disable phone button if user doesn't have phone
-                            if (window.profilePhone == 0)
+                            if (profilePhone == 0)
                                 $('.login-phone-code').addClass('hide');
                         }
                     }
@@ -101,7 +112,7 @@ App.Views.Login = Backbone.View.extend({
         $.ajax({
             type: 'POST',
             url: 'php/login.php',
-            data: {cmd: cmd, profileId: window.profileId, value: value},
+            data: {cmd: cmd, profileId: window.tempId, value: value},
             success: function(data) {
                 if (data == "#success") {
                     $('.login-buttons span').removeClass('text-danger').addClass('text-success').text('Login code has been texted to your ' + message);
@@ -118,24 +129,25 @@ App.Views.Login = Backbone.View.extend({
     submit_login_code: function(e) {
         e.preventDefault();
         var code = $('.login-code input').val();
-        if (window.profileId == null || window.profileId == undefined) {
+        if (window.tempId == null || window.tempId == undefined) {
             alert('something is wrong, please reload the page and try again');
         } else {
             $.ajax({
                 type: 'POST',
                 url: 'php/login.php',
                 dataType: "json",
-                data: {cmd: "check_login_code", profileId: window.profileId, code: code},
+                data: {cmd: "check_login_code", profileId: window.tempId, code: code},
                 success: function(data) {
-                    if (data == '#code') {
+                    if (data.response == '#code') {
                         $('.submit-login-code span').text("the code is incorrect or expired");
                     } else {
                         window.profileId = data.id;
                         window.profileFirstName = data.first_name;
                         window.profileLastName = data.last_name;
                         window.profileType = data.type;
-                        alert("Welcome to BIOMIO!")
+                        //alert("Welcome to BIOMIO!")
                         window.location.hash = 'user-info';
+                        session_checker();
                     }
                     //if error remove alert after 5 seconds
                     setTimeout(function() {
@@ -157,7 +169,29 @@ App.Views.Login = Backbone.View.extend({
                     window.profileFirstName = data.first_name;
                     window.profileLastName = data.last_name;
                     window.profileType = data.type;
-                    alert("Welcome to BIOMIO!")
+                    //alert("Welcome to BIOMIO!")
+                    window.location.hash = 'user-info';
+
+                    //if error remove alert after 5 seconds
+                    setTimeout(function() {
+                        $('.submit-login-code span').text('');
+                    }, 5000);
+                }
+            });
+    },
+    test_login: function() {
+        $.ajax({
+                type: 'POST',
+                url: 'php/login.php',
+                dataType: "json",
+                data: {cmd: "test_login"},
+                success: function(data) {
+                    
+                    window.profileId = data.id;
+                    window.profileFirstName = data.first_name;
+                    window.profileLastName = data.last_name;
+                    window.profileType = data.type;
+                    //alert("Welcome to BIOMIO!")
                     window.location.hash = 'user-info';
 
                     //if error remove alert after 5 seconds
@@ -187,4 +221,99 @@ App.Views.Login = Backbone.View.extend({
         $('.second-part').val(phone);
 
     },
+    biometric_authentication: function () {
+        clearInterval(check);
+        var email = $('.biomio-email input').val();
+
+        console.log(email);
+
+        var that = this;
+        var context = 0;
+        $.ajax({
+            type: 'POST',
+            url: 'php/login.php',
+            dataType: "json",
+            data: {cmd: "generate_bioauth_code", email: email},
+            success: function(code) {
+                $('.bioauth-code').val(code);
+
+                //clearInterval(check);
+                //check = setInterval(function() {
+                    //that.check_bioauth();
+                //}, 3000);
+
+                var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
+                port.postMessage({command: "run_auth", email: email, auth_code: code.toString()});
+                port.onMessage.addListener(function(response){
+                    console.log(response);
+                    console.log(response.timeout);
+
+                    if (response.status == 'error') {
+                        $('.biometrics-login > div').addClass('hide');
+                        $('.biometrics-login .error-block').removeClass('hide');
+                        $('.biometrics-login .error-block .message').text(response.error);
+                    } else if (response.status == 'in_progress' && response.timeout != undefined) {
+                        $('.biometrics-login > div').addClass('hide');
+                        $('.biometrics-login .in-progress-1-block').removeClass('hide');
+                        $('.biometrics-login .in-progress-1-block .message').text(response.message);
+                        $('.biometrics-login .in-progress-1-block .timeout').text(response.timeout);
+
+                        clearInterval(check);
+                        check = setInterval(function() {
+                            var text = parseInt($('.biometrics-login .in-progress-1-block .timeout').text());
+                            var text = text - 1;
+                            $('.biometrics-login .in-progress-1-block .timeout').text(text)
+                            if (text <= 0)
+                                clearInterval(check);
+                        }, 1000);
+                    } else if (response.status == 'in_progress' && response.timeout == undefined) {
+                        clearInterval(check);
+                        check = setInterval(function() {
+                            that.check_bioauth();
+                        }, 3000);
+                        $('.biometrics-login > div').addClass('hide');
+                        $('.biometrics-login .in-progress-2-block').removeClass('hide');
+                        $('.biometrics-login .in-progress-2-block .message').text(response.message);
+                    } else if (response.status == 'completed') {
+                        $('.biometrics-login > div').addClass('hide');
+                        $('.biometrics-login .biometrics-success').removeClass('hide');
+                        that.check_bioauth();
+                    }
+                        
+                });
+            }
+        });
+    },
+    check_bioauth: function () {
+        var code = $('.bioauth-code').val();
+        console.log('verification call for ' + code);
+        if (code != '' && code != undefined)
+            $.ajax({
+                type: 'POST',
+                url: 'php/login.php',
+                dataType: "json",
+                data: {cmd: "check_bioauth_code", code: code},
+                success: function(data) {
+                    console.log(data);
+                    if (data.response == '#verified') {
+                        clearInterval(check);
+                        $('.biometrics-login > div').addClass('hide');
+                        $('.biometrics-login .biometrics-success').removeClass('hide');
+
+                        window.profileId = data.id;
+                        window.profileFirstName = data.first_name;
+                        window.profileLastName = data.last_name;
+                        window.profileType = data.type;
+                        //alert("Welcome to BIOMIO!")
+                        window.location.hash = 'user-info';
+                        session_checker();
+                    }
+                }
+            });
+        else clearInterval(check);
+    },
+    switch_methods: function() {
+        $('.biometrics-login').addClass('hide');
+        $('.login-buttons').removeClass('hide');
+    }
 });

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* CSS Document */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300|Roboto+Condensed:400,700,300|Titillium+Web:400,300,600,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300|Roboto+Condensed:400,700,300|Titillium+Web:400,300,600,700);
 
 
 body {font-family: 'Open Sans', sans-serif; font-weight:300; color:#41464f; background-image: url(../img/biomio-style/face.jpg), url(../img/biomio-style/shade.jpg); background-position: right 105px, left 98px; background-repeat: no-repeat; background-size:182px 352px, 960px 75px}

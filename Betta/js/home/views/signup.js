@@ -7,11 +7,11 @@ App.Views.Signup = Backbone.View.extend({
         this.$el.html( template );
     },
     events: {
-        "keyup #sign_in_first_name"       : "verify_name",
-        "keyup #sign_in_last_name"        : "verify_name",
-        "click .sign-up-name"             : "border_style", //border style (1px to either side)
-        "change #sign_in_email"           : "verify_email",
-        "click #sign_in_submit"           : "submit_check",
+        //View-1
+        "keyup .signup #sign_in_first_name"       : "verify_name",
+        "keyup .signup #sign_in_last_name"        : "verify_name",
+        "change .signup #sign_in_email"           : "verify_email",
+        "click .signup #sign_in_submit"           : "submit_check",
     },
     verify_name: function (e) {
         var id = $(e.currentTarget).attr("id"); //automatically determines whether first_name or last name was changed
@@ -20,17 +20,6 @@ App.Views.Signup = Backbone.View.extend({
         var name = $("#" + id).val();
         name = name.replace(nameRegex, "");
         $("#" + id).val(name);
-    },
-    border_style: function (e) {
-        var id = $(e.currentTarget).attr("id");
-        if (id == 'sign_in_first_name') {
-            $('#sign_in_first_name').css('border-right-width', '1px');
-            $('#sign_in_last_name').css('border-left-width', '0');
-        } else {
-            $('#sign_in_first_name').css('border-right-width', '0');
-            $('#sign_in_last_name').css('border-left-width', '1px');
-        }
-        $('#' + id + '_group form-control').focus();
     },
     verify_email: function (e) {
         var email = $("#sign_in_email").val();
@@ -54,7 +43,7 @@ App.Views.Signup = Backbone.View.extend({
                         $('#sign_in_email_span').text('This email is already registred in our system');
                     } else if (data.search("#fine")!=-1)  {
                         $('#sign_in_email_group').removeClass("has-warning").addClass("has-success");
-                        $('#sign_in_email_span').text('This e-mail is free');
+                        $('#sign_in_email_span').text('This e-mail is available');
                     }
                 }
             });
@@ -87,8 +76,9 @@ App.Views.Signup = Backbone.View.extend({
                         window.profileFirstName = first_name;
                         window.profileLastName = last_name;
                         window.profileType = type;
-                        alert("Welcome to BIOMIO!")
-                        window.location.hash = 'user-info';
+                        
+                        window.location.hash = 'wizard/1';
+                        session_checker();
                     }
                     //if error, remove alert after 5 seconds
                     setTimeout(function() {
@@ -97,4 +87,5 @@ App.Views.Signup = Backbone.View.extend({
                 }
             });
     },
+
 });

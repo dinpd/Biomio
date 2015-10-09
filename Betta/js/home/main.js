@@ -9,9 +9,11 @@ var AppRouter = Backbone.Router.extend({
         ""                           : "home",
         "home"                       : "home",
         "signup"                     : "signup",
+        "wizard/:type"               : "wizard",
         "login"	                     : "login",
         "account-settings"           : "settings",
         "about"                      : "about",
+        "googleapp"                  : "googleapp",
         "contact"                    : "contact",
         "apis"                       : "apis",
         "profiles/:id"               : "users",
@@ -41,20 +43,52 @@ var AppRouter = Backbone.Router.extend({
         "provider-reports"           : "provider_reports",
         "login-implementation"       : "login_implementation",
         "captcha-implementation"     : "captcha_implementation",
-
+        "session"                    : "session",
         "*other"                     : "page_404"
     },
     //Home menu
-    //Note: implement header cashing
-    initialize: function () {
-        
-    },
     home: function () {
         this.main_navigation('home-menu'); 
-        if (!this.homeView) this.homeView = new App.Views.Home();
-        $('#content').html(this.homeView.el);
+        if (!this.homeView) {
+            this.homeView = new App.Views.Home();
+            $('#content').html(this.homeView.el);
+            $('.banner').unslider({dots: true});
+        } else {
+           $('#content').html(this.homeView.el); 
+        }
         $('body').children(".container").addClass('extraWidth');
         this.footer();
+
+        // demid's design
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 0) {$('#scroller').fadeIn();} 
+            else {$('#scroller').fadeOut();}
+        });
+            
+        $('#scroller').click(function () {$('body,html').animate({scrollTop: 0}, 400); return false;});
+
+        /*
+        $('.post').addClass("hidden").viewportChecker({
+        classToAdd: 'visible animated fadeIn',
+        offset: 100
+        });
+
+
+        $('.minpost').addClass("hidden").viewportChecker({
+        classToAdd: 'visible animated fadeInUp',
+        offset: 200
+        });
+        */
+
+
+        $('#slider').nivoSlider({
+        effect:'fade',
+        pauseTime: 5000,
+        animSpeed: 1000,
+        directionNav:false,
+        controlNav:true,
+        pauseOnHover: false
+        });
     },
     about: function () {
         this.main_navigation('about-menu');
@@ -67,6 +101,12 @@ var AppRouter = Backbone.Router.extend({
         var width = $(".about-video").width();
         var height = width / 1280 * 720;
         $(".about-video").height(height);
+    },
+    googleapp: function () {
+        this.main_navigation('home-menu');
+        if (!this.googleappView) this.googleappView = new App.Views.GoogleApp();
+        this.googleappView.render();
+        this.footer();
     },
     apis: function () {
         this.main_navigation('apis-menu');
@@ -92,7 +132,14 @@ var AppRouter = Backbone.Router.extend({
         this.signupView.render();
         this.footer(); 
     },
+    wizard: function(type) {
+        this.main_navigation('home-menu');
+        if (!this.wizardView) this.wizardView = new App.Views.Wizard();
+        this.wizardView.render(type);
+        this.footer(); 
+    },
     settings: function(type) {
+        if (!check_session()) return;
         this.main_navigation('home-menu');
         var type = window.profileType;
         
@@ -122,6 +169,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     users: function(id) {
+        if (!check_session()) return;
         this.main_navigation('home-menu');
         if (!this.userModel) this.userModel = new App.Models.UserPersonalInfo();
         if (!this.userView) this.userView = new App.Views.User({model: this.userModel});
@@ -135,6 +183,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     providers: function(id) {
+        if (!check_session()) return;
         this.main_navigation('home-menu');
         if (!this.providerInfoModel) this.providerInfoModel = new App.Models.ProviderInformation();
         if (!this.providerView) this.providerView = new App.Views.Provider({model: this.providerInfoModel});
@@ -148,6 +197,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     locations: function(id) {
+        if (!check_session()) return;
         this.main_navigation('home-menu');
         if (!this.locationModel) this.locationModel = new App.Models.ProviderLocation();
         if (!this.locationView) this.locationView = new App.Views.SecureLocation({model: this.locationModel});
@@ -161,6 +211,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     websites: function(id) {
+        if (!check_session()) return;
         this.main_navigation('home-menu');
         if (!this.websiteModel) this.websiteModel = new App.Models.ProviderWebsite();
         if (!this.websiteView) this.websiteView = new App.Views.Website({model: this.websiteModel});
@@ -175,6 +226,7 @@ var AppRouter = Backbone.Router.extend({
     },
     //User menu
     user_info: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-info-menu'); 
         if (!this.userInfoModel) this.userInfoModel = new App.Models.UserPersonalInfo();
         if (!this.userInfoView) this.userInfoView = new App.Views.UserPersonalInfo({model: this.userInfoModel});
@@ -188,23 +240,27 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     phone: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-info-menu');
         if (!this.userPhoneView) this.userPhoneView = new App.Views.UserPhone();
         this.footer();
     },
     user_services: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-services-menu');
         if (!this.userServices) this.userServices = new App.Views.userServices();
         this.userServices.render();
         this.footer();
     },
     user_mobile_devices: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-mobile-devices-menu');
         if (!this.userMobileDevices) this.userMobileDevices = new App.Views.userMobileDevices();
         this.userMobileDevices.render();
         this.footer();
     },
     user_fingerprints: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-bio-menu');
         if (!this.userFingerprintsModel) this.userFingerprintsModel = new App.Models.UserPersonalInfo();
         if (!this.userFingerprintsView) this.userFingerprintsView = new App.Views.UserFingerprints({model: this.userFingerprintsModel});
@@ -218,24 +274,20 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     user_face: function () {
-        this.interface_navigation('User', 'user-bio-menu');
-        if (!this.userFaceModel) this.userFaceModel = new App.Models.UserPersonalInfo();
-        if (!this.userFaceView) this.userFaceView = new App.Views.UserFace({model: this.userFaceModel});
-        var that = this;
-        this.userFaceModel.url = App.Url + '/users/' + window.profileId;
-        this.userFaceModel.fetch({
-            success: function () {
-                that.userFaceView.render();
-            }
-        });
+        if (!check_session()) return;
+        this.interface_navigation('User', 'user-face-menu');
+        if (!this.userFace) this.userFace = new App.Views.UserFace();
+        this.userFace.render();
         this.footer();
     },
     user_iris: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-bio-menu');
         if (!this.irisView) this.irisView = new App.Views.UserIris();
         this.irisView.render();
     },
     user_voice: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-bio-menu');
         if (!this.userVoiceModel) this.userVoiceModel = new App.Models.UserPersonalInfo();
         if (!this.voiceView) this.voiceView = new App.Views.UserVoice({model: this.userVoiceModel});
@@ -249,6 +301,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     user_resources: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-locations-menu');
         if (!this.userResourcesMainView) this.userResourcesMainView = new App.Views.UserResourcesMain ();
         this.userResourcesMainView.render();
@@ -263,12 +316,14 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     user_websites: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-websites-menu');
         if (!this.websitesView) this.websitesView = new App.Views.UserWebsites();
         this.websitesView.render();
         this.footer();
     },
     user_reports: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-reports-menu');
         if (!this.userReportsMainView) this.userReportsMainView = new App.Views.UserReportsMain ();
         this.userReportsMainView.render();
@@ -283,6 +338,7 @@ var AppRouter = Backbone.Router.extend({
     },
     //Provider menu
     provider_info: function () {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-info-menu');
         if (!this.providerInfoModel) this.providerInfoModel = new App.Models.ProviderInformation();
         if (!this.providerInfoView) this.providerInfoView = new App.Views.ProviderInformation({model: this.providerInfoModel});
@@ -296,6 +352,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     provider_locations: function () {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-locations-menu');
         if (!this.providerLocationsMainView) this.providerLocationsMainView = new App.Views.ProviderLocationsMain ();
         this.providerLocationsMainView.render();
@@ -318,6 +375,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     provider_websites: function () {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-websites-menu');
         if (!this.providerWebsitesMainView) this.providerWebsitesMainView = new App.Views.ProviderWebsitesMain();
         this.providerWebsitesMainView.render();
@@ -332,6 +390,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     provider_policies: function () {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-policies-menu');
         if (!this.providerPoliciesMainView) this.providerPoliciesMainView = new App.Views.ProviderPoliciesMain ();
         this.providerPoliciesMainView.render();
@@ -346,6 +405,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     provider_users: function (locationId) {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-users-menu');                                                   
         if (!this.providerUsersMainView) this.providerUsersMainView = new App.Views.ProviderUsersMain ();
         this.providerUsersMainView.render();
@@ -366,6 +426,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     provider_devices: function () {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-devices-menu');
         if (!this.providerDevicesMainView) this.providerDevicesMainView = new App.Views.ProviderDevicesMain();
         this.providerDevicesMainView.render();
@@ -389,6 +450,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     provider_reports: function () {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-reports-menu');
         if (!this.userReportsMainView) this.userReportsMainView = new App.Views.UserReportsMain ();
         this.userReportsMainView.render();
@@ -402,12 +464,14 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     login_implementation: function () {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'login-implementation-menu');
         if (!this.loginImplementationView) this.loginImplementationView = new App.Views.LoginImplementation();
         this.loginImplementationView.render();
         this.footer();
     },
     captcha_implementation: function () {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'captcha-implementation-menu');
         if (!this.captchaImplementationView) this.captchaImplementationView = new App.Views.CaptchaImplementation();
         this.captchaImplementationView.render();
@@ -443,10 +507,7 @@ var AppRouter = Backbone.Router.extend({
                     if (data == '') {
                         if (!window.splashView) window.splashView = new App.Views.Splash();
                         window.splashView.render();
-                        $('.footer').addClass('hide');
-                        $('.container').addClass('hide');
-                        $('.header .container').removeClass('hide');
-                        $('.splash-footer').removeClass('hide');
+                        $('.container').addClass('extraWidth');
                         $('#login').addClass('hide');
                     } else {
                     }
@@ -488,7 +549,15 @@ var AppRouter = Backbone.Router.extend({
         if (!this.footerView) this.footerView = new App.Views.Footer();
         this.footerView.render();
     },
+    session: function () {
+        this.main_navigation('home-menu'); 
+        if (!this.SessionView) this.SessionView = new App.Views.Session();
+        $('#content').html(this.SessionView.el);
+        $('body').children(".container").addClass('extraWidth');
+        this.footer();
+    },
     page_404: function () {
+        window.location.hash = '#404';
         this.main_navigation('home-menu'); 
         if (!this.page404View) this.page404View = new App.Views.Page404();
         $('#content').html(this.page404View.el);
@@ -515,11 +584,25 @@ $(document).ready(function() {
 
                 var app = new AppRouter();
                 Backbone.history.start();
+
+                session_checker();
             } else {
-                window.location.hash = 'home';
+                if (window.location.hash != '' && 
+                    window.location.hash != '#home' && 
+                    window.location.hash != '#signup' &&
+                    window.location.hash != '#login' &&
+                    window.location.hash != '#about' &&
+                    window.location.hash != '#googleapp' &&
+                    window.location.hash != '#404' &&
+                    window.location.hash != '#contact')
+                    
+                window.location = './#session';
 
                 var app = new AppRouter();
                 Backbone.history.start();
+
+                $('.profile-off').removeClass("hide");
+                $('.profile-on').addClass("hide");
             }
             //if error, remove alert after 5 seconds
             setTimeout(function() {
@@ -529,6 +612,28 @@ $(document).ready(function() {
     });
     // END of main element
 });
+
+function check_session() {
+    if (window.profileId == null || window.profileId == undefined) {
+        if (window.location.hash != '' && 
+                    window.location.hash != '#home' && 
+                    window.location.hash != '#signup' &&
+                    window.location.hash != '#login' &&
+                    window.location.hash != '#about' &&
+                    window.location.hash != '#googleapp' &&
+                    window.location.hash != '#404' &&
+                    window.location.hash != '#contact') {
+                    
+                window.location = './#session';
+
+                $('.profile-off').removeClass("hide");
+                $('.profile-on').addClass("hide");
+
+                return false;
+        }
+    }
+    return true;
+}
 
 // Function render is used to get HTML code out of tpl file using Underscore library
 function render(tmpl_name, tmpl_data) {
@@ -553,4 +658,25 @@ function render(tmpl_name, tmpl_data) {
     }
 
     return render.tmpl_cache[tmpl_name](tmpl_data);
+}
+
+// Session checker - checks every minute that session isn't expired; if expired reloads the page and returns to #home
+var session_checker;
+function session_checker() {
+    clearInterval(session_checker);
+    session_checker = setInterval(function(){ 
+        $.ajax({
+            type: 'POST',
+            url: 'php/login.php',
+            dataType: "json",
+            data: {cmd : 'is_loged_in'},
+            success: function(data) {
+                if (data.id == null) {
+                    clearInterval(session_checker);
+                    alert('session has been expired')
+                    window.location = './';
+                }
+            }
+        });
+    }, 60000); 
 }

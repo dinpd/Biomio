@@ -11,7 +11,7 @@
 		<button type="button" class="close control-button update" aria-hidden="true"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right: 10px"></span></button>
 	</div>
 	<div class="col-sm-3">
-		<button class="btn btn-sm btn-primary mobile-device-face <% if (status == 0) print("hide");%>">register face</button>
+		<button class="btn btn-sm btn-primary mobile-device-face <% if (status == 0) print("hide");%>"><% if (face == 0) print("register face"); else print('reregister face');%></button>
 		<button class="btn btn-sm btn-primary mobile-device-verify <% if (status == 1) print("hide");%>">verify</button>
 	</div>
 </div>

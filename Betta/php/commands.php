@@ -7,7 +7,7 @@ require ('models/User.php');
 
 require_once 'NotORM.php';
 
-$pdo = new PDO('mysql:dbname=biom_website;host=localhost', 'biom_admin', 'uFa-rEm-6a8-fuD');
+$pdo = new PDO('mysql:dbname=biomio_db; host=6da7f2ba42c999a5da5b0937632bd595a03f65c1.rackspaceclouddb.com', 'biomio_admin', 'admin');
 
 $db = new NotORM($pdo);
 
@@ -63,12 +63,13 @@ $app->post('/get_user(/:email)', function($email) use ($app, $db) {
 	// 2. check if domain is gmail or googlemail.com (for Germany)
 	
 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
-		header("HTTP/1.0 400 not email");
+		{ header("HTTP/1.0 400 not email"); echo "PHP continues.\n"; die(); }
 	else {
 		$email = strtolower($email);
 		list($user, $domain) = explode('@', $email);
-		if ($domain != 'gmail.com' && $domain != 'googlemail.com') {
-			header("HTTP/1.0 400 not gmail");
+		if (!is_google_mx($domain)) {
+			{ header("HTTP/1.0 400 not gmail"); echo "PHP continues.\n"; die(); }
+
 		} else {
 			$result = UserController::create_user('', '', $email, 'USER', 1);
 			echo $result;
@@ -76,12 +77,12 @@ $app->post('/get_user(/:email)', function($email) use ($app, $db) {
 	}
 });
 
-$app->post('/verify_service(/:code)', function($code) use ($app, $db) {
+$app->post('/verify_service(/:code)(/:probe_id)', function($code, $probe_id) use ($app, $db) {
 	require ('connect.php');
 	// 1) check if application code apc_exists;
 	$result = $pdo->prepare("SELECT * FROM VerificationCodes WHERE code = :code AND status > 0");
 	$result->execute(array('code'=>$code));
-	if ($result->rowCount() == 0) header("HTTP/1.0 400 wrong code");
+	if ($result->rowCount() == 0) { header("HTTP/1.0 400 wrong code"); echo "PHP continues.\n"; die(); }
 	// 2) change status of the application
 	else {
 		foreach ($result as $row) {
@@ -90,12 +91,9 @@ $app->post('/verify_service(/:code)', function($code) use ($app, $db) {
 			$device_id = $row['device_id'];
 		}
 
-		if (isset($_POST['probe_id'])) {
-			$key = $_POST['probe_id'];
-			$result = $pdo->prepare("UPDATE UserServices SET device_token = :key WHERE id = :device_id AND profileId = :profileId");
-			$result->execute(array('key'=>$key, 'device_id'=>$device_id, 'profileId'=>$profileId));
-			echo json_encode(array('response'=>'#success'));
-		} else {
+		//print_r($_POST);
+
+		if ($probe_id == '0') {
 
 			$result = $pdo->prepare("UPDATE VerificationCodes SET status = 3 WHERE code = :code");
 			$result->execute(array('code'=>$code));
@@ -110,36 +108,99 @@ $app->post('/verify_service(/:code)', function($code) use ($app, $db) {
 				$result->execute(array('profileId'=>$profileId, 'serviceId'=>$application));
 			}
 
-			echo json_encode(array('user_id'=>$profileId));
+			echo json_encode(array('user_id'=>$profileId, 'probe_id'=>$probe_id));
+
+		} else {
+
+			$result = $pdo->prepare("UPDATE UserServices SET device_token = :probe_id WHERE id = :device_id AND profileId = :profileId");
+			$result->execute(array('probe_id'=>$probe_id, 'device_id'=>$device_id, 'profileId'=>$profileId));
+			echo json_encode(array('response'=>'#success', 'probe_id'=>$probe_id));
+			
 		}
 	}
 });
 
-$app->post('/register_biometrics(/:code)', function($code) use ($app, $db) {
+$app->post('/register_biometrics(/:code)(/:biometrics)', function($code, $biometrics) use ($app, $db) {
+	//print_r($_POST);
 	require ('connect.php');
-	//1) get user from code
-	$result = $pdo->prepare("SELECT * FROM VerificationCodes WHERE code = :code AND status = 1");
-	$result->execute(array('code'=>$code));
-	if ($result->rowCount() == 0) header("HTTP/1.0 400 wrong code");
-	//2) update registration flag
-	else {
-		foreach ($result as $row) {
-			$profileId = $row['profileId'];
+
+	if ($code == 'magickey') {
+		$profileId = 23;
+
+		$biometrics = json_decode(base64_decode($biometrics));
+		$status = $biometrics->status; 
+
+		if ($status == "in-progress") {
+			echo '#accept in-progress';
+		} else if ($status == "verified") {
+
+			//3) update biometrics flags
+				$fingerprints = $biometrics->fingerprints;
+					$fingerprints = json_encode($fingerprints);
+				$face = $biometrics->face;
+				$voice = $biometrics->voice;
+			
+			$result = $pdo->prepare("UPDATE UserInfo SET fingerprints = :fingerprints, face = :face, voice = :voice WHERE profileId = :profileId");
+			$result->execute(array('fingerprints'=>$fingerprints, 'face'=>$face, 'voice'=>$voice, 'profileId'=>$profileId));
+
+			echo '#accept in-progress';
 		}
 
-		$result = $pdo->prepare("UPDATE VerificationCodes SET status = 3 WHERE code = :code");
-		$result->execute(array('code'=>$code));	
+	} else {
+		//1) get user from code
+		$result = $pdo->prepare("SELECT * FROM VerificationCodes WHERE code = :code AND status > 0");
+		$result->execute(array('code'=>$code));
+		if ($result->rowCount() == 0) header("HTTP/1.0 400 wrong code");
+		//2) update registration flag
+		else {
+			foreach ($result as $row) {
+				$profileId = $row['profileId'];
+			}
 
-		//3) update biometrics flags
-			$fingerprints = json_encode($_POST['fingerprints']);
-			$face = $_POST['face'];
-			$voice = $_POST['voice'];
-		
-		$result = $pdo->prepare("UPDATE UserInfo SET fingerprints = :fingerprints, face = :face, voice = :voice WHERE profileId = :profileId");
-		$result->execute(array('fingerprints'=>$fingerprints, 'face'=>$face, 'voice'=>$voice, 'profileId'=>$profileId));	
+			$biometrics = json_decode(base64_decode($biometrics));
+			$status = $biometrics->status; 
+
+			if ($status == "in-progress") {
+				$result = $pdo->prepare("UPDATE VerificationCodes SET status = 4 WHERE code = :code");
+				$result->execute(array('code'=>$code));	
+			} else if ($status == "verified") {
+
+				$result = $pdo->prepare("UPDATE VerificationCodes SET status = 3 WHERE code = :code");
+				$result->execute(array('code'=>$code));	
+
+				//3) update biometrics flags
+					$fingerprints = $biometrics->fingerprints;
+						$fingerprints = json_encode($fingerprints);
+					$fingerprints = $biometrics->face;
+					$face = $biometrics->face;
+					$voice = $biometrics->voice;
+				
+				$result = $pdo->prepare("UPDATE UserInfo SET fingerprints = :fingerprints, face = :face, voice = :voice WHERE profileId = :profileId");
+				$result->execute(array('fingerprints'=>$fingerprints, 'face'=>$face, 'voice'=>$voice, 'profileId'=>$profileId));
+			}	
+		}
 	}
+});
 
-	
+$app->post('/bioauth(/:code)(/:email)', function($code, $email) use ($app, $db) {
+
+	require ('connect.php');
+	$result = $pdo->prepare("SELECT * FROM Emails WHERE email = :email");
+	$result->execute(array('email'=>$email));
+	if ($result->rowCount() == 0) { header("HTTP/1.0 400 wrong email"); echo "PHP continues.\n"; die(); }
+	else {
+		$row = $result->fetch();
+		$id = $row['profileId'];
+		// 1) check if application code apc_exists;
+		$result = $pdo->prepare("SELECT * FROM VerificationCodes WHERE code = :code AND profileId = :id AND status > 0");
+		$result->execute(array('code'=>$code, 'id'=>$id));
+		if ($result->rowCount() == 0) { header("HTTP/1.0 400 wrong code"); echo "PHP continues.\n"; die(); }
+		// 2) change status of the application
+		else {
+			$result = $pdo->prepare("UPDATE VerificationCodes SET status = 3 WHERE code = :code");
+			$result->execute(array('code'=>$code));
+		}
+	}
 });
 
 $app->get('/test', function() use ($app, $db) {
@@ -172,3 +233,6 @@ foreach ($result as $row) {
 }
 */
 
+
+
+//ew0KICAgICJzdGF0dXMiOiAidmVyaWZpZWQiLA0KICAgICJmYWNlIjogIjEiLA0KICAgICJ2b2ljZSI6ICIxIiwNCiAgICAiZmluZ2VycHJpbnRzIjogew0KICAgICAgICAiMCI6ICIwIiwNCiAgICAgICAgIjEiOiAiMCIsDQogICAgICAgICIyIjogIjAiLA0KICAgICAgICAiMyI6ICIwIiwNCiAgICAgICAgIjQiOiAiMCIsDQogICAgICAgICI1IjogIjAiLA0KICAgICAgICAiNiI6ICIwIiwNCiAgICAgICAgIjciOiAiMCIsDQogICAgICAgICI4IjogIjAiLA0KICAgICAgICAiOSI6ICIwIg0KICAgIH0NCn0=

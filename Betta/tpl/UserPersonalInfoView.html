@@ -1,12 +1,12 @@
 <div class="well">
 	<legend><h2 class="form-signin-heading">User - Personal Info</h2></legend>
-	<form class="form-horizontal font16">
+	<div class="form-horizontal font16">
 		<fieldset>
-			<div class="col-sm-6">
+			<div class="col-sm-8">
 				<!-- Name-->
-			    <div class="form-group">
-					<label class="col-sm-3 control-label">Name</label>
-					<div class="col-sm-9">
+				<div class="col-sm-12" style="margin-bottom: 15px">
+					<legend>Profile name</legend>
+					<div class="col-sm-9 col-xs-2">
 						<p id="span_name" class="content form-control-static">
 							<% if (firstName == '' && lastName == '')
 								print('<p class="content small-align">no information</p>');
@@ -22,193 +22,10 @@
 							<p class='help-block'><small>last name</small></p>
 						</div>
 					</div>
-				</div>
-
-				<!-- Date of Birth-->
-			    <div class="form-group">
-					<label class="col-sm-3 control-label">Birthday</label>
-					<div class="col-sm-9">
-						<% if (bday == '' || bday == '0000-00-00') { print('<p class="content small-align">no information</p>'); }
-						   else print('<p id="span_bday"  class="content form-control-static">' + bday + '</p>');
-						%>
-						<div class="form hide col-sm-12">
-							<input id="bday" class="form-control" type="date" value="<%= bday %>">
-							<p class='help-block'><small>this is your birthday</small></p>
-						</div>
+					<div class="col-sm-3 control-label">
+						<span style="display: inline; float: right; cursor: pointer; font-style: italic;" class="edit-name text-primary hidden-xs">Edit &nbsp;<span class="glyphicon glyphicon-pencil" style="font-size: 13px" aria-hidden="true"></span></span>
+						<button type="button" class="btn btn-success save-name pull-right hide">Save</button>
 					</div>
-				</div>
-
-				<!-- Motto-->
-			    <div class="form-group">
-					<label class="col-sm-3 control-label">Motto</label>
-					<div class="col-sm-9">
-						<% if (motto == '') { print('<p class="content small-align">no information</p>'); }%>
-						<p id="span_motto"  class="content form-control-static"><%= motto %></p>
-						<div class="form hide col-sm-12">
-							<textarea id="motto" name="textarea" class="form hide form-control"><%= motto %></textarea>
-							<p class='help-block'><small>this is your motto</small></p>
-						</div>
-					</div>
-				</div>
-
-				<!-- Occupation-->
-			    <div class="form-group">
-					<label class="col-sm-3 control-label">Occupation</label>
-					<div class="col-sm-9">
-						<% if (occupation == '') { print('<p class="content small-align">no information</p>'); }%>
-						<p id="span_occupation"  class="content form-control-static"><%= occupation %></p>
-						<div class="form hide col-sm-12">
-							<textarea id="occupation" name="textarea" class="form hide form-control"><%= occupation %></textarea>
-							<p class='help-block'><small>this is your occupation</small></p>
-						</div>
-					</div>
-				</div>
-
-				<!-- Education-->
-			    <div class="form-group">
-					<label class="col-sm-3 control-label">Education</label>
-					<div class="col-sm-9">
-						<% if (education == '') { print('<p class="content small-align">no information</p>'); }%>
-						<p id="span_education"  class="content form-control-static"><%= education %></p>
-						<div class="form hide col-sm-12">
-							<select id="education" class="form-control form hide">
-								<option value="">Select your degree</option>
-								<option>Doctoral or professional degree</option>
-								<option>Master degree</option>
-								<option>Bachelor degree</option>
-								<option>Associate degree</option>
-								<option>Some college, no degree</option>
-								<option>High school diploma or equivalent</option>
-								<option>Less than high school</option>
-							</select>
-							<p class='help-block'><small>select your education</small></p>
-						</div>
-					</div>
-				</div>
-
-				<!-- Address-->
-			    <div class="form-group">
-					<label class="col-sm-3 control-label">Address</label>
-					<div class="col-sm-9">
-						<% if (address.street1 == '' && address.street2 == '' && address.continent == '' &&
-								address.country == '' && address.province == '' && address.region == '' &&
-								 address.city == '' && address.postcode == '') { print('<p class="content small-align">no information</p>'); }%>
-
-						<div><p id="span_street1"  class="content form-control-static"><%= address.street1 %></span></div>
-						<!--to avoid extra white space we print 2nd address line only if it has some content in it -->
-						<div id="span_street2">
-							<% if (address.street2 != '') {
-							    print('<span class="content">' + address.street2 + '</span>');
-							}%>
-						</div>
-						<div class="content">
-							<% if (address.country != '') {
-								print('<span id="span_country">' + address.country + '</span>');
-							}%>	
-							<% if (address.province != '') {
-								print('<span id="span_province">, ' + address.province + '</span>');
-							}%>	
-							<% if (address.city != '') {
-								print('<span id="span_city">, ' + address.city + '</span>');
-							}%>	
-							<% if (address.postcode != '') {
-								print('<span id="span_postcode">, ' + address.postcode + '</span>');
-							}%>
-						</div>
-
-						<div class="form hide col-sm-12">
-							<input id="address_street1" class="form-control" type="text" value="<%= address.street1 %>">
-							<p class='help-block'><small>street line</small></p>
-							<input id="address_street2" class="form-control" type="text" value="<%= address.street2 %>">
-							<p class='help-block'><small>second street line (optional)</small></p>
-							
-							<select id="continent" name="continent" class="form-control user-geolocation"></select>
-							<p class='help-block'><small>continent</small></p>
-
-							<select id="country" name="country" class="form-control user-geolocation"></select>
-							<p class='help-block'><small>country</small></p>
-
-							<select id="province" name="province" class="form-control user-geolocation"></select>
-							<p class='help-block'><small>state / province</small></p>
-
-							<select id="region" name="region" class="form-control user-geolocation"></select>
-							<p class='help-block'><small>country / region</small></p>
-
-							<select id="city" name="city" class="form-control user-geolocation"></select>
-							<p class='help-block'><small>city</small></p>
-
-							<input id="address_postcode" class="form-control" type="text" value="<%= address.postcode %>">
-							<p class='help-block'><small>postcode</small></p>
-						</div>
-					</div>
-				</div>
-				<!-- Social Networks-->
-			    <div class="form-group">
-					<label class="col-sm-3 control-label">Networks</label>
-					<div class="col-sm-9">
-						<% if (socialBar.facebook == '' && socialBar.twitter == '' && socialBar.linkedin == '' && socialBar.facebook == '') { print('<small class="content small-align">no social networks added</small>'); }%>
-						
-						<% if (socialBar.facebook != '') {%>
-							<a href='https://www.facebook.com/<%= socialBar.facebook %>' class='content'> <img src='img/facebook.png' alt=''/></a>
-						<% } %>
-						<% if (socialBar.twitter != '') {%>
-							<a href='www.twitter.com/<%= socialBar.twitter %>' class='content'> <img src='img/twitter.png' alt=''/></a>
-						<% } %>
-						<% if (socialBar.linkedin != '') {%>
-							<a href='https://www.linkedin.com/profile/view?id=<%= socialBar.linkedin %>' class='content'> <img src='img/linkedin.png' alt=''/></a>
-						<% } %>
-						<% if (socialBar.google != '') {%>
-							<a href='https://plus.google.com/<%= socialBar.google %>' rel='publisher' class='content'> <img src='img/google.png' alt=''/></a>
-						<% } %>
-
-						<div class="form hide col-sm-12">
-							<input id="facebook" name="facebook" class="form-control socialBar" value="<%= socialBar.facebook %>" />
-							<p class='help-block'><small>your Facebook id</small></p>
-
-							<input id="twitter" name="twitter" class="form-control socialBar" value="<%= socialBar.twitter %>" />
-							<p class='help-block'><small>your Twitter username</small></p>
-
-							<input id="linkedin" name="linkedin" class="form-control socialBar" value="<%= socialBar.linkedin %>" />
-							<p class='help-block'><small>your LinkedIn id</small></p>
-
-							<input id="google" name="google" class="form-control socialBar" value="<%= socialBar.google %>" />
-							<p class='help-block'><small>your Google+ id</small></p>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"></label>
-				    <div class="col-sm-9">
-					    <input type="button" class="btn btn-primary user-update-info content" value="Update Information" />
-					    <div class="col-sm-12">
-							<input type="button" class="btn btn-success user-save-changes form hide" value="Save Changes" />
-							<input type="button" class="btn btn-default user-cancel-changes form hide" value="Cancel" />
-							<br/>
-							<span class="span-save form hide"></span>
-						</div>
-					</div>
-			    </div>
-			</div> <!-- left div -->
-
-			<div class="col-sm-6 col-sm-offset-0 text-center">
-				<div class="col-sm-8 col-sm-offset-2">	
-					<div>
-						<span id="user_image_frame">
-							<input id="user_image_input" onChange="userPreviewImage(this)" type="file" accept="image/*" style="display:none"/>
-						</span>
-
-					  	<span id="user_image_preview">
-							
-					  	</span>
-				  	</div>
-				  	
-					<div>
-						<button id ="user_image_upload" onClick="userTriggerImageUpload(); return false;" class="btn btn-warning form hide col-sm-offset-2 col-sm-4" > Upload<br>Picture</button><br>
-						<button id ="user_image_webcam" onClick="return false;" class="btn btn-warning form hide col-sm-4" > Use<br>Webcam</button><br>
-						<button id="user_image_save"  onClick="userSaveImage(); return false;" class="btn btn-success form hide col-sm-offset-2 col-sm-8 disabled"> Save Picture</button>
-						<button id="user_image_delete"  onClick="userDeleteImage(); return false;" class="btn btn-danger form hide col-sm-offset-2 col-sm-8 disabled"> Remove Picture</button>
-					</div>
-					<small class="col-sm-offset-2 col-sm-8"><p id="user_image_progress" class='help-block form hide'></p></small>
 				</div>
 
 				<div class="col-sm-12 user-emails" style="margin-bottom: 15px">
@@ -246,7 +63,6 @@
 							</form>
 						</div>
 					</div>
-
 				</div>
 
 				<div class="col-sm-12 user-phones text-left">
@@ -330,10 +146,32 @@
 						</fieldset>
 					</form>
 				</div>
+			</div> <!-- left div -->
+
+			<div class="col-sm-4 col-sm-offset-0 text-center">
+				<div class="col-sm-12">	
+					<div>
+						<span id="user_image_frame">
+							<input id="user_image_input" onChange="userPreviewImage(this)" type="file" accept="image/*" style="display:none"/>
+						</span>
+
+					  	<span id="user_image_preview">
+							
+					  	</span>
+				  	</div>
+				  	
+					<div>
+						<button id ="user_image_upload" onClick="userTriggerImageUpload(); return false;" class="btn btn-warning form hide col-sm-6" > Upload<br>Picture</button><br>
+						<button id ="user_image_webcam" onClick="return false;" class="btn btn-warning form hide col-sm-6" > Use<br>Webcam</button><br>
+						<button id="user_image_save"  onClick="userSaveImage(); return false;" class="btn btn-success form hide col-sm-12 disabled"> Save Picture</button>
+						<button id="user_image_delete"  onClick="userDeleteImage(); return false;" class="btn btn-danger form hide col-sm-12 disabled"> Remove Picture</button>
+					</div>
+					<small class="col-sm-12"><p id="user_image_progress" class='help-block form hide'></p></small>
+				</div>
 
 			</div> <!-- right div -->
 		</fieldset>
-	</form>
+	</div>
 
 </div>
 

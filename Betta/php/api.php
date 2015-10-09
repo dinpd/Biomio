@@ -7,7 +7,8 @@ if (!isset($_SESSION['id'])) {
 
 require_once 'NotORM.php';
 
-$pdo = new PDO('mysql:dbname=biom_website;host=localhost', 'biom_admin', 'uFa-rEm-6a8-fuD');
+//$pdo = new PDO('mysql:dbname=biom_website;host=localhost', 'biom_admin', 'uFa-rEm-6a8-fuD');
+require_once 'connect.php';
 
 $db = new NotORM($pdo);
 

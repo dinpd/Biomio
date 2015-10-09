@@ -1,9 +1,9 @@
 <?php
-/*
+
 ini_set('display_errors',1);
 ini_set('display_startup_errors',1);
 error_reporting(-1);
-*/
+
 require ('controllers/EmailController.php');
 require ('controllers/SessionController.php');
 require ('controllers/UserController.php');
@@ -35,6 +35,27 @@ if (isset($_POST['cmd'])) {
 			echo $result;
 		break;
 
+		case 'generate_bioauth_code':
+			$email = $_POST['email'];
+			$result = UserController::generate_bioauth_code($email);
+			echo $result;
+		break;
+
+		case 'check_bioauth_code':
+			$code = $_POST['code'];
+			$result = UserController::check_bioauth_code($code);
+			echo $result;
+		break;
+
+		case 'update_name':
+			//cmd: "login_check", email: email
+			$first_name = $_POST['first_name'];
+			$last_name = $_POST['last_name'];
+			$result = UserController::update_name($first_name, $last_name);
+			echo $result;
+		break;
+
+
 		case 'send_phone_login_code':
 			$profileId = $_POST['profileId'];
 			$value = $_POST['value'];
@@ -61,10 +82,28 @@ if (isset($_POST['cmd'])) {
 			echo $result;
 		break;
 
+		case 'test_login':
+			$result = UserController::test_login();
+			echo $result;
+		break;
+
 		case 'is_loged_in':
 			//cmd: "is_loged_in"
 			$result = SessionController::get_user_session();
 			echo json_encode($result);
+		break;
+
+		case 'get_state':
+			$type = $_POST['type'];
+			$result = UserController::get_state($type);
+			echo $result;
+		break;
+
+		case 'save_state':
+			$type = $_POST['type'];
+			$s = $_POST['s'];
+			$result = UserController::save_state($type, $s);
+			echo $result;
 		break;
 
 		// ------- Other cool stuff ---------
@@ -95,7 +134,7 @@ if (isset($_POST['cmd'])) {
 
 		case 'get_phones':
 			//cmd: "send_code", phone: phone
-			$result = UserController::get_phones($phone);
+			$result = UserController::get_phones();
 			echo $result;
 		break;
 
@@ -158,6 +197,12 @@ if (isset($_POST['cmd'])) {
 			$result = UserController::delete_mobile_device($device_id);
 			echo $result;
 		break;
+
+		case 'get_biometrics':
+			$biometrics = $_POST['biometrics'];
+			$result = UserController::get_biometrics($biometrics);
+			echo json_encode($result);
+		break;
 			// --- Chrome Extention --- //
 		case 'get_user_extensions':
 			$result = UserController::get_user_extensions();
@@ -218,6 +263,50 @@ if (isset($_POST['cmd'])) {
 		case 'verify_extention':
 			$result = UserController::verify_extention();
 			echo $result;
+		break;
+
+		case 'get_extension_settings':
+			$result = UserController::get_extension_settings();
+			echo $result;
+		break;
+
+		case 'change_extention_settings':
+			$condition = $_POST['condition'];
+			$auth_types = $_POST['auth_types'];
+			$user_id = $_SESSION['id'];
+
+			$data = array("condition"=>$condition, "auth_types"=>$auth_types, "user_id"=>$user_id);
+			echo json_encode($data);
+
+			// Save settings
+			$result = UserController::save_extension_settings(json_encode($data));
+
+			// Send request
+			$url = "http://gate.biom.io:90/set_condition/";    
+			$content = json_encode($data);
+			$curl = curl_init($url);
+			curl_setopt($curl, CURLOPT_HEADER, false);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($curl, CURLOPT_HTTPHEADER,
+			        array("Content-type: application/json"));
+			curl_setopt($curl, CURLOPT_POST, true);
+			curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+
+			$json_response = curl_exec($curl);
+
+			$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+			if ( $status != 200 ) {
+			    die("Error: call to URL $url failed with status $status, response $json_response, curl_error " . curl_error($curl) . ", curl_errno " . curl_errno($curl));
+			}
+
+			$httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+			curl_close($curl);
+			$response = json_decode($json_response, true);
+
+			echo $response;
+			echo '<br>HTTP code: ' . $httpcode . '<br>';
 		break;
 
 		case 'check_status':
