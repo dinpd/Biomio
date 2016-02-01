@@ -24,57 +24,93 @@
 		width: 52px;
 		text-align: center;
 	}
+	.biomio-submit {
+		cursor: pointer;
+	}
+	.switch_methods {
+		text-decoration: underline;
+		font-size: 16px;
+		color: #aaa;
+		cursor: pointer;
+	}
+	.or {
+		font-size: 16px;
+		color: #aaa;
+	}
+	.switch_methods:hover {
+		color: #bbb;
+	}
+	.biometrics-login {
+		font-size: 20px;
+	}
+	.timeout {
+		font-size: 36px;
+		font-weight: 500;
+		color: #E26C22;
+	}
 </style>
 
 <div class="well col-sm-10 col-sm-offset-1 row">
-	<form role="form" class="col-sm-offset-3 col-sm-6">
-		<legend><h2 class="form-signin-heading text-center">Biometric Login</h2></legend>
-
-		<div class="form-group" style="height: 90px">
-			<div class="col-sm-4 hidden-xs"><img style="width: 100%; padding: 0" src="img/smallLogo.png"/></div>
-			<div class="col-sm-8" style='padding-right: 0'><strong>We will attempt to recognize you using your registered biometrics data</strong></div>
-		</div>
+	<form role="form" class="col-sm-offset-3 col-sm-6 text-center">
 		<br>
-		<div class="form-group biomio-email col-sm-12">
-			<input class="biomio-input form-control" type="email" placeholder="Email">
-			<span class="text-danger"></span>
-		</div>
+		<legend><h2 class="form-signin-heading text-center" style="margin-top: 5px">PASSWORDLESS LOGIN</h2></legend>
+		<div class="form-group biomio-email col-sm-12 text-center" style="padding: 0">
+			<div class="col-sm-2 hidden-xs" style="padding: 0; padding-top: 3px">ID:</div>
+			<div class="col-sm-10">
+				<input id="external_token" class="biomio-input form-control" type="email" placeholder="myemail@gmail.com">
+				<span class="biomio-error text-danger"></span>
+			</div>
 
-		<div class="form-group text-center col-sm-12">
-			<button class="btn btn-lg btn-block btn-primary biomio-submit" type="submit">GO</button>
-			<span class="biomio-error text-danger"></span>
+			<div class="original-method form-group col-sm-10 col-sm-offset-2 text-center" style="margin-top: 25px">
+				<a onclick="var external_token = document.getElementById('external_token').value; if (external_token.length != 0) window.open('http://biom.io:5000/user/authorize?response_type=code&external_token=' + external_token + '&scope=openid&client_id=56ce9a6a93c17d2c867c5c293482b8f9&redirect_uri=https://biom.io:4433/login.php&nonce=12p6bfw&state=1slw5l8', 'null','width=460, height=485, location=no'); return false;" 
+					class="biomio-submit" type="submit">
+					<img style="max-width: 220px;" src="img/home/button2.png">
+				</a>
+			</div>
+			<input class="bioauth-code hide" type="text">
+
+			<br>
+			<br>
+			<p class="original-method col-sm-10 col-sm-offset-2 text-center or">
+				or
+			</p>
+			<br>
+			<p class="original-method switch_methods col-sm-10 col-sm-offset-2 text-center">
+				Login with One-time token sent over email
+			</p>
+
 		</div>
-		<input class="bioauth-code hide" type="text">
+		
 	</form>
 
 	<!-- Biometrics Authentication Handling -->
 	<div class="col-sm-offset-3 col-sm-6 biometrics-login hide">
-		<h3 class="col-sm-12 text-center" style="margin-top: 25px; margin-bottom: 15px">Biometrics Authentication</h3>
+		<div class="col-sm-12 text-center hide">
+			<p class="text-warning">You need to use Google Chrome with BIOMIO extension to login with biometrics data</p>
+		</div>
+
 		<div class="col-sm-12 error-block text-center hide">
 			<p class="text-warning"><strong>Error: </strong><span class="message"></span></p>
 		</div>
 
 		<div class="col-sm-12 in-progress-1-block text-center hide">
-			<p class="message text-info"></p>
-			<p><strong class="timeout"></strong> sec.</p>
+			<p class="text-primary">To proceed with the login please open Biomio application on your phone.</p>
+			<br>
+			<p class="text-primary">Server will wait for 5 minutes to receive the results</p>
+			<br>
+			<p><strong class="timeout"></strong></p>
+			<br>
 		</div>
 
-		<div class="col-sm-12 in-progress-2-block text-center hide">
+		<div class="col-sm-12 in-progress-2-block text-primary text-center hide">
 			<p class="message text-info"></p>
 		</div>
-
-		<div class="col-sm-12 biometrics-success text-center hide">
-			<p class="message text-success">Welcome to BIOMIO!</p>
-		</div>
-		<p class="col-sm-12 text-center" style="margin-top: 25px">
-			<button type="button" class="btn btn-info switch_methods">Switch Methods</div>
-		</p>
 	</div>
 
 	<form role="form" class="col-sm-offset-3 col-sm-6 code-form">
 		<fieldset>
 			<div class="form-group login-buttons hide col-sm-12">
-				<p>We don't have any biometric data for this account. Use your registered phone number or email address to recieve a temporary login code<p>
+				<p>Use your registered phone number or email address to recieve a temporary login code<p>
 
 				<p><strong>Send Code to:</strong></p>
 				<p class="login-phone-code">My phone</p>

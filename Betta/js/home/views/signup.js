@@ -8,6 +8,9 @@ App.Views.Signup = Backbone.View.extend({
     },
     events: {
         //View-1
+        "click .signup .no-application"           : "no_application",
+        "click .signup .have-application"         : "have_application",
+
         "keyup .signup #sign_in_first_name"       : "verify_name",
         "keyup .signup #sign_in_last_name"        : "verify_name",
         "change .signup #sign_in_email"           : "verify_email",
@@ -38,9 +41,9 @@ App.Views.Signup = Backbone.View.extend({
                 url: 'php/login.php',
                 data: {cmd: "check_email", email: email},
                 success: function(data) {
-                    if (data.search("#registred")!=-1) {
+                    if (data.search("#registered")!=-1) {
                         $('#sign_in_email_group').removeClass("has-success").addClass("has-warning");
-                        $('#sign_in_email_span').text('This email is already registred in our system');
+                        $('#sign_in_email_span').text('This email is already registered in our system');
                     } else if (data.search("#fine")!=-1)  {
                         $('#sign_in_email_group').removeClass("has-warning").addClass("has-success");
                         $('#sign_in_email_span').text('This e-mail is available');
@@ -70,7 +73,7 @@ App.Views.Signup = Backbone.View.extend({
                 url: 'php/login.php',
                 data: {cmd: "sign_up", first_name: first_name, last_name: last_name, email: email, type: type},
                 success: function(data) {
-                    if (data == '#email') $('#sign_in_submit_span').text("this email address is already registred in our system");
+                    if (data == '#email') $('#sign_in_submit_span').text("this email address is already registered in our system");
                     else {
                         window.profileId = data;
                         window.profileFirstName = first_name;
@@ -87,5 +90,12 @@ App.Views.Signup = Backbone.View.extend({
                 }
             });
     },
+    no_application: function() {
+        window.location = './#mobilebeta';
+    },
+    have_application: function() {
+        $('.applicatoin-check').addClass('hide');
+        $('.signup form').removeClass('hide');
+    }
 
 });

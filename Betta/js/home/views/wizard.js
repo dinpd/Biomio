@@ -16,6 +16,7 @@ App.Views.Wizard = Backbone.View.extend({
         "click .wizard .next-2"                    : "next_2",
         "click .wizard .next-3"                    : "next_3",
         "click .wizard .next-4"                    : "next_4",
+        "click .wizard .skip-4"                    : "skip_4",
         "click .wizard .next-5"                    : "next_5",
         "click .wizard .update-qr-code"            : "generate_code",
         "click .wizard .activate-biometrics"       : "check_biometrics_verification",
@@ -39,29 +40,33 @@ App.Views.Wizard = Backbone.View.extend({
                     $('.finish').removeClass('hide');
                     $('.div-1').addClass('hide');
                     $('.div-2').removeClass('hide');
-                    $('.menu-1').addClass('hide');
+                    //$('.menu-1').addClass('hide');
+                    $('.menu-1 span').removeClass('hide');
+                    $('.menu').removeClass('menu-active');
+                    $('.menu-2').addClass('menu-active');
                 } else if (this.type == 2) {
                     this.get_email();
                 }
 
                 if (data == 1) {
+                    $('.menu').removeClass('menu-active');
                     $('.div-1').addClass('hide');
                     $('.menu-2').addClass('menu-active');
 
                     $('.div-2').removeClass('hide');
                     $('.menu-1 span').removeClass('hide');
-                    $('.menu').removeClass('menu-active');
                 } else if (data == 3) {
+                    $('.menu').removeClass('menu-active');
                     $('.div-1').addClass('hide');
                     $('.div-2').addClass('hide');
-                    $('.menu-2').addClass('menu-active');
+                    $('.menu-4').addClass('menu-active');
 
                     $('.div-4').removeClass('hide');
                     $('.menu-1 span').removeClass('hide');
                     $('.menu-2 span').removeClass('hide');
                     $('.menu-3 span').removeClass('hide');
-                    $('.menu').removeClass('menu-active');
                 } else if (data == 4) {
+                    $('.menu').removeClass('menu-active');
                     $('.menu-1 span').removeClass('hide');
                     $('.menu-2 span').removeClass('hide');
                     $('.menu-3 span').removeClass('hide');
@@ -169,6 +174,7 @@ App.Views.Wizard = Backbone.View.extend({
                 $('.div-3').removeClass('hide');
                 $('.menu').removeClass('menu-active');
                 $('.menu-3').addClass('menu-active');
+                $('.menu-2 span').removeClass('hide');
                 this.register_biometrics();
                 $('.next-3').removeClass('btn-primary');
             }
@@ -180,7 +186,6 @@ App.Views.Wizard = Backbone.View.extend({
             $('.menu').removeClass('menu-active');
             $('.menu-3').addClass('menu-active');
             this.register_biometrics();
-            $('.next-3').removeClass('btn-primary');
             $('.menu-2 span').removeClass('hide');
         }
     },
@@ -188,15 +193,12 @@ App.Views.Wizard = Backbone.View.extend({
         e.preventDefault(e);
         console.log('next_3');
         
-        if (!$('.div-3-1').hasClass('hide')) {
-            
-        } else if (!$('.div-3-2').hasClass('hide')) {
-            $('.div-3').addClass('hide');
-            $('.div-4').removeClass('hide');
-            $('.menu').removeClass('menu-active');
-            $('.menu-4').addClass('menu-active');
-            $('.menu-3 span').removeClass('hide');
-        }
+        $('.div-3').addClass('hide');
+        //$('.div-4').removeClass('hide');
+        $('.menu').removeClass('menu-active');
+        //$('.menu-4').addClass('menu-active');
+        $('.menu-3 span').removeClass('hide');
+        $('.div-5').removeClass('hide');
     },
     next_4: function(e) {
         e.preventDefault(e);
@@ -214,6 +216,10 @@ App.Views.Wizard = Backbone.View.extend({
             $('.div-5').removeClass('hide');
             this.save_state(4);
         }
+    },
+    skip_4: function(e) {
+        $('.div-4').addClass('hide');
+        $('.div-5').removeClass('hide');
     },
     next_5: function(e) {
         e.preventDefault(e);
@@ -240,7 +246,7 @@ App.Views.Wizard = Backbone.View.extend({
         var id = $('.device-id').val();
         $('.update-qr-code').addClass('disabled');
         $('#qr_code').html('');
-        $('#qr_code_text strong').text('');
+        $('#qr_code_text').text('');
         $.ajax({
             type: 'POST',
             url: 'php/login.php',
@@ -248,12 +254,12 @@ App.Views.Wizard = Backbone.View.extend({
             success: function(data) {
                 // returns 8 symbol code which we present as a text and as a qr image
                 $('#qr_code').qrcode({
-                    "width": 150,
-                    "height": 150,
+                    "width": 120,
+                    "height": 120,
                     "color": "#3a3",
                     "text": data
                 });
-                $('#qr_code_text strong').text(data);
+                $('#qr_code_text').text(data);
                 $('.update-qr-code').removeClass('disabled');
 
                 that.check_device_verification();
@@ -280,7 +286,7 @@ App.Views.Wizard = Backbone.View.extend({
     check_device_verification: function () {
         that = this;
         var check = setInterval(function(){ 
-            var code = $('#qr_code_text strong').text();
+            var code = $('#qr_code_text').text();
             console.log('verification call for ' + code);
             if (code != '' && code != undefined && !$('.div-2-3').hasClass('hide'))
                 $.ajax({
@@ -313,7 +319,18 @@ App.Views.Wizard = Backbone.View.extend({
                     url: 'php/login.php',
                     data: {cmd: "check_status", code: code},
                     success: function(data) {
-                        if (data == '#verified') {
+                        console.log(data);
+                        if (data == '#in-process') {
+                            $('.enroll-status').text("Training started").removeClass('text-warning').addClass('text-info').removeClass('hide');
+                        } else if (data == '#canceled') {
+                            $('.enroll-status').text("Training was canceled").removeClass('text-info').addClass('text-warning').removeClass('hide');
+                        } else if (data == '#failed1') {
+                            $('.enroll-status').text("Maximum number of training retries reached.Try to change your location or your device position").removeClass('text-info').addClass('text-warning').removeClass('hide');
+                        } else if (data == '#failed2') {
+                            $('.enroll-status').text("Training failed. Try to change your location or your device position").removeClass('text-info').addClass('text-warning').removeClass('hide');
+                        } else if (data == '#retry') {
+                            $('.enroll-status').text("Additional data is required, please check your device").removeClass('text-warning').addClass('text-info').removeClass('hide');
+                        } else if (data == '#verified') {
                             clearInterval(check);
                             $('.div-3-1').addClass('hide');
                             $('.div-3-2').removeClass('hide');
@@ -374,6 +391,9 @@ App.Views.Wizard = Backbone.View.extend({
         var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
         port.postMessage({command: "register_biomio_extension", "data": {"secret_code":code}});
         port.onMessage.addListener(function(response){
+            $('.have-extension').removeClass('hide');
+            $('.no-extention').addClass('hide');
+
             if (response.result == true) 
                 $.ajax({
                     type: 'POST',

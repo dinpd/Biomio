@@ -126,6 +126,7 @@ App.Views.userServices = Backbone.View.extend({
                     if (response.is_registered) {
                         $('.verify-extention').addClass('hide');
                         $('.verify-header').addClass('hide');
+                        $('.download-protector').addClass('hide');
                     }
                 });
             }
@@ -183,7 +184,7 @@ App.Views.userServices = Backbone.View.extend({
 
                         var template = render('forms/ExtentionEmail', {id: data, email: email, verified: 0, primary: 0, extention: 0});
                         $('.extention-emails').append(template); 
-                    } else if (data == 'not gmail') message('info', 'Info: ', "<strong>" + email + "</strong> is added to your account, but it can't be used in the extension");
+                    } else if (data == 'not gmail') message('info', 'Info: ', "<strong>" + email + "</strong> is added to your account, but it is not eligible for the extension");
                     else if (data == '#registered') message('danger', 'Error: ', "<strong>" + email + "</strong> is already registered in our system"); 
                 }
             });
@@ -274,6 +275,7 @@ App.Views.userServices = Backbone.View.extend({
 
         /*
         var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
+        //ooilnppgcbcdgmomhgnbjjkbcpfemlnj
         port.postMessage({command: "is_registered"});
         port.onMessage.addListener(function(response){
             console.log(response);
@@ -283,6 +285,9 @@ App.Views.userServices = Backbone.View.extend({
         var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
         port.postMessage({command: "register_biomio_extension", "data": {"secret_code":code}});
         port.onMessage.addListener(function(response){
+            $('.have-extension').removeClass('hide');
+            $('.no-extention').addClass('hide');
+
             if (response.result == true) 
                 $.ajax({
                     type: 'POST',

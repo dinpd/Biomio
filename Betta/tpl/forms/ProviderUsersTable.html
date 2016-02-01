@@ -1,21 +1,11 @@
-<td>
-	<span> <%= id %> </span>
-</td>
-<td>
-    <span class="font16 content"><%= userName %></span>
-    <div class='hide form'>
-        <input class="form-control location_address" type="text" value="<%= username %>"> 
-    </div>
-</td>
-<td>
-    <span class="font16 content"><%= userEmail %></span>
-    <div class='hide form'>
-        <input class="form-control location_address" type="text" value="<%= email %>"> 
-    </div>
-</td>
-<td>
-	<button class='edit btn btn-primary content'>Edit</button>
-    <button class='save btn btn-success hide form'>Save</button>
-    <button class='cancel btn btn-primary hide form'>Cancel</button>
-    <button class='delete btn btn-danger'>&times;</button>
-</td>
+<tr id="user_<%= id %>">
+    <td>
+        <span class="font16 content"><%= first_name %> <%= last_name %></span>
+    </td>
+    <td>
+        <span class="font16 content"><%= email %></span>
+    </td>
+    <td>
+    	<button class='delete btn btn-danger'>&times;</button>
+    </td>
+</tr>

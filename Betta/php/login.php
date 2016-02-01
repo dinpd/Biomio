@@ -1,8 +1,8 @@
 <?php
 
-ini_set('display_errors',1);
-ini_set('display_startup_errors',1);
-error_reporting(-1);
+//ini_set('display_errors',1);
+//ini_set('display_startup_errors',1);
+//error_reporting(-1);
 
 require ('controllers/EmailController.php');
 require ('controllers/SessionController.php');
@@ -313,6 +313,24 @@ if (isset($_POST['cmd'])) {
 			$code = $_POST['code'];
 
 			$result = UserController::check_status($code);
+			echo $result;
+		break;
+
+		/* API */
+		case 'get_api_keys':
+			$result = UserController::get_api_keys();
+			echo $result;
+		break;
+
+		case 'generate_api_key':
+			$result = UserController::generate_api_key();
+			echo $result;
+		break;
+
+		case 'delete_api_key':
+			$key = $_POST['key'];
+
+			$result = UserController::delete_api_key($key);
 			echo $result;
 		break;
 

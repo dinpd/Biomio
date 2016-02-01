@@ -81,7 +81,19 @@ App.Views.UserFace = Backbone.View.extend({
                     success: function(data) {
                         if (data == '#in-process') {
                             $('.form-1-1, .form-1-2, .form-1-3, .form-1-5').addClass('hide');
-                            $('.form-1-4').removeClass('hide');
+                            $('.form-1-4').text("Training started").removeClass('text-warning').addClass('text-info').removeClass('hide');
+                        } else if (data == '#canceled') {
+                            $('.form-1-1, .form-1-2, .form-1-3, .form-1-5').addClass('hide');
+                            $('.form-1-4').text("Training was canceled").removeClass('text-info').addClass('text-warning').removeClass('hide');
+                        } else if (data == '#failed1') {
+                            $('.form-1-1, .form-1-2, .form-1-3, .form-1-5').addClass('hide');
+                            $('.form-1-4').text("Maximum number of training retries reached.Try to change your location or your device position").removeClass('text-info').addClass('text-warning').removeClass('hide');
+                        } else if (data == '#failed2') {
+                            $('.form-1-1, .form-1-2, .form-1-3, .form-1-5').addClass('hide');
+                            $('.form-1-4').text("Training failed. Try to change your location or your device position").removeClass('text-info').addClass('text-warning').removeClass('hide');
+                        } else if (data == '#retry') {
+                            $('.form-1-1, .form-1-2, .form-1-3, .form-1-5').addClass('hide');
+                            $('.form-1-4').text("Additional data is required, please check your device").removeClass('text-warning').addClass('text-info').removeClass('hide');
                         } else if (data == '#verified') {
                             clearInterval(check);
                             $('.form-1-1, .form-1-2, .form-1-3, .form-1-4').addClass('hide');

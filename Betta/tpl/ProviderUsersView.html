@@ -1,46 +1,15 @@
-<div class="well">
+<div id="provider_users" class="well">
 	<legend><h2 class="form-signin-heading">Provider - Users</h2></legend>
 
-	<!-- CHOOSE RESOURCE -->
-	<form class="form-horizontal" action=''>
-		<!-- Role-->
-		<div class="form-group">
-		  <label class="col-sm-2 control-label">Select Resource</label>
-		  <div class="col-sm-6">
-		    <select class="form-control avaliable-locations">
-
-		    </select>
-		  </div>
-		</div>
-	</form>
-
-	<!-- ADD FORM -->
-	<form class="form-horizontal" action=''>
-		<!-- Add -->
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Invite User</label>
-			<div class="col-sm-8">
-				<input type="button" class="btn btn-primary provider-users-invite" value="Invite" />
-			</div>
-		</div>
-	</form>
-	<form id="provider_users_form" class="form-horizontal hide" action=''>
+	<form id="provider_users_form" class="form-horizontal" action=''>
 		<fieldset>
 
-			<!-- Email-->
+			<!-- Emails-->
 			<div class="form-group">
-			  <label class="col-sm-2 control-label" for="provider_users_email">Email</label>
+			  <label class="col-sm-2 control-label" for="provider_users_email">Emails</label>
 			  <div class="col-sm-8">
-			    <input id="provider_users_email" name="provider_users_email" class="form-control" type="email">
+			    <textarea rows="2" id="provider_users_emails" class="form-control" placeholder="insert user emails separated by comma, space, or line break"></textarea>
 			  </div>
-			</div>
-
-			<!-- Time restriction-->
-			<div class="form-group">
-				<label class="col-sm-2 control-label" for="provider_users_time">Time Restriction</label>
-				<div class="col-sm-8">
-					from <input id="time_start" class="form-control" type="time"> to <input id="time_end" class = "form-control" type="time">
-				</div>
 			</div>
 
 		</fieldset>
@@ -48,11 +17,8 @@
 		<!-- Invite -->
 		<div class="form-group">
 			<label class="col-sm-2 control-label"></label>
-			<div class="col-sm-8">
+			<div class="col-sm-8 text-right">
 				<input type="submit" class="btn btn-success provider-users-submit" value="Invite" />
-				<input type="button" class="btn btn-primary provider-users-cancel" value="Cancel" />
-				<br/>
-				<span class="span-provider-users-submit"></span>
 			</div>
 		</div>
 	</form>
@@ -72,10 +38,8 @@
 				<div class="table-responsive">
 					<table class='table table-striped panel'>
 						<thead>
-							<th>ID</th>
-							<th>Name</th>
-							<th>Email</th>
-							<th>Time policy</th>
+							<th></th>
+							<th></th>
 							<th></th>
 						</thead>
 						<tbody id='provider_users_data'>
@@ -90,10 +54,8 @@
 				<div class="table-responsive">
 					<table class='table table-striped panel'>
 						<thead>
-							<th>ID</th>
-							<th>Name</th>
-							<th>Email</th>
-							<th>Time policy</th>
+							<th></th>
+							<th></th>
 							<th></th>
 						</thead>
 						<tbody id='provider_invitations_data'>
@@ -108,10 +70,8 @@
 				<div class="table-responsive">
 					<table class='table table-striped panel'>
 						<thead>
-							<th>ID</th>
-							<th>Name</th>
-							<th>Email</th>
-							<th>Time policy</th>
+							<th></th>
+							<th></th>
 							<th></th>
 						</thead>
 						<tbody id='provider_applications_data'>

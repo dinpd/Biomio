@@ -1,3 +1,5 @@
+window.hash1 = '';
+
 function message(type, bold, text) {
     var alert = '<div class="text-center alert alert-dismissable alert-' + type + '">' +
                 '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
@@ -8,6 +10,8 @@ function message(type, bold, text) {
     setTimeout(function() {
         $('#alert').html('');
     }, 5000);
+
+    console.log(text);
 }
 
 function set_cookie(cname, cvalue, exdays) {

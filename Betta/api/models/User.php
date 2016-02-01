@@ -28,11 +28,11 @@ class User {
   	$result->execute(array('profileId'=>$profileId));
 
   	// insert email into Emails
-  	$result = $pdo->prepare("INSERT INTO Emails (profileId, email, `primary`) VALUES (:profileId, :email, :primary)");
+  	$result = $pdo->prepare("INSERT INTO Emails (profileId, email, `primary`, date_created) VALUES (:profileId, :email, :primary, now())");
   	$result->execute(array('profileId'=>$profileId, 'email'=>$email, 'primary'=>1));
 
   	// insert into emails data
-  	$result = $pdo->prepare("INSERT INTO EmailsData (user, email) VALUES (:profileId, :email)");
+  	$result = $pdo->prepare("INSERT INTO PgpKeysData (user, email) VALUES (:profileId, :email)");
 	$result->execute(array('profileId'=>$profileId, 'email'=>$email));
 
 	// send rest with email to create code for this email
@@ -293,17 +293,17 @@ class User {
 
   public static function add_gmail_email($profileId, $email) {
 	include ('connect.php');
-	$result = $pdo->prepare("INSERT INTO Emails (profileId, email) VALUES (:profileId, :email)");
+	$result = $pdo->prepare("INSERT INTO Emails (profileId, email, date_created) VALUES (:profileId, :email, now())");
 	$result->execute(array('profileId'=>$profileId, 'email'=>$email));
 
-	$result = $pdo->prepare("INSERT INTO EmailsData (user, email) VALUES (:profileId, :email)");
+	$result = $pdo->prepare("INSERT INTO PgpKeysData (user, email) VALUES (:profileId, :email)");
 	$result->execute(array('profileId'=>$profileId, 'email'=>$email));
 	return $result;
   }
 
   public static function add_not_gmail_email($profileId, $email) {
 	include ('connect.php');
-	$result = $pdo->prepare("INSERT INTO Emails (profileId, email) VALUES (:profileId, :email)");
+	$result = $pdo->prepare("INSERT INTO Emails (profileId, email, date_created) VALUES (:profileId, :email, now())");
 	$result->execute(array('profileId'=>$profileId, 'email'=>$email));
   }
 
@@ -331,10 +331,10 @@ class User {
 	$result = $pdo->prepare("DELETE FROM Emails WHERE profileId = :profileId AND email = :email");
 	$result->execute(array('profileId'=>$profileId, 'email'=>$email));
 
-	$result = $pdo->prepare("DELETE FROM EmailsData WHERE user = :profileId AND email = :email");
+	$result = $pdo->prepare("DELETE FROM PgpKeysData WHERE user = :profileId AND email = :email");
 	$result->execute(array('profileId'=>$profileId,'email'=>$email));
 
-	save_log('EmailsData', $email);
+	save_log('PgpKeysData', $email);
 
 	return $result;
   }

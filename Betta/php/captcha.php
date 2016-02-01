@@ -1,4 +1,9 @@
 <?php
+ini_set('display_errors',1);
+ini_set('display_startup_errors',1);
+error_reporting(-1);
+
+require ('controllers/EmailController.php');
 session_start();
 
 if (isset($_POST['cmd'])) {
@@ -62,39 +67,26 @@ if (isset($_POST['cmd'])) {
 
 		case 'check_code':
 			if (isset($_SESSION['captcha'])) {
-				if ($_SESSION['bio_captcha'] == 1) {
-					//check if bio captcha success is not expired
-					if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 20)) {
-					    // last request was more than 30 minutes ago
-					    session_unset();     // unset $_SESSION variable for the run-time 
-					    session_destroy();   // destroy session data in storage
-					    echo 2; // session expired
-					} else {
-						echo 1;
-					}
+				$user_answer = $_POST['user_answer'];
+				$name = $_POST['name'];
+				$email = $_POST['email'];
+				$message = $_POST['message'];
+
+				$real_answer = $_SESSION['captcha'];
+				if ($user_answer == $real_answer) {
+					contact($name, $email, $message);
+					echo '#success';
+					session_unset();     // unset $_SESSION variable for the run-time 
+				    session_destroy();   // destroy session data in storage
 				} else {
-					$user_answer = $_POST['user_answer'];
-					$real_answer = $_SESSION['captcha'];
-					if ($user_answer == $real_answer) {
-						echo 1;
-						session_unset();     // unset $_SESSION variable for the run-time 
-					    session_destroy();   // destroy session data in storage
-					} else {
-						echo 0;
-						session_unset();     // unset $_SESSION variable for the run-time 
-					    session_destroy();   // destroy session data in storage
-					}
+					echo '#captcha';
+					session_unset();     // unset $_SESSION variable for the run-time 
+				    session_destroy();   // destroy session data in storage
 				}
 			} else {
-				echo 0;
+				echo '#session';
 			}
 
-		break;
-
-		case 'bio_success':
-			$_SESSION['bio_captcha'] = 1;
-			// after bio captcha success, this success will be effective only for a shirt period of time untill the session is destroyed
-			$_SESSION['LAST_ACTIVITY'] = time();
 		break;
 	}
 }

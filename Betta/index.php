@@ -24,7 +24,6 @@
 
   <!-- Demid's Design -->
   <link rel='stylesheet' type='text/css' href='css/themes/default/default.css'>
-  <link rel='stylesheet' type='text/css' href='css/nivo-slider.css'>
   <link rel="stylesheet" type="text/css" href="<?php autoVer('css/animate.css'); ?>" />
   <link rel="stylesheet" type="text/css" href="<?php autoVer('css/style.css'); ?>">
 
@@ -33,7 +32,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- Google Analytics &  ClickDesk Live Chat Service for websites -->
-<!--  <script>
+ <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -42,7 +41,7 @@
     ga('create', 'UA-56617539-1', 'auto');
     ga('send', 'pageview');
   </script>
-
+<!-- 
   <script type='text/javascript'>
     var _glc =_glc || []; _glc.push('all_ag9zfmNsaWNrZGVza2NoYXRyDwsSBXVzZXJzGO-W_aECDA');
     var glcpath = (('https:' == document.location.protocol) ?
@@ -56,19 +55,19 @@
   </head>
 <body>
 
-<div id="alert" style="position: fixed; z-index: 10000; margin: 0 auto" class="col-md-12"></div>
+<div id="alert" style="position: fixed; z-index: 100000; margin: 0 auto" class="col-md-12"></div>
 
 <div class='sticker'>
   <a href='https://www.facebook.com/biomio123'>
     <img src='img/home/facebook.png'></a>
   <a href='https://twitter.com/_biomio_'>
     <img src='img/home/twitter.png'></a>
-  <img src='img/home/sociallabel.png'>
+  <a href="./#contact"><img src='img/home/sociallabel.png'></a>
 </div>
 
 <div class="header"></div>
 
-<div class="container" style="margin-top: 100px">
+<div class="container">
 	<div class="row">
 		<div id="sidebar" class="col-md-3">
 			
@@ -92,7 +91,7 @@
 
 <div class="enable-media hide"></div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/libs/moment.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <!--
@@ -108,10 +107,10 @@
 <script type="text/javascript" src="js/libs/jquery.qrcode.min.js"></script>
 <script type="text/javascript" src="js/libs/jquery.tooltipster.min.js"></script>
 <script type="text/javascript" src="js/libs/bootstrap-switch.min.js"></script>
-<script type="text/javascript" src="js/libs/unislider.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="js/libs/unslider.js"></script>
 
 <!-- Demid's Design -->
-<script type="text/javascript" src="js/libs/jquery.nivo.slider.js"></script>
 <script src="js/libs/jquery.viewportchecker.js"></script>
 
 <!-- App -->
@@ -121,6 +120,8 @@
 <script src="<?php autoVer('js/home/views/home.js'); ?>"></script>
 <script src="<?php autoVer('js/home/views/about.js'); ?>"></script>
 <script src="<?php autoVer('js/home/views/googleapp.js'); ?>"></script>
+<script src="<?php autoVer('js/home/views/developers.js'); ?>"></script>
+<script src="<?php autoVer('js/home/views/mobilebeta.js'); ?>"></script>
 <script src="<?php autoVer('js/home/views/contact.js'); ?>"></script>
 <script src="<?php autoVer('js/home/views/login.js'); ?>"></script>
 <script src="<?php autoVer('js/home/views/settings.js'); ?>"></script>
@@ -159,6 +160,7 @@
 <script src="<?php autoVer('js/provider/views/provider_reporting.js'); ?>"></script>
 <script src="<?php autoVer('js/provider/views/login_implementation.js'); ?>"></script>
 <script src="<?php autoVer('js/provider/views/captcha_implementation.js'); ?>"></script>
+<script src="<?php autoVer('js/provider/views/provider_api.js'); ?>"></script>
 
 <!-- Models -->
 <script src="<?php autoVer('js/home/models/home.js'); ?>"></script>

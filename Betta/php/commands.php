@@ -7,7 +7,7 @@ require ('models/User.php');
 
 require_once 'NotORM.php';
 
-$pdo = new PDO('mysql:dbname=biomio_db; host=6da7f2ba42c999a5da5b0937632bd595a03f65c1.rackspaceclouddb.com', 'biomio_admin', 'admin');
+$pdo = new PDO('mysql:dbname=biomio_db_test; host=6da7f2ba42c999a5da5b0937632bd595a03f65c1.rackspaceclouddb.com', 'biomio_admin', 'admin');
 
 $db = new NotORM($pdo);
 
@@ -158,25 +158,38 @@ $app->post('/register_biometrics(/:code)(/:biometrics)', function($code, $biomet
 			}
 
 			$biometrics = json_decode(base64_decode($biometrics));
-			$status = $biometrics->status; 
+			$status = $biometrics->status;
+			$message = $biometrics->message; 
 
-			if ($status == "in-progress") {
+			if ($status == "canceled") {
+				$result = $pdo->prepare("UPDATE VerificationCodes SET status = 5 WHERE code = :code");
+				$result->execute(array('code'=>$code));	
+			} else if ($status == "failed"  || $message == "Maximum number of training retries reached.Try to change your location or your device position") {
+				$result = $pdo->prepare("UPDATE VerificationCodes SET status = 6 WHERE code = :code");
+				$result->execute(array('code'=>$code));	
+			} else if ($status == "failed") {
+				$result = $pdo->prepare("UPDATE VerificationCodes SET status = 7 WHERE code = :code");
+				$result->execute(array('code'=>$code));	
+			} else if ($status == "in-progress") {
 				$result = $pdo->prepare("UPDATE VerificationCodes SET status = 4 WHERE code = :code");
 				$result->execute(array('code'=>$code));	
-			} else if ($status == "verified") {
+			} else if ($status == "retry") {
+				$result = $pdo->prepare("UPDATE VerificationCodes SET status = 8 WHERE code = :code");
+				$result->execute(array('code'=>$code));	
+			} else if ($status == "success") {
 
 				$result = $pdo->prepare("UPDATE VerificationCodes SET status = 3 WHERE code = :code");
 				$result->execute(array('code'=>$code));	
 
-				//3) update biometrics flags
+				/*//3) update biometrics flags
 					$fingerprints = $biometrics->fingerprints;
 						$fingerprints = json_encode($fingerprints);
 					$fingerprints = $biometrics->face;
 					$face = $biometrics->face;
-					$voice = $biometrics->voice;
+					$voice = $biometrics->voice;*/
 				
-				$result = $pdo->prepare("UPDATE UserInfo SET fingerprints = :fingerprints, face = :face, voice = :voice WHERE profileId = :profileId");
-				$result->execute(array('fingerprints'=>$fingerprints, 'face'=>$face, 'voice'=>$voice, 'profileId'=>$profileId));
+				$result = $pdo->prepare("UPDATE UserInfo SET face = 1 WHERE profileId = :profileId");
+				$result->execute();
 			}	
 		}
 	}
@@ -200,6 +213,31 @@ $app->post('/bioauth(/:code)(/:email)', function($code, $email) use ($app, $db) 
 			$result = $pdo->prepare("UPDATE VerificationCodes SET status = 3 WHERE code = :code");
 			$result->execute(array('code'=>$code));
 		}
+	}
+});
+
+$app->post('/save_log(/:application_id)', function($application_id) use ($app, $db) {
+	echo '#success';
+});
+
+$app->post('/get_client_info(/:public_key)', function($public_key) use ($app, $db) {
+	require ('connect.php');
+
+	$result = $pdo->prepare("SELECT * FROM ClientKeys WHERE public_key = :public_key");
+	$result->execute(array('public_key'=>$public_key));
+
+	if ($result->rowCount() == 0) { header("HTTP/1.0 400 not recognized"); echo "PHP continues.\n"; die(); } 
+	else {
+		$row = $result->fetch();
+		$resourceId = $row['resourceId'];
+
+		$result2 = $pdo->prepare("SELECT * FROM WebResources WHERE id = :resourceId");
+		$result2->execute(array('resourceId'=>$resourceId));
+		$row2 = $result2->fetch();
+
+		$data = array('title'=>$row2['title'], 'domain'=>$row2['domain'], 'hook'=>$row2['hook'], 'logo'=>'http://pad2.whstatic.com/images/7/7d/DrawBatman-17.jpg', 'secret'=>$row['private_key']);
+		header('Content-Type: application/json');
+		echo json_encode($data);
 	}
 });
 

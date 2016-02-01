@@ -21,6 +21,7 @@ class SessionController {
 	}
 
 	public static function destroy_session() {
+		session_unset();
 		session_destroy();
 		return 'You are successfully logged out';
 	}

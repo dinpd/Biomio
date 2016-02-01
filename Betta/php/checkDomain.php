@@ -1,4 +1,8 @@
 <?php
+//ini_set('display_errors',1);
+//ini_set('display_startup_errors',1);
+//error_reporting(-1);
+
 include ('connect.php');
 if (isset($_POST['cmd'])) {
 
@@ -13,7 +17,6 @@ if (isset($_POST['cmd'])) {
 				$row = mysqli_fetch_array($result);
 				$filename = $row['filename'];
 				$code = $row['code'];
-
 			} else {
 				$charset = array('0', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
 				$code = '';
@@ -27,7 +30,7 @@ if (isset($_POST['cmd'])) {
 				mysqli_query($db_conx, "INSERT INTO TempWebsiteCodes (domain, code, filename) VALUES ('$domain', '$code', '$filename')") or die (mysqli_error());
 				
 				//Adding file
-				$fh = fopen('../profileData/tempWebsiteFiles/' . $filename, 'w') or die("can't open file");
+				$fh = fopen('../profileData/tempWebsiteFiles/' . $filename, 'rw') or die("can't open file");
 				fwrite($fh, $code);
 				fclose($fh);
 			}

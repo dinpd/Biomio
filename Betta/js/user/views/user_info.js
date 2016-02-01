@@ -366,7 +366,8 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
             }
         });
     },
-    verify_email: function () {
+    verify_email: function (e) {
+        e.preventDefault();
         $that = $('.form-2-2');
         var email = $that.find('p strong').text();
         var code = $that.find('input').val();

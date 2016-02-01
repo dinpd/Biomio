@@ -39,7 +39,7 @@ App.Views.Splash = Backbone.View.extend({
                 data: {name: username, email: email, type: type},
                 success: function(data) {
                     if (data == 'success') {
-                        alert('Thank you ' + username + '. Your application will be reviewed in 24 hours and you will recieve invite code via ' + email);
+                        alert('Thank you ' + username + '. Your application will be reviewed in 24 hours, and you will recieve invite code via ' + email);
                     } else {
                         alert('something is wrong, please try again');
                     }

@@ -17,3 +17,13 @@ App.Views.Session = Backbone.View.extend({
         return this;
     }
 });
+
+App.Views.ThankYou = Backbone.View.extend({
+    initialize:function () {
+        this.render();
+    },
+    render:function () {
+        $(this.el).html( render('ThankYou', {}) );
+        return this;
+    }
+});

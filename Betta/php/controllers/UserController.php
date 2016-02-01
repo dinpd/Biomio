@@ -19,28 +19,34 @@ class UserController {
 			return '#email';
 		else {
 			$ip = getenv('REMOTE_ADDR');
+			list($user, $domain) = explode('@', $email);
+			if (is_google_mx($domain)) $ex = 1;
+			else $ex = 0;
 	
 			// add user
-			$profileId= User::add_profile($first_name, $last_name, $email, $type, $ip);
+			$profileId= User::add_profile($first_name, $last_name, $email, $type, $ip, $ex);
 
-			// new email rest
-			if ($extention == 0) {
+			// new email key (we still create user if email is not gmail, just don't create the key)
+			if ($extention == 0 && is_google_mx($domain)) {
 				//echo 'rest';
-				$url = 'http://10.209.33.61/new_email/' . $email;
+				$url = 'http://10.209.33.61:90/new_email/' . $email;
 				send_post($url);
 			}
 
 			// generate verification code
-			$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
-	    	$code =  substr(str_shuffle($code),0,8);
-	    	// save verification code
-	    	// TO DO
-	    	// send verification email
-			Email::welcome_email($email, $first_name, $last_name, $code);
+			do {
+				$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+		    	$code =  substr(str_shuffle($code),0,8);
+		    	$result = User::select_temp_login_codes($code);
+	    	} while ($result->rowCount() > 0);
+	    	User::insert_temp_login_codes($profileId, $code);
 
 			// start session
 			if ($extention == 0) {
 				$result = SessionController::start_session($profileId, $type, $first_name, $last_name);
+				Email::welcome_email($email, $first_name, $last_name, $code);
+			} else {
+				Email::welcome2_email($email, $first_name, $last_name, $code);
 			}
 			// return profileId
 			return $profileId;
@@ -174,8 +180,11 @@ class UserController {
 			User::update_temp_login_code($profileId, 0);
 
 			// generate code
-			$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
-	    	$code =  substr(str_shuffle($code),0,8);
+			do {
+				$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+		    	$code =  substr(str_shuffle($code),0,8);
+		    	$result = User::select_temp_login_codes($code);
+	    	} while ($result->rowCount() > 0);
 
 			// save code in the table
 			User::insert_temp_login_codes($profileId, $code);
@@ -213,8 +222,11 @@ class UserController {
 			User::update_temp_login_code($profileId, 0);
 
 			// generate code
-			$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
-	    	$code =  substr(str_shuffle($code),0,8);
+			do {
+				$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+		    	$code =  substr(str_shuffle($code),0,8);
+		    	$result = User::select_temp_login_codes($code);
+	    	} while ($result->rowCount() > 0);
 
 			// save code in the table
 	    	User::insert_temp_login_codes($profileId, $code);
@@ -348,8 +360,11 @@ class UserController {
 		User::update_temp_phone_codes($profileId, 0);
 
 		// generate code
-		$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
-    	$code =  substr(str_shuffle($code),0,8);
+		do {
+			$code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+	    	$code =  substr(str_shuffle($code),0,8);
+	    	$result = User::check_temp_phone_codes($code);
+    	} while ($result->rowCount() > 0);
 
     	// put code to the database
     	User::insert_temp_phone_codes($profileId, $code, $phone);
@@ -453,7 +468,7 @@ class UserController {
 			//if ($profileId == 23)
 			// TEST TEST TEST
 			//{
-				//$url = 'http://10.209.33.61/training?device_id=88b960b1c9805fb586810f270def7378&code=magiccode';
+				//$url = 'http://10.209.33.61:90/training?device_id=88b960b1c9805fb586810f270def7378&code=magiccode';
 				//send_post($url);
 			//} else {
 			// TEST TEST TEST
@@ -466,7 +481,7 @@ class UserController {
 			    	$result = User::select_verification_codes($code);
 		    	} while ($result->rowCount() > 0);
 		    		//echo 'key: ' . $key;
-		    		$url = 'http://10.209.33.61/training?device_id=' . $key . '&code=' . $code;
+		    		$url = 'http://10.209.33.61:90/training?device_id=' . $key . '&code=' . $code;
 		    		//echo $url;
 		    		send_post($url);
 		    //}
@@ -527,11 +542,6 @@ class UserController {
 			if (is_google_mx($domain)) {
 				echo 'gmail';
 				$result = User::add_gmail_email($profileId, $email);
-				// new email rest
-				$url = 'http://10.209.33.61/new_email/' . $email;
-				//$url = 'http://biom.io/backups/beta3/php/commands.php/test/alexander.lomov1@gmail.com';
-				//echo $url;
-				send_post($url);
 			} else {
 				echo 'not gmail';
 				$result = User::add_not_gmail_email($profileId, $email);
@@ -602,6 +612,12 @@ class UserController {
 
 			$result = User::update_email($profileId, $email, 'verified', 1);
 
+			/*list($user, $domain) = explode('@', $email);
+			if (is_google_mx($domain)) {
+				$url = 'http://10.209.33.61:90/new_email/' . $email;
+				send_post($url);
+			}*/
+
 			User::update_temp_email_codes($profileId, 3);
 			return "#success";
 		}
@@ -661,6 +677,11 @@ class UserController {
 			$result = User::select_verification_codes($code);
 			if ($result->rowCount() > 0) {
 				foreach ($result as $row) {
+					if ($row['status'] == 5) return '#canceled';
+					if ($row['status'] == 6) return '#failed1';
+					if ($row['status'] == 7) return '#failed2';
+					if ($row['status'] == 8) return '#retry';
+
 					if ($row['status'] == 4) return '#in-process';
 					if ($row['status'] == 3) return '#verified';
 					else return '#not-verified';
@@ -668,7 +689,53 @@ class UserController {
 			} else return '#no-code';
 		} else return '#no-session';
 	}
+
+	/* API */
+	public static function get_api_keys() {
+		if (isset($_SESSION['providerId'])) {
+			$providerId = $_SESSION['providerId'];
+			$result = User::select_api_keys('providerId', $providerId);
+			$data = array();
+			foreach ($result as $row) {
+				$data[] = array('pub'=>$row['public_key'], 'priv'=>$row['private_key']);
+			}
+			return json_encode($data);
+		} else return '#no-session';
+	}
+
+	public static function generate_api_key() {
+		if (isset($_SESSION['providerId'])) {
+			$providerId = $_SESSION['providerId'];
+
+			do {
+				$pub = "_____-----_____-----ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+		    	$pub =  substr(str_shuffle($pub),0,15);
+		    	$result = User::select_api_keys('public_key', $pub);
+	    	} while ($result->rowCount() > 0);
+
+	    	do {
+				$priv = "_____-----_____-----ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+		    	$priv =  substr(str_shuffle($priv),0,30);
+		    	$result = User::select_api_keys('private_key', $priv);
+	    	} while ($result->rowCount() > 0);
+
+			$result = User::save_api_keys($providerId, $pub, $priv);
+			
+			$data = array('pub'=>$pub, 'priv'=>$priv);
+			return json_encode($data);
+		
+		} else return '#no-session';
+	}
+
+	public static function delete_api_key($key) {
+		if (isset($_SESSION['providerId'])) {
+			$providerId = $_SESSION['providerId'];
+			$result = User::delete_api_key($providerId, $key);
+			return '#success';
+		} else return '#no-session';
+	}
 }
+
 
 function create_image_code($code) {
 	$image = imagecreatetruecolor(260, 40); // creating an image
@@ -751,8 +818,8 @@ function send_get($url) {
 	//print $content;
 }
 //
-//POST http://10.209.33.61training?user_id=1&code=code
-//POST http://10.209.33.61new_email/email
+//POST http://10.209.33.61:90training?user_id=1&code=code
+//POST http://10.209.33.61:90new_email/email
 
 function is_google_mx($host) {
     $records = dns_get_record($host, DNS_MX);

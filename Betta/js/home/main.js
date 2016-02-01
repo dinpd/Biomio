@@ -11,9 +11,11 @@ var AppRouter = Backbone.Router.extend({
         "signup"                     : "signup",
         "wizard/:type"               : "wizard",
         "login"	                     : "login",
-        "account-settings"           : "settings",
+        //"account-settings"           : "settings",
         "about"                      : "about",
-        "googleapp"                  : "googleapp",
+        "emailprotector"             : "emailprotector",
+        "developers"                 : "developers",
+        "mobilebeta"                 : "mobilebeta",
         "contact"                    : "contact",
         "apis"                       : "apis",
         "profiles/:id"               : "users",
@@ -33,17 +35,19 @@ var AppRouter = Backbone.Router.extend({
         "user-websites"              : "user_websites",
         "user-reports"               : "user_reports",
     //Provider menu
-        "provider-info"              : "provider_info",
-        "provider-locations"         : "provider_locations",
-        "provider-websites"          : "provider_websites",
-        "provider-policies"          : "provider_policies",
-        "provider-users"             : "provider_users",
-        "provider-users/:locationId" : "provider_users",
-        "provider-devices"           : "provider_devices",
-        "provider-reports"           : "provider_reports",
+        //"provider-info"              : "provider_info",
+        //"provider-locations"         : "provider_locations",
+        //"provider-websites"          : "provider_websites",
+        //"provider-policies"          : "provider_policies",
+        //"provider-users"             : "provider_users",
+        //"provider-users/:locationId" : "provider_users",
+        //"provider-devices"           : "provider_devices",
+        //"provider-reports"           : "provider_reports",
+        "provider-api"               : "provider_api",
         "login-implementation"       : "login_implementation",
         "captcha-implementation"     : "captcha_implementation",
         "session"                    : "session",
+        "thankyou"                   : "thankyou",
         "*other"                     : "page_404"
     },
     //Home menu
@@ -52,7 +56,9 @@ var AppRouter = Backbone.Router.extend({
         if (!this.homeView) {
             this.homeView = new App.Views.Home();
             $('#content').html(this.homeView.el);
-            $('.banner').unslider({dots: true});
+
+            
+
         } else {
            $('#content').html(this.homeView.el); 
         }
@@ -80,15 +86,14 @@ var AppRouter = Backbone.Router.extend({
         });
         */
 
-
-        $('#slider').nivoSlider({
-        effect:'fade',
-        pauseTime: 5000,
-        animSpeed: 1000,
-        directionNav:false,
-        controlNav:true,
-        pauseOnHover: false
-        });
+        /*$('#slider').nivoSlider({
+            effect:'fade',
+            pauseTime: 5000,
+            animSpeed: 1000,
+            directionNav:false,
+            controlNav:true,
+            pauseOnHover: false
+        });*/
     },
     about: function () {
         this.main_navigation('about-menu');
@@ -102,10 +107,22 @@ var AppRouter = Backbone.Router.extend({
         var height = width / 1280 * 720;
         $(".about-video").height(height);
     },
-    googleapp: function () {
+    emailprotector: function () {
         this.main_navigation('home-menu');
         if (!this.googleappView) this.googleappView = new App.Views.GoogleApp();
         this.googleappView.render();
+        this.footer();
+    },
+    developers: function () {
+        this.main_navigation('home-menu');
+        if (!this.developersView) this.developersView = new App.Views.Developers();
+        this.developersView.render();
+        this.footer();
+    },
+    mobilebeta: function () {
+        this.main_navigation('home-menu');
+        if (!this.mobilebetaView) this.mobilebetaView = new App.Views.MobileBeta();
+        this.mobilebetaView.render();
         this.footer();
     },
     apis: function () {
@@ -117,7 +134,7 @@ var AppRouter = Backbone.Router.extend({
     contact: function () {
         this.main_navigation('contact-menu');
         if (!this.contactView) this.contactView = new App.Views.Contact();
-        $('#content').html(this.contactView.el);
+        this.contactView.render();
         this.footer();
     },
 	login: function() {
@@ -463,6 +480,13 @@ var AppRouter = Backbone.Router.extend({
         this.userReportsCollection.fetch();
         this.footer();
     },
+    provider_api: function () {
+        if (!check_session()) return;
+        this.interface_navigation('Provider', 'provider-api-menu');
+        if (!this.providerApiView) this.providerApiView = new App.Views.ProviderApi();
+        this.providerApiView.render();
+        this.footer(); 
+    },
     login_implementation: function () {
         if (!check_session()) return;
         this.interface_navigation('Provider', 'login-implementation-menu');
@@ -498,7 +522,7 @@ var AppRouter = Backbone.Router.extend({
 
         // Temporary Splash Page
         // For every page we check if the user is invited and then show the actual website
-        if (menu_item != 'contact-menu' && menu_item != 'about-menu') {
+        /*if (menu_item != 'contact-menu' && menu_item != 'about-menu') {
             $.ajax({
                 url: 'php/splash.php',
                 method: 'POST',
@@ -513,7 +537,7 @@ var AppRouter = Backbone.Router.extend({
                     }
                 }
             });
-        }
+        }*/
     },
     interface_navigation: function (type, menu_item) {
         $('#content').html('');
@@ -556,6 +580,13 @@ var AppRouter = Backbone.Router.extend({
         $('body').children(".container").addClass('extraWidth');
         this.footer();
     },
+    thankyou: function () {
+        this.main_navigation('home-menu'); 
+        if (!this.ThankYouView) this.ThankYouView = new App.Views.ThankYou();
+        $('#content').html(this.ThankYouView.el);
+        $('body').children(".container").addClass('extraWidth');
+        this.footer();
+    },
     page_404: function () {
         window.location.hash = '#404';
         this.main_navigation('home-menu'); 
@@ -592,11 +623,16 @@ $(document).ready(function() {
                     window.location.hash != '#signup' &&
                     window.location.hash != '#login' &&
                     window.location.hash != '#about' &&
-                    window.location.hash != '#googleapp' &&
+                    window.location.hash != '#emailprotector' &&
+                    window.location.hash != '#developers' &&
+                    window.location.hash != '#mobilebeta' &&
                     window.location.hash != '#404' &&
-                    window.location.hash != '#contact')
+                    window.location.hash != '#thankyou' &&
+                    window.location.hash != '#contact') {
                     
-                window.location = './#session';
+                    window.hash1 = window.location.hash;
+                    window.location = './#login';
+                }
 
                 var app = new AppRouter();
                 Backbone.history.start();
@@ -620,8 +656,11 @@ function check_session() {
                     window.location.hash != '#signup' &&
                     window.location.hash != '#login' &&
                     window.location.hash != '#about' &&
-                    window.location.hash != '#googleapp' &&
+                    window.location.hash != '#emailprotector' &&
+                    window.location.hash != '#developers' &&
+                    window.location.hash != '#mobilebeta' &&
                     window.location.hash != '#404' &&
+                    window.location.hash != '#thankyou' &&
                     window.location.hash != '#contact') {
                     
                 window.location = './#session';
@@ -673,7 +712,7 @@ function session_checker() {
             success: function(data) {
                 if (data.id == null) {
                     clearInterval(session_checker);
-                    alert('session has been expired')
+                    alert('Your session expired')
                     window.location = './';
                 }
             }
