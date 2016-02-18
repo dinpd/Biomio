@@ -1,0 +1,256 @@
+<!--
+<div class="navbar navbar-inverse navbar-static-top" role="banner" style='z-index: 1000;'>
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#main_menu">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="#" class="navbar-brand">BIOMIO</a>
+    </div>
+    <nav id="main_menu" class="collapse navbar-collapse" role="navigation">
+		<ul class="nav navbar-nav navbar-right pull-right" style='z-index: 1000;'>
+	    	
+			<li id="login" class="profile-off hide"><a href="#login">Login</a></li>
+
+	    	<li class="profile-on dropdown hide">
+				<a class="dropdown-toggle" href="#user-info" data-toggle="dropdown"><span class='profile'></span> <b class="caret"></b></a>
+				<ul class="dropdown-menu pull-right" style='z-index: 1000;'>
+					<li id="user_header"><a href="#user-info">User profile</a></li>
+					<li id="provider_header"><a href="#provider-info">Provider profile</a></li>
+					<li><a href="#account-settings">Accout settings</a></li>
+					<li class='logout-menu pointer'><a>Log out</a></li>
+				</ul>
+			</li>
+	   	</ul>
+    </nav>
+  </div>
+</div>
+-->
+
+<style>
+.drop-menu {
+  padding: 0;
+  vertical-align: top;
+}
+.drop-menu .drop-image {
+  width: 160px; border-radius: 2px; border-right: 1px solid #C56146;
+}
+.drop-menu .drop-content {
+  background: #fff;
+  border: 1px solid #ccc;
+  min-height: 300px!important;
+  max-height: 800px!important;
+  width: 300px;
+  padding: 10px;
+}
+</style>
+
+
+<style>
+  .login-phone {
+    max-width: 300px;
+    font-size: 20px;
+  }
+  .login-phone input {
+    display: inline-block;
+    height: 32px;
+    font-size: 16px;
+  }
+  .login-phone .country-code {
+    width: 32px;
+    text-align: center;
+  }
+  .login-phone .region-code {
+    width: 42px;
+    text-align: center;
+  }
+  .login-phone .first-part {
+    width: 42px;
+    text-align: center;
+  }
+  .login-phone .second-part {
+    width: 52px;
+    text-align: center;
+  }
+  .biomio-submit {
+    cursor: pointer;
+  }
+  .switch_methods {
+    text-decoration: underline;
+    font-size: 16px;
+    color: #aaa;
+    cursor: pointer;
+  }
+  .or {
+    font-size: 16px;
+    color: #aaa;
+  }
+  .switch_methods:hover {
+    color: #bbb;
+  }
+  .biometrics-login {
+    font-size: 20px;
+  }
+  .timeout {
+    font-size: 36px;
+    font-weight: 500;
+    color: #E26C22;
+  }
+</style>
+
+
+
+<!-- HEADER -->
+<header class="clearfix bigest" id="header_nav">
+  <div class="inner">
+    <div class="lefthead">
+      <div class="logo"> <a href="#home"> <img src="img/home/logo.png?1"></a> </div>
+      <div class="slogan"> Multi-Factor, Password-Optional Authentication Anywhere, Everywhere
+      </div>
+    </div>
+    <div class="righthead">
+      <div class="toplinks"> 
+          <!--<li style="list-style-type: none;" id="login" class="profile-off hide">-->
+          
+
+          <ul class="drop-menu hidden-xs profile-off hide" style="display: inline-block; list-style: none;">
+              <li>
+                  <a class="drop-login"><img class="drop-image" src="img/home/button2.png"></a>
+                  <ul class="drop-content hide row">
+                      
+
+                    <form role="form" class="col-sm-12 text-center">
+                        <br>
+                        <legend><h2 class="form-signin-heading text-center" style="margin-top: 5px">PASSWORDLESS LOGIN</h2></legend>
+                        <div class="form-group biomio-email col-sm-12 text-center" style="padding: 0">
+                          <div class="col-sm-12">
+                            <input id="external_token" class="biomio-input form-control" type="email" placeholder="myemail@gmail.com">
+                            <span class="biomio-error text-danger"></span>
+                          </div>
+
+                          <div class="original-method form-group col-sm-12 text-center" style="margin-top: 25px">
+                            <a onclick="var external_token = document.getElementById('external_token').value; if (external_token.length != 0) window.open('http://biom.io:5000/user/authorize?response_type=code&external_token=' + external_token + '&scope=openid&client_id=56ce9a6a93c17d2c867c5c293482b8f9&redirect_uri=https://biom.io:4433/login.php&nonce=12p6bfw&state=1slw5l8', 'null','width=460, height=485, location=no'); return false;" 
+                              class="biomio-submit" type="submit" style="padding: 0">
+                              <img style="width: 100%;" src="img/home/button2.png">
+                            </a>
+                          </div>
+                          <input class="bioauth-code hide" type="text">
+
+                          <br>
+                          <br>
+                          <p class="original-method col-sm-12 text-center or">
+                            or
+                          </p>
+                          <br>
+                          <p class="original-method switch_methods col-sm-12 text-center">
+                            Login with One-time token sent over email
+                          </p>
+
+                        </div>
+                        
+                      </form>
+
+                      <!-- Biometrics Authentication Handling -->
+                      <div class="col-sm-12 biometrics-login hide">
+                        <div class="col-sm-12 text-center hide">
+                          <p class="text-warning">You need to use Google Chrome with BIOMIO extension to login with biometrics data</p>
+                        </div>
+
+                        <div class="col-sm-12 error-block text-center hide">
+                          <p class="text-warning"><strong>Error: </strong><span class="message"></span></p>
+                        </div>
+
+                        <div class="col-sm-12 in-progress-1-block text-center hide">
+                          <p class="text-primary">To proceed with the login please open Biomio application on your phone.</p>
+                          <br>
+                          <p class="text-primary">Server will wait for 5 minutes to receive the results</p>
+                          <br>
+                          <p><strong class="timeout"></strong></p>
+                          <br>
+                        </div>
+
+                        <div class="col-sm-12 in-progress-2-block text-primary text-center hide">
+                          <p class="message text-info"></p>
+                        </div>
+                      </div>
+
+                      <form role="form" class="col-sm-12 code-form">
+                        <fieldset>
+                          <div class="form-group login-buttons hide col-sm-12">
+                            <p>Use your registered phone number or email address to recieve a temporary login code<p>
+
+                            <p><strong>Send Code to:</strong></p>
+                            <p class="login-phone-code">My phone</p>
+                            <div class="login-phone login-phone-code" style="margin-bottom: 10px">
+                              <input type="text" class="country-code" disabled placeholder="1" value="1" maxlength="1"> 
+                              (<input type="text" class="region-code" placeholder="222" maxlength="3">)
+                              <input type="text" class="first-part" placeholder="333" maxlength="3"> &ndash;
+                              <input type="text" class="second-part" placeholder="4444" maxlength="4">
+                            </div>
+
+                            <p>My email address</p>
+                            <input class="login-email form-control col-sm-12" type="text" placeholder="my email">
+                            <button class="btn btn-lg btn-primary login-send-code col-sm-12" type="button">Send Code</button>
+                            <span class="text-success"></span>
+                          </div>
+
+                          <div class="form-group login-code hide col-sm-12">
+                            <input class="form-control" type="text" placeholder="Login Code">
+                          </div>
+
+                          <div class="form-group text-center submit-login-code hide col-sm-12">
+                            <button class="btn btn-lg btn-block btn-primary" type="button">Submit</button>
+                            <span class="text-danger"></span>
+                          </div>
+
+                          <!--
+                            <div class="form-group guest-login col-sm-12 text-center">
+                              <button class="btn btn-lg btn-block btn-default" type="submit">Guest Login</button>
+                              <small>for BIOMIO developers and QA</small>
+                            </div>
+
+                            <div class="form-group test-login col-sm-12 text-center">
+                              <button class="btn btn-lg btn-block btn-default" type="submit">Test Login</button>
+                              <small></small>
+                            </div>
+                          -->
+
+                        </fieldset>
+                      </form>
+
+
+
+
+
+
+                  </ul>
+              </li>
+          </ul> 
+          
+          <li class="visible-xs">
+            <a class="login profile-off hide" href="#login"> <img src="img/home/signin.png"> Log In</a>
+          </li>
+
+          <a class="profile-off hide"href="#signup" style="vertical-align: top;"> <img src="img/home/signup.png"> Register </a> 
+          <!--</li>-->
+          <li style="list-style-type: none;" class="profile-on dropdown hide">
+          
+          <a class="dropdown-toggle" href="#user-info" data-toggle="dropdown"><span class='profile'></span> <b class="caret"></b></a>
+
+          <ul class="dropdown-menu pull-right" style='z-index: 1000;'>
+            <li id="user_header"><a href="#user-info">User profile</a></li>
+            <hr>
+            <li class="dropdown-header provider-header">Provider</li>
+
+            <li id="add_provider"><a href="./provider/#signup">+ add provider</a></li>
+            <hr>
+            <li class='logout-menu pointer'><a>Log out</a></li>
+          </ul>
+        </li>
+      </div>
+    </div>
+  </div>
+</header>

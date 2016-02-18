@@ -1,0 +1,201 @@
+.extraWidth {
+  width: 100%;
+  padding: 0;
+}
+.extraWidth .row {
+  margin: 0;
+}
+.extraWidth .row #content {
+  padding: 0;
+}
+.extraWidth .jumbotron {
+  border-radius: 0;
+}
+
+.large-progress {
+  width: 100%;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.small-progress {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.slogan, .mainsplash, .inner, .splashtext, .splashacapt, .splashbcapt  {
+  box-sizing: content-box;
+}
+
+.main-block, .scheme {
+  width: 100%;
+}
+
+
+/*Володины стили*/
+
+.btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {background:#23527C; color:#e6e9ed; border:none; text-shadow:none; box-shadow:none; border-radius:0; font-family: 'Open Sans', sans-serif !important;}
+.btn-primary {background: rgba(20, 168, 177, 0.75); color:white}
+.btn-success {background:#14BBA5; color:white}
+.btn-danger  {background:#E75A4D; color:white}
+.btn-primary:hover, .btn-success:hover, .btn-danger:hover, .btn-default:hover .btn-info:hover {background: rgba(250, 126, 92, 0.93); color:white}
+
+.col-md-4 h1, .col-md-4 h2, .col-md-4 h3, .col-md-4 h4, .col-md-4 h5, .col-md-4 h6 {color:#7d899c; font-family: 'Roboto Condensed', sans-serif;}
+
+
+
+.col-md-4 h1, .col-md-4 h2, .col-md-4 h3, .col-md-4 h4, .col-md-4 h5, .col-md-4 h6 {color:#7d899c; font-family: 'Roboto Condensed', sans-serif;}
+
+
+
+@media (max-width:615px){
+  body {background-image:none;}
+  a.navbar-brand {width:155px; margin-top:0px; margin-left:15px} 
+  .navbar-inverse{min-height:45px;}
+  .navbar-collapse.collapse.in {background:rgba(0,0,0,.1)}
+}
+
+/*=========== index.html ============*/
+.jumbotron {
+background: #202533;
+
+
+
+color:#41464f;
+color:white;
+font-family: 'Roboto Condensed', sans-serif;
+padding:0;
+border-radius: 0;
+
+}
+
+.jumbotron > .container {background:#202533 url(../img/biomio-style/jumbo_bg1.jpg) right top no-repeat; background-size:1200px 425px; height:425px; overflow:hidden}
+.jumbotron .small-pics {width:500px; display:inline-block; text-align:center; position:relative; top:-115px}
+.jumbotron .small-pics > .pic, .jumbotron .small-pics > .flipping-pic {display:inline-block; width:140px; height:140px; margin:12px; padding:0; overflow:hidden; background:red; float:left}
+.jumbotron .small-pics > .pic img, .jumbotron .small-pics > .flipping-pic img {width:inherit; height:inherit;}
+
+@media (max-width:1200px){
+  .jumbotron > .container {width:100%;}
+  
+}
+@media (max-width:1060px){
+  .jumbotron .small-pics {display:none}
+  
+}
+
+.alert-warning {background:none; color:#ff5400; border:solid 1px #ff5400; font-family:Arial, sans-serif; text-shadow:none; box-shadow:none}
+
+/* tiles */
+
+.tile {
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 24px;
+  cursor:pointer;
+  color:white;
+}
+.tile .title {
+  margin-top: 0px;
+}
+.clmn1 .tile, .clmn2 .tile, .clmn3 .tile {
+  color: #fff;
+}
+.tiles h2 {
+  color:#7d899c;
+  font-size:24px;
+  /*display:none;*/
+}
+
+.container.tiles, .biomio-rollover-content {width:100%; margin:0; padding:0}
+@media (min-width:768px) {
+  .container.tiles, .biomio-rollover-content {width:720px;}
+}
+@media (min-width:992px) {
+  .container.tiles, .biomio-rollover-content {width:940px;}
+}
+
+@media (min-width:1200px) {
+  .container.tiles, .biomio-rollover-content {width:1140px;}
+}
+
+.c1-1 {background:#5138a8}
+.c1-1:hover, .biomio-rollover-content.c1-1 {background:#5138a8}
+
+.c1-2 {background:#aa1d3f}
+.c1-2:hover, .biomio-rollover-content.c1-2 {background:#aa1d3f}
+
+.c1-3 {background:#589b02}
+.c1-3:hover, .biomio-rollover-content.c1-3 {background:#589b02}
+
+.c2-1 {background:#ffb100}
+.c2-1:hover, .biomio-rollover-content.c2-1 {background:#ffb100}
+
+.c2-2 {background:#2c75e9}
+.c2-2:hover, .biomio-rollover-content.c2-2 {background:#2c75e9}
+
+.c2-3 {background:#ff8904}
+.c2-3:hover, .biomio-rollover-content.c2-3 {background:#ff8904}
+
+
+.c3-1 {background:#17a41a}
+.c3-1:hover, .biomio-rollover-content.c3-1 {background:#17a41a}
+
+.c3-2 {background:#00425c}
+.c3-2:hover, .biomio-rollover-content.c3-2 {background:#00425c}
+
+.c3-3 {background:#5a6883}
+.c3-3:hover, .biomio-rollover-content.c3-3 {background:#5a6883}
+
+.biomio-rollover-content {color:#FFFFFF; padding:20px; display:block; margin-left:15px; margin-right:15px; position:absolute; top:0; left:0; min-height:145px; display:none; box-shadow:0 6px 0 rgba(0,0,0,0.5)}
+
+.biomio-glyphicon {display:inline-block; width:68px; height:68px; float:left; margin-right:10px; margin-bottom:10px}
+
+
+/*=========== register.html ============*/
+
+legend {color:#7d899c; font-family: 'Roboto Condensed', sans-serif;}
+.well {background:none; border:none; border-radius:0; box-shadow:none; -webkit-box-shadow:none}
+.form-control {border-radius:0; color:#41464f;}
+
+
+/*=========== Contact us ===========*/
+
+.panel-primary {border:none; box-shadow:none; -webkit-box-shadow:none; background:none}
+.panel-primary>.panel-heading {background:none; border-bottom: 1px solid #e5e5e5; color:#7d899c; font-family: 'Roboto Condensed', sans-serif; }
+.panel-heading h3 {font-size: 30px; margin-top:10px; margin-bottom:0}
+
+.form-horizontal .control-label {font-family: 'Open Sans', sans-serif; font-weight:300}
+.glyphicon {font-family: 'Glyphicons Halflings';}
+
+/*=========== login.html ===========*/
+.biomio-button-form {background:black !important; font-family: 'Open Sans', sans-serif; font-weight:300; color:#41464f;}
+.biomio-button-form .header-line {color: rgb(125, 137, 156); font-family: 'Roboto Condensed', sans-serif;
+font-size: 30px; padding:0; height:auto; font-weight:400; background:none; border:none; border-bottom:solid 1px rgb(229, 229, 229); box-shadow:none}
+
+.biomio-button-form .biomio-target-button {background:#c3c7cb; color:#e6e9ed; border:none; text-shadow:none; box-shadow:none; border-radius:0; font-family: 'Open Sans', sans-serif !important;}
+.biomio-button-form .biomio-target-button {background:#ff6000; color:white}
+.biomio-button:hover, .biomio-target-button:hover {background:#f74600; color:white}
+
+.biomio_user_form .smart-green {border-radius: 0; -webkit-border-radius: 0; -moz-border-radius: 0}
+.biomio_user_form .smart-green h1 {border-radius: 0; -webkit-border-radius: 0; -moz-border-radius: 0}
+
+/*=========== progress bar ===========*/
+
+.biomio-white-overlay {position:fixed; top:0; left:0; right:0; height:500px; line-height:500px; bottom:0; background:rgba(255,255,255,.9); text-align:center; vertical-align:middle}
+.biomio-progress-bar {width:400px; display:inline-block; line-height:normal; height:auto; text-align:center; font-family: 'Open Sans', sans-serif; font-weight:300; color:#41464f; padding:5px}
+.biomio-progress-bar .caption { font:font-family: 'Open Sans', sans-serif; font-weight:300; display:block; width:100%; margin-bottom:5px}
+.biomio-progress-bar .full-band {width:100%; background:#cdd5e1; display:block; height:2px; line-height:2px; outline:solid 4px white}
+.biomio-progress-bar .current-progress {width:70%; height:100%; display:block; 
+  background:#ff3800; 
+  background: -moz-linear-gradient(left,  #fe8136 0%, #ff3800 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#fe8136), color-stop(100%,#ff3800));
+  background: -webkit-linear-gradient(left,  #fe8136 0%,#ff3800 100%);
+  background: -o-linear-gradient(left,  #fe8136 0%,#ff3800 100%);
+  background: -ms-linear-gradient(left,  #fe8136 0%,#ff3800 100%);
+  background: linear-gradient(to right,  #fe8136 0%,#ff3800 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fe8136', endColorstr='#ff3800',GradientType=1 );
+}
