@@ -30,7 +30,7 @@ class UserController {
 		}
 	}
 
-	public static function add_user($provider_id, user_id) {
+	public static function add_user($provider_id, $user_id) {
 		include ('connect.php');
 
 		$result = $pdo->prepare("SELECT * FROM ProviderUsers WHERE provider_id = :provider_id AND user_id = :user_id");
