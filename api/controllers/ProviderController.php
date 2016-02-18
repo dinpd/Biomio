@@ -1,7 +1,7 @@
 <?php
 //Provider controller class
 
-class UserController {
+class ProviderController {
 
 	// ------ SIGN UP -------
 
