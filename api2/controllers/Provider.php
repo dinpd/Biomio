@@ -44,18 +44,7 @@ class Provider
         $provider = Models\Provider::getProviderByPublicKey($post['public_key']);
         $currentTime = time();
 
-        /** validate hash */
-        function validateHash($post, $private_key) {
-            $hash = [];
-            $hash['time'] = $post['time'];
-            $hash['public_key'] = $post['public_key'];
-            $hash['email'] = $post['email'];
-            $hash = json_encode($hash);
 
-            $hash = hash_hmac('sha256', $hash, $private_key);
-
-            return ($hash === $post['hash']);
-        }
 
         $hashIsValid = validateHash($post, $provider->private_key);
 
@@ -143,5 +132,104 @@ class Provider
             }
         }
 
+    }
+
+    /**
+     * @route put /api/v1/user
+     * @param $request
+     * @param $response
+     */
+    public static function updateUser($request, $response) {
+//        $post = json_decode(file_get_contents("php://input"));
+//
+//        $hash = $post->hash;
+//        $time = $post->time;
+//        $public_key = $post->public_key;
+//        $profileId = $post->profileId;
+//        $first_name = $post->first_name;
+//        $last_name = $post->last_name;
+//
+//        if (time() > $time + 5 * 60) {
+//            echo json_encode(array('response'=>'#time'));
+//        } else {
+//            $result = $pdo->prepare("UPDATE UserInfo SET firstName = :firstName, lastName = :lastName  WHERE profileId = :profileId");
+//            $result->execute(array('profileId'=>$profileId, 'lastName'=>$last_name, 'firstName'=>$first_name));
+//            echo json_encode(array('response'=>'#success'));
+//        }
+    }
+
+    /**
+     * @route post /api/v1/device
+     * @param $request
+     * @param $response
+     */
+    public static function addDevice($request, $response) {
+        $message = [
+            "error" => "Not implemented"
+        ];
+        return $response->withStatus(200)
+            ->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('Content-Type', 'application/json')
+            ->write(json_encode($message));
+    }
+
+    /**
+     * @route post /api/v1/generate_device_code
+     * @param $request
+     * @param $response
+     */
+    public static function generateDeviceCode($request, $response) {
+        $message = [
+            "error" => "Not implemented"
+        ];
+        return $response->withStatus(200)
+            ->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('Content-Type', 'application/json')
+            ->write(json_encode($message));
+    }
+
+    /**
+     * @route post /api/v1/generate_biometrics_code
+     * @param $request
+     * @param $response
+     */
+    public static function generateBiometricsCode($request, $response) {
+        $message = [
+            "error" => "Not implemented"
+        ];
+        return $response->withStatus(200)
+            ->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('Content-Type', 'application/json')
+            ->write(json_encode($message));
+    }
+
+    /**
+     * @route post /api/v1/generate_extension_code
+     * @param $request
+     * @param $response
+     */
+    public static function generateExtensionCode($request, $response) {
+        $message = [
+            "error" => "Not implemented"
+        ];
+        return $response->withStatus(200)
+            ->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('Content-Type', 'application/json')
+            ->write(json_encode($message));
+    }
+
+    /**
+     * @route post /api/v1/status
+     * @param $request
+     * @param $response
+     */
+    public static function status($request, $response) {
+        $message = [
+            "error" => "Not implemented"
+        ];
+        return $response->withStatus(200)
+            ->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('Content-Type', 'application/json')
+            ->write(json_encode($message));
     }
 }
