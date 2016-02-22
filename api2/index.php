@@ -16,7 +16,7 @@ if ($config['debug']) {
 
 $app = new Slim\App();
 
-/** configure Mysql ORM */
+/** configure Mysql ORM (idiorm library) */
 ORM::configure('mysql:host=' . $config['db']['host'] .';dbname=' . $config['db']['dbName'] . ';charset=utf8');
 ORM::configure('username', $config['db']['user']);
 ORM::configure('password', $config['db']['password']);

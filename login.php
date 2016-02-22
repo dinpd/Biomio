@@ -3,14 +3,14 @@ ini_set('display_errors',1);
 ini_set('display_startup_errors',1);
 error_reporting(-1);
 
-include ('./php/connect.php');
-require ('./php/controllers/SessionController.php');
+require_once('./php/connect.php');
+require_once('./php/controllers/SessionController.php');
+$config = require_once ("./config.php");
 
 $code = $_GET['code'];
 $state = $_GET['state'];
 
-//echo $code . '<br>';
-
+/*@todo: these data should goes from DB! */
 $request = array();
 $request['client_id'] = '56ce9a6a93c17d2c867c5c293482b8f9';
 $request['client_secret'] = '85a879a19387afe791039a88b354a374';
@@ -19,13 +19,13 @@ $request['code'] = $code;
 $request['redirect_uri'] = 'https://biom.io:4433/login.php';
 
 // Send request
-$url = "http://biom.io:5000/user/token";
+$url = $config['openId'] . "/user/token";
+
 $content = json_encode($request);
 $curl = curl_init($url);
 curl_setopt($curl, CURLOPT_HEADER, false);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($curl, CURLOPT_HTTPHEADER,
-        array("Content-type: application/json"));
+curl_setopt($curl, CURLOPT_HTTPHEADER, ["Content-type: application/json"]);
 curl_setopt($curl, CURLOPT_POST, true);
 curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
 
@@ -72,10 +72,6 @@ $row = $result->fetch();
 $type = $row['type'];
 
 SessionController::start_session($profileId, $type, $first_name, $last_name);
-
-// redirect user to the right place
-
-//echo $email;
 
 if ($profileId) {
 ?>
