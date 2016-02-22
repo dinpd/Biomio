@@ -21,6 +21,16 @@ App.Views.GoogleApp = Backbone.View.extend({
     }
 });
 
+App.Views.LearnMore = Backbone.View.extend({
+    el: $("#content"),
+    initialize:function () {
+    },
+    render:function () {
+        var template = render('LearnMoreView', {});
+        this.$el.html( template );
+    }
+});
+
 $(document).on('click touchend', ".faq-header", function (e) {
 	if ($(this).find('.glyphicon').hasClass('glyphicon-menu-right'))
 		$(this).find('.glyphicon').removeClass('glyphicon-menu-right').addClass('glyphicon-menu-down');

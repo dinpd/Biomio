@@ -1,0 +1,1117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bdf6061b-9521-4ccb-bb3a-566ae85aca82" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api2/.htaccess" afterPath="$PROJECT_DIR$/api2/.htaccess" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api2/controllers/Provider.php" afterPath="$PROJECT_DIR$/api2/controllers/Provider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api2/index.php" afterPath="$PROJECT_DIR$/api2/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api2/services/helpers.php" afterPath="$PROJECT_DIR$/api2/services/helpers.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api2/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/api2/vendor/composer/autoload_classmap.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/login.php" afterPath="$PROJECT_DIR$/login.php" />
+    </list>
+    <ignored path="biomioai.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="biomioai" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/api.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.0">
+              <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/profile.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+              <folding>
+                <marker date="1455784931560" expanded="true" signature="1905:1999" placeholder="UPDATE UserI..." />
+                <marker date="1455784931560" expanded="true" signature="2583:2667" placeholder="INSERT INTO ..." />
+                <marker date="1455784931560" expanded="true" signature="3311:3416" placeholder="UPDATE Verif..." />
+                <marker date="1455784931560" expanded="true" signature="3737:3787" placeholder="SELECT * FRO..VerificationCodes..." />
+                <marker date="1455784931560" expanded="true" signature="3922:4084" placeholder="INSERT INTO ..." />
+                <marker date="1455784931560" expanded="true" signature="4368:4433" placeholder="SELECT * FRO..Emails..." />
+                <marker date="1455784931560" expanded="true" signature="4978:5028" placeholder="SELECT * FRO..VerificationCodes..." />
+                <marker date="1455784931560" expanded="true" signature="6192:6297" placeholder="UPDATE Verif..." />
+                <marker date="1455784931560" expanded="true" signature="6434:6537" placeholder="SELECT id, t..UserServices..." />
+                <marker date="1455784931560" expanded="true" signature="6928:6978" placeholder="SELECT * FRO..VerificationCodes..." />
+                <marker date="1455784931560" expanded="true" signature="7210:7372" placeholder="INSERT INTO ..." />
+                <marker date="1455784931560" expanded="true" signature="7989:8094" placeholder="UPDATE Verif..." />
+                <marker date="1455784931560" expanded="true" signature="8415:8465" placeholder="SELECT * FRO..VerificationCodes..." />
+                <marker date="1455784931560" expanded="true" signature="8600:8762" placeholder="INSERT INTO ..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/models/User.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+              <folding>
+                <marker date="1455784918344" expanded="true" signature="170:211" placeholder="SELECT * FRO..Emails..." />
+                <marker date="1455784918344" expanded="true" signature="385:450" placeholder="SELECT * FRO..Emails..." />
+                <marker date="1455784918344" expanded="true" signature="716:772" placeholder="INSERT INTO ..." />
+                <marker date="1455784918344" expanded="true" signature="935:1033" placeholder="INSERT INTO ..." />
+                <marker date="1455784918344" expanded="true" signature="1209:1265" placeholder="INSERT INTO ..." />
+                <marker date="1455784918344" expanded="true" signature="1382:1512" placeholder="INSERT INTO ..." />
+                <marker date="1455784918344" expanded="true" signature="1684:1749" placeholder="INSERT INTO ..." />
+                <marker date="1455784918344" expanded="true" signature="2153:2220" placeholder="UPDATE UserI..." />
+                <marker date="1455784918344" expanded="true" signature="2360:2426" placeholder="UPDATE UserI..." />
+                <marker date="1455784918344" expanded="true" signature="2565:2624" placeholder="UPDATE Profi..." />
+                <marker date="1455784918344" expanded="true" signature="2854:2903" placeholder="SELECT * FRO..Phones..." />
+                <marker date="1455784918344" expanded="true" signature="3085:3136" placeholder="SELECT * FRO..UserInfo..." />
+                <marker date="1455784918344" expanded="true" signature="3316:3360" placeholder="SELECT * FRO..Profiles..." />
+                <marker date="1455784918344" expanded="true" signature="3561:3619" placeholder="SELECT id FR..TempLoginCodes..." />
+                <marker date="1455784918344" expanded="true" signature="3770:3841" placeholder="UPDATE TempL..." />
+                <marker date="1455784918344" expanded="true" signature="4059:4151" placeholder="INSERT INTO ..." />
+                <marker date="1455784918344" expanded="true" signature="4366:4434" placeholder="SELECT * FRO..Phones..." />
+                <marker date="1455784918344" expanded="true" signature="4651:4719" placeholder="SELECT * FRO..Emails..." />
+                <marker date="1455784918344" expanded="true" signature="4934:5023" placeholder="SELECT * FRO..TempLoginCodes..." />
+                <marker date="1455784918344" expanded="true" signature="5024:5082" placeholder="/*AND date_c..." />
+                <marker date="1455784918344" expanded="true" signature="5284:5346" placeholder="SELECT * FRO..TempLoginCodes..." />
+                <marker date="1455784918344" expanded="true" signature="5347:5405" placeholder="/*AND date_c..." />
+                <marker date="1455784918344" expanded="true" signature="5581:5637" placeholder="SELECT * FRO..Profiles..." />
+                <marker date="1455784918344" expanded="true" signature="5870:5939" placeholder="UPDATE Profi..." />
+                <marker date="1455784918344" expanded="true" signature="6492:6597" placeholder="UPDATE Verif..." />
+                <marker date="1455784918344" expanded="true" signature="6836:6886" placeholder="SELECT * FRO..VerificationCodes..." />
+                <marker date="1455784918344" expanded="true" signature="7114:7276" placeholder="INSERT INTO ..." />
+                <marker date="1455784918344" expanded="true" signature="7821:7892" placeholder="UPDATE TempP..." />
+                <marker date="1455784918344" expanded="true" signature="8118:8225" placeholder="INSERT INTO ..." />
+                <marker date="1455784918344" expanded="true" signature="8456:8600" placeholder="SELECT * FRO..TempPhoneCodes..." />
+                <marker date="1455784918344" expanded="true" signature="8801:8918" placeholder="SELECT * FRO..TempPhoneCodes..." />
+                <marker date="1455784918344" expanded="true" signature="9094:9159" placeholder="INSERT INTO ..." />
+                <marker date="1455784918344" expanded="true" signature="9619:9685" placeholder="DELETE FROM ..." />
+                <marker date="1455784918344" expanded="true" signature="9934:10037" placeholder="SELECT id, t..UserServices..." />
+                <marker date="1455784918344" expanded="true" signature="10230:10314" placeholder="INSERT INTO ..." />
+                <marker date="1455784918344" expanded="true" signature="10604:10691" placeholder="UPDATE UserS..." />
+                <marker date="1455784918344" expanded="true" signature="10935:11021" placeholder="SELECT devic..UserServices..." />
+                <marker date="1455784918344" expanded="true" signature="11237:11310" placeholder="DELETE FROM ..." />
+                <marker date="1455784918344" expanded="true" signature="11419:11485" placeholder="DELETE FROM ..." />
+                <marker date="1455784918344" expanded="true" signature="11561:11607" placeholder="DELETE FROM ..." />
+                <marker date="1455784918344" expanded="true" signature="11841:11902" placeholder="SELECT ${$bi..UserInfo..." />
+                <marker date="1455784918344" expanded="true" signature="12132:12221" placeholder="SELECT id, t..UserServices..." />
+                <marker date="1455784918344" expanded="true" signature="12405:12454" placeholder="SELECT * FRO..Emails..." />
+                <marker date="1455784918344" expanded="true" signature="12646:12732" placeholder="INSERT INTO ..." />
+                <marker date="1455784918344" expanded="true" signature="13169:13250" placeholder="UPDATE Email..." />
+                <marker date="1455784918344" expanded="true" signature="13705:13771" placeholder="DELETE FROM ..." />
+                <marker date="1455784918344" expanded="true" signature="13870:13936" placeholder="DELETE FROM ..." />
+                <marker date="1455784918344" expanded="true" signature="14416:14502" placeholder="UPDATE TempE..." />
+                <marker date="1455784918344" expanded="true" signature="14728:14835" placeholder="INSERT INTO ..." />
+                <marker date="1455784918344" expanded="true" signature="15074:15182" placeholder="SELECT * FRO..TempEmailCodes..." />
+                <marker date="1455784918344" expanded="true" signature="15183:15241" placeholder="/*AND date_c..." />
+                <marker date="1455784918344" expanded="true" signature="15464:15525" placeholder="SELECT * FRO..Extension_Settings..." />
+                <marker date="1455784918344" expanded="true" signature="15728:15807" placeholder="UPDATE Exten..." />
+                <marker date="1455784918344" expanded="true" signature="16035:16118" placeholder="INSERT INTO ..." />
+                <marker date="1455784918344" expanded="true" signature="16341:16397" placeholder="SELECT * FRO..ProviderKeys..." />
+                <marker date="1455784918344" expanded="true" signature="16585:16681" placeholder="INSERT INTO ..." />
+                <marker date="1455784918344" expanded="true" signature="16900:16977" placeholder="DELETE FROM ..." />
+                <marker date="1455784918344" expanded="true" signature="19913:20007" placeholder="INSERT INTO ..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api2/config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="connect.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/connect.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="30" column="141" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="141" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api2/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="autoload.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api2/vendor/autoload.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Provider.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api2/controllers/Provider.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.6666665">
+              <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+              <folding>
+                <element signature="e#30#38#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/login.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.54668164">
+              <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+              <folding>
+                <marker date="1456136380399" expanded="true" signature="12837:12886" placeholder="SELECT profi... Emails" />
+                <marker date="1456136380399" expanded="true" signature="13047:13098" placeholder="SELECT * FRO... UserInfo" />
+                <marker date="1456136380399" expanded="true" signature="13307:13351" placeholder="SELECT * FRO... Profiles" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/d/login.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1455784746344" expanded="true" signature="1667:1716" placeholder="SELECT profi... Emails" />
+                <marker date="1455784746344" expanded="true" signature="1845:1896" placeholder="SELECT * FRO... UserInfo" />
+                <marker date="1455784746344" expanded="true" signature="2065:2109" placeholder="SELECT * FRO... Profiles" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".htaccess" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.htaccess">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+              <folding>
+                <marker date="1455784254844" expanded="true" signature="100:153" placeholder="&lt;Limit GET POST PUT DELETE&gt;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SessionController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/controllers/SessionController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/login.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="191.07408">
+              <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="helpers.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api2/services/helpers.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.3333335">
+              <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/api/controllers/ProviderController.php" />
+        <option value="$PROJECT_DIR$/api/.htaccess" />
+        <option value="$PROJECT_DIR$/api2/config.php" />
+        <option value="$PROJECT_DIR$/api2/composer.json" />
+        <option value="$PROJECT_DIR$/api2/.htaccess" />
+        <option value="$PROJECT_DIR$/api2/services/helpers.php" />
+        <option value="$PROJECT_DIR$/api2/index.php" />
+        <option value="$PROJECT_DIR$/api2/controllers/Provider.php" />
+        <option value="$PROJECT_DIR$/login.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1365" />
+    <option name="y" value="30" />
+    <option name="width" value="1922" />
+    <option name="height" value="1013" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="biomioai" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="biomioai" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="biomioai" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="LayoutCode.rearrangeEntriesJSON" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../openid-connect" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api2" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GoRunFileConfiguration" factoryName="Go Single File">
+      <module name="" />
+      <working_directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="DIRECTORY" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="ee0f6e67-de90-4fa5-a7d0-5c6d496333bf" server_name="biom.io:4433">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <envs />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bdf6061b-9521-4ccb-bb3a-566ae85aca82" name="Default" comment="" />
+      <created>1455788582647</created>
+      <option name="number" value="Default" />
+      <updated>1455788582647</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1365" y="30" width="1922" height="1013" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12864584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286026" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295964" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/api/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/profile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="49" selection-end-column="3" />
+          <folding>
+            <marker date="1455784931560" expanded="true" signature="1905:1999" placeholder="UPDATE UserI..." />
+            <marker date="1455784931560" expanded="true" signature="2583:2667" placeholder="INSERT INTO ..." />
+            <marker date="1455784931560" expanded="true" signature="3311:3416" placeholder="UPDATE Verif..." />
+            <marker date="1455784931560" expanded="true" signature="3737:3787" placeholder="SELECT * FRO..VerificationCodes..." />
+            <marker date="1455784931560" expanded="true" signature="3922:4084" placeholder="INSERT INTO ..." />
+            <marker date="1455784931560" expanded="true" signature="4368:4433" placeholder="SELECT * FRO..Emails..." />
+            <marker date="1455784931560" expanded="true" signature="4978:5028" placeholder="SELECT * FRO..VerificationCodes..." />
+            <marker date="1455784931560" expanded="true" signature="6192:6297" placeholder="UPDATE Verif..." />
+            <marker date="1455784931560" expanded="true" signature="6434:6537" placeholder="SELECT id, t..UserServices..." />
+            <marker date="1455784931560" expanded="true" signature="6928:6978" placeholder="SELECT * FRO..VerificationCodes..." />
+            <marker date="1455784931560" expanded="true" signature="7210:7372" placeholder="INSERT INTO ..." />
+            <marker date="1455784931560" expanded="true" signature="7989:8094" placeholder="UPDATE Verif..." />
+            <marker date="1455784931560" expanded="true" signature="8415:8465" placeholder="SELECT * FRO..VerificationCodes..." />
+            <marker date="1455784931560" expanded="true" signature="8600:8762" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding>
+            <marker date="1455784918344" expanded="true" signature="170:211" placeholder="SELECT * FRO..Emails..." />
+            <marker date="1455784918344" expanded="true" signature="385:450" placeholder="SELECT * FRO..Emails..." />
+            <marker date="1455784918344" expanded="true" signature="716:772" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="935:1033" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="1209:1265" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="1382:1512" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="1684:1749" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="2153:2220" placeholder="UPDATE UserI..." />
+            <marker date="1455784918344" expanded="true" signature="2360:2426" placeholder="UPDATE UserI..." />
+            <marker date="1455784918344" expanded="true" signature="2565:2624" placeholder="UPDATE Profi..." />
+            <marker date="1455784918344" expanded="true" signature="2854:2903" placeholder="SELECT * FRO..Phones..." />
+            <marker date="1455784918344" expanded="true" signature="3085:3136" placeholder="SELECT * FRO..UserInfo..." />
+            <marker date="1455784918344" expanded="true" signature="3316:3360" placeholder="SELECT * FRO..Profiles..." />
+            <marker date="1455784918344" expanded="true" signature="3561:3619" placeholder="SELECT id FR..TempLoginCodes..." />
+            <marker date="1455784918344" expanded="true" signature="3770:3841" placeholder="UPDATE TempL..." />
+            <marker date="1455784918344" expanded="true" signature="4059:4151" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="4366:4434" placeholder="SELECT * FRO..Phones..." />
+            <marker date="1455784918344" expanded="true" signature="4651:4719" placeholder="SELECT * FRO..Emails..." />
+            <marker date="1455784918344" expanded="true" signature="4934:5023" placeholder="SELECT * FRO..TempLoginCodes..." />
+            <marker date="1455784918344" expanded="true" signature="5024:5082" placeholder="/*AND date_c..." />
+            <marker date="1455784918344" expanded="true" signature="5284:5346" placeholder="SELECT * FRO..TempLoginCodes..." />
+            <marker date="1455784918344" expanded="true" signature="5347:5405" placeholder="/*AND date_c..." />
+            <marker date="1455784918344" expanded="true" signature="5581:5637" placeholder="SELECT * FRO..Profiles..." />
+            <marker date="1455784918344" expanded="true" signature="5870:5939" placeholder="UPDATE Profi..." />
+            <marker date="1455784918344" expanded="true" signature="6492:6597" placeholder="UPDATE Verif..." />
+            <marker date="1455784918344" expanded="true" signature="6836:6886" placeholder="SELECT * FRO..VerificationCodes..." />
+            <marker date="1455784918344" expanded="true" signature="7114:7276" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="7821:7892" placeholder="UPDATE TempP..." />
+            <marker date="1455784918344" expanded="true" signature="8118:8225" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="8456:8600" placeholder="SELECT * FRO..TempPhoneCodes..." />
+            <marker date="1455784918344" expanded="true" signature="8801:8918" placeholder="SELECT * FRO..TempPhoneCodes..." />
+            <marker date="1455784918344" expanded="true" signature="9094:9159" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="9619:9685" placeholder="DELETE FROM ..." />
+            <marker date="1455784918344" expanded="true" signature="9934:10037" placeholder="SELECT id, t..UserServices..." />
+            <marker date="1455784918344" expanded="true" signature="10230:10314" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="10604:10691" placeholder="UPDATE UserS..." />
+            <marker date="1455784918344" expanded="true" signature="10935:11021" placeholder="SELECT devic..UserServices..." />
+            <marker date="1455784918344" expanded="true" signature="11237:11310" placeholder="DELETE FROM ..." />
+            <marker date="1455784918344" expanded="true" signature="11419:11485" placeholder="DELETE FROM ..." />
+            <marker date="1455784918344" expanded="true" signature="11561:11607" placeholder="DELETE FROM ..." />
+            <marker date="1455784918344" expanded="true" signature="11841:11902" placeholder="SELECT ${$bi..UserInfo..." />
+            <marker date="1455784918344" expanded="true" signature="12132:12221" placeholder="SELECT id, t..UserServices..." />
+            <marker date="1455784918344" expanded="true" signature="12405:12454" placeholder="SELECT * FRO..Emails..." />
+            <marker date="1455784918344" expanded="true" signature="12646:12732" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="13169:13250" placeholder="UPDATE Email..." />
+            <marker date="1455784918344" expanded="true" signature="13705:13771" placeholder="DELETE FROM ..." />
+            <marker date="1455784918344" expanded="true" signature="13870:13936" placeholder="DELETE FROM ..." />
+            <marker date="1455784918344" expanded="true" signature="14416:14502" placeholder="UPDATE TempE..." />
+            <marker date="1455784918344" expanded="true" signature="14728:14835" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="15074:15182" placeholder="SELECT * FRO..TempEmailCodes..." />
+            <marker date="1455784918344" expanded="true" signature="15183:15241" placeholder="/*AND date_c..." />
+            <marker date="1455784918344" expanded="true" signature="15464:15525" placeholder="SELECT * FRO..Extension_Settings..." />
+            <marker date="1455784918344" expanded="true" signature="15728:15807" placeholder="UPDATE Exten..." />
+            <marker date="1455784918344" expanded="true" signature="16035:16118" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="16341:16397" placeholder="SELECT * FRO..ProviderKeys..." />
+            <marker date="1455784918344" expanded="true" signature="16585:16681" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="16900:16977" placeholder="DELETE FROM ..." />
+            <marker date="1455784918344" expanded="true" signature="19913:20007" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api2/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/connect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="141" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="141" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api2/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api2/vendor/autoload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api2/controllers/Provider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+          <folding>
+            <element signature="e#30#38#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api2/services/helpers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/profile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1455784931560" expanded="true" signature="1905:1999" placeholder="UPDATE UserI..." />
+            <marker date="1455784931560" expanded="true" signature="2583:2667" placeholder="INSERT INTO ..." />
+            <marker date="1455784931560" expanded="true" signature="3311:3416" placeholder="UPDATE Verif..." />
+            <marker date="1455784931560" expanded="true" signature="3737:3787" placeholder="SELECT * FRO..VerificationCodes..." />
+            <marker date="1455784931560" expanded="true" signature="3922:4084" placeholder="INSERT INTO ..." />
+            <marker date="1455784931560" expanded="true" signature="4368:4433" placeholder="SELECT * FRO..Emails..." />
+            <marker date="1455784931560" expanded="true" signature="4978:5028" placeholder="SELECT * FRO..VerificationCodes..." />
+            <marker date="1455784931560" expanded="true" signature="6192:6297" placeholder="UPDATE Verif..." />
+            <marker date="1455784931560" expanded="true" signature="6434:6537" placeholder="SELECT id, t..UserServices..." />
+            <marker date="1455784931560" expanded="true" signature="6928:6978" placeholder="SELECT * FRO..VerificationCodes..." />
+            <marker date="1455784931560" expanded="true" signature="7210:7372" placeholder="INSERT INTO ..." />
+            <marker date="1455784931560" expanded="true" signature="7989:8094" placeholder="UPDATE Verif..." />
+            <marker date="1455784931560" expanded="true" signature="8415:8465" placeholder="SELECT * FRO..VerificationCodes..." />
+            <marker date="1455784931560" expanded="true" signature="8600:8762" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/forwarders/dev_fw.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="46.48148">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/forms/ProfileEmail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/profile2.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.125">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/controllers/ProviderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="45.666668">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/php/checkDomain.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-38.0">
+          <caret line="57" column="26" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/php/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/biomio-login/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="14.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/SessionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/biomio-login/wizard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="98.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/NotORM.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.060606062">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.3333335">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/EmailController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22916667">
+          <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding>
+            <marker date="1455784918344" expanded="true" signature="170:211" placeholder="SELECT * FRO..Emails..." />
+            <marker date="1455784918344" expanded="true" signature="385:450" placeholder="SELECT * FRO..Emails..." />
+            <marker date="1455784918344" expanded="true" signature="716:772" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="935:1033" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="1209:1265" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="1382:1512" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="1684:1749" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="2153:2220" placeholder="UPDATE UserI..." />
+            <marker date="1455784918344" expanded="true" signature="2360:2426" placeholder="UPDATE UserI..." />
+            <marker date="1455784918344" expanded="true" signature="2565:2624" placeholder="UPDATE Profi..." />
+            <marker date="1455784918344" expanded="true" signature="2854:2903" placeholder="SELECT * FRO..Phones..." />
+            <marker date="1455784918344" expanded="true" signature="3085:3136" placeholder="SELECT * FRO..UserInfo..." />
+            <marker date="1455784918344" expanded="true" signature="3316:3360" placeholder="SELECT * FRO..Profiles..." />
+            <marker date="1455784918344" expanded="true" signature="3561:3619" placeholder="SELECT id FR..TempLoginCodes..." />
+            <marker date="1455784918344" expanded="true" signature="3770:3841" placeholder="UPDATE TempL..." />
+            <marker date="1455784918344" expanded="true" signature="4059:4151" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="4366:4434" placeholder="SELECT * FRO..Phones..." />
+            <marker date="1455784918344" expanded="true" signature="4651:4719" placeholder="SELECT * FRO..Emails..." />
+            <marker date="1455784918344" expanded="true" signature="4934:5023" placeholder="SELECT * FRO..TempLoginCodes..." />
+            <marker date="1455784918344" expanded="true" signature="5024:5082" placeholder="/*AND date_c..." />
+            <marker date="1455784918344" expanded="true" signature="5284:5346" placeholder="SELECT * FRO..TempLoginCodes..." />
+            <marker date="1455784918344" expanded="true" signature="5347:5405" placeholder="/*AND date_c..." />
+            <marker date="1455784918344" expanded="true" signature="5581:5637" placeholder="SELECT * FRO..Profiles..." />
+            <marker date="1455784918344" expanded="true" signature="5870:5939" placeholder="UPDATE Profi..." />
+            <marker date="1455784918344" expanded="true" signature="6492:6597" placeholder="UPDATE Verif..." />
+            <marker date="1455784918344" expanded="true" signature="6836:6886" placeholder="SELECT * FRO..VerificationCodes..." />
+            <marker date="1455784918344" expanded="true" signature="7114:7276" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="7821:7892" placeholder="UPDATE TempP..." />
+            <marker date="1455784918344" expanded="true" signature="8118:8225" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="8456:8600" placeholder="SELECT * FRO..TempPhoneCodes..." />
+            <marker date="1455784918344" expanded="true" signature="8801:8918" placeholder="SELECT * FRO..TempPhoneCodes..." />
+            <marker date="1455784918344" expanded="true" signature="9094:9159" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="9619:9685" placeholder="DELETE FROM ..." />
+            <marker date="1455784918344" expanded="true" signature="9934:10037" placeholder="SELECT id, t..UserServices..." />
+            <marker date="1455784918344" expanded="true" signature="10230:10314" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="10604:10691" placeholder="UPDATE UserS..." />
+            <marker date="1455784918344" expanded="true" signature="10935:11021" placeholder="SELECT devic..UserServices..." />
+            <marker date="1455784918344" expanded="true" signature="11237:11310" placeholder="DELETE FROM ..." />
+            <marker date="1455784918344" expanded="true" signature="11419:11485" placeholder="DELETE FROM ..." />
+            <marker date="1455784918344" expanded="true" signature="11561:11607" placeholder="DELETE FROM ..." />
+            <marker date="1455784918344" expanded="true" signature="11841:11902" placeholder="SELECT ${$bi..UserInfo..." />
+            <marker date="1455784918344" expanded="true" signature="12132:12221" placeholder="SELECT id, t..UserServices..." />
+            <marker date="1455784918344" expanded="true" signature="12405:12454" placeholder="SELECT * FRO..Emails..." />
+            <marker date="1455784918344" expanded="true" signature="12646:12732" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="13169:13250" placeholder="UPDATE Email..." />
+            <marker date="1455784918344" expanded="true" signature="13705:13771" placeholder="DELETE FROM ..." />
+            <marker date="1455784918344" expanded="true" signature="13870:13936" placeholder="DELETE FROM ..." />
+            <marker date="1455784918344" expanded="true" signature="14416:14502" placeholder="UPDATE TempE..." />
+            <marker date="1455784918344" expanded="true" signature="14728:14835" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="15074:15182" placeholder="SELECT * FRO..TempEmailCodes..." />
+            <marker date="1455784918344" expanded="true" signature="15183:15241" placeholder="/*AND date_c..." />
+            <marker date="1455784918344" expanded="true" signature="15464:15525" placeholder="SELECT * FRO..Extension_Settings..." />
+            <marker date="1455784918344" expanded="true" signature="15728:15807" placeholder="UPDATE Exten..." />
+            <marker date="1455784918344" expanded="true" signature="16035:16118" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="16341:16397" placeholder="SELECT * FRO..ProviderKeys..." />
+            <marker date="1455784918344" expanded="true" signature="16585:16681" placeholder="INSERT INTO ..." />
+            <marker date="1455784918344" expanded="true" signature="16900:16977" placeholder="DELETE FROM ..." />
+            <marker date="1455784918344" expanded="true" signature="19913:20007" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/connect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="141" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="141" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api2/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.104166664">
+          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/profile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding>
+            <marker date="1455784931560" expanded="true" signature="1905:1999" placeholder="UPDATE UserI..." />
+            <marker date="1455784931560" expanded="true" signature="2583:2667" placeholder="INSERT INTO ..." />
+            <marker date="1455784931560" expanded="true" signature="3311:3416" placeholder="UPDATE Verif..." />
+            <marker date="1455784931560" expanded="true" signature="3737:3787" placeholder="SELECT * FRO..VerificationCodes..." />
+            <marker date="1455784931560" expanded="true" signature="3922:4084" placeholder="INSERT INTO ..." />
+            <marker date="1455784931560" expanded="true" signature="4368:4433" placeholder="SELECT * FRO..Emails..." />
+            <marker date="1455784931560" expanded="true" signature="4978:5028" placeholder="SELECT * FRO..VerificationCodes..." />
+            <marker date="1455784931560" expanded="true" signature="6192:6297" placeholder="UPDATE Verif..." />
+            <marker date="1455784931560" expanded="true" signature="6434:6537" placeholder="SELECT id, t..UserServices..." />
+            <marker date="1455784931560" expanded="true" signature="6928:6978" placeholder="SELECT * FRO..VerificationCodes..." />
+            <marker date="1455784931560" expanded="true" signature="7210:7372" placeholder="INSERT INTO ..." />
+            <marker date="1455784931560" expanded="true" signature="7989:8094" placeholder="UPDATE Verif..." />
+            <marker date="1455784931560" expanded="true" signature="8415:8465" placeholder="SELECT * FRO..VerificationCodes..." />
+            <marker date="1455784931560" expanded="true" signature="8600:8762" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/ProviderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.6666665">
+          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api2/vendor/autoload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api2/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.0">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api2/vendor/slim/slim/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.59504133">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api2/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.060606062">
+          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api2/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wizard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1455785056112" expanded="true" signature="222:300" placeholder="SELECT * FRO... TempLoginCodes" />
+            <marker date="1455785056112" expanded="true" signature="655:699" placeholder="SELECT * FRO... Profiles" />
+            <marker date="1455785056112" expanded="true" signature="834:886" placeholder="SELECT * FRO... UserInfo" />
+            <marker date="1455785056112" expanded="true" signature="1068:1123" placeholder="UPDATE TempL... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.0978627">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1455784995348" expanded="true" signature="170:211" placeholder="SELECT * FRO... Emails" />
+            <marker date="1455784995348" expanded="true" signature="385:450" placeholder="SELECT * FRO... Emails" />
+            <marker date="1455784995348" expanded="true" signature="716:772" placeholder="INSERT INTO Profiles... " />
+            <marker date="1455784995348" expanded="true" signature="935:1033" placeholder="INSERT INTO UserInfo... " />
+            <marker date="1455784995348" expanded="true" signature="1209:1265" placeholder="INSERT INTO ProviderInfo... " />
+            <marker date="1455784995348" expanded="true" signature="1382:1512" placeholder="INSERT INTO Emails... " />
+            <marker date="1455784995348" expanded="true" signature="1684:1749" placeholder="INSERT INTO PgpKeysData... " />
+            <marker date="1455784995348" expanded="true" signature="2153:2220" placeholder="UPDATE UserI... " />
+            <marker date="1455784995348" expanded="true" signature="2360:2426" placeholder="UPDATE UserI... " />
+            <marker date="1455784995348" expanded="true" signature="2565:2624" placeholder="UPDATE Profi... " />
+            <marker date="1455784995348" expanded="true" signature="2854:2903" placeholder="SELECT * FRO... Phones" />
+            <marker date="1455784995348" expanded="true" signature="3085:3136" placeholder="SELECT * FRO... UserInfo" />
+            <marker date="1455784995348" expanded="true" signature="3316:3360" placeholder="SELECT * FRO... Profiles" />
+            <marker date="1455784995348" expanded="true" signature="3561:3619" placeholder="SELECT id FR... TempLoginCodes" />
+            <marker date="1455784995348" expanded="true" signature="3770:3841" placeholder="UPDATE TempL... " />
+            <marker date="1455784995348" expanded="true" signature="4059:4151" placeholder="INSERT INTO TempLoginCodes... " />
+            <marker date="1455784995348" expanded="true" signature="4366:4434" placeholder="SELECT * FRO... Phones" />
+            <marker date="1455784995348" expanded="true" signature="4651:4719" placeholder="SELECT * FRO... Emails" />
+            <marker date="1455784995348" expanded="true" signature="4934:5023" placeholder="SELECT * FRO... TempLoginCodes" />
+            <marker date="1455784995348" expanded="true" signature="5024:5082" placeholder="/*AND date_c... " />
+            <marker date="1455784995348" expanded="true" signature="5284:5346" placeholder="SELECT * FRO... TempLoginCodes" />
+            <marker date="1455784995348" expanded="true" signature="5347:5405" placeholder="/*AND date_c... " />
+            <marker date="1455784995348" expanded="true" signature="5581:5637" placeholder="SELECT * FRO... Profiles" />
+            <marker date="1455784995348" expanded="true" signature="5870:5939" placeholder="UPDATE Profi... " />
+            <marker date="1455784995348" expanded="true" signature="6492:6597" placeholder="UPDATE Verif... " />
+            <marker date="1455784995348" expanded="true" signature="6836:6886" placeholder="SELECT * FRO... VerificationCodes" />
+            <marker date="1455784995348" expanded="true" signature="7114:7276" placeholder="INSERT INTO VerificationCodes... " />
+            <marker date="1455784995348" expanded="true" signature="7821:7892" placeholder="UPDATE TempP... " />
+            <marker date="1455784995348" expanded="true" signature="8118:8225" placeholder="INSERT INTO TempPhoneCodes... " />
+            <marker date="1455784995348" expanded="true" signature="8456:8600" placeholder="SELECT * FRO... TempPhoneCodes" />
+            <marker date="1455784995348" expanded="true" signature="8801:8918" placeholder="SELECT * FRO... TempPhoneCodes" />
+            <marker date="1455784995348" expanded="true" signature="9094:9159" placeholder="INSERT INTO Phones... " />
+            <marker date="1455784995348" expanded="true" signature="9619:9685" placeholder="DELETE FROM " />
+            <marker date="1455784995348" expanded="true" signature="9934:10037" placeholder="SELECT id, t... UserServices" />
+            <marker date="1455784995348" expanded="true" signature="10230:10314" placeholder="INSERT INTO UserServices... " />
+            <marker date="1455784995348" expanded="true" signature="10604:10691" placeholder="UPDATE UserS... " />
+            <marker date="1455784995348" expanded="true" signature="10935:11021" placeholder="SELECT devic... UserServices" />
+            <marker date="1455784995348" expanded="true" signature="11237:11310" placeholder="DELETE FROM " />
+            <marker date="1455784995348" expanded="true" signature="11419:11485" placeholder="DELETE FROM " />
+            <marker date="1455784995348" expanded="true" signature="11561:11607" placeholder="DELETE FROM " />
+            <marker date="1455784995348" expanded="true" signature="11841:11902" placeholder="SELECT ${$bi... UserInfo" />
+            <marker date="1455784995348" expanded="true" signature="12132:12221" placeholder="SELECT id, t... UserServices" />
+            <marker date="1455784995348" expanded="true" signature="12405:12454" placeholder="SELECT * FRO... Emails" />
+            <marker date="1455784995348" expanded="true" signature="12646:12732" placeholder="INSERT INTO Emails... " />
+            <marker date="1455784995348" expanded="true" signature="13169:13250" placeholder="UPDATE Email... " />
+            <marker date="1455784995348" expanded="true" signature="13705:13771" placeholder="DELETE FROM " />
+            <marker date="1455784995348" expanded="true" signature="13870:13936" placeholder="DELETE FROM " />
+            <marker date="1455784995348" expanded="true" signature="14416:14502" placeholder="UPDATE TempE... " />
+            <marker date="1455784995348" expanded="true" signature="14728:14835" placeholder="INSERT INTO TempEmailCodes... " />
+            <marker date="1455784995348" expanded="true" signature="15074:15182" placeholder="SELECT * FRO... TempEmailCodes" />
+            <marker date="1455784995348" expanded="true" signature="15183:15241" placeholder="/*AND date_c... " />
+            <marker date="1455784995348" expanded="true" signature="15464:15525" placeholder="SELECT * FRO... Extension_Settings" />
+            <marker date="1455784995348" expanded="true" signature="15728:15807" placeholder="UPDATE Exten... " />
+            <marker date="1455784995348" expanded="true" signature="16035:16118" placeholder="INSERT INTO Extension_Settings... " />
+            <marker date="1455784995348" expanded="true" signature="16341:16397" placeholder="SELECT * FRO... ProviderKeys" />
+            <marker date="1455784995348" expanded="true" signature="16585:16681" placeholder="INSERT INTO ProviderKeys... " />
+            <marker date="1455784995348" expanded="true" signature="16900:16977" placeholder="DELETE FROM " />
+            <marker date="1455784995348" expanded="true" signature="19913:20007" placeholder="INSERT INTO UILog... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14173229">
+          <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.656918">
+          <caret line="230" column="0" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.7210349">
+          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+          <folding>
+            <marker date="1455784927216" expanded="true" signature="814:855" placeholder="SELECT * FRO... Emails" />
+            <marker date="1455784927216" expanded="true" signature="1119:1170" placeholder="SELECT * FRO... UserInfo" />
+            <marker date="1455784927216" expanded="true" signature="1552:1657" placeholder="UPDATE Verif... " />
+            <marker date="1455784927216" expanded="true" signature="1984:2034" placeholder="SELECT * FRO... VerificationCodes" />
+            <marker date="1455784927216" expanded="true" signature="2173:2335" placeholder="INSERT INTO VerificationCodes... " />
+            <marker date="1455784927216" expanded="true" signature="3021:3071" placeholder="SELECT * FRO... VerificationCodes" />
+            <marker date="1455784927216" expanded="true" signature="3323:3374" placeholder="SELECT * FRO... UserInfo" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/controllers/SessionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="191.07408">
+          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+          <folding>
+            <marker date="1455784254844" expanded="true" signature="100:153" placeholder="&lt;Limit GET POST PUT DELETE&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api2/services/helpers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.3333335">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api2/controllers/Provider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.6666665">
+          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+          <folding>
+            <element signature="e#30#38#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/d/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1455784746344" expanded="true" signature="1667:1716" placeholder="SELECT profi... Emails" />
+            <marker date="1455784746344" expanded="true" signature="1845:1896" placeholder="SELECT * FRO... UserInfo" />
+            <marker date="1455784746344" expanded="true" signature="2065:2109" placeholder="SELECT * FRO... Profiles" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54668164">
+          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+          <folding>
+            <marker date="1456136380399" expanded="true" signature="12837:12886" placeholder="SELECT profi... Emails" />
+            <marker date="1456136380399" expanded="true" signature="13047:13098" placeholder="SELECT * FRO... UserInfo" />
+            <marker date="1456136380399" expanded="true" signature="13307:13351" placeholder="SELECT * FRO... Profiles" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

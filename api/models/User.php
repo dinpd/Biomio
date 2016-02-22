@@ -12,14 +12,7 @@ class User {
 	return $result;
   }
 
-  public static function primary_email($profileId) {
-	include ('connect.php');
-	$result = $pdo->prepare("SELECT * FROM Emails WHERE profileId = :profileId AND primary = 1");
-	$result->execute(array('profileId'=>$profileId));
-	return $result;
-  }
-
-  public static function add_profile($first_name, $last_name, $email, $type, $ip, $extention) {
+  public static function add_profile($first_name, $last_name, $email, $type, $ip) {
   	include ('connect.php');
   	// insert basic info into Profile
   	$result = $pdo->prepare("INSERT INTO Profiles (last_ip, type) VALUES (:ip, :type)");
@@ -35,8 +28,8 @@ class User {
   	$result->execute(array('profileId'=>$profileId));
 
   	// insert email into Emails
-  	$result = $pdo->prepare("INSERT INTO Emails (profileId, email, `primary`, extention, date_created) VALUES (:profileId, :email, :primary, :extention, now())");
-  	$result->execute(array('profileId'=>$profileId, 'email'=>$email, 'primary'=>1, 'extention'=>$extention));
+  	$result = $pdo->prepare("INSERT INTO Emails (profileId, email, `primary`, date_created) VALUES (:profileId, :email, :primary, now())");
+  	$result->execute(array('profileId'=>$profileId, 'email'=>$email, 'primary'=>1));
 
   	// insert into emails data
   	$result = $pdo->prepare("INSERT INTO PgpKeysData (user, email) VALUES (:profileId, :email)");
@@ -132,13 +125,6 @@ class User {
 	return $result;
   }
 
-  public static function select_temp_login_codes($code) {
-	include ('connect.php');
-	$result = $pdo->prepare("SELECT * FROM TempLoginCodes WHERE code = :code AND status = 1 /*AND date_created > DATE_SUB(now(), INTERVAL 15 MINUTE)*/");
-	$result->execute(array('code'=>$code));
-	return $result;
-  }
-
   public static function find_user($fieldname, $value) {
 	include ('connect.php');
 	$result = $pdo->prepare("SELECT * FROM Profiles WHERE " . $fieldname . " = :value");
@@ -209,13 +195,6 @@ class User {
 	include ('connect.php');
 	$result = $pdo->prepare("SELECT * FROM TempPhoneCodes WHERE profileId = :profileId AND code = :code AND status = 1 AND date_created > DATE_SUB(now(), INTERVAL 15 MINUTE)");
 	$result->execute(array('profileId'=>$profileId, 'code'=>$code));
-	return $result;
-  }
-
-  public static function check_temp_phone_codes($code) {
-	include ('connect.php');
-	$result = $pdo->prepare("SELECT * FROM TempPhoneCodes WHERE code = :code AND status = 1 AND date_created > DATE_SUB(now(), INTERVAL 15 MINUTE)");
-	$result->execute(array('code'=>$code));
 	return $result;
   }
 
@@ -316,6 +295,16 @@ class User {
 	include ('connect.php');
 	$result = $pdo->prepare("INSERT INTO Emails (profileId, email, date_created) VALUES (:profileId, :email, now())");
 	$result->execute(array('profileId'=>$profileId, 'email'=>$email));
+
+	$result = $pdo->prepare("INSERT INTO PgpKeysData (user, email) VALUES (:profileId, :email)");
+	$result->execute(array('profileId'=>$profileId, 'email'=>$email));
+	return $result;
+  }
+
+  public static function add_not_gmail_email($profileId, $email) {
+	include ('connect.php');
+	$result = $pdo->prepare("INSERT INTO Emails (profileId, email, date_created) VALUES (:profileId, :email, now())");
+	$result->execute(array('profileId'=>$profileId, 'email'=>$email));
   }
 
   public static function update_email($profileId, $email, $field, $value) {
@@ -395,28 +384,6 @@ class User {
 	include ('connect.php');
 	$result = $pdo->prepare("INSERT INTO Extension_Settings (profileId, settings) VALUES (:profileId, :settings)");
 	$result->execute(array('profileId'=>$profileId, 'settings'=>$settings));
-	return $result;
-  }
-
-  /* API */
-  public static function select_api_keys($field, $value) {
-	include ('connect.php');
-	$result = $pdo->prepare("SELECT * FROM ProviderKeys WHERE " . $field . " = :value");
-	$result->execute(array('value'=>$value));
-	return $result;
-  }
-
-  public static function save_api_keys($providerId, $pub, $priv) {
-	include ('connect.php');
-	$result = $pdo->prepare("INSERT INTO ProviderKeys (providerId, public_key, private_key) VALUES (:providerId, :pub, :priv)");
-	$result->execute(array('providerId'=>$providerId, 'pub'=>$pub, 'priv'=>$priv));
-	return $result;
-  }
-
-  public static function delete_api_key($profileId, $key) {
-	include ('connect.php');
-	$result = $pdo->prepare("DELETE FROM ProviderKeys WHERE providerId = :providerId AND public_key = :key");
-	$result->execute(array('providerId'=>$providerId, 'key'=>$key));
 	return $result;
   }
 

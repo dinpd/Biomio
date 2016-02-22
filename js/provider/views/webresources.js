@@ -16,8 +16,7 @@ App.Views.ProviderWebResources = Backbone.View.extend({
     'click .provider-websites-verify'  : 'verify_code',
     'keyup #provider_websites_domain'  : 'validate_code',
 
-    'click .webresource .remove': 'remove_website',
-    'click .webresource .key': 'generate_keys',
+    'click .webresource .remove': 'remove_website'
   },
   addWebsite: function(e) {
       $('.provider-websites-add').addClass('hide');
@@ -51,7 +50,7 @@ App.Views.ProviderWebResources = Backbone.View.extend({
                                   '<td>' + hook + '</td>' +
                                   '<td>' +
                                       '<button type="button" class="close control-button remove" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>' +
-                                      '<button type="button" class="btn btn-success key">api keys</button>' +
+                                      /*'<button type="button" class="btn btn-success key">api keys</button>' +*/
                                   '</td>' +
                               '</tr>');
   },
@@ -68,7 +67,7 @@ App.Views.ProviderWebResources = Backbone.View.extend({
         }
     });
   },
-  generate_keys: function(e) {
+  /*generate_keys: function(e) {
     $that = $(e.target).closest('tr');
     var id = $that.attr('id').substring(9);
 
@@ -96,7 +95,7 @@ App.Views.ProviderWebResources = Backbone.View.extend({
           });
         }
     });
-  },
+  },*/
   submitForm: function(e) {
     e.preventDefault();
     var that = this;

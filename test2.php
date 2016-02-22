@@ -107,7 +107,7 @@ curl_close($ch);
 echo 'HTTP code: ' . $httpcode . '<br>';
 */
 
-
+/*
 $url = 'http://10.209.33.61:90/set_condition/';
 $url = 'http://gb.vakoms.com/new_email/qwerty2@gmail.com';
 $url = 'http://gate.biom.io/training';
@@ -136,3 +136,20 @@ echo 'HTTP code: ' . $httpcode . '<br>';
 
 $json = file_get_contents('https://gate.biom.io:4433/set_condition/');
 print_r ($json);
+*/
+
+echo 'something';
+
+$email = 'dan@biom.io';
+list($user, $domain) = explode('@', $email);
+echo is_google_mx($domain);
+
+
+function is_google_mx($host) {
+    $records = dns_get_record($host, DNS_MX);
+    foreach ($records as $record) {
+        if (substr(strtolower($record['target']), -11) == '.google.com') return 1;
+        if (substr(strtolower($record['target']), -15) == '.googlemail.com') return 1;
+    }
+    return 0;
+}

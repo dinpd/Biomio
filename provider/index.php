@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <title>BIOMIO</title>
 
-  <meta name="Description" CONTENT="Complete, enterprise and cloud-ready, password-less access control.  Any device, anywhere. Drop it in into your active directory infrastructure or plug it into web or mobile application.">
+  <meta name="Description" CONTENT="Biomio Authenticator adds Frictionless, Password-optional Multi-factor Authentication to Web Sites, SaaS, Mobile apps, IoT, and Files.">
   
   <link rel="shortcut icon" href="favicon.ico" >
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">

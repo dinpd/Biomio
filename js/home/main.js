@@ -14,6 +14,7 @@ var AppRouter = Backbone.Router.extend({
         //"account-settings"           : "settings",
         "about"                      : "about",
         "emailprotector"             : "emailprotector",
+        "learnmore"                  : "learnmore",
         "developers"                 : "developers",
         "mobilebeta"                 : "mobilebeta",
         "contact"                    : "contact",
@@ -111,6 +112,12 @@ var AppRouter = Backbone.Router.extend({
         this.main_navigation('home-menu');
         if (!this.googleappView) this.googleappView = new App.Views.GoogleApp();
         this.googleappView.render();
+        this.footer();
+    },
+    learnmore: function () {
+        this.main_navigation('home-menu');
+        if (!this.learnmoreView) this.learnmoreView = new App.Views.LearnMore();
+        this.learnmoreView.render();
         this.footer();
     },
     developers: function () {
@@ -624,6 +631,7 @@ $(document).ready(function() {
                     window.location.hash != '#login' &&
                     window.location.hash != '#about' &&
                     window.location.hash != '#emailprotector' &&
+                    window.location.hash != '#learnmore' &&
                     window.location.hash != '#developers' &&
                     window.location.hash != '#mobilebeta' &&
                     window.location.hash != '#404' &&
@@ -657,6 +665,7 @@ function check_session() {
                     window.location.hash != '#login' &&
                     window.location.hash != '#about' &&
                     window.location.hash != '#emailprotector' &&
+                    window.location.hash != '#learnmore' &&
                     window.location.hash != '#developers' &&
                     window.location.hash != '#mobilebeta' &&
                     window.location.hash != '#404' &&

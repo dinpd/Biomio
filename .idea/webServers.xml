@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="fa848a98-985b-40f1-8d3b-d04352b0149d" name="biom.io:4433" url="http://biom.io:4433">
+        <fileTransfer host="biom.io" port="22" privateKey="$USER_HOME$/.ssh/id_rsa" rootFolder="/home/biomio/www/ai-development" accessType="SFTP" username="biomio" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

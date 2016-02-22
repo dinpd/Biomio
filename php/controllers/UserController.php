@@ -736,7 +736,6 @@ class UserController {
 	}
 }
 
-
 function create_image_code($code) {
 	$image = imagecreatetruecolor(260, 40); // creating an image
 

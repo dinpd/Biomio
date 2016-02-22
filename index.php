@@ -19,6 +19,7 @@
   <link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.min.css" />
   <link rel="stylesheet" type="text/css" href="css/tooltipster.css" />
   <link rel="stylesheet" type="text/css" href="css/bootstrap-switch.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/ihover.css" />
   
   <!--<link rel="stylesheet" type="text/css" href="css/biomio-style.css" />-->
 
@@ -56,14 +57,6 @@
 <body>
 
 <div id="alert" style="position: fixed; z-index: 100000; margin: 0 auto" class="col-md-12"></div>
-
-<div class='sticker'>
-  <a href='https://www.facebook.com/biomio123'>
-    <img src='img/home/facebook.png'></a>
-  <a href='https://twitter.com/_biomio_'>
-    <img src='img/home/twitter.png'></a>
-  <a href="./#contact"><img src='img/home/sociallabel.png'></a>
-</div>
 
 <div class="header"></div>
 

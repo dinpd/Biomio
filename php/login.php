@@ -316,6 +316,11 @@ if (isset($_POST['cmd'])) {
 			echo $result;
 		break;
 
+		/* Gate */
+		case 'get_gate_keys':
+			$result = UserController::get_gate_keys();
+			echo $result;
+		break;
 		/* API */
 		case 'get_api_keys':
 			$result = UserController::get_api_keys();
@@ -339,3 +344,4 @@ if (isset($_POST['cmd'])) {
 		break;
 	}
 }
+

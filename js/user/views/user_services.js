@@ -10,6 +10,7 @@ App.Views.userServices = Backbone.View.extend({
         this.get_user_extensions();
         this.get_user_emails();
         this.get_extension_settings();
+        this.get_gate_keys();
     },
     events: {
         // chrome extention
@@ -129,6 +130,18 @@ App.Views.userServices = Backbone.View.extend({
                         $('.download-protector').addClass('hide');
                     }
                 });
+            }
+        });
+    },
+    get_extension_settings: function () {
+        $.ajax({
+            type: 'POST',
+            url: 'php/login.php',
+            dataType: "json",
+            data: {cmd: "get_gate_keys"},
+            success: function(data) {
+                var text = '<tr><td>' + data.pub + '</td><td>' + data.priv + '</td></tr>';
+                $('.service-2-keys').html(text);
             }
         });
     },

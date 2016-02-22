@@ -150,7 +150,7 @@ if (isset($_POST['cmd'])) {
 			}
 		break;
 
-		case 'generate_website_keys':
+		/*case 'generate_website_keys':
 			if (!isset($_SESSION['id']) || !isset($_SESSION['providerId'])) {echo '#session'; break;}
 			else {
 				$providerId = $_SESSION['providerId'];
@@ -179,7 +179,7 @@ if (isset($_POST['cmd'])) {
 				$data = array('public_key'=>$pub, 'private_key'=>$priv);
 				echo json_encode($data);
 			}
-		break;
+		break;*/
 
 		case 'load_provider_users':
 			$result = ProviderController::load_provider_users();
