@@ -16,10 +16,10 @@ $request['client_id'] = '56ce9a6a93c17d2c867c5c293482b8f9';
 $request['client_secret'] = '85a879a19387afe791039a88b354a374';
 $request['grant_type'] = 'authorization_code';
 $request['code'] = $code;
-$request['redirect_uri'] = 'https://biom.io/login.php';
+$request['redirect_uri'] = 'https://biom.io:4433/login.php';
 
 // Send request
-$url = "http://biom.io:5001/user/token";    
+$url = "http://biom.io:5000/user/token";
 $content = json_encode($request);
 $curl = curl_init($url);
 curl_setopt($curl, CURLOPT_HEADER, false);
