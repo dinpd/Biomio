@@ -1,6 +1,10 @@
 <?php
 
 require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/../api/controllers/EmailController.php';
+
+$path = __DIR__ . "/../php/";
+set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 $config = require 'config.php';
 
@@ -14,7 +18,7 @@ if ($config['debug']) {
     error_reporting(0);
 }
 
-$app = new Slim\App();
+$app = new Slim\App($config);
 
 ORM::configure('mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['dbName'] . ';charset=utf8');
 ORM::configure('username', $config['db']['user']);
@@ -23,16 +27,34 @@ ORM::configure('return_result_sets', true);
 // prevent returning data with string type
 ORM::configure('driver_options', array(PDO::ATTR_EMULATE_PREPARES => false));
 
+$container = $app->getContainer();
+
+$container['Models\Helper'] = function ($c) {
+    $response = $c->get('response');
+    return new \Models\Helper($response);
+};
+
+//$container['ORM'] = function ($c) {
+//    $settings = $c->get('settings');
+//
+//    ORM::configure('mysql:host=' . $settings['db']['host'] . ';dbname=' . $settings['db']['dbName'] . ';charset=utf8');
+//    ORM::configure('username', $settings['db']['user']);
+//    ORM::configure('password', $settings['db']['password']);
+//    ORM::configure('return_result_sets', true);
+//    // prevent returning data with string type
+//    ORM::configure('driver_options', array(PDO::ATTR_EMULATE_PREPARES => false));
+//
+//    return ORM;
+//};
 
 /** Routes */
-
 $app->group('/v1', function () use ($app) {
 
     $app->post('/sign_up', '\Controllers\Provider:signUp');
 
-    $app->put('/user', '\Controllers\Provider:updateUser');
+    $app->put('/user/{profileId}', '\Controllers\Provider:updateUser');
 
-    $app->post('/device', '\Controllers\Provider:addDevice');
+    $app->post('/user/{profileId}/device', '\Controllers\Provider:addDevice');
 
     $app->post('/generate_device_code', '\Controllers\Provider:generateDeviceCode');
 
@@ -42,6 +64,8 @@ $app->group('/v1', function () use ($app) {
 
     $app->post('/status', '\Controllers\Provider:status');
 
-});
+})->add(new \Middlewares\Hmac);
+
+$app->post('/digest', '\Controllers\Provider:digest');
 
 $app->run();

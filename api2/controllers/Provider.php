@@ -1,7 +1,8 @@
 <?php
 namespace Controllers;
 
-require ('../php/controllers/UserController.php');
+require_once(__DIR__ . "/../../php/controllers/UserController.php");
+require_once(__DIR__ . '/../../php/models/User.php');
 
 use ORM;
 use Slim\Slim;
@@ -10,12 +11,48 @@ use Models;
 class Provider
 {
 
-    const ERR_CODE_WRONG_HASH = 101;
-    const ERR_CODE_REQUIRED = 102;
-    const ERR_CODE_EXPIRED = 103;
-    const ERR_CODE_INVALID_EMAIL = 104;
-    const ERR_CODE_NOT_GMAIL = 105;
-    const ERR_CODE_EMAIL_EXIST = 106;
+    const ERR_CODE_REQUIRED = 101;
+    const ERR_CODE_EXPIRED = 102;
+    const ERR_CODE_INVALID_EMAIL = 103;
+    const ERR_CODE_NOT_GMAIL = 104;
+    const ERR_CODE_EMAIL_EXIST = 105;
+    const ERR_CODE_USER_NOT_FOUND = 106;
+
+    public $helper;
+
+    public function __construct($c) {
+        $this->helper = $c->get('Models\Helper');
+    }
+
+    public function digest($request, $response) {
+
+        $body = $request->getParsedBody();
+
+        $provider = Models\Provider::getProviderByPublicKey($body['publicKey']);
+
+        $digest = '';
+        if ($provider) {
+
+            $hash = $body['method'];
+            $hash .= $body['uri'];
+            $hash .= json_encode($body['data']);
+            $hash .= $body['nonce'];
+
+            $digest = hash_hmac('sha256', $hash, $provider->private_key);
+        }
+
+        $uri = '';
+        $uri .= $request->getUri()->getScheme() . "://";
+        $uri .= $request->getUri()->getHost();
+
+        $uri .= ":" . $request->getUri()->getPort();
+        $uri .= $request->getUri()->getBasePath();
+        $uri .= "/" . $request->getUri()->getPath();
+        $uri .= "?" . $request->getUri()->getQuery();
+
+        return $this->helper
+            ->jsonResponse(200, ["digest" => $digest, "body" => $body, "method" => $request->getMethod(), "URI" => $uri]);
+    }
 
     /**
      * @route: post /api/v1/sign_up
@@ -23,91 +60,36 @@ class Provider
      * @param $response
      * @return mixed
      */
-    public static function signUp($request, $response)
+    public function signUp($request, $response)
     {
-        //$request: {hash: hash, time: time, public_key: public_key, email: email }
+        //$request: {email: email }
 
         $post = $request->getParsedBody();
+        $provider = $request->getAttribute('provider');
 
         /** validate body params */
-        if (!isset($post['hash']) || !isset($post['time']) || !isset($post['public_key']) || !isset($post['email'])) {
-            $message = [
-                "code" => self::ERR_CODE_REQUIRED,
-                "message" => "hash, time, public_key, email are required!"
-            ];
-            return $response->withStatus(400)
-                ->withHeader('Access-Control-Allow-Origin', '*')
-                ->withHeader('Content-Type', 'application/json')
-                ->write(json_encode($message));
-        }
-
-        $provider = Models\Provider::getProviderByPublicKey($post['public_key']);
-        $currentTime = time();
-
-
-
-        $hashIsValid = validateHash($post, $provider->private_key);
-
-        if (!$hashIsValid) {
-            $message = [
-                "code" => self::ERR_CODE_WRONG_HASH,
-                "message" => "Hash is wrong!"
-            ];
-            return $response->withStatus(401)
-                ->withHeader('Access-Control-Allow-Origin', '*')
-                ->withHeader('Content-Type', 'application/json')
-                ->write(json_encode($message));
-        }
-
-        $expired = ($currentTime > $post['time'] + 5 * 60);
-
-        if ($expired) {
-            $message = [
-                "code" => self::ERR_CODE_EXPIRED,
-                "message" => "time is wrong or request is expired!"
-            ];
-            return $response->withStatus(400)
-                ->withHeader('Access-Control-Allow-Origin', '*')
-                ->withHeader('Content-Type', 'application/json')
-                ->write(json_encode($message));
+        if (!isset($post['email'])) {
+            return $this->helper
+                ->jsonResponse(400, ["code" => self::ERR_CODE_REQUIRED, "message" => "email is required"]);
         }
 
         if (!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
-            $message = [
-                "code" => self::ERR_CODE_INVALID_EMAIL,
-                "message" => "email is in a wrong format!"
-            ];
-            return $response->withStatus(400)
-                ->withHeader('Access-Control-Allow-Origin', '*')
-                ->withHeader('Content-Type', 'application/json')
-                ->write(json_encode($message));
+            return $this->helper
+                ->jsonResponse(400, ["code" => self::ERR_CODE_INVALID_EMAIL, "message" => "email is in a wrong format"]);
         }
 
         list($user, $domain) = explode('@', strtolower($post['email']));
 
         if (!is_google_mx($domain)) {
-            $message = [
-                "code" => self::ERR_CODE_NOT_GMAIL,
-                "message" => "provided email is not gmail or gmail associated!"
-            ];
-            return $response->withStatus(400)
-                ->withHeader('Access-Control-Allow-Origin', '*')
-                ->withHeader('Content-Type', 'application/json')
-                ->write(json_encode($message));
+            return $this->helper
+                ->jsonResponse(400, ["code" => self::ERR_CODE_NOT_GMAIL, "message" => "provided email is not gmail or gmail associated"]);
         }
 
-        $profileId = UserController::create_user('', '', $post['email'], 'USER', 1);
+        $profileId = \UserController::create_user('', '', $post['email'], 'USER', 1);
 
         if ($profileId == '#email') {
-
-            $message = [
-                "code" => self::ERR_CODE_EMAIL_EXIST,
-                "message" => "we already have a user registered with this email!"
-            ];
-            return $response->withStatus(400)
-                ->withHeader('Access-Control-Allow-Origin', '*')
-                ->withHeader('Content-Type', 'application/json')
-                ->write(json_encode($message));
+            return $this->helper
+                ->jsonResponse(400, ["code" =>  self::ERR_CODE_EMAIL_EXIST, "message" => "we already have a user registered with this email"]);
 
         } else {
             $result = Models\Provider::addUser($provider->id, $profileId);
@@ -135,42 +117,63 @@ class Provider
     }
 
     /**
-     * @route put /api/v1/user
+     * @route put /api/v1/user/:profileId
      * @param $request
      * @param $response
      */
-    public static function updateUser($request, $response) {
-//        $post = json_decode(file_get_contents("php://input"));
-//
-//        $hash = $post->hash;
-//        $time = $post->time;
-//        $public_key = $post->public_key;
-//        $profileId = $post->profileId;
-//        $first_name = $post->first_name;
-//        $last_name = $post->last_name;
-//
-//        if (time() > $time + 5 * 60) {
-//            echo json_encode(array('response'=>'#time'));
-//        } else {
-//            $result = $pdo->prepare("UPDATE UserInfo SET firstName = :firstName, lastName = :lastName  WHERE profileId = :profileId");
-//            $result->execute(array('profileId'=>$profileId, 'lastName'=>$last_name, 'firstName'=>$first_name));
-//            echo json_encode(array('response'=>'#success'));
-//        }
+    public function updateUser($request, $response, $args) {
+
+        $post = $request->getParsedBody();
+
+        $profileId = $args['profileId'];
+
+        /** validate body params */
+        if (!isset($post['first_name']) && !isset($post['last_name'])) {
+            return $this->helper->jsonResponse(400, [
+                "code" => self::ERR_CODE_REQUIRED,
+                "message" => "first_name or last_name is required!"
+            ]);
+        }
+
+        $user = Models\User::update($profileId, $post);
+
+        if ($user) {
+            return $this->helper->jsonResponse(200);
+        } else {
+            return $this->helper->jsonResponse(404, [
+                "code" => self::ERR_CODE_USER_NOT_FOUND,
+                "message" => "user not found"
+            ]);
+        }
+
     }
 
     /**
-     * @route post /api/v1/device
+     * @route post /api/v1/user/{profileId}/device
      * @param $request
      * @param $response
      */
-    public static function addDevice($request, $response) {
-        $message = [
-            "error" => "Not implemented"
-        ];
-        return $response->withStatus(200)
-            ->withHeader('Access-Control-Allow-Origin', '*')
-            ->withHeader('Content-Type', 'application/json')
-            ->write(json_encode($message));
+    public function addDevice($request, $response, $args) {
+
+        $profileId = $args['profileId'];
+        $body = $request->getParsedBody();
+
+        if (!isset($body['title'])) {
+            return $this->helper->jsonResponse(400, [
+                "code" => self::ERR_CODE_REQUIRED,
+                "message" => "name is required!"
+            ]);
+        }
+
+        $deviceName = $body['title'];
+        $result = Models\User::addDevice($profileId, $deviceName);
+
+        if ($result) {
+            return $this->helper->jsonResponse(201, ["deviceId" => $result]);
+        } else {
+            return $this->helper->jsonResponse(500);
+        }
+
     }
 
     /**

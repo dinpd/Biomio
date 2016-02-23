@@ -3,22 +3,19 @@
   "require": {
     "slim/slim": "^3.1",
     "slim/middleware": "^1.0",
-    "slim/extras": "^2.0",
-    "slim/logger": "~0.1",
     "vlucas/phpdotenv": "^1.1",
     "symfony/var-dumper": "^2.6",
     "j4mie/idiorm": "dev-master",
     "flynsarmy/slim-monolog": "~1.0"
   },
-  "authors": [
-    {
+  "authors": [{
       "name": "Sergiy Dragunov",
       "email": "sergiy.dragunov@vakoms.com.ua"
-    }
-  ],
+  }],
   "autoload": {
     "psr-4": {
       "Controllers\\": "controllers/",
+      "Middlewares\\": "middlewares/",
       "Models\\": "models/"
     }
   }

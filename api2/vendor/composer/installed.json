@@ -242,104 +242,6 @@
         ]
     },
     {
-        "name": "slim/middleware",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/slimphp/Slim-Middleware.git",
-            "reference": "1190251a89a3044eda9d16dcb456dc92dba2d0c8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/slimphp/Slim-Middleware/zipball/1190251a89a3044eda9d16dcb456dc92dba2d0c8",
-            "reference": "1190251a89a3044eda9d16dcb456dc92dba2d0c8",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0",
-            "slim/slim": ">=2.3.0"
-        },
-        "time": "2013-09-18 18:13:40",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Slim": "./src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Josh Lockhart",
-                "email": "info@joshlockhart.com",
-                "homepage": "http://www.joshlockhart.com/"
-            }
-        ],
-        "description": "Slim Framework middleware",
-        "homepage": "http://github.com/codeguy/Slim",
-        "keywords": [
-            "middleware",
-            "slim"
-        ]
-    },
-    {
-        "name": "slim/extras",
-        "version": "2.0.3",
-        "version_normalized": "2.0.3.0",
-        "target-dir": "Slim/Extras",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/codeguy/Slim-Extras.git",
-            "reference": "a022ed23dae94e164000acd891e3394d903f9623"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/codeguy/Slim-Extras/zipball/a022ed23dae94e164000acd891e3394d903f9623",
-            "reference": "a022ed23dae94e164000acd891e3394d903f9623",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0",
-            "slim/slim": ">=2.0.0"
-        },
-        "time": "2013-01-07 17:56:10",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Twig_Extensions_": "Views/Extension/",
-                "Slim\\Extras": "."
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Andrew Smith",
-                "email": "a.smith@silentworks.co.uk",
-                "homepage": "http://www.silentworks.co.uk/"
-            },
-            {
-                "name": "Josh Lockhart",
-                "email": "info@joshlockhart.com",
-                "homepage": "http://www.joshlockhart.com/"
-            }
-        ],
-        "description": "Extras package for the Slim Framework",
-        "homepage": "http://github.com/codeguy/Slim-Extras",
-        "keywords": [
-            "extensions",
-            "middleware",
-            "templating"
-        ]
-    },
-    {
         "name": "j4mie/idiorm",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -741,30 +643,30 @@
         ]
     },
     {
-        "name": "slim/logger",
-        "version": "0.1.0",
-        "version_normalized": "0.1.0.0",
+        "name": "slim/middleware",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/codeguy/Slim-Logger.git",
-            "reference": "ad3a2e62236f5d37056de9a4586659edc8164937"
+            "url": "https://github.com/slimphp/Slim-Middleware.git",
+            "reference": "1190251a89a3044eda9d16dcb456dc92dba2d0c8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/codeguy/Slim-Logger/zipball/ad3a2e62236f5d37056de9a4586659edc8164937",
-            "reference": "ad3a2e62236f5d37056de9a4586659edc8164937",
+            "url": "https://api.github.com/repos/slimphp/Slim-Middleware/zipball/1190251a89a3044eda9d16dcb456dc92dba2d0c8",
+            "reference": "1190251a89a3044eda9d16dcb456dc92dba2d0c8",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0",
-            "slim/slim": ">=2.4.0"
+            "slim/slim": ">=2.3.0"
         },
-        "time": "2014-07-16 20:11:26",
+        "time": "2013-09-18 18:13:40",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
-            "psr-4": {
-                "Slim\\Logger\\": ""
+            "psr-0": {
+                "Slim": "./src"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -778,6 +680,11 @@
                 "homepage": "http://www.joshlockhart.com/"
             }
         ],
-        "description": "Slim Framework logger"
+        "description": "Slim Framework middleware",
+        "homepage": "http://github.com/codeguy/Slim",
+        "keywords": [
+            "middleware",
+            "slim"
+        ]
     }
 ]
