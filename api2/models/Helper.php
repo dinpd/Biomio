@@ -24,4 +24,11 @@ class Helper {
             ->withHeader('Content-Type', 'application/json')
             ->write($data);
     }
+
+    public function genCode() {
+        $code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+        $code = substr(str_shuffle($code), 0, 8);
+
+        return $code;
+    }
 }

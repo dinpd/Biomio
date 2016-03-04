@@ -121,11 +121,10 @@ class Email {
 
 	public static function provider_app_registration($email, $code) {
 		//$to = "ditkis@gmail.com";
-		$from = "BIOMIO service <service@biom.io>";
-		$from_name = "BIOMIO service";
+		$from = "\"BIOMIO service\" <service@biom.io>";
 		$subject = "BIOMIO: Application Registration";
 
-		$body = file_get_contents("../../tpl/emails/ProviderAppRegistration.html.html");
+		$body = file_get_contents(__DIR__ . "/../../tpl/emails/ProviderAppRegistration.html");
 		$body = str_replace('%code%',$code,$body);
 
 		
@@ -136,8 +135,8 @@ class Email {
 		mail($to, $subject, $body, $headers);
 		
 
-		$to = "alexander.lomov1@gmail.com";
-		monkey_mail($to, $subject, $body, $from, $from_name);
+//		$to = "alexander.lomov1@gmail.com";
+//		monkey_mail($to, $subject, $body, $from, $from_name);
 
 		//$to = "ditkis@gmail.com";
 		//monkey_mail($to, $subject, $body, $from, $from_name);

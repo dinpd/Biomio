@@ -177,33 +177,83 @@ class Provider
     }
 
     /**
-     * @route post /api/v1/generate_device_code
+     * @route get /api/v1/user/{profileId}/device/{deviceId}/code
      * @param $request
      * @param $response
      */
-    public static function generateDeviceCode($request, $response) {
-        $message = [
-            "error" => "Not implemented"
-        ];
-        return $response->withStatus(200)
-            ->withHeader('Access-Control-Allow-Origin', '*')
-            ->withHeader('Content-Type', 'application/json')
-            ->write(json_encode($message));
+    public function generateDeviceCode($request, $response, $args) {
+
+        $profileId = $args['profileId'];
+        $deviceId = $args['deviceId'];
+
+        $code = Models\User::createVerificationCode($profileId, $deviceId);
+
+        $primaryEmail = Models\User::getPrimaryEmail($profileId);
+
+        // Sending Email with extension registration to this user
+        \Email::provider_app_registration($primaryEmail, $code);
+
+        return $this->helper->jsonResponse(201, ["code" => $code]);
     }
 
     /**
-     * @route post /api/v1/generate_biometrics_code
+     * @route get /api/v1/user/{profileId}/device/{deviceId}/biometrics-code
      * @param $request
      * @param $response
      */
-    public static function generateBiometricsCode($request, $response) {
-        $message = [
-            "error" => "Not implemented"
-        ];
-        return $response->withStatus(200)
-            ->withHeader('Access-Control-Allow-Origin', '*')
-            ->withHeader('Content-Type', 'application/json')
-            ->write(json_encode($message));
+    public function generateBiometricsCode($request, $response, $args) {
+
+        $profileId = $args['profileId'];
+        $deviceId = $args['deviceId'];
+
+        $code = Models\User::createBiometricsVerificationCode($profileId, $deviceId);
+
+
+        return $this->helper->jsonResponse(201, ["code" => $code]);
+
+
+
+        $post = json_decode(file_get_contents("php://input"));
+
+        $hash = $post->hash;
+        $time = $post->time;
+        $public_key = $post->public_key;
+        $profileId = $post->profileId;
+        $device_id = $post->device_id;
+
+        if (time() > $time + 5 * 60) {
+            echo json_encode(array('response'=>'#time'));
+        } else {
+            // update verification codes
+            $result = $pdo->prepare("UPDATE VerificationCodes SET status = :status WHERE profileId = :profileId AND application = :application");
+            $result->execute(array('status'=>0, 'profileId'=>$profileId, 'application'=>1));
+
+            // get device_token
+            $result = $pdo->prepare("SELECT id, title, status, device_token FROM UserServices WHERE profileId = :profileId AND serviceId = 1");
+            $result->execute(array('profileId'=>$profileId));
+            foreach ($result as $row) {
+                if ($row['id'] == $device_id)
+                    $key = $row['device_token'];
+            }
+
+            // generate code and check that code doesn't exist
+            do {
+                $code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+                $code =  substr(str_shuffle($code),0,8);
+                $result = $pdo->prepare("SELECT * FROM VerificationCodes WHERE code = :code");
+                $result->execute(array('code'=>$code));
+            } while ($result->rowCount() > 0);
+
+
+            $url = 'http://10.209.33.61/training?device_id=' . $key . '&code=' . $code;
+            send_post($url);
+
+            // insert code
+            $result = $pdo->prepare("INSERT INTO VerificationCodes (profileId, device_id, application, status, code, date_created) VALUES (:profileId, :device_id, :application, :status, :code, now())");
+            $result->execute(array('profileId'=>$profileId, 'device_id'=>$device_id, 'application'=>1, 'status'=>1, 'code'=>$code));
+
+            echo json_encode(array('response'=>'#success', 'code'=>$code));
+        }
     }
 
     /**
