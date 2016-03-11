@@ -25,7 +25,7 @@ class Helper {
             ->write($data);
     }
 
-    public function genCode() {
+    public static function genCode() {
         $code = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
         $code = substr(str_shuffle($code), 0, 8);
 

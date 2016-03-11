@@ -41,7 +41,7 @@ if ($config['debug']) {
 
 
 
-ORM::configure('mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['dbName'] . ';charset=utf8');
+ORM::configure('mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['dbName'] . ';port='.$config['db']['port'].';charset=utf8');
 ORM::configure('username', $config['db']['user']);
 ORM::configure('password', $config['db']['password']);
 ORM::configure('return_result_sets', true);
@@ -69,7 +69,9 @@ $app->group('/v1', function () use ($app) {
 
     $app->get('/user/{profileId}/device/{deviceId}/extension-code', '\Controllers\Provider:generateExtensionCode');
 
-    $app->post('/status', '\Controllers\Provider:status');
+    $app->get('/status/verification-code/{verificationCode}','\Controllers\Provider:VerificationCodeStatus');
+
+    //$app->post('/status', '\Controllers\Provider:status');
 
 })->add(new \Middlewares\Hmac);
 
