@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "mocha test.js"
+    "test": "mocha ./test/* --reporter=nyan"
   },
   "author": "",
   "license": "ISC",

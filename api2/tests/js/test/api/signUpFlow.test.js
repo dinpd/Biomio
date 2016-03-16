@@ -26,7 +26,6 @@ describe('should be able to pass registration', function () {
             })
             .set('Content-Type', 'application/json')
             .end(function (err, res) {
-                console.log(res.body);
                 res.body.should.have.property('message');
                 res.body.message.should.be.equal('X-Authorization header is required');
                 done();
@@ -50,7 +49,6 @@ describe('should be able to pass registration', function () {
                 res.body.should.have.property('profileId');
 
                 profileId = res.body.profileId;
-                console.log('profileId ', profileId);
                 done();
 
             });
@@ -69,9 +67,7 @@ describe('should be able to pass registration', function () {
             .end(function (err, res) {
 
                 res.body.should.have.property('deviceId');
-
                 deviceId = res.body.deviceId;
-                console.log('deviceId ', deviceId);
 
                 done();
             });
