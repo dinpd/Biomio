@@ -45,8 +45,8 @@ class Hmac
         $provider = Models\Provider::getProviderByPublicKey($publicKey);
 
         // test
-        $request = $request->withAttribute('provider', $provider);
-        return $response = $next($request, $response);
+      //  $request = $request->withAttribute('provider', $provider);
+      //  return $response = $next($request, $response);
 
         if ($provider) {
 
@@ -82,9 +82,11 @@ class Hmac
     private function makeDigest($request, $nonce, $privateKey) {
         $body = $request->getParsedBody();
 
+        $encoded_body = ($body===null? '' : json_encode($body));
+
         $hash = $request->getMethod();
         $hash .= $request->getUri();
-        $hash .= json_encode($body);
+        $hash .= $encoded_body;
         $hash .= $nonce;
 
         $digest = hash_hmac('sha256', $hash, $privateKey);

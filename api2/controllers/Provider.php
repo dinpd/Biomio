@@ -33,9 +33,11 @@ class Provider
         $digest = '';
         if ($provider) {
 
+            $encoded_body = ($body===null? '' : json_encode($body));
+
             $hash = $body['method'];
             $hash .= $body['uri'];
-            $hash .= json_encode($body['data']);
+            $hash .= $encoded_body;
             $hash .= $body['nonce'];
 
             $digest = hash_hmac('sha256', $hash, $provider->private_key);
