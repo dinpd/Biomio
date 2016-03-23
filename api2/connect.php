@@ -1,4 +1,7 @@
 <?php
+
+require "../connect.php";
+
 	// PDO
 	/*$dbhost = $_SERVER['RDS_HOSTNAME'];
 	$dbport = $_SERVER['RDS_PORT'];
@@ -26,7 +29,7 @@
 */
 
 
-
+/*
 
 	$pdo = new PDO('mysql:dbname=biomio_db_test; host=6da7f2ba42c999a5da5b0937632bd595a03f65c1.rackspaceclouddb.com', 'biomio_admin', 'admin');
 
@@ -38,3 +41,5 @@
 	// -- connect
 	$db_conx = mysqli_connect ("6da7f2ba42c999a5da5b0937632bd595a03f65c1.rackspaceclouddb.com", "biomio_admin", "admin", "biomio_db_test")
 	or die (mysqli_connect_error());
+
+*/
