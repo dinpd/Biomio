@@ -5,12 +5,12 @@ return [
 
         // PHP Renderer settings
         'renderer' => [
-            'template_path' => PATH_ROOT.'../components/',
+            'template_path' => PATH_ROOT.'../components/renderer_tmpl',
         ],
 
         // Twig View settings
         'view' => [
-            'template_path' => PATH_ROOT.'../components/',
+            'template_path' => PATH_ROOT.'../components/twig_tmpl',
             'cache_path' => PATH_ROOT.'../storage/cache/',
             'debug' => true,
         ],

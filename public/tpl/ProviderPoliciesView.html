@@ -1,0 +1,53 @@
+<div class="well">
+	<legend><h2 class="form-signin-heading">Provider - Policies</h2></legend>
+
+	<form class="form-horizontal" action=''>
+		<!-- Add -->
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Add Policy</label>
+			<div class="col-sm-10">
+				<input type="button" class="btn btn-primary provider-policies-add" value="Add" />
+			</div>
+		</div>
+	</form>
+
+	<form id="provider_policies_form" class="form-horizontal form-horizontal hide">
+		<fieldset>
+			<!-- Name-->
+		    <div class="form-group">
+		      <label class="col-sm-2 control-label" for="provider_policies_name">Name</label>
+		      <div class="col-sm-10">
+		        <input id="provider_policies_name" name="provider_policies_name" class="form-control" type="text">
+		      </div>
+		    </div>
+		</fieldset>
+
+		<!-- Save -->
+		<div class="form-group">
+			<label class="col-sm-2 control-label"></label>
+			<div class="col-sm-10">
+				<input type="submit" class="btn btn-primary provider-policies-submit" value="Add" />
+				<input type="button" class="btn btn-primary provider-policies-cancel" value="Cancel" />
+				<br/>
+				<span class="span-provider-policies-submit"></span>
+			</div>
+		</div>
+	</form>
+
+	<!-- TABLE -->
+	<form class="form-horizontal" action=''>
+		<div class="form-group">
+			<label class="col-sm-2 control-label"></label>
+			<div class="col-sm-10">
+				<table class='table table-striped panel table-hover'>
+					<thead>
+						<th class='font16'>Policies</th>
+					</thead>
+					<tbody id='provider_policies'>
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</form>
+</div>

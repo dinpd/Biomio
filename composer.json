@@ -3,7 +3,7 @@
     "authors": [
         {
             "name": "Orest Zagaiskyi",
-            "email": "orest.zagaiskyi@vakoms.com.ua",
+            "email": "orest.zagaiskyi@vakoms.com.ua"
         }
     ],
     "autoload": {
@@ -33,7 +33,8 @@
         "slim/csrf": "^0.6.0",
         "slim/http-cache": "^0.3.0",
         "slim/flash": "^0.1.0",
-        "facebook/php-sdk-v4": "^5.1"
+        "facebook/php-sdk-v4": "^5.1",
+        "markstory/mini-asset": "^1.1"
         
     }
 }

@@ -1,0 +1,94 @@
+<div class="well">
+	<legend><h2 class="form-signin-heading">User - My Secure Locations</h2></legend>
+
+	<form class="form-horizontal">
+        <!-- Add Button -->
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Add Location</label>
+            <div class="col-sm-6">
+                <input type="button" class="btn btn-primary user-location-add" value="Add" />
+            </div>
+        </div>
+    </form>
+
+    <!-- Add location form-->
+	<form id="user_location_form" class="form-horizontal hide">
+		<fieldset>
+
+			<!-- Name-->
+			<div class="form-group">
+			  <label class="col-sm-2 control-label" for="user_location_name">Name</label>
+			  <div class="col-sm-6">
+			    <input id="user_location_name" name="user_location_name" class="form-control" type="text">
+			  </div>
+			</div>
+
+			<!-- Description-->
+			<div class="form-group">
+			  <label class="col-sm-2 control-label" for="user_location_description">Description</label>
+			  <div class="col-sm-6">
+			    <textarea id="user_location_description" name="textarea" class="form-control"></textarea>
+			  </div>
+			</div>
+
+			<!-- Address-->
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="user_location_address">Address</label>
+				<div class="col-sm-6">
+					<input id="address_street1" class="form-control" type="text" value="">
+					<p class='help-block'><small>street line</small></p>
+					<input id="address_street2" class="form-control" type="text" value="">
+					<p class='help-block'><small>second street line (optional)</small></p>
+					
+					<select id="continent" name="continent" class="form-control user-add-location-geolocation"></select>
+					<p class='help-block'><small>continent</small></p>
+
+					<select id="country" name="country" class="form-control user-add-location-geolocation"></select>
+					<p class='help-block'><small>country</small></p>
+
+					<select id="province" name="province" class="form-control user-add-location-geolocation"></select>
+					<p class='help-block'><small>state / province</small></p>
+
+					<select id="region" name="region" class="form-control user-add-location-geolocation"></select>
+					<p class='help-block'><small>country / region</small></p>
+
+					<select id="city" name="city" class="form-control user-add-location-geolocation"></select>
+					<p class='help-block'><small>city</small></p>
+
+					<input id="address_postcode" class="form-control" type="text" value="">
+					<p class='help-block'><small>postcode</small></p>
+				</div>
+			</div>
+
+		</fieldset>
+
+		<!-- Save -->
+		<div class="form-group">
+			<label class="col-sm-2 control-label"></label>
+			<div class="col-sm-6">
+				<input type="button" class="btn btn-primary user-location-cancel" value="Cancel" />
+				<input type="submit" class="btn btn-success user-location-submit" value="Submit" />
+				<br/>
+				<span class="span-user-location-submit"></span>
+			</div>
+		</div>
+	</form>
+	<input id="user_selected_location" class="hide" type="text" />
+	<input id="user_selected_location_name" class="hide" type="text" />
+
+	<div class="table-responsive">
+        <table id="user_locations" class='table panel table-hover'>
+            <thead>
+				<th></th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Address</th>
+				<th></th>
+			</thead>
+            <tbody class="user_locations">
+                
+            </tbody>
+        </table>
+    </div>
+
+</div>
