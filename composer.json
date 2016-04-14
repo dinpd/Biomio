@@ -34,7 +34,9 @@
         "slim/http-cache": "^0.3.0",
         "slim/flash": "^0.1.0",
         "facebook/php-sdk-v4": "^5.1",
-        "markstory/mini-asset": "^1.1"
+        "markstory/mini-asset": "^1.1",
+        "j4mie/idiorm": "v1.5.1",
+        "mandrill/mandrill": "1.0.55"
         
     }
 }
