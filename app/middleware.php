@@ -11,6 +11,8 @@
 //$assetConfig = AssetConfig::buildFromIniFile(__DIR__ . '/../components/assets/assets.ini');
 //$app->add(new AssetMiddleware($assetConfig));
 
+/* Start session with every request */
+$app->add(new \RKA\SessionMiddleware(['name' => 'biomioai_session']));
 
 $app->add(function ($request, $response, $next) {
     $this->view->offsetSet('flash', $this->flash);

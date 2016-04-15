@@ -9,9 +9,12 @@ use \Slim\Http\Uri;
 $app->get('/', 'App\Controllers\IndexController:dispatch')->setName('index');
 
 $app->get('/users', 'App\Controllers\UserController:dispatch')->setName('userpage');
+$app->get('/tryx', 'App\Controllers\UserController:tryx')->setName('tryx');
 
-
-
+$app->group('/captcha/', function() use ($app){
+    $app->post('create_image','App\Controllers\CaptchaController:create_image');
+    $app->post('check_code','App\Controllers\CaptchaController:check_code');
+});
 
 $app->group('/login/',function() use($app){
 
@@ -31,14 +34,14 @@ $app->group('/login/',function() use($app){
     $app->post('test_login','App\Controllers\UserController:test_login');
 
     /*TODO: Keep in mind for session middleware refactor*/
-    $app->post('is_loged_in','App\Controllers\SessionController:get_user_session');
+    $app->post('is_loged_in','App\Controllers\UserController:get_user_session');
     $app->post('get_state','App\Controllers\UserController:get_state');
     $app->post('save_state','App\Controllers\UserController:save_state');
 //
 //    // ------- Other cool stuff ---------
     $app->post('contact','App\Controllers\Email:contact');
     $app->post('change_type','App\Controllers\UserController:change_type');
-    $app->post('logout','App\Controllers\SessionController:destroy_session');
+    $app->post('logout','App\Controllers\UserController:logout');
 //
 //    // -------- Phone registration ----------
     $app->post('get_phones','App\Controllers\UserController:get_phones');

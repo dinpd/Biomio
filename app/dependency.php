@@ -40,6 +40,12 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
+// sessions
+$container['session'] = function($c){
+    return new \RKA\Session();
+};
+
+
 $container['facebook'] = function ($c) {
 	$settings = $c->get('settings')['facebook'];
 	$fb= new Facebook\Facebook([
@@ -98,9 +104,20 @@ $container['App\Controllers\UserController'] = function ($c) {
     return new App\Controllers\UserController(
 		$c->get('view'), 
 		$c->get('logger'),
-		$c->get('App\Repositories\UserRepository')
+		$c->get('App\Repositories\UserRepository'),
+        $c->get('session')
     );
 };
+
+
+$container['App\Controllers\CaptchaController'] = function ($c) {
+    return new App\Controllers\UserController(
+        $c->get('view'),
+        $c->get('logger'),
+        $c->get('session')
+    );
+};
+
 # -----------------------------------------------------------------------------
 # Factories Models
 # -----------------------------------------------------------------------------
