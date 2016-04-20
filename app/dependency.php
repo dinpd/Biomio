@@ -102,9 +102,8 @@ $container['App\Controllers\HomeController'] = function ($c) {
 
 $container['App\Controllers\UserController'] = function ($c) {
     return new App\Controllers\UserController(
-		$c->get('view'), 
+		$c->get('renderer'),
 		$c->get('logger'),
-		$c->get('App\Repositories\UserRepository'),
         $c->get('session')
     );
 };

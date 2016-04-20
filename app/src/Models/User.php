@@ -5,16 +5,10 @@ namespace App\Models;
 //use Illuminate\Database\Eloquent\Model;
 use ORM;
 
-class User //extends Model
+class User
 {
     protected $table = "users";
 
-//  public static function check_email($email) {
-//    include ('connect.php');
-//    $result = $pdo->prepare("SELECT * FROM Emails WHERE email = :email");
-//    $result->execute(array('email'=>$email));
-//    return $result;
-//  }
 
     public static function check_email($email)
     {
@@ -25,37 +19,6 @@ class User //extends Model
         return $email;
     }
 
-
-//    public static function add_profile_shitty($first_name, $last_name, $email, $type, $ip, $extention)
-//    {
-//        include('connect.php');
-//        // insert basic info into Profile
-//        $result = $pdo->prepare("INSERT INTO Profiles (last_ip, type) VALUES (:ip, :type)");
-//        $result->execute(array('ip' => $ip, 'type' => $type));
-//        $profileId = $pdo->lastInsertId();
-//
-//        // insert user infor into UserInfo
-//        $result = $pdo->prepare("INSERT INTO UserInfo (profileId, firstName, lastName) VALUES (:profileId, :first_name, :last_name)");
-//        $result->execute(array('profileId' => $profileId, 'first_name' => $first_name, 'last_name' => $last_name));
-//
-//        // insert user infor into UserInfo
-//        $result = $pdo->prepare("INSERT INTO ProviderInfo (profileId) VALUES (:profileId)");
-//        $result->execute(array('profileId' => $profileId));
-//
-//        // insert email into Emails
-//        $result = $pdo->prepare("INSERT INTO Emails (profileId, email, `primary`, extention, date_created) VALUES (:profileId, :email, :primary, :extention, now())");
-//        $result->execute(array('profileId' => $profileId, 'email' => $email, 'primary' => 1, 'extention' => $extention));
-//
-//        // insert into emails data
-//        $result = $pdo->prepare("INSERT INTO PgpKeysData (user, email) VALUES (:profileId, :email)");
-//        $result->execute(array('profileId' => $profileId, 'email' => $email));
-//
-//        // send rest with email to create code for this email
-//        $url = 'http://10.209.33.61:90/new_email/' . $email;
-//        send_post($url); // <-- dafuq is that
-//
-//        return $profileId;
-//    }
 
     public static function add_profile($first_name, $last_name, $email, $type, $ip, $extention)
     {
@@ -431,12 +394,6 @@ class User //extends Model
         $log->save();
     }
 
-//    public static function update_email($profileId, $email, $field, $value)
-//    {
-//        $email = ORM::for_table('Emails')->where(['profileId' => $profileId, 'email' => $email])->find_one();
-//        $email->set($field . $value);
-//        $email->save();
-//    }
 
 
     public static function update_temp_email_codes($profileId, $status)
@@ -507,6 +464,15 @@ class User //extends Model
     public static function select_api_keys($field, $value)
     {
         return ORM::for_table('ProviderKeys')->where($field, $value)->find_many();
+    }
+
+    public static function save_api_keys($providerId, $pub, $priv)
+    {
+        $keys = ORM::for_table('ProviderKeys')->create();
+        $keys->providerId = $providerId;
+        $keys->public_key = $pub;
+        $keys->private_key = $priv;
+        $keys->save();
     }
 
     /**

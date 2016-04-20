@@ -10,28 +10,43 @@ use \App\Models\Helper as Helper;
 
 final class UserController
 {
-    private $view;
+    private $renderer;
     private $logger;
-    private $user;
     private $session;
 
-    public function __construct($view, LoggerInterface $logger, $user, \RKA\Session $session)
+    public function __construct(\Slim\Views\PhpRenderer $renderer, LoggerInterface $logger, \RKA\Session $session)
     {
-        $this->view = $view;
+        $this->renderer = $renderer;
         $this->logger = $logger;
-        $this->model = $user;
         $this->session = $session;
     }
 
-    public function dispatch(Request $request, Response $response, $args)
+//    public function dispatch(Request $request, Response $response, $args)
+//    {
+//        $this->logger->info("Home page action dispatched");
+//
+//        $users = $this->model->show();
+//
+//        return $this->view->render($response, 'users.twig', ["data" => $users]);
+//    }
+
+
+    public function tryx(Request $request, Response $response, $args)
     {
-        $this->logger->info("Home page action dispatched");
 
-        $users = $this->model->show();
+        $textoutput = $request->getParam('textinput');
 
-        return $this->view->render($response, 'users.twig', ["data" => $users]);
+        //$textoutput = $input['textinput'];
+        if ($this->session->get('wow'))
+            $this->session->wow = $this->session->wow + 1;
+        else
+            $this->session->wow = 22;
+        //$this->session->set('wow',1);
+
+        //return $response->write('hii ja!:' . $this->session->wow);
+
+        return $this->renderer->render($response, '/tmp.php', ['wow' => $this->session->wow, 'textoutput' => $textoutput]);
     }
-
 
     private function _start_session($id, $type, $first_name, $last_name)
     {
@@ -40,6 +55,7 @@ final class UserController
         $this->session->first_name = $first_name;
         $this->session->last_name = $last_name;
     }
+
 
     public function get_user_session(Request $request, Response $response, $args)
     {
@@ -64,11 +80,10 @@ final class UserController
 
     public function check_email(Request $request, Response $response, $args)
     {
-
         if (User::check_email("email here")) {
-            return '#registered';
+            return $response->write('#registered');
         } else {
-            return '#fine';
+            return $response->write('#fine');
         }
     }
 
@@ -107,11 +122,9 @@ final class UserController
         } while ($result);
         User::insert_temp_login_codes($profileId, $code);
 
-        //TODO: Refactor is required, for session & email provider
+        //TODO: Refactor is required, for email provider
         if ($extension == 0) {
-            /* legacy
-            SessionController::start_session($profileId, $type, $first_name, $last_name);
-            */
+
             $this->_start_session($profileId, $type, $first_name, $last_name);
 
             Email::welcome_email($email, $first_name, $last_name, $code);
@@ -119,7 +132,7 @@ final class UserController
             Email::welcome2_email($email, $first_name, $last_name, $code);
         }
         //return $profileId;
-        return $response;
+        return $response->write($profileId);
     }
 
 
@@ -197,16 +210,6 @@ final class UserController
 
         $userInfo = User::get_user_info($profileId);
 
-        /* legacy
-        //TODO: remove lecacy session code after testing
-        SessionController::start_session(
-            $profileId,
-            $userProfile->type,
-            $userInfo->firstName,
-            $userInfo->lastName);
-
-        $sessionData = SessionController::get_user_session();
-        */
 
         $this->_start_session($profileId,
             $userProfile->type,
@@ -228,13 +231,6 @@ final class UserController
         $first_name = $request->getParam('first_name');
         $last_name = $request->getParam('last_name');
 
-        /* legacy session
-        if (!isset($_SESSION['id']))
-            return $response->write('#no-session');
-
-        $profileId = $_SESSION['id'];
-        */
-
         if ($this->session->get('id') === null)
             return $response->write('#no-session');
 
@@ -246,10 +242,6 @@ final class UserController
         $this->session->first_name = $first_name;
         $this->session->last_name = $last_name;
 
-        /* legacy session
-        $_SESSION['first_name'] = $first_name;
-        $_SESSION['last_name'] = $last_name;
- */
         return $response->write('#success');
 
     }
@@ -342,15 +334,6 @@ final class UserController
 
             $userInfo = User::get_user_info($profileId);
 
-            /* legacy session
-
-            SessionController::start_session(
-                $profileId,
-                $user->type,
-                $userInfo->first_name,
-                $userInfo->last_name);
-            return $response->write(json_encode(SessionController::get_user_session()));
-            */
 
             $this->_start_session($profileId,
                 $user->type,
@@ -370,10 +353,7 @@ final class UserController
         $first_name = "Guest";
         $last_name = "User";
 
-        /* legacu session
-        SessionController::start_session($profileId, $type, $first_name, $last_name);
-        return $response->write(json_encode(SessionController::get_user_session()));
-        */
+
         $this->_start_session($profileId, $type, $first_name, $last_name);
         return $response->write(json_encode($this->_get_user_session()));
     }
@@ -386,10 +366,6 @@ final class UserController
         $first_name = "Test";
         $last_name = "Acc";
 
-        /* legacy session
-        SessionController::start_session($profileId, $type, $first_name, $last_name);
-        $result = SessionController::get_user_session();
-        */
 
         $this->_start_session($profileId, $type, $first_name, $last_name);
         $result = $this->_get_user_session();
@@ -401,12 +377,6 @@ final class UserController
     public function get_state(Request $request, Response $response, $args)
     {
         $type = $request->getParam('type');
-
-
-        /* legacy session
-        if (isset($_SESSION['id'])) {
-            $profileId = $_SESSION['id'];
-            */
 
         if ($this->session->id !== null) {
             $profileId = $this->session->id;
@@ -430,10 +400,6 @@ final class UserController
         $type = $request->getParam('type');
         $s = $request->getParam('s');
 
-        /* legacy session
-        if (isset($_SESSION['id'])) {
-            $profileId = $_SESSION['id'];
-            */
 
         if ($this->session->id !== null) {
             $profileId = $this->session->id;
@@ -454,10 +420,6 @@ final class UserController
     {
         $type = $request->getParam('type');
 
-        /* legacy session
-         $session = SessionController::get_user_session();
-        $profileId = $session['id'];
-       */
 
         $profileId = $this->session->id;
 
@@ -468,11 +430,6 @@ final class UserController
 
     public function get_phones(Request $request, Response $response, $args)
     {
-        /* legacy session
- $session = SessionController::get_user_session();
-        $profileId = $session['id'];
-*/
-
 
         $profileId = $this->session->id;
 
@@ -489,11 +446,6 @@ final class UserController
     {
 
         $phone = $request->getParam('phone');
-
-        /* legacy session
-        $session = SessionController::get_user_session();
-        $profileId = $session['id'];
-        */
 
         $profileId = $this->session->id;
 
@@ -534,11 +486,6 @@ final class UserController
     {
         $code = $request->getParam('code');
 
-        /* legacy session
-        $session = SessionController::get_user_session();
-        $profileId = $session['id'];
-        */
-
         $profileId = $this->session->id;
 
         $tempPhoneCodes = User::select_temp_phone_codes($profileId, $code);
@@ -558,9 +505,6 @@ final class UserController
     public function delete_phone(Request $request, Response $response, $args)
     {
         $number = $request->getParam('number');
-        /* legacy session
-         *  $profileId = $_SESSION['id'];
-        */
         $profileId = $this->session->id;
         User::delete_phone($profileId, $number);
         return $response->write("#success");
@@ -571,9 +515,6 @@ final class UserController
     // --- Applications --- //
     public function get_mobile_devices(Request $request, Response $response, $args)
     {
-        /* legacy session
-         *  $profileId = $_SESSION['id'];
-        */
         $profileId = $this->session->id;
         $mobileDevices = User::get_mobile_devices($profileId);
 
@@ -587,9 +528,6 @@ final class UserController
     public function add_mobile_device(Request $request, Response $response, $args)
     {
         $name = $request->getParam('name');
-        /* legacy session
-        *  $profileId = $_SESSION['id'];
-       */
         $profileId = $this->session->id;
         $device_id = User::add_mobile_device($profileId, $name);
         return $response->write($device_id);
@@ -600,13 +538,6 @@ final class UserController
     {
         $device_id = $request->getParam('id');
         $application = $request->getParam('application');
-
-        /* legacy session
-        if (!isset($_SESSION['id']))
-            return $response->write('#no-session');
-
-        $profileId = $_SESSION['id'];
-        */
 
         if ($this->session->get('id') === null)
             return $response->write('#no-session');
@@ -635,12 +566,6 @@ final class UserController
         $device_id = $request->getParam('device_id');
         $application = $request->getParam('application');
 
-        /* legacy session
-if (!isset($_SESSION['id']))
-    return $response->write('#no-session');
-
-$profileId = $_SESSION['id'];
-*/
 
         if ($this->session->get('id') === null)
             return $response->write('#no-session');
@@ -679,9 +604,6 @@ $profileId = $_SESSION['id'];
     {
         $device_id = $request->getParam('device_id');
         $name = $request->getParam('name');
-        /* legacy session
-        $profileId = $_SESSION['id'];
-        */
         $profileId = $this->session->id;
         User::rename_mobile_device($profileId, $device_id, $name);
         return $response->write("#success");
@@ -691,7 +613,7 @@ $profileId = $_SESSION['id'];
     public function delete_mobile_device(Request $request, Response $response, $args)
     {
         $device_id = $request->getParam('device_id');
-        $profileId = $this->session->id; //$_SESSION['id'];
+        $profileId = $this->session->id;
         User::delete_mobile_device($profileId, $device_id);
         return $response->write("#success");
     }
@@ -700,9 +622,6 @@ $profileId = $_SESSION['id'];
     public function get_biometrics(Request $request, Response $response, $args)
     {
         $biometrics = $request->getParam('biometrics');
-        /* legacy session
- $profileId = $_SESSION['id'];
- */
         $profileId = $this->session->id;
         $biometrics = User::get_biometrics($profileId, $biometrics);
         return $response->write(json_encode($biometrics));
@@ -712,7 +631,7 @@ $profileId = $_SESSION['id'];
     // --- Chrome Extention --- //
     public function get_user_extensions(Request $request, Response $response, $args)
     {
-        $profileId = $this->session->id;//$_SESSION['id'];
+        $profileId = $this->session->id;
         return $response->write(User::count_user_extensions($profileId));
     }
 
@@ -720,9 +639,6 @@ $profileId = $_SESSION['id'];
     public function get_user_emails(Request $request, Response $response, $args)
     {
         $extention = $request->getParam('extention');
-        /* legacy session
-$profileId = $_SESSION['id'];
-*/
         $profileId = $this->session->id;
         $userEmails = User::get_user_emails($profileId);
         $data = array();
@@ -751,9 +667,6 @@ $profileId = $_SESSION['id'];
 
     public function add_email(Request $request, Response $response, $args)
     {
-        /* legacy session
-$profileId = $_SESSION['id'];
-*/
         $profileId = $this->session->id;
         $email = $request->getParam('email');
         $emailObject = User::check_email($email);
@@ -780,9 +693,6 @@ $profileId = $_SESSION['id'];
     public function delete_email(Request $request, Response $response, $args)
     {
         $email = $request->getParam('email');
-        /* legacy session
-$profileId = $_SESSION['id'];
-*/
         $profileId = $this->session->id;
         User::delete_email($profileId, $email);
         return $response->write("#success");
@@ -792,9 +702,6 @@ $profileId = $_SESSION['id'];
     public function generate_image_code(Request $request, Response $response, $args)
     {
         $application = $request->getParam('application');
-        /* legacy session
-$profileId = $_SESSION['id'];
-*/
         $profileId = $this->session->id;
         /* Legacy comments below
            looks like method is not implemented*/
@@ -844,12 +751,6 @@ $profileId = $_SESSION['id'];
     {
         $email = $request->getParam('email');
 
-        /* legacy session
-        $profileId = $_SESSION['id'];
-        $first_name = $_SESSION['first_name'];
-        $last_name = $_SESSION['last_name'];
-        */
-
         $profileId = $this->session->id;
         $first_name = $this->session->first_name;
         $last_name = $this->session->last_name;
@@ -873,9 +774,6 @@ $profileId = $_SESSION['id'];
     {
         $email = $request->getParam('email');
         $code = $request->getParam('code');
-        /* legacy session
-$profileId = $_SESSION['id'];
-*/
         $profileId = $this->session->id;
 
         $emailCodes = User::select_temp_email_codes($profileId, $email, $code);
@@ -892,15 +790,11 @@ $profileId = $_SESSION['id'];
 
     public function verify_extention(Request $request, Response $response, $args)
     {
-        /* legacy session
-           if (!isset($_SESSION['id']))
-               return $response->write('#no-session');
-           */
         if ($this->session->get('id') === null)
             return $response->write('#no-session');
 
 
-        $profileId = $this->session->id;//$_SESSION['id'];
+        $profileId = $this->session->id;
         // disable all the codes for this user
         User::update_verification_codes(0, $profileId, 2);
 
@@ -923,7 +817,7 @@ $profileId = $_SESSION['id'];
         if ($this->session->get('id') === null)
             return $response->write(json_encode(array('response' => '#no-session')));
 
-        $profileId = $this->session->id;//$_SESSION['id'];
+        $profileId = $this->session->id;
         $extensionSettings = User::get_extension_settings($profileId);
 
         if (!$extensionSettings)
@@ -941,7 +835,7 @@ $profileId = $_SESSION['id'];
 
         $condition = $request->getParam('condition');
         $auth_types = $request->getParam('auth_types');
-        $profileId = $this->session->id;//$_SESSION['id'];
+        $profileId = $this->session->id;
 
         $settings = array("condition" => $condition, "auth_types" => $auth_types, "user_id" => $profileId);
         // echo json_encode($data);
@@ -1024,16 +918,11 @@ $profileId = $_SESSION['id'];
     /* API */
     public function get_api_keys(Request $request, Response $response, $args)
     {
-        /* legacy sessions
-
-        if (!isset($_SESSION['providerId']))
-            return $response->write('#no-session');
-        */
 
         if ($this->session->providerId === null)
             return $response->write('#no-session');
 
-        $providerId = $this->session->providerId;//$_SESSION['providerId'];
+        $providerId = $this->session->providerId;
 
         $apiKeys = User::select_api_keys('providerId', $providerId);
         $data = array();
@@ -1055,11 +944,11 @@ $profileId = $_SESSION['id'];
 
         do {
             $publicKey = Helper::genApiCode();
-        } while (User::select_api_keys('public_key', $pub));
+        } while (User::select_api_keys('public_key', $publicKey));
 
         do {
             $privateKey = Helper::genApiCode();
-        } while (User::select_api_keys('private_key', $pub));
+        } while (User::select_api_keys('private_key', $privateKey));
 
 
         User::save_api_keys($providerId, $publicKey, $privateKey);

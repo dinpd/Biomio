@@ -10,6 +10,7 @@ $app->get('/', 'App\Controllers\IndexController:dispatch')->setName('index');
 
 $app->get('/users', 'App\Controllers\UserController:dispatch')->setName('userpage');
 $app->get('/tryx', 'App\Controllers\UserController:tryx')->setName('tryx');
+$app->post('/tryx', 'App\Controllers\UserController:tryx')->setName('tryxPost');
 
 $app->group('/captcha/', function() use ($app){
     $app->post('create_image','App\Controllers\CaptchaController:create_image');
