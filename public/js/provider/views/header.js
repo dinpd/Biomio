@@ -41,7 +41,8 @@ App.Views.Header = Backbone.View.extend({
     logout: function (event) {
         $.ajax({
             type: 'POST',
-            url: '../php/login.php',
+            //url: '../php/login.php',
+            url: '../login/logout',
             data: {cmd: "logout"},
             success: function(data) {
                 if (data.search("out")!=-1) {
@@ -68,7 +69,8 @@ App.Views.Header = Backbone.View.extend({
     changeType: function (type) {
         $.ajax({
             type: 'POST',
-            url: '../php/login.php',
+            //url: '../php/login.php',
+            url: '../login/change_type',
             data: {cmd: "change_type", type: type},
             success: function(data) {
 

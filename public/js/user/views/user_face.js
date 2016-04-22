@@ -16,7 +16,8 @@ App.Views.UserFace = Backbone.View.extend({
     get_face: function () {
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/get_biometrics',
             dataType: "json",
             data: {cmd: "get_biometrics", biometrics: 'face'},
             success: function(data) {
@@ -33,7 +34,8 @@ App.Views.UserFace = Backbone.View.extend({
     get_mobile_devices: function () {
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/get_mobile_devices',
             dataType: "json",
             data: {cmd: "get_mobile_devices"},
             success: function(data) {
@@ -57,7 +59,8 @@ App.Views.UserFace = Backbone.View.extend({
         // create session code
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/generate_biometrics_code',
             data: {cmd: "generate_biometrics_code", application: 0, device_id: device_id},
             success: function(data) {
                 $('.form-1-1, .form-1-3, .form-1-4, .form-1-5').addClass('hide');
@@ -76,7 +79,8 @@ App.Views.UserFace = Backbone.View.extend({
             if (code != '' && code != undefined)
                 $.ajax({
                     type: 'POST',
-                    url: 'php/login.php',
+                    //url: 'php/login.php',
+                    url: '/login/check_status',
                     data: {cmd: "check_status", code: code},
                     success: function(data) {
                         if (data == '#in-process') {

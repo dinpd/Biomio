@@ -66,7 +66,8 @@ App.Views.Signup = Backbone.View.extend({
         else
             $.ajax({
                 type: 'POST',
-                url: '../php/login.php',
+                //url: '../php/login.php',
+                url: '../login/sign_up',
                 data: {cmd: "sign_up", first_name: first_name, last_name: last_name, email: email, type: type},
                 success: function(data) {
                     if (data == '#email') $('#sign_in_submit_span').text("this email address is already registered in our system");
@@ -143,7 +144,8 @@ App.Views.Signup = Backbone.View.extend({
 
             $.ajax({
                 type: 'POST',
-                url: 'php/login.php',
+                //url: 'php/login.php',
+                url: '/login/check_email',
                 data: {cmd: "check_email", email: email},
                 success: function(data) {
                     if (data.search("#registered")!=-1) {
@@ -175,7 +177,8 @@ App.Views.Signup = Backbone.View.extend({
         else
             $.ajax({
                 type: 'POST',
-                url: 'php/login.php',
+                //url: 'php/login.php',
+                url: '/login/sign_up',
                 data: {cmd: "sign_up", first_name: first_name, last_name: last_name, email: email, type: type},
                 success: function(data) {
                     if (data == '#email') $('#sign_in_submit_span').text("this email address is already registered in our system");
@@ -215,7 +218,8 @@ App.Views.Signup = Backbone.View.extend({
         else
             $.ajax({
                 type: 'POST',
-                url: '../php/login.php',
+                //url: '../php/login.php',
+                url: '../login/login_check',
                 dataType: "json",
                 data: {cmd: "login_check", email: email},
                 success: function(data) {
@@ -286,7 +290,8 @@ App.Views.Signup = Backbone.View.extend({
 
         $.ajax({
             type: 'POST',
-            url: '../php/login.php',
+            //url: '../php/login.php',
+            url: '../login/'+cmd,
             data: {cmd: cmd, profileId: window.tempId, value: value},
             success: function(data) {
                 if (data == "#success") {
@@ -309,7 +314,8 @@ App.Views.Signup = Backbone.View.extend({
         } else {
             $.ajax({
                 type: 'POST',
-                url: '../php/login.php',
+                //url: '../php/login.php',
+                url: '../login/check_login_code',
                 dataType: "json",
                 data: {cmd: "check_login_code", profileId: window.tempId, code: code},
                 success: function(data) {
@@ -361,7 +367,8 @@ App.Views.Signup = Backbone.View.extend({
         var context = 0;
         $.ajax({
             type: 'POST',
-            url: '../php/login.php',
+            //url: '../php/login.php',
+            url: '../login/generate_bioauth_code',
             dataType: "json",
             data: {cmd: "generate_bioauth_code", email: email},
             success: function(code) {
@@ -420,7 +427,8 @@ App.Views.Signup = Backbone.View.extend({
         if (code != '' && code != undefined)
             $.ajax({
                 type: 'POST',
-                url: '../php/login.php',
+                //url: '../php/login.php',
+                url: '../login/check_bioauth_code',
                 dataType: "json",
                 data: {cmd: "check_bioauth_code", code: code},
                 success: function(data) {
@@ -459,7 +467,8 @@ App.Views.Signup = Backbone.View.extend({
         else
             $.ajax({
                 type: 'POST',
-                url: '../php/login.php',
+                //url: '../php/login.php',
+                url: '../login/login_check',
                 dataType: "json",
                 data: {cmd: "login_check", email: email},
                 success: function(data) {

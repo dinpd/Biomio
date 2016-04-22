@@ -17,6 +17,22 @@ $app->group('/captcha/', function() use ($app){
     $app->post('check_code','App\Controllers\CaptchaController:check_code');
 });
 
+$app->group('/provider/', function() use ($app){
+
+    $app->post('register','App\Controllers\ProviderController:register');
+    $app->post('load_providers','App\Controllers\ProviderController:load_providers');
+    $app->post('provider_info','App\Controllers\ProviderController:provider_info');
+    $app->post('update_info','App\Controllers\ProviderController:update_info');
+    $app->post('save_website','App\Controllers\ProviderController:save_website');
+    $app->post('load_websites','App\Controllers\ProviderController:load_websites');
+    $app->post('delete_website','App\Controllers\ProviderController:delete_website');
+    $app->post('load_provider_users','App\Controllers\ProviderController:load_provider_users');
+    $app->post('add_provider_user','App\Controllers\ProviderController:add_provider_user');
+    $app->post('delete_provider_user','App\Controllers\ProviderController:delete_provider_user');
+
+});
+
+
 $app->group('/login/',function() use($app){
 
     $app->post('check_email','App\Controllers\UserController:check_email');

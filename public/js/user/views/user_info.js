@@ -66,7 +66,8 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
 
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/update_name',
             data: {cmd: "update_name", first_name: first_name, last_name: last_name},
             success: function(data) {
                 if (data == '#success') {
@@ -313,7 +314,8 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
     get_user_emails: function () {
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/get_user_emails',
             dataType: "json",
             data: {cmd: "get_user_emails", extention: 0},
             success: function(data) {
@@ -336,7 +338,8 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         else 
             $.ajax({
                 type: 'POST',
-                url: 'php/login.php',
+                //url: 'php/login.php',
+                url: '/login/add_email',
                 data: {cmd: "add_email", email: email},
                 success: function(data) {
                     $('.new-email').val('');
@@ -354,7 +357,8 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         var email = $that.find('p').text();
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/send_email_verification_code',
             data: {cmd: "send_email_verification_code", email: email},
             success: function(data) {
                 if (data == '#success') {
@@ -373,7 +377,8 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         var code = $that.find('input').val();
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/verify_email',
             data: {cmd: "verify_email", email: email, code: code},
             success: function(data) {
                 if (data == '#success') {
@@ -395,7 +400,8 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         var email = $that.find('p').text();
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/delete_email',
             data: {cmd: "delete_email", email: email},
             success: function(data) {
                 $that.remove();
@@ -406,7 +412,8 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
     get_user_phones: function (e) {
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/get_phones',
             dataType: "json",
             data: {cmd: "get_phones"},
             success: function(data) {
@@ -451,7 +458,8 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         else 
             $.ajax({
                 type: 'POST',
-                url: 'php/login.php',
+                //url: 'php/login.php',
+                url: '/login/send_phone_verification_code',
                 data: {cmd: "send_phone_verification_code", phone: phone},
                 success: function(data) {
                     if (data = "#success") {
@@ -467,7 +475,8 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         if (code.length > 0)
             $.ajax({
                 type: 'POST',
-                url: 'php/login.php',
+                //url: 'php/login.php',
+                url: '/login/verify_phone_code',
                 data: {cmd: "verify_phone_code", code: code},
                 success: function(data) {
                     if (data != 0) {
@@ -502,7 +511,8 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         console.log(number);
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/delete_phone',
             data: {cmd: "delete_phone", number: number},
             success: function(data) {
                 $this.remove();

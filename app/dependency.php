@@ -109,6 +109,15 @@ $container['App\Controllers\UserController'] = function ($c) {
 };
 
 
+$container['App\Controllers\ProviderController'] = function ($c) {
+    return new App\Controllers\ProviderController(
+		$c->get('renderer'),
+		$c->get('logger'),
+        $c->get('session')
+    );
+};
+
+
 $container['App\Controllers\CaptchaController'] = function ($c) {
     return new App\Controllers\UserController(
         $c->get('view'),

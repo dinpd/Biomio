@@ -38,7 +38,8 @@ App.Views.Signup = Backbone.View.extend({
 
             $.ajax({
                 type: 'POST',
-                url: 'php/login.php',
+                //url: 'php/login.php',
+                url: '/login/check_email',
                 data: {cmd: "check_email", email: email},
                 success: function(data) {
                     if (data.search("#registered")!=-1) {
@@ -70,7 +71,8 @@ App.Views.Signup = Backbone.View.extend({
         else
             $.ajax({
                 type: 'POST',
-                url: 'php/login.php',
+                //url: 'php/login.php',
+                url: '/login/sign_up',
                 data: {cmd: "sign_up", first_name: first_name, last_name: last_name, email: email, type: type},
                 success: function(data) {
                     if (data == '#email') $('#sign_in_submit_span').text("this email address is already registered in our system");

@@ -28,7 +28,8 @@ App.Views.userServices = Backbone.View.extend({
         var that = this;
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/get_extension_settings',
             dataType: "json",
             data: {cmd: "get_extension_settings"},
             success: function(data) {
@@ -136,7 +137,8 @@ App.Views.userServices = Backbone.View.extend({
     get_extension_settings: function () {
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/get_gate_keys',
             dataType: "json",
             data: {cmd: "get_gate_keys"},
             success: function(data) {
@@ -148,7 +150,8 @@ App.Views.userServices = Backbone.View.extend({
     get_user_extensions: function () {
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/get_user_extensions',
             dataType: "json",
             data: {cmd: "get_user_extensions"},
             success: function(data) {
@@ -161,7 +164,8 @@ App.Views.userServices = Backbone.View.extend({
     get_user_emails: function () {
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/get_user_emails',
             dataType: "json",
             data: {cmd: "get_user_emails", extention: 1},
             success: function(data) {
@@ -185,7 +189,8 @@ App.Views.userServices = Backbone.View.extend({
         else 
             $.ajax({
                 type: 'POST',
-                url: 'php/login.php',
+                //url: 'php/login.php',
+                url: '/login/add_email',
                 data: {cmd: "add_email", email: email},
                 success: function(data) {
                     if (data == 'gmail') {
@@ -207,7 +212,8 @@ App.Views.userServices = Backbone.View.extend({
         var email = $that.find('p').text();
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/delete_email',
             data: {cmd: "delete_email", email: email},
             success: function(data) {
                 $that.remove();
@@ -223,7 +229,8 @@ App.Views.userServices = Backbone.View.extend({
     send_email_verification_code: function (email) {
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/send_email_verification_code',
             data: {cmd: "send_email_verification_code", email: email},
             success: function(data) {
                 if (data == '#success') {
@@ -244,7 +251,8 @@ App.Views.userServices = Backbone.View.extend({
         var code = $that.find('input').val();
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/verify_email',
             data: {cmd: "verify_email", email: email, code: code},
             success: function(data) {
                 if (data == '#success') {
@@ -272,7 +280,8 @@ App.Views.userServices = Backbone.View.extend({
         var context = 0;
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/verify_extention',
             dataType: "json",
             data: {cmd: "verify_extention"},
             success: function(data) {
@@ -304,7 +313,8 @@ App.Views.userServices = Backbone.View.extend({
             if (response.result == true) 
                 $.ajax({
                     type: 'POST',
-                    url: 'php/login.php',
+                    //url: 'php/login.php',
+                    url: '/login/check_status',
                     data: {cmd: "check_status", code: code},
                     success: function(data) {
                         if (data == '#verified') {
@@ -343,7 +353,8 @@ App.Views.userServices = Backbone.View.extend({
         } else {
             $.ajax({
                 type: 'POST',
-                url: 'php/login.php',
+                //url: 'php/login.php',
+                url: '/login/change_extention_settings',
                 data: {cmd: "change_extention_settings", condition: condition, auth_types: auth_types},
                 success: function(data) {
                     

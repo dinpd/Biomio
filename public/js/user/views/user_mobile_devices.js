@@ -22,7 +22,8 @@ App.Views.userMobileDevices = Backbone.View.extend({
         that = this;
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/get_biometrics',
             dataType: "json",
             data: {cmd: "get_biometrics", biometrics: 'face'},
             success: function(data) {
@@ -34,7 +35,8 @@ App.Views.userMobileDevices = Backbone.View.extend({
     get_mobile_devices: function () {
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/get_mobile_devices',
             dataType: "json",
             data: {cmd: "get_mobile_devices"},
             success: function(data) {
@@ -58,7 +60,8 @@ App.Views.userMobileDevices = Backbone.View.extend({
         else 
             $.ajax({
                 type: 'POST',
-                url: 'php/login.php',
+                //url: 'php/login.php',
+                url: '/login/get_mobile_devices',
                 data: {cmd: "add_mobile_device", name: name},
                 success: function(data) {
                     $('.add-1 input').val('');
@@ -82,7 +85,8 @@ App.Views.userMobileDevices = Backbone.View.extend({
         $('#qr_code_text strong').text('');
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/generate_qr_code',
             data: {cmd: "generate_qr_code", id: id, application: 1},
             success: function(data) {
                 // returns 8 symbol code which we present as a text and as a qr image
@@ -112,7 +116,8 @@ App.Views.userMobileDevices = Backbone.View.extend({
         var name = $(e.target).find('input').val();
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/rename_mobile_device',
             data: {cmd: "rename_mobile_device", device_id: id, name: name},
             success: function(data) {
                 $that.find('form').addClass('hide');
@@ -124,7 +129,8 @@ App.Views.userMobileDevices = Backbone.View.extend({
         var id = $(e.target).closest('.mobile-device').attr('id').substring(7);
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/delete_mobile_device',
             data: {cmd: "delete_mobile_device", device_id: id},
             success: function(data) {
                 $('#device_' + id).remove();
@@ -154,7 +160,8 @@ App.Views.userMobileDevices = Backbone.View.extend({
         // create session code
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/generate_biometrics_code',
             data: {cmd: "generate_biometrics_code", application: 0, device_id: device_id},
             success: function(data) {
                 $('.form-1-1, .form-1-3, .form-1-4, .form-1-5').addClass('hide');
@@ -172,7 +179,8 @@ App.Views.userMobileDevices = Backbone.View.extend({
             if (code != '' && code != undefined)
                 $.ajax({
                     type: 'POST',
-                    url: 'php/login.php',
+                    //url: 'php/login.php',
+                    url: '/login/check_status',
                     data: {cmd: "check_status", code: code},
                     success: function(data) {
                         if (data == '#verified') {
@@ -198,7 +206,8 @@ App.Views.userMobileDevices = Backbone.View.extend({
             if (code != '' && code != undefined)
                 $.ajax({
                     type: 'POST',
-                    url: 'php/login.php',
+                    //url: 'php/login.php',
+                    url: '/login/check_status',
                     data: {cmd: "check_status", code: code},
                     success: function(data) {
                         if (data == '#in-process') {

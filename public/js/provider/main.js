@@ -180,7 +180,8 @@ $(document).ready(function() {
     // Main element: gets user ID and starts the router history
     $.ajax({
         type: 'POST',
-        url: '../php/login.php',
+        //url: '../php/login.php',
+        url: '../login/is_loged_in',
         dataType: "json",
         data: {cmd : 'is_loged_in'},
         success: function(data) {
@@ -264,7 +265,8 @@ function session_checker() {
     session_checker = setInterval(function(){ 
         $.ajax({
             type: 'POST',
-            url: '../php/login.php',
+            //url: '../php/login.php',
+            url: '../login/is_loged_in',
             dataType: "json",
             data: {cmd : 'is_loged_in'},
             success: function(data) {

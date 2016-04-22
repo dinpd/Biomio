@@ -176,7 +176,8 @@ function render_form() {
 function biomio_submit (api_id) {
     $.ajax({
         type: 'POST',
-        url: 'php/login.php',
+       // url: 'php/login.php',
+        url: '/login/biomio_login',
         dataType: "json",
         data: {cmd: "biomio_login", api_id: api_id},
         success: function(data) {

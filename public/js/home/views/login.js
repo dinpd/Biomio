@@ -33,7 +33,8 @@ App.Views.Login = Backbone.View.extend({
         logout: function (event) {
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/logout',
             data: {cmd: "logout"},
             success: function(data) {
                 if (data.search("out")!=-1) {
@@ -60,7 +61,8 @@ App.Views.Login = Backbone.View.extend({
     changeType: function (type) {
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/change_type',
             data: {cmd: "change_type", type: type},
             success: function(data) {
 
@@ -101,7 +103,8 @@ App.Views.Login = Backbone.View.extend({
         else
             $.ajax({
                 type: 'POST',
-                url: 'php/login.php',
+                //url: 'php/login.php',
+                url: '/login/login_check',
                 dataType: "json",
                 data: {cmd: "login_check", email: email},
                 success: function(data) {
@@ -172,7 +175,8 @@ App.Views.Login = Backbone.View.extend({
 
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/'+cmd,
             data: {cmd: cmd, profileId: window.tempId, value: value},
             success: function(data) {
                 if (data == "#success") {
@@ -195,7 +199,8 @@ App.Views.Login = Backbone.View.extend({
         } else {
             $.ajax({
                 type: 'POST',
-                url: 'php/login.php',
+                //url: 'php/login.php',
+                url: '/login/check_login_code',
                 dataType: "json",
                 data: {cmd: "check_login_code", profileId: window.tempId, code: code},
                 success: function(data) {
@@ -249,7 +254,8 @@ App.Views.Login = Backbone.View.extend({
         var context = 0;
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/generate_bioauth_code',
             dataType: "json",
             data: {cmd: "generate_bioauth_code", email: email},
             success: function(code) {
@@ -308,7 +314,8 @@ App.Views.Login = Backbone.View.extend({
         if (code != '' && code != undefined)
             $.ajax({
                 type: 'POST',
-                url: 'php/login.php',
+                //url: 'php/login.php',
+                url: '/login/check_bioauth_code',
                 dataType: "json",
                 data: {cmd: "check_bioauth_code", code: code},
                 success: function(data) {
@@ -348,7 +355,8 @@ App.Views.Login = Backbone.View.extend({
         else
             $.ajax({
                 type: 'POST',
-                url: 'php/login.php',
+                //url: 'php/login.php',
+                url: '/login/login_check',
                 dataType: "json",
                 data: {cmd: "login_check", email: email},
                 success: function(data) {

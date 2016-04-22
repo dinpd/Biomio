@@ -30,7 +30,8 @@ App.Views.Wizard = Backbone.View.extend({
         var that = this;
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/get_state',
             dataType: "json",
             data: {cmd: "get_state", type: this.type},
             success: function(data) {
@@ -79,7 +80,8 @@ App.Views.Wizard = Backbone.View.extend({
     get_email: function (e) {
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/get_user_emails',
             dataType: "json",
             data: {cmd: "get_user_emails", extention: 1},
             success: function(data) {
@@ -102,7 +104,8 @@ App.Views.Wizard = Backbone.View.extend({
 
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/update_name',
             data: {cmd: "update_name", first_name: first_name, last_name: last_name},
             success: function(data) {
                 if (data == '#success') {
@@ -130,7 +133,8 @@ App.Views.Wizard = Backbone.View.extend({
             if (this.type == 1) {
                 $.ajax({
                     type: 'POST',
-                    url: 'php/login.php',
+                    //url: 'php/login.php',
+                    url: '/login/get_mobile_devices',
                     dataType: "json",
                     data: {cmd: "get_mobile_devices"},
                     success: function(data) {
@@ -156,7 +160,8 @@ App.Views.Wizard = Backbone.View.extend({
                 else 
                     $.ajax({
                         type: 'POST',
-                        url: 'php/login.php',
+                        //url: 'php/login.php',
+                        url: '/login/add_mobile_device',
                         data: {cmd: "add_mobile_device", name: name},
                         success: function(data) {
                             $('.device-id').val(data);
@@ -243,7 +248,8 @@ App.Views.Wizard = Backbone.View.extend({
         $('#qr_code_text').text('');
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/generate_qr_code',
             data: {cmd: "generate_qr_code", id: id, application: 1},
             success: function(data) {
                 // returns 8 symbol code which we present as a text and as a qr image
@@ -268,7 +274,8 @@ App.Views.Wizard = Backbone.View.extend({
         // create session code
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/generate_biometrics_code',
             data: {cmd: "generate_biometrics_code", application: 0, device_id: device_id},
             success: function(data) {
                 $('#biometrics_code').text(data);
@@ -285,7 +292,8 @@ App.Views.Wizard = Backbone.View.extend({
             if (code != '' && code != undefined && !$('.div-2-3').hasClass('hide'))
                 $.ajax({
                     type: 'POST',
-                    url: 'php/login.php',
+                    //url: 'php/login.php',
+                    url: '/login/check_status',
                     data: {cmd: "check_status", code: code},
                     success: function(data) {
                         if (data == '#verified') {
@@ -310,7 +318,8 @@ App.Views.Wizard = Backbone.View.extend({
             if (code != '' && code != undefined)
                 $.ajax({
                     type: 'POST',
-                    url: 'php/login.php',
+                    //url: 'php/login.php',
+                    url: '/login/check_status',
                     data: {cmd: "check_status", code: code},
                     success: function(data) {
                         console.log(data);
@@ -359,7 +368,8 @@ App.Views.Wizard = Backbone.View.extend({
             } else 
                 $.ajax({
                     type: 'POST',
-                    url: 'php/login.php',
+                    //url: 'php/login.php',
+                    url: '/login/verify_extention',
                     dataType: "json",
                     data: {cmd: "verify_extention"},
                     success: function(data) {
@@ -391,7 +401,8 @@ App.Views.Wizard = Backbone.View.extend({
             if (response.result == true) 
                 $.ajax({
                     type: 'POST',
-                    url: 'php/login.php',
+                    //url: 'php/login.php',
+                    url: '/login/check_status',
                     data: {cmd: "check_status", code: code},
                     success: function(data) {
                         if (data == '#verified') {
@@ -415,7 +426,8 @@ App.Views.Wizard = Backbone.View.extend({
     save_state: function (state) {
         $.ajax({
             type: 'POST',
-            url: 'php/login.php',
+            //url: 'php/login.php',
+            url: '/login/save_state',
             data: {cmd: "save_state", type:this.type, s: state },
             success: function(data) {
                 if (data == '#success') console.log('state is saved');

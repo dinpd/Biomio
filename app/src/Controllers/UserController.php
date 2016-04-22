@@ -21,16 +21,6 @@ final class UserController
         $this->session = $session;
     }
 
-//    public function dispatch(Request $request, Response $response, $args)
-//    {
-//        $this->logger->info("Home page action dispatched");
-//
-//        $users = $this->model->show();
-//
-//        return $this->view->render($response, 'users.twig', ["data" => $users]);
-//    }
-
-
     public function tryx(Request $request, Response $response, $args)
     {
 
@@ -98,7 +88,7 @@ final class UserController
         $extension = 0;
 
         if (!User::check_email($email))
-            return '#email';
+            return $response->write('#email');
 
         $profileId = User::add_profile(
             $first_name,

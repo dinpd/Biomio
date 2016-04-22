@@ -15,7 +15,8 @@ App.Views.ProviderApi = Backbone.View.extend({
     	var that = this;
     	$.ajax({
             type: 'POST',
-            url: '../php/login.php',
+            //url: '../php/login.php',
+            url: '../login/get_api_keys',
             dataType: "json",
             data: {cmd: "get_api_keys"},
             success: function(data) {
@@ -37,7 +38,8 @@ App.Views.ProviderApi = Backbone.View.extend({
     	var that = this;
     	$.ajax({
             type: 'POST',
-            url: '../php/login.php',
+            //url: '../php/login.php',
+            url: '../login/generate_api_key',
             dataType: "json",
             data: {cmd: "generate_api_key"},
             success: function(data) {
@@ -54,7 +56,8 @@ App.Views.ProviderApi = Backbone.View.extend({
     	
     	$.ajax({
             type: 'POST',
-            url: '../php/login.php',
+            //url: '../php/login.php',
+            url: '../login/delete_api_key',
             data: {cmd: "delete_api_key", key: key},
             success: function(data) {
             	if (data == '#success')
