@@ -15,7 +15,8 @@ App.Views.ProviderUsers = Backbone.View.extend({
         that = this;
         $.ajax({
             type: 'POST',
-            url: '../php/provider.php',
+            //url: '../php/provider.php',
+            url: '../provider/load_provider_users',
             data: {cmd: "load_provider_users"},
             dataType: "json",
             success: function(data) {
@@ -66,7 +67,8 @@ App.Views.ProviderUsers = Backbone.View.extend({
         that = this;
         $.ajax({
             type: 'POST',
-            url: '../php/provider.php',
+            //url: '../php/provider.php',
+            url: '../provider/add_provider_user',
             data: {cmd: "add_provider_user", user_email: email},
             success: function(data) {
                 if (data == '#session') {
@@ -90,7 +92,8 @@ App.Views.ProviderUsers = Backbone.View.extend({
 
         $.ajax({
             type: 'POST',
-            url: '../php/provider.php',
+            //url: '../php/provider.php',
+            url: '../provider/delete_provider_user',
             data: {cmd: "delete_provider_user", userId: userId},
             success: function(data) {
                 message('success', 'Success: ', 'the user has been deleted');

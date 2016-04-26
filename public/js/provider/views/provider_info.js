@@ -6,7 +6,8 @@ App.Views.ProviderInformation = Backbone.View.extend({
         that = this;
         $.ajax({
             type: 'POST',
-                url: '../php/provider.php',
+                //url: '../php/provider.php',
+                url: '../provider/provider_info',
                 data: {cmd: "provider_info"},
                 dataType: "json",
                 success: function(data) {
@@ -61,7 +62,8 @@ App.Views.ProviderInformation = Backbone.View.extend({
 
         $.ajax({
             type: 'POST',
-                url: '../php/provider.php',
+                //url: '../php/provider.php',
+                url: '../provider/update_info',
                 data: {cmd: "update_info", name: name, ein: ein, email: email, phone: phone, address: address},
                 success: function(data) {
                     

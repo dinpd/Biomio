@@ -81,9 +81,6 @@ final class CaptchaController
         $this->session->captcha = $word;
         $this->session->bio_captcha = 0;
 
-//        $_SESSION['captcha'] = $word;
-//        $_SESSION['bio_captcha'] = 0;
-
         ob_start();
         imagepng($image);
         $buffer = ob_get_clean();
@@ -95,61 +92,29 @@ final class CaptchaController
 
     public function check_code(Request $request, Response $response, $args)
     {
-        if($this->session->captcha === null)
+        if ($this->session->captcha === null)
             return $response->write('#session');
 
+        $user_answer = $request->getParam('user_answer');
 
-        $user_answer =  $request->getParam('user_answer');
-        $name = $request->getParam('name');
-        $email = $request->getParam('email');
-        $message = $request->getParam('message');
-
-//        $user_answer = $_POST['user_answer'];
-//        $name = $_POST['name'];
-//        $email = $_POST['email'];
-//        $message = $_POST['message'];
-
-        $real_answer = $_SESSION['captcha'];
         $real_answer = $this->session->captcha;
 
         if ($user_answer == $real_answer) {
-            // contact($name, $email, $message); <-- method contact is not implemented
+
+            /* // following method "contact" is not implemented in legacy version
+            $name = $request->getParam('name');
+            $email = $request->getParam('email');
+            $message = $request->getParam('message');
+             contact($name, $email, $message); // <-- method contact is not implemented
+            */
 
             $this->session->destroy();
             return $response->write('#success');
 
-//            echo '#success';
-//            session_unset();     // unset $_SESSION variable for the run-time
-//            session_destroy();   // destroy session data in storage
         } else {
             $this->session->destroy();
             return $response->write('#captcha');
-//            echo '#captcha';
-//            session_unset();     // unset $_SESSION variable for the run-time
-//            session_destroy();   // destroy session data in storage
         }
-
-//        if (isset($_SESSION['captcha'])) {
-//            $user_answer = $_POST['user_answer'];
-//            $name = $_POST['name'];
-//            $email = $_POST['email'];
-//            $message = $_POST['message'];
-//
-//            $real_answer = $_SESSION['captcha'];
-//            if ($user_answer == $real_answer) {
-//                contact($name, $email, $message);
-//                echo '#success';
-//                session_unset();     // unset $_SESSION variable for the run-time
-//                session_destroy();   // destroy session data in storage
-//            } else {
-//                echo '#captcha';
-//                session_unset();     // unset $_SESSION variable for the run-time
-//                session_destroy();   // destroy session data in storage
-//            }
-//        } else {
-//            echo '#session';
-//        }
-
     }
 
 }

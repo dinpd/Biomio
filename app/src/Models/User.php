@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-//use Illuminate\Database\Eloquent\Model;
 use ORM;
 
 class User
 {
-    protected $table = "users";
 
 
     public static function check_email($email)
@@ -20,18 +18,18 @@ class User
     }
 
 
-    public static function add_profile($first_name, $last_name, $email, $type, $ip, $extention)
+    public static function add_profile($first_name, $last_name, $email, $type, $ip, $extention, $gateUri)
     {
 
         $profile = ORM::for_table('Profiles')->create();
-        $profile->ip = $ip;
+        $profile->last_ip = $ip;
         $profile->type = $type;
         $profile->save();
 
         $userInfo = ORM::for_table('UserInfo')->create();
         $userInfo->profileId = $profile->id();
-        $userInfo->first_name = $first_name;
-        $userInfo->last_name = $last_name;
+        $userInfo->firstName = $first_name;
+        $userInfo->lastName = $last_name;
         $userInfo->save();
 
         $providerInfo = ORM::for_table('ProviderInfo')->create();
@@ -46,12 +44,13 @@ class User
         $userEmail->save();
 
         $pgpKeysData = ORM::for_table('PgpKeysData')->create();
-        $pgpKeysData->profileId = $profile->id();
+        $pgpKeysData->user = $profile->id();
         $pgpKeysData->email = $email;
         $pgpKeysData->save();
 
         //legacy things
-        $url = 'http://10.209.33.61:90/new_email/' . $email;
+       // $url = 'http://10.209.33.61:90/new_email/' . $email;
+        $url = $gateUri.'/new_email/' . $email;
         Helper::send_post($url);
 
         return $profile->id();
@@ -77,7 +76,7 @@ class User
 
     public static function update_user($profileId, $fieldname, $value)
     {
-        $profile = ORM::for_table('Profiles')->where('profileId', $profileId)->find_one();
+        $profile = ORM::for_table('Profiles')->where('id', $profileId)->find_one();
         if ($profile) {
             $profile->set($fieldname, $value);
             $profile->save();
@@ -149,7 +148,7 @@ class User
     {
 
         if ($index == 'training') {
-            $userProfile = ORM::for_table('Profiles')->where('profileId', $profileId)->find_one();
+            $userProfile = ORM::for_table('Profiles')->where('id', $profileId)->find_one();
             if ($userProfile) {
                 $userProfile->training = $value;
                 $userProfile->save();
@@ -200,7 +199,7 @@ class User
 
     public static function get_profile($profileId)
     {
-        return ORM::for_table('Profiles')->where('profileId', $profileId)->find_one();
+        return ORM::for_table('Profiles')->where('id', $profileId)->find_one();
     }
 
     public static function check_temp_phone_codes($code)
@@ -380,7 +379,7 @@ class User
     {
 
         ORM::for_table('Emails')->where(['profileId' => $profileId, 'email' => $email])->delete();
-        ORM::for_table('PgpKeysData')->where(['profileId' => $profileId, 'email' => $email])->delete();
+        ORM::for_table('PgpKeysData')->where(['user' => $profileId, 'email' => $email])->delete();
 
         self::save_log('PgpKeysData', $email);
     }

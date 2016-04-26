@@ -32,7 +32,8 @@ App.Views.ProviderWebResources = Backbone.View.extend({
     var that = this;
     $.ajax({
         type: 'POST',
-        url: '../php/provider.php',
+        //url: '../php/provider.php',
+        url: '../provider/load_websites',
         dataType: "json",
         data: {cmd: "load_websites"},
         success: function(data) {
@@ -60,7 +61,8 @@ App.Views.ProviderWebResources = Backbone.View.extend({
 
     $.ajax({
         type: 'POST',
-        url: '../php/provider.php',
+        //url: '../php/provider.php',
+        url: '../provider/delete_website',
         data: {cmd: "delete_website", id: id},
         success: function(data) {
           $('#resource_' + id).remove();
@@ -105,7 +107,8 @@ App.Views.ProviderWebResources = Backbone.View.extend({
 
     $.ajax({
         type: 'POST',
-        url: '../php/provider.php',
+        //url: '../php/provider.php',
+        url: '../provider/save_website',
         data: {cmd: "save_website", title: title, domain: domain, hook: hook},
         success: function(data) {
             if (data == '#exist') message('danger', 'Error: ', 'this domain already exist in our system');

@@ -76,4 +76,24 @@ class Helper
     }
 
 
+    public static function send_phone_clickatel($phone,$code)
+    {
+        /* START Some legacy stuff */
+        //TODO: find out what to do with that legacy things
+        // send code
+        $user = "biomio";
+        $password = "JFAOSMGDHfKcWR";
+        $api_id = "3524018";
+        $baseurl = "http://api.clickatell.com";
+        $text = urlencode("BIOMIO temporary login code: " . $code);
+        $to = $phone;
+        $from = "17577932772";
+        $mo = "1";
+
+        $url = "$baseurl/http/sendmsg?user=$user&password=$password&api_id=$api_id&to=$to&text=$text&mo=$mo&from=$from";
+        return file($url);
+        /* END Some legacy stuff */
+    }
+
+
 }

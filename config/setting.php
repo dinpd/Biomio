@@ -1,6 +1,9 @@
 <?php
 return [
     'settings' => [
+
+		'gateUri'=> 'http://10.209.33.61:90/',
+
         'displayErrorDetails' => true, // set to false in production
 
         // PHP Renderer settings

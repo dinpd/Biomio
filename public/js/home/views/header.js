@@ -22,7 +22,8 @@ App.Views.Header = Backbone.View.extend({
 
             $.ajax({
                 type: 'POST',
-                url: './php/provider.php',
+                //url: './php/provider.php',
+                url: '/provider/load_providers',
                 data: {cmd: "load_providers"},
                 dataType: "json",
                 success: function(data) {

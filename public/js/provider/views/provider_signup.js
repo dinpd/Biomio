@@ -106,7 +106,8 @@ App.Views.Signup = Backbone.View.extend({
 
             $.ajax({
                 type: 'POST',
-                url: '../php/provider.php',
+                //url: '../php/provider.php',
+                url: '../provider/register',
                 data: {cmd: "register", ein: ein, name: name, phone: phone, email: email, address: address},
                 success: function(data) {
                     if (data == '#name') message('danger', 'Error: ', 'this name is already registered');

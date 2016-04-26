@@ -104,7 +104,8 @@ $container['App\Controllers\UserController'] = function ($c) {
     return new App\Controllers\UserController(
 		$c->get('renderer'),
 		$c->get('logger'),
-        $c->get('session')
+        $c->get('session'),
+        $c->get('settings')
     );
 };
 

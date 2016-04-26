@@ -13,12 +13,14 @@ final class UserController
     private $renderer;
     private $logger;
     private $session;
+    private $settings;
 
-    public function __construct(\Slim\Views\PhpRenderer $renderer, LoggerInterface $logger, \RKA\Session $session)
+    public function __construct(\Slim\Views\PhpRenderer $renderer, LoggerInterface $logger, \RKA\Session $session, $settings)
     {
         $this->renderer = $renderer;
         $this->logger = $logger;
         $this->session = $session;
+        $this->settings = $settings;
     }
 
     public function tryx(Request $request, Response $response, $args)
@@ -34,6 +36,12 @@ final class UserController
         //$this->session->set('wow',1);
 
         //return $response->write('hii ja!:' . $this->session->wow);
+
+       // $container = $this->app->getContainer();
+      // $gateUri = $this->get('settings')['gateUri'];
+  print_r($this->settings['gateUri']);
+
+
 
         return $this->renderer->render($response, '/tmp.php', ['wow' => $this->session->wow, 'textoutput' => $textoutput]);
     }
@@ -87,8 +95,10 @@ final class UserController
         $email = $request->getParam('email');
         $extension = 0;
 
-        if (!User::check_email($email))
+        if (User::check_email($email))
             return $response->write('#email');
+
+        $gateUri = $this->settings['gateUri'];
 
         $profileId = User::add_profile(
             $first_name,
@@ -96,13 +106,16 @@ final class UserController
             $email,
             $type,
             Helper::get_remote_addr(),
-            Helper::check_mail_for_google_mx($email));
+            Helper::check_mail_for_google_mx($email),
+            $gateUri);
+
+
 
         //legacy code Looks like workaround for async send mail
         //TODO: Refactor is required, async send email
         /*new email key (we still create user if email is not gmail, just don't create the key)*/
         if ($extension == 0 && Helper::check_mail_for_google_mx($email)) {
-            $url = 'http://10.209.33.61:90/new_email/' . $email;
+            $url = $gateUri.'/new_email/' . $email;
             Helper::send_post($url);
         }
 
@@ -111,6 +124,7 @@ final class UserController
             $result = User::select_temp_login_codes($code);
         } while ($result);
         User::insert_temp_login_codes($profileId, $code);
+
 
         //TODO: Refactor is required, for email provider
         if ($extension == 0) {
@@ -121,6 +135,7 @@ final class UserController
         } else {
             Email::welcome2_email($email, $first_name, $last_name, $code);
         }
+
         //return $profileId;
         return $response->write($profileId);
     }
@@ -255,28 +270,14 @@ final class UserController
 
         User::insert_temp_login_codes($profileId, $code);
 
-        /* START Some legacy stuff */
-        //TODO: find out what to do with that legacy things
-        // send code
-        $user = "biomio";
-        $password = "JFAOSMGDHfKcWR";
-        $api_id = "3524018";
-        $baseurl = "http://api.clickatell.com";
-        $text = urlencode("BIOMIO temporary login code: " . $code);
-        $to = $phone;
-        $from = "17577932772";
-        $mo = "1";
-
-        $url = "$baseurl/http/sendmsg?user=$user&password=$password&api_id=$api_id&to=$to&text=$text&mo=$mo&from=$from";
-        $ret = file($url);
 
         // send success message
-        $send = explode(":", $ret[0]);
+        $send = explode(":", Helper::send_phone_clickatel($phone,$code));
         if ($send[0] == "ID")
             return $response->write("#success");
         else
             return $response->write("send message failed");
-        /* END Some legacy stuff */
+
     }
 
 
@@ -579,7 +580,7 @@ final class UserController
         } while ($verificationCode);
 
         /*Legacy  stuff*/
-        $url = 'http://10.209.33.61:90/training?device_id=' . $key . '&code=' . $code;
+        $url = $this->settings['gateUri'].'/training?device_id=' . $key . '&code=' . $code;
         send_post($url);
 
         // insert code
