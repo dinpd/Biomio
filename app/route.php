@@ -12,6 +12,17 @@ $app->get('/users', 'App\Controllers\UserController:dispatch')->setName('userpag
 $app->get('/tryx', 'App\Controllers\UserController:tryx')->setName('tryx');
 $app->post('/tryx', 'App\Controllers\UserController:tryx')->setName('tryxPost');
 
+
+$app->group('/upload/',function() use ($app){
+    $app->post('profilePictureWebcam','App\Controllers\CaptchaController:profilePictureWebcam');
+    $app->post('profilePictureUpload','App\Controllers\CaptchaController:profilePictureUpload');
+    $app->post('profilePictureDelete','App\Controllers\CaptchaController:profilePictureDelete');
+    $app->post('providerLogoUpload','App\Controllers\CaptchaController:providerLogoUpload');
+    $app->post('providerLogoDelete','App\Controllers\CaptchaController:providerLogoDelete');
+    $app->post('locationPictureUpload','App\Controllers\CaptchaController:locationPictureUpload');
+    $app->post('locationPictureDelete','App\Controllers\CaptchaController:locationPictureDelete');
+});
+
 $app->group('/captcha/', function() use ($app){
     $app->post('create_image','App\Controllers\CaptchaController:create_image');
     $app->post('check_code','App\Controllers\CaptchaController:check_code');

@@ -118,6 +118,14 @@ $container['App\Controllers\ProviderController'] = function ($c) {
     );
 };
 
+$container['App\Controllers\UploadController'] = function ($c) {
+    return new App\Controllers\UploadController(
+        $c->get('logger'),
+        $c->get('settings')
+    );
+};
+
+
 
 $container['App\Controllers\CaptchaController'] = function ($c) {
     return new App\Controllers\UserController(

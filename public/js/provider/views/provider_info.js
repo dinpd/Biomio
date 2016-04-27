@@ -136,7 +136,8 @@ function providerSaveImage () {
     formdata.append("cmd", 'providerLogoUpload');
 
     $.ajax({
-        url:"../php/uploadPicture.php",
+       // url:"../php/uploadPicture.php",
+        url:"../upload/providerLogoUpload",
         type: "POST",
         data:formdata,
         processData:false,
@@ -160,7 +161,8 @@ function providerDeleteImage () {
     formdata.append("cmd", 'providerLogoDelete');
 
     $.ajax({
-        url:"../php/uploadPicture.php",
+        //url:"../php/uploadPicture.php",
+        url:"../upload/providerLogoDelete",
         type: "POST",
         data:formdata,
         processData:false,

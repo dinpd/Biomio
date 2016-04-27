@@ -279,7 +279,8 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         that.done();
         
         $.ajax({
-            url:"php/uploadPicture.php",
+            //url:"php/uploadPicture.php",
+            url:"/upload/profilePictureWebcam",
             type: "POST",
             data: formdata,
             processData:false,
@@ -570,7 +571,8 @@ function userSaveImage () {
     formdata.append("cmd", 'profilePictureUpload');
 
     $.ajax({
-        url:"php/uploadPicture.php",
+        //url:"php/uploadPicture.php",
+        url:"/upload/profilePictureUpload",
         type: "POST",
         data:formdata,
         processData:false,
@@ -594,7 +596,8 @@ function userDeleteImage () {
     formdata.append("cmd", 'profilePictureDelete');
 
     $.ajax({
-        url:"php/uploadPicture.php",
+        //url:"php/uploadPicture.php",
+        url:"/upload/profilePictureDelete",
         type: "POST",
         data:formdata,
         processData:false,

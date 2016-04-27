@@ -2,33 +2,38 @@
 return [
     'settings' => [
 
-		'gateUri'=> 'http://10.209.33.61:90/',
+        'gateUri' => 'http://10.209.33.61:90/',
 
+        'upload' => [
+            'profilePicturePath' => "../profileData/profilePicture/",
+            'companyLogoPath' => "../profileData/companyLogo/",
+            'locationPicturePath' => "../profileData/locationPicture/"
+        ],
         'displayErrorDetails' => true, // set to false in production
 
         // PHP Renderer settings
         'renderer' => [
-            'template_path' => PATH_ROOT.'../components/renderer_tmpl',
+            'template_path' => PATH_ROOT . '../components/renderer_tmpl',
         ],
 
         // Twig View settings
         'view' => [
-            'template_path' => PATH_ROOT.'../components/twig_tmpl',
-            'cache_path' => PATH_ROOT.'../storage/cache/',
+            'template_path' => PATH_ROOT . '../components/twig_tmpl',
+            'cache_path' => PATH_ROOT . '../storage/cache/',
             'debug' => true,
         ],
 
         // Monolog settings
         'logger' => [
             'name' => 'slim-app',
-            'path' => PATH_ROOT.'../storage/log/server.log',
+            'path' => PATH_ROOT . '../storage/log/server.log',
         ],
-		
-		// Facebook App
-		'facebook' => [
-			'app_id' => '',
-			'app_secret' => '',
-			'default_graph_version' => 'v2.5',
-		],
+
+        // Facebook App
+        'facebook' => [
+            'app_id' => '',
+            'app_secret' => '',
+            'default_graph_version' => 'v2.5',
+        ],
     ],
 ];

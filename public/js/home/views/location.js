@@ -181,7 +181,8 @@ function locationSaveImage () {
     formdata.append("cmd", 'locationPictureUpload');
 
     $.ajax({
-        url:"php/uploadPicture.php",
+        //url:"php/uploadPicture.php",
+        url:"/upload/locationPictureUpload",
         type: "POST",
         data:formdata,
         processData:false,
@@ -206,7 +207,8 @@ function locationDeleteImage () {
     formdata.append("cmd", 'locationPictureDelete');
 
     $.ajax({
-        url:"php/uploadPicture.php",
+        //url:"php/uploadPicture.php",
+        url:"/upload/locationPictureDelete",
         type: "POST",
         data:formdata,
         processData:false,
