@@ -126,6 +126,13 @@ $container['App\Controllers\UploadController'] = function ($c) {
 };
 
 
+$container['App\Controllers\DomainController'] = function ($c) {
+    return new App\Controllers\DomainController(
+        $c->get('logger'),
+        $c->get('settings')
+    );
+};
+
 
 $container['App\Controllers\CaptchaController'] = function ($c) {
     return new App\Controllers\UserController(

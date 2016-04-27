@@ -13,14 +13,22 @@ $app->get('/tryx', 'App\Controllers\UserController:tryx')->setName('tryx');
 $app->post('/tryx', 'App\Controllers\UserController:tryx')->setName('tryxPost');
 
 
+
+$app->group('/domain/', function() use ($app){
+   $app->post('create','App\Controllers\DomainController:create');
+   $app->post('verify','App\Controllers\DomainController:verify');
+   $app->post('createScreenshot','App\Controllers\DomainController:createScreenshot');
+
+});
+
 $app->group('/upload/',function() use ($app){
-    $app->post('profilePictureWebcam','App\Controllers\CaptchaController:profilePictureWebcam');
-    $app->post('profilePictureUpload','App\Controllers\CaptchaController:profilePictureUpload');
-    $app->post('profilePictureDelete','App\Controllers\CaptchaController:profilePictureDelete');
-    $app->post('providerLogoUpload','App\Controllers\CaptchaController:providerLogoUpload');
-    $app->post('providerLogoDelete','App\Controllers\CaptchaController:providerLogoDelete');
-    $app->post('locationPictureUpload','App\Controllers\CaptchaController:locationPictureUpload');
-    $app->post('locationPictureDelete','App\Controllers\CaptchaController:locationPictureDelete');
+    $app->post('profilePictureWebcam','App\Controllers\UploadController:profilePictureWebcam');
+    $app->post('profilePictureUpload','App\Controllers\UploadController:profilePictureUpload');
+    $app->post('profilePictureDelete','App\Controllers\UploadController:profilePictureDelete');
+    $app->post('providerLogoUpload','App\Controllers\UploadController:providerLogoUpload');
+    $app->post('providerLogoDelete','App\Controllers\UploadController:providerLogoDelete');
+    $app->post('locationPictureUpload','App\Controllers\UploadController:locationPictureUpload');
+    $app->post('locationPictureDelete','App\Controllers\UploadController:locationPictureDelete');
 });
 
 $app->group('/captcha/', function() use ($app){

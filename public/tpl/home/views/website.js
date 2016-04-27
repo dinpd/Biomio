@@ -73,7 +73,8 @@ App.Views.Website = Backbone.View.extend({
         e.preventDefault();
         that = this;
         $.ajax({
-            url: 'php/checkDomain.php',
+           // url: 'php/checkDomain.php',
+            url: '/domain/createScreenshot',
             method: 'POST',
              data: {cmd: 'createScreenshot', domain: that.model.get('domains')[0]},
              success: function(data) {

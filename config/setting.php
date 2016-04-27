@@ -7,7 +7,9 @@ return [
         'upload' => [
             'profilePicturePath' => "../profileData/profilePicture/",
             'companyLogoPath' => "../profileData/companyLogo/",
-            'locationPicturePath' => "../profileData/locationPicture/"
+            'locationPicturePath' => "../profileData/locationPicture/",
+            'tempWebsiteFilesPath' =>'../profileData/tempWebsiteFiles/',
+            'websiteScreenshotPath' =>'../profileData/websiteScreenshot/'
         ],
         'displayErrorDetails' => true, // set to false in production
 

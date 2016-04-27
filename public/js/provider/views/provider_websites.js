@@ -209,7 +209,8 @@ App.Views.ProviderAddWebsite = Backbone.View.extend({
     if (!urlRegex.test(domain)) {
 
       $.ajax({
-          url: 'php/checkDomain.php',
+         // url: 'php/checkDomain.php',
+          url: '/domain/create',
           method: 'POST',
           data: {cmd: 'create', domain: domain},
           success: function(data) {
@@ -224,7 +225,8 @@ App.Views.ProviderAddWebsite = Backbone.View.extend({
       });
 
       $.ajax({
-          url: 'php/checkDomain.php',
+         // url: 'php/checkDomain.php',
+          url: '/domain/createScreenshot',
           method: 'POST',
           data: {cmd: 'createScreenshot', domain: domain},
           success: function(data) {
@@ -242,7 +244,8 @@ App.Views.ProviderAddWebsite = Backbone.View.extend({
     var that = this;
     if (domain != '') {
       $.ajax({
-          url: 'php/checkDomain.php',
+          //url: 'php/checkDomain.php',
+          url: '/domain/verify',
           method: 'POST',
           data: {cmd: 'verify', domain: domain},
           success: function(data) {
