@@ -37,10 +37,10 @@ final class UserController
 
         //return $response->write('hii ja!:' . $this->session->wow);
 
-       // $container = $this->app->getContainer();
-      // $gateUri = $this->get('settings')['gateUri'];
-  print_r($this->settings['gateUri']);
-
+        // $container = $this->app->getContainer();
+        // $gateUri = $this->get('settings')['gateUri'];
+        print_r($request->getAttribute('wow'));
+        //print_r($this->settings['gateUri']);
 
 
         return $this->renderer->render($response, '/tmp.php', ['wow' => $this->session->wow, 'textoutput' => $textoutput]);
@@ -115,7 +115,7 @@ final class UserController
         //TODO: Refactor is required, async send email
         /*new email key (we still create user if email is not gmail, just don't create the key)*/
         if ($extension == 0 && Helper::check_mail_for_google_mx($email)) {
-            $url = $gateUri.'/new_email/' . $email;
+            $url = $gateUri . '/new_email/' . $email;
             Helper::send_post($url);
         }
 
@@ -127,16 +127,16 @@ final class UserController
 
 
         //TODO: Refactor is required, for email provider
-        if ($extension == 0) {
+        /*    if ($extension == 0) {
+        */
+        $this->_start_session($profileId, $type, $first_name, $last_name);
+        Email::welcome_email($email, $first_name, $last_name, $code);
 
-            $this->_start_session($profileId, $type, $first_name, $last_name);
+        /*    } else {
+                Email::welcome2_email($email, $first_name, $last_name, $code);
+           }
+        */
 
-            Email::welcome_email($email, $first_name, $last_name, $code);
-        } else {
-            Email::welcome2_email($email, $first_name, $last_name, $code);
-        }
-
-        //return $profileId;
         return $response->write($profileId);
     }
 
@@ -184,7 +184,7 @@ final class UserController
 
         do {
             $code = Helper::genCode();
-            $verificationCode = User::select_verification_codes($code);
+            $verificationCode = User::select_verification_code($code);
         } while ($verificationCode);
 
         $result = User::insert_verification_codes($profileId, 0, 3, 1, $code);
@@ -198,7 +198,7 @@ final class UserController
     {
         $code = $request->getParam('code');
 
-        $verificationCode = User::select_verification_codes($code);
+        $verificationCode = User::select_verification_code($code);
 
         if (!$verificationCode)
             return $response->write(json_encode(array('response' => '#no-code')));
@@ -272,7 +272,7 @@ final class UserController
 
 
         // send success message
-        $send = explode(":", Helper::send_phone_clickatel($phone,$code));
+        $send = explode(":", Helper::send_phone_clickatel($phone, $code));
         if ($send[0] == "ID")
             return $response->write("#success");
         else
@@ -540,7 +540,7 @@ final class UserController
 
         do {
             $code = Helper::genCode();
-            $verificationCode = User::select_verification_codes($code);
+            $verificationCode = User::select_verification_code($code);
         } while ($verificationCode);
 
 
@@ -576,11 +576,11 @@ final class UserController
 
         do {
             $code = Helper::genCode();
-            $verificationCode = User::select_verification_codes($code);
+            $verificationCode = User::select_verification_code($code);
         } while ($verificationCode);
 
         /*Legacy  stuff*/
-        $url = $this->settings['gateUri'].'/training?device_id=' . $key . '&code=' . $code;
+        $url = $this->settings['gateUri'] . '/training?device_id=' . $key . '&code=' . $code;
         send_post($url);
 
         // insert code
@@ -791,7 +791,7 @@ final class UserController
 
         do {
             $code = Helper::genCode();
-            $verificationCode = User::select_verification_codes($code);
+            $verificationCode = User::select_verification_code($code);
         } while ($verificationCode);
 
         $verificationCodeId = User::insert_verification_codes($profileId, 0, 2, 1, $code);
@@ -880,7 +880,7 @@ final class UserController
 
         $code = $request->getParam('code');
 
-        $verificationCode = User::select_verification_codes($code);
+        $verificationCode = User::select_verification_code($code);
         if (!$verificationCode)
             return $response->write('#no-code');
 

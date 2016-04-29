@@ -134,6 +134,15 @@ $container['App\Controllers\DomainController'] = function ($c) {
 };
 
 
+
+$container['App\Controllers\CommandController'] = function ($c) {
+    return new App\Controllers\CommandController(
+        $c->get('logger'),
+        $c->get('settings')
+    );
+};
+
+
 $container['App\Controllers\CaptchaController'] = function ($c) {
     return new App\Controllers\UserController(
         $c->get('view'),

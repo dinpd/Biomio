@@ -98,6 +98,12 @@ class User
         return ORM::for_table('UserInfo')->where('profileId', $profileId)->find_one();
     }
 
+    public static function update_user_info($profileId,$field,$value){
+        $userInfo = ORM::for_table('UserInfo')->where('profileId',$profileId)->find_one();
+        $userInfo->set($field,$value);
+        $userInfo->save();
+        return $userInfo;
+    }
 
     public static function update_verification_codes($status, $profileId, $application)
     {
@@ -112,11 +118,43 @@ class User
         return $verificationCode;
     }
 
+    public static function update_verification_code_status($status,$code)
+    {
+        $verificationCode = ORM::for_table('VerificationCodes')
+            ->where('code',$code)
+            ->find_one();
 
-    public static function select_verification_codes($code)
+        if ($verificationCode) {
+            $verificationCode->set('status', $status);
+            $verificationCode->save();
+        }
+        return $verificationCode;
+    }
+
+    public static function select_verification_code($code)
     {
         return ORM::for_table('VerificationCodes')->where('code', $code)->find_one();
     }
+
+
+
+    public static function select_verification_code_with_status_above($code,$status=0)
+    {
+        return ORM::for_table('VerificationCodes')
+            ->where('code', $code)
+            ->where_raw('`status` > ?',[$status])
+            ->find_one();
+    }
+
+    public static function select_verification_code_with_profileId_status_above($code,$profileId,$status=0)
+    {
+        return ORM::for_table('VerificationCodes')
+            ->where('code', $code)
+            ->where('profileId', $profileId)
+            ->where_raw('`status` > ?',[$status])
+            ->find_one();
+    }
+
 
 
     public static function insert_verification_codes($profileId, $device_id, $application, $status, $code)

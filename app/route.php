@@ -9,10 +9,20 @@ use \Slim\Http\Uri;
 $app->get('/', 'App\Controllers\IndexController:dispatch')->setName('index');
 
 $app->get('/users', 'App\Controllers\UserController:dispatch')->setName('userpage');
-$app->get('/tryx', 'App\Controllers\UserController:tryx')->setName('tryx');
-$app->post('/tryx', 'App\Controllers\UserController:tryx')->setName('tryxPost');
+$app->get('/tryx[/{wow}[/{xx}]]', 'App\Controllers\UserController:tryx')->setName('tryx');
 
 
+$app->group('/commands/',function() use ($app){
+
+    $app->post('get_user[/{email}]','App\Controllers\CommandController:get_user');
+    $app->post('verify_service[/{code}[/{probe_id}]]','App\Controllers\CommandController:verify_service');
+    $app->post('register_biometrics[/{code}[/{biometrics}]]','App\Controllers\CommandController:register_biometrics');
+    $app->post('bioauth[/{code}[/{email}]]','App\Controllers\CommandController:bioauth');
+    $app->post('save_log[/{application_id}]','App\Controllers\CommandController:save_log');
+    $app->post('get_client_info[/{public_key}]','App\Controllers\CommandController:get_client_info');
+    $app->post('test[/{email}]','App\Controllers\CommandController:test');
+
+});
 
 $app->group('/domain/', function() use ($app){
    $app->post('create','App\Controllers\DomainController:create');
