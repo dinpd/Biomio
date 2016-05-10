@@ -247,7 +247,7 @@ check_device_verification: function () {
 }
 
 check_biometrics_verification: function () {
-    var timer = 300;
+    var timer = 30000;
 
     clearInterval(check);
     check = setInterval(function() { 

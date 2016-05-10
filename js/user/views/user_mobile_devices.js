@@ -189,7 +189,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
         }, 3000);
     },
     check_biometrics_verification: function () {
-        var timer = 300;
+        var timer = 30000;
 
         clearInterval(check);
         check = setInterval(function(){ 
