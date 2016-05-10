@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use \Mandrill;
+use Mailgun\Mailgun;
 
 class Helper
 {
@@ -15,7 +17,7 @@ class Helper
     public static function genApiCode()
     {
         $code = "_____-----_____-----ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz01234567890123456789012345678901234567890123456789012345678901234567890123456789";
-        $code = substr(str_shuffle($code),0,15);
+        $code = substr(str_shuffle($code), 0, 15);
         return $code;
     }
 
@@ -76,7 +78,7 @@ class Helper
     }
 
 
-    public static function send_phone_clickatel($phone,$code)
+    public static function send_phone_clickatel($phone, $code)
     {
         /* START Some legacy stuff */
         //TODO: find out what to do with that legacy things
@@ -93,6 +95,47 @@ class Helper
         $url = "$baseurl/http/sendmsg?user=$user&password=$password&api_id=$api_id&to=$to&text=$text&mo=$mo&from=$from";
         return file($url);
         /* END Some legacy stuff */
+    }
+
+
+    public static function monkey_mail($to, $subject, $body, $from, $from_name)
+    {
+        # Instantiate the client.
+        $mgClient = new Mailgun('key-cb667b91a9b8d25a56fbb32cc9f1d684');
+        $domain = "sandbox540ad903206e4c7e9314d92e16dec8b9.mailgun.org";
+
+        return $mgClient->sendMessage("$domain",
+            array('from'    => $from_name.' <'.$from.'>',
+                'to'      => $to,
+                'subject' => $subject,
+                'text'    => $body));
+
+
+
+//        //require_once 'mandrill/Mandrill.php';
+//        try {
+//            $mandrill = new Mandrill('vyS5QUBZJP9bstzF1zeVNA');
+//            $message = array(
+//                'html' => $body,
+//                'subject' => $subject,
+//                'from_email' => $from,
+//                'from_name' => $from_name,
+//                'to' => array(
+//                    array(
+//                        'email' => $to,
+//                        'type' => 'to'
+//                    )
+//                )
+//            );
+//            $async = false;
+//            return $mandrill->messages->send($message, $async);
+//        } catch (Mandrill_Error $e) {
+//            // Mandrill errors are thrown as exceptions
+//            //echo 'A mandrill error occurred: ' . get_class($e) . ' - ' . $e->getMessage();
+//            // A mandrill error occurred: Mandrill_Unknown_Subaccount - No subaccount exists with the id 'customer-123'
+//            throw $e;
+//        }
+
     }
 
 

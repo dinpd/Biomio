@@ -1,80 +1,237 @@
 <?php
 namespace App\Services;
 
-class Mailer {
+use Mailgun\Mailgun;
 
-  private $mail;
-  protected $sender_email = "";
-  protected $sender_password = "";
+class Mailer
+{
 
-  protected $sender_display_name = "";
-  protected $sender_display_email = "";
-  protected $sender_reply_to_name = "";
-  protected $sender_reply_to_email = "";
+    private $_templatePath;
+    private $_mailerProvider;
 
-  public function __construct() {
-		date_default_timezone_set('Asia/Jakarta');
-		//Create a new PHPMailer instance
-		$this->mail = new \PHPMailer;
-		//Tell PHPMailer to use SMTP
-		$this->mail->isSMTP();
-		//Enable SMTP debugging
-		// 0 = off (for production use)
-		// 1 = client messages
-		// 2 = client and server messages
-		$this->mail->SMTPDebug = 2;
-		//Ask for HTML-friendly debug output
-		$this->mail->Debugoutput = 'html';
-		//Set the hostname of the mail server
-		$this->mail->Host = 'ssl://smtp.gmail.com';
-		// use
-		// $this->mail->Host = gethostbyname('smtp.gmail.com');
-		// if your network does not support SMTP over IPv6
-		//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-		$this->mail->Port = 465;
-		//Set the encryption system to use - ssl (deprecated) or tls
-		// $this->mail->SMTPSecure = 'tls';
-		//Whether to use SMTP authentication
-		$this->mail->SMTPAuth = true;
+    private $_to;
+    private $_subject;
+    private $_body;
+    private $_body_html;
+    private $_from;
+    private $_from_name;
 
-		$this->setSender(
-		  $this->sender_email, 
-		  $this->sender_password, 
-		  $this->sender_display_name, 
-		  $this->sender_display_email, 
-		  $this->sender_reply_to_name, 
-		  $this->sender_reply_to_email
-		);
-  }
+    public function __construct($view, $logger, $settings)
+    {
 
-  public function setSender($email, $password, $display_name, $display_email, $reply_name, $reply_email){
-    //Username to use for SMTP authentication - use full email address for gmail
-    $this->mail->Username = $email;
-    //Password to use for SMTP authentication
-    $this->mail->Password = $password;
-    //Set who the message is to be sent from
-    $this->mail->setFrom($display_email, $display_name);
-    //Set an alternative reply-to address
-    $this->mail->addReplyTo($reply_email, $reply_name);
-  }
+        $this->_templatePath = $settings['mailer_service']['template_path'];
+        $this->_mailerProvider = $settings['mailer_service']['provider'];
 
-  public function sendEmail($to_email, $to_name, $subject, $message, $template_name='')
-  {
-    //Set who the message is to be sent to
-    $this->mail->addAddress($to_email, $to_name);
-    //Set the subject line
-    $this->mail->Subject = $subject;
-    //Read an HTML message body from an external file, convert referenced images to embedded,
-    //convert HTML into a basic plain-text alternative body
-    $this->mail->msgHTML(file_get_contents($template_name));
-    //Replace the plain text body with one created manually
-    $this->mail->AltBody = $message;
-    //send the message, check for errors
-    if (!$this->mail->send()) {
-        echo "Mailer Error: " . $this->mail->ErrorInfo;
-    } else {
-        echo "Message sent!";
     }
-  }
- 
+
+    public function sendMail($to, $subject, $body, $from, $from_name)
+    {
+
+        $this->_to = $to;
+        $this->_subject = $subject;
+        $this->_body = $body;
+        $this->_from = $from;
+        $this->_from_name = $from_name;
+        return $this->_sendWithProvider();
+    }
+
+    public function sendMailHtml($to, $subject, $template_name, $from, $from_name, array $template_data = [])
+    {
+        $this->_body_html = $this->_renderTemplate($template_name, $template_data);
+        $body = '';
+        return $this->sendMail($to, $subject, $body, $from, $from_name);
+
+    }
+
+    private function _sendWithProvider()
+    {
+
+        if ($this->_mailerProvider['name'] == 'MailerGun') {
+
+
+            $mgClient = new Mailgun(
+                $this->_mailerProvider['apiKey'],
+                isset($this->_mailerProvider['apiEndPoint']) ? $this->_mailerProvider['apiEndPoint'] : 'api.mailgun.net'
+            );
+
+            $domain = $this->_mailerProvider['domain'];
+
+            return $mgClient->sendMessage("$domain",
+                array('from' => $this->_from_name . ' <' . $this->_from . '>',
+                    'to' => $this->_to,
+                    'subject' => $this->_subject,
+                    'text' => $this->_body,
+                    'html' => $this->_body_html)
+            );
+
+        }
+        return false;
+    }
+
+    private function _renderTemplate($template, $data)
+    {
+
+        if (isset($data['template'])) {
+            throw new \InvalidArgumentException("Duplicate template key found");
+        }
+
+
+        if (!is_file($this->_templatePath . $template)) {
+            throw new \RuntimeException("View cannot render `$template` because the template does not exist");
+        }
+
+        $render = function ($template, $data) {
+            extract($data);
+            include $template;
+        };
+
+        ob_start();
+        $render($this->_templatePath . $template, $data);
+        $output = ob_get_clean();
+
+        return $output;
+
+    }
+
+    /* -------------         For Following methods refactoring is still Required   --------------------------*/
+
+
+    public function welcome_email($email, $first_name, $last_name, $code)
+    {
+        $to = $email;
+
+        $from = "BIOMIO service <service@biom.io>";
+        $from = "service@biom.io";
+        $from_name = "BIOMIO service";
+        $subject = "BIOMIO: Email Verification";
+
+
+        $body = file_get_contents($this->_templatePath . "WelcomeEmail.html");
+        //$body = file_get_contents("../tpl/emails/WelcomeEmail.html");
+
+        $body = str_replace('%email%', $email, $body);
+        $body = str_replace('%first_name%', $first_name, $body);
+        $body = str_replace('%last_name%', $last_name, $body);
+        $body = str_replace('%code%', $code, $body);
+
+        $this->_body_html = $body;
+        $body = '';
+        return $this->sendMail($to, $subject, $body, $from, $from_name);
+    }
+
+    public function welcome2_email($email, $first_name, $last_name, $code)
+    {
+        $to = $email;
+
+        $from = "BIOMIO service <service@biom.io>";
+        $from = "service@biom.io";
+        $from_name = "BIOMIO service";
+        $subject = "BIOMIO: Email Verification";
+
+        $body = file_get_contents($this->_templatePath . "Welcome2Email.html");
+        //$body = file_get_contents("../tpl/emails/Welcome2Email.html");
+        $body = str_replace('%email%', $email, $body);
+        $body = str_replace('%first_name%', $first_name, $body);
+        $body = str_replace('%last_name%', $last_name, $body);
+        $body = str_replace('%code%', $code, $body);
+
+        $this->_body_html = $body;
+        $body = '';
+        return $this->sendMail($to, $subject, $body, $from, $from_name);
+    }
+
+    public function send_email_verification_code($email, $first_name, $last_name, $code)
+    {
+        $to = $email;
+        $from = "BIOMIO login <login@biom.io>";
+        $from = "login@biom.io";
+        $from_name = "BIOMIO login";
+        $subject = "BIOMIO: Email Verification";
+
+        $body = file_get_contents($this->_templatePath . "EmailVerification.html");
+        //$body = file_get_contents("../tpl/emails/EmailVerification.html");
+        $body = str_replace('%email%', $email, $body);
+        $body = str_replace('%first_name%', $first_name, $body);
+        $body = str_replace('%last_name%', $last_name, $body);
+        $body = str_replace('%code%', $code, $body);
+
+        $this->_body_html = $body;
+        $body = '';
+        return $this->sendMail($to, $subject, $body, $from, $from_name);
+    }
+
+    public function login_code($code, $email)
+    {
+        //$to = "ditkis@gmail.com";
+        $from = "BIOMIO login <login@biom.io>";
+        $from = "login@biom.io";
+        $from_name = "BIOMIO login";
+        $subject = "BIOMIO: Temporary login code";
+        $to = $email;
+
+        $body = file_get_contents($this->_templatePath . "LoginCode.html");
+        //$body = file_get_contents("../tpl/emails/LoginCode.html");
+        $body = str_replace('%code%', $code, $body);
+
+        $this->_body_html = $body;
+        $body = '';
+        return $this->sendMail($to, $subject, $body, $from, $from_name);
+    }
+
+    // ------------------- TODO: Useless?
+    public function contact($name, $email, $message)
+    {
+        //$to = "ditkis@gmail.com";
+        $from = "BIOMIO service <service@biom.io>";
+        $from_name = "BIOMIO service";
+        $subject = "BIOMIO: New Message from User";
+
+        $body = file_get_contents($this->_templatePath . "ContactEmail.html");
+        //$body = file_get_contents("../tpl/emails/ContactEmail.html");
+        $body = str_replace('%name%', $name, $body);
+        $body = str_replace('%email%', $email, $body);
+        $body = str_replace('%message%', $message, $body);
+
+        $this->_body_html = $body;
+        $body = '';
+        $to = "alexander.lomov1@gmail.com";
+        $this->sendMail($to, $subject, $body, $from, $from_name);
+        return $response->write('#success');
+    }
+
+    public function provider_app_registration($email, $code)
+    {
+
+        /*  turned OFF, because original legacy code contains an error
+
+        //$to = "ditkis@gmail.com";
+        $from = "BIOMIO service <service@biom.io>";
+        $from_name = "BIOMIO service";
+        $subject = "BIOMIO: Application Registration";
+
+        $body = file_get_contents($this->_templatePath . "ProviderAppRegistration.html");
+        //$body = file_get_contents("../../tpl/emails/ProviderAppRegistration.html.html");
+        $body = str_replace('%code%',$code,$body);
+
+
+        $headers = "From: $from\n";
+        $headers .= "MIME-Version: 1.0\n";
+        $headers .= "Content-type: text/html; charset=iso-8859-1\n";
+        $to = $email;
+      //  mail($to, $subject, $body, $headers);
+
+
+       // $to = "alexander.lomov1@gmail.com";
+        //Helper::monkey_mail($to, $subject, $body, $from, $from_name);
+
+        $this->_body_html = $body;
+        $body='';
+        $this->sendMail($to,$subject,$body,$from,$from_name);
+        //$to = "ditkis@gmail.com";
+        //Helper::monkey_mail($to, $subject, $body, $from, $from_name);
+        return '#success';
+        */
+    }
+
+
 }

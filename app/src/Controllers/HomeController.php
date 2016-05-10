@@ -10,13 +10,11 @@ final class HomeController
 {
     private $view;
     private $logger;
-	private $user;
 
-    public function __construct($view, LoggerInterface $logger, $user)
+    public function __construct($view, LoggerInterface $logger)
     {
         $this->view = $view;
         $this->logger = $logger;
-        $this->model = $user;
     }
 
     public function dispatch(Request $request, Response $response, $args)

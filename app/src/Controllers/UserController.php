@@ -14,13 +14,19 @@ final class UserController
     private $logger;
     private $session;
     private $settings;
+    private $mailerService;
 
-    public function __construct(\Slim\Views\PhpRenderer $renderer, LoggerInterface $logger, \RKA\Session $session, $settings)
+    public function __construct(\Slim\Views\PhpRenderer $renderer,
+                                LoggerInterface $logger,
+                                \RKA\Session $session,
+                                $settings,
+                                \App\Services\Mailer $mailerService)
     {
         $this->renderer = $renderer;
         $this->logger = $logger;
         $this->session = $session;
         $this->settings = $settings;
+        $this->mailerService = $mailerService;
     }
 
     public function tryx(Request $request, Response $response, $args)
@@ -37,13 +43,51 @@ final class UserController
 
         //return $response->write('hii ja!:' . $this->session->wow);
 
+
         // $container = $this->app->getContainer();
         // $gateUri = $this->get('settings')['gateUri'];
         print_r($request->getAttribute('wow'));
+
+        //print_r($this);
         //print_r($this->settings['gateUri']);
+//
+//        $body = $this->renderer->render($response, '/emails/NewGoogleAppApplication.html',
+//            ['name' => 'ypypy', 'email' => 'titit@titit.com']);
+//
+//
+//
+//
+//        echo $response->getBody()->getContents();;
 
 
-        return $this->renderer->render($response, '/tmp.php', ['wow' => $this->session->wow, 'textoutput' => $textoutput]);
+        // $r = Helper::monkey_mail('orest.zagaiskyi@vakoms.com.ua','i ha','body bdy','www-data@biom.io','dumbass');
+
+        //  print_r($this->mailerService->sendMail('orest.zagaiskyi@vakoms.com.ua','i ha','body bdy','www-data@biom.io','dumbass'));
+        // print_r($this->mailerService->sendMailHtml('orest.zagaiskyi@vakoms.com.ua','i ha','NewGoogleAppApplication.php','www-data@biom.io','dumbass',['name' => 'xzz', 'email' => 'asdsa@fdf.com']));
+//        print_r($this->mailerService->
+//            welcome_email('orest.zagaiskyi@vakoms.com.ua','first','last',12312)
+//    //    sendMailHtml('orest.zagaiskyi@vakoms.com.ua','i ha','NewGoogleAppApplication.php','www-data@biom.io','dumbass',['name' => 'xzz', 'email' => 'asdsa@fdf.com'])
+//    );
+
+
+//        print_r($this->mailerService->
+//        send_email_verification_code('orest.zagaiskyi@vakoms.com.ua','first','last',12312)
+//        //    sendMailHtml('orest.zagaiskyi@vakoms.com.ua','i ha','NewGoogleAppApplication.php','www-data@biom.io','dumbass',['name' => 'xzz', 'email' => 'asdsa@fdf.com'])
+//        );
+
+        print_r($this->mailerService->
+        send_email_verification_code('orest.zagaiskyi@vakoms.com.ua', 'first', 'last', 9999)
+        //    sendMailHtml('orest.zagaiskyi@vakoms.com.ua','i ha','NewGoogleAppApplication.php','www-data@biom.io','dumbass',['name' => 'xzz', 'email' => 'asdsa@fdf.com'])
+        );
+
+        // $r = Helper::monkey_mail('orest.zagaiskyi@vakoms.com.ua','i ha','body bdy','www-data@biom.io','dumbass');
+
+        //print_r($r);
+
+        return $response->write('success');
+
+        //return ;
+        // return $this->renderer->render($response, '/tmp.php', ['wow' => $this->session->wow, 'textoutput' => $textoutput]);
     }
 
     private function _start_session($id, $type, $first_name, $last_name)
@@ -110,7 +154,6 @@ final class UserController
             $gateUri);
 
 
-
         //legacy code Looks like workaround for async send mail
         //TODO: Refactor is required, async send email
         /*new email key (we still create user if email is not gmail, just don't create the key)*/
@@ -130,12 +173,11 @@ final class UserController
         /*    if ($extension == 0) {
         */
         $this->_start_session($profileId, $type, $first_name, $last_name);
-        Email::welcome_email($email, $first_name, $last_name, $code);
 
-        /*    } else {
-                Email::welcome2_email($email, $first_name, $last_name, $code);
-           }
-        */
+        //Email::welcome_email($email, $first_name, $last_name, $code);
+
+        $this->mailerService->welcome_email($email, $first_name, $last_name, $code);
+
 
         return $response->write($profileId);
     }
@@ -300,7 +342,8 @@ final class UserController
 
         User::insert_temp_login_codes($profileId, $code);
 
-        Email::login_code($code, $email);
+        //Email::login_code($code, $email);
+        $this->mailerService->login_code($code, $email);
 
         return $response->write('#success');
     }
@@ -656,6 +699,18 @@ final class UserController
     }
 
 
+    public function contact(Request $request, Response $response, $args)
+    {
+        return $response->write(
+            $this->mailerService->contact(
+                $request->getParam('name'),
+                $request->getParam('email'),
+                $request->getParam('message')
+            )
+        );
+    }
+
+
     public function add_email(Request $request, Response $response, $args)
     {
         $profileId = $this->session->id;
@@ -755,7 +810,8 @@ final class UserController
         User::insert_temp_email_codes($profileId, $code, $email);
 
         // send code
-        Email::send_email_verification_code($email, $first_name, $last_name, $code);
+        //Email::send_email_verification_code($email, $first_name, $last_name, $code);
+        $this->mailerService->send_email_verification_code($email, $first_name, $last_name, $code);
 
         return $response->write("#success");
     }

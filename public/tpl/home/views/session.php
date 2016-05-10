@@ -24,7 +24,8 @@ App.Views.Contact = Backbone.View.extend({
         alert(name);
     
         $.ajax({
-          url: 'php/captcha.php',
+        //url: 'php/captcha.php',
+          url: '/captcha/check_code',
           method: 'POST',
           data: {cmd: 'check_code', user_answer: user_answer, name: name, email: email, message: message},
           async: false,
@@ -47,7 +48,8 @@ App.Views.Contact = Backbone.View.extend({
     captcha_get_image: function() {
         $('.captcha_success').addClass('hide');
         $.ajax({
-          url: 'php/captcha.php',
+          //url: 'php/captcha.php',
+          url: '/captcha/create_image',
           method: 'POST',
           data: {cmd: 'create_image'},
           async: false,

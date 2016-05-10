@@ -1,15 +1,15 @@
 <?php
 // Application middleware
 
-// e.g: $app->add(new \Slim\Csrf\Guard);
+/* TODO: figure out is there need for that
+  // uncomment to have asset middleware
+use MiniAsset\AssetConfig;
+use MiniAsset\Middleware\AssetMiddleware;
 
-//TODO
-// uncomment to have asset middleware
-//use MiniAsset\AssetConfig;
-//use MiniAsset\Middleware\AssetMiddleware;
-//
-//$assetConfig = AssetConfig::buildFromIniFile(__DIR__ . '/../components/assets/assets.ini');
-//$app->add(new AssetMiddleware($assetConfig));
+$assetConfig = AssetConfig::buildFromIniFile(__DIR__ . '/../components/assets/assets.ini');
+$app->add(new AssetMiddleware($assetConfig));
+*/
+
 
 /* Start session with every request */
 $app->add(new \RKA\SessionMiddleware(['name' => 'biomioai_session']));

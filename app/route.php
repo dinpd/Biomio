@@ -3,14 +3,27 @@
 	Routes
 	controller needs to be registered in dependency.php
 */
+
 use \Slim\Http\Uri;
 
-//$app->get('/', 'App\Controllers\HomeController:dispatch')->setName('homepage');
 $app->get('/', 'App\Controllers\IndexController:dispatch')->setName('index');
 
-$app->get('/users', 'App\Controllers\UserController:dispatch')->setName('userpage');
+//for testing purposes
 $app->get('/tryx[/{wow}[/{xx}]]', 'App\Controllers\UserController:tryx')->setName('tryx');
 
+
+$app->group('/splash/', function() use ($app){
+    /*
+    Require full re-implementration for splash.php
+    */
+    $app->post('not_implemented', 'App\Controllers\SplashController:not_implemented');
+    $app->get('not_implemented', 'App\Controllers\SplashController:not_implemented');
+});
+
+$app->group('/invite/', function() use ($app){
+    $app->post('googleapp_invitation', 'App\Controllers\InviteController:googleapp_invitation');
+    $app->get('googleappinvite[/{name}[/{email}]]', 'App\Controllers\InviteController:send_invitation');
+});
 
 $app->group('/commands/',function() use ($app){
 
@@ -85,7 +98,7 @@ $app->group('/login/',function() use($app){
     $app->post('save_state','App\Controllers\UserController:save_state');
 
     // ------- Other cool stuff ---------
-    $app->post('contact','App\Controllers\Email:contact');
+    $app->post('contact','App\Controllers\UserController:contact');
     $app->post('change_type','App\Controllers\UserController:change_type');
     $app->post('logout','App\Controllers\UserController:logout');
 

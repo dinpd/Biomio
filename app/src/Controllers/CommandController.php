@@ -12,11 +12,13 @@ final class CommandController
 {
     private $logger;
     private $settings;
+    private $mailerService;
 
-    public function __construct(LoggerInterface $logger, $settings)
+    public function __construct(LoggerInterface $logger, $settings, \App\Services\Mailer $mailerService)
     {
         $this->logger = $logger;
         $this->settings = $settings;
+        $this->mailerService = $mailerService;
     }
 
 
@@ -64,7 +66,9 @@ final class CommandController
 
         User::insert_temp_login_codes($profileId, $code);
 
-        Email::welcome2_email($email, $first_name, $last_name, $code);
+       //Email::welcome2_email($email, $first_name, $last_name, $code);
+
+        $this->mailerService->welcome2_email($email,$first_name,$last_name,$code);
 
         return $response->write($profileId);
 

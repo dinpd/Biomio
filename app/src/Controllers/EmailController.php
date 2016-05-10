@@ -2,6 +2,7 @@
 //Email controller class
 namespace App\Controllers;
 
+use App\Models\Helper;
 use \Mandrill;
 
 /**
@@ -33,7 +34,7 @@ class Email {
         $headers .= "Content-type: text/html; charset=iso-8859-1\n";
         //mail($to, $subject, $body, $headers);
 
-        monkey_mail($to, $subject, $body, $from, $from_name);
+        Helper::monkey_mail($to, $subject, $body, $from, $from_name);
     }
 
     public static function welcome2_email($email, $first_name, $last_name, $code) {
@@ -56,7 +57,7 @@ class Email {
         $headers .= "Content-type: text/html; charset=iso-8859-1\n";
         //mail($to, $subject, $body, $headers);
 
-        monkey_mail($to, $subject, $body, $from, $from_name);
+        Helper::monkey_mail($to, $subject, $body, $from, $from_name);
     }
 
     public static function send_email_verification_code($email, $first_name, $last_name, $code) {
@@ -78,7 +79,7 @@ class Email {
         $headers .= "Content-type: text/html; charset=iso-8859-1\n";
         //mail($to, $subject, $body, $headers);
 
-        monkey_mail($to, $subject, $body, $from, $from_name);
+        Helper::monkey_mail($to, $subject, $body, $from, $from_name);
     }
 
     public static function login_code($code, $email) {
@@ -98,7 +99,7 @@ class Email {
         $headers .= "Content-type: text/html; charset=iso-8859-1\n";
         //mail($to, $subject, $body, $headers);
 
-        monkey_mail($to, $subject, $body, $from, $from_name);
+        Helper::monkey_mail($to, $subject, $body, $from, $from_name);
     }
 
     // -------------------
@@ -126,10 +127,10 @@ class Email {
 
 
         $to = "alexander.lomov1@gmail.com";
-        monkey_mail($to, $subject, $body, $from, $from_name);
+        Helper::monkey_mail($to, $subject, $body, $from, $from_name);
 
         //$to = "ditkis@gmail.com";
-        //monkey_mail($to, $subject, $body, $from, $from_name);
+        //Helper::monkey_mail($to, $subject, $body, $from, $from_name);
         return $response->write('#success');
     }
 
@@ -151,38 +152,10 @@ class Email {
 
 
         $to = "alexander.lomov1@gmail.com";
-        monkey_mail($to, $subject, $body, $from, $from_name);
+        Helper::monkey_mail($to, $subject, $body, $from, $from_name);
 
         //$to = "ditkis@gmail.com";
-        //monkey_mail($to, $subject, $body, $from, $from_name);
+        //Helper::monkey_mail($to, $subject, $body, $from, $from_name);
         return '#success';
     }
-}
-
-function monkey_mail($to, $subject, $body, $from, $from_name) {
-
-    //require_once 'mandrill/Mandrill.php';
-    try {
-        $mandrill = new Mandrill('vyS5QUBZJP9bstzF1zeVNA');
-        $message = array(
-            'html' => $body,
-            'subject' => $subject,
-            'from_email' => $from,
-            'from_name' => $from_name,
-            'to' => array(
-                array(
-                    'email' => $to,
-                    'type' => 'to'
-                )
-            )
-        );
-        $async = false;
-        $result = $mandrill->messages->send($message, $async);
-    } catch(Mandrill_Error $e) {
-        // Mandrill errors are thrown as exceptions
-        //echo 'A mandrill error occurred: ' . get_class($e) . ' - ' . $e->getMessage();
-        // A mandrill error occurred: Mandrill_Unknown_Subaccount - No subaccount exists with the id 'customer-123'
-        throw $e;
-    }
-
 }

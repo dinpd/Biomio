@@ -4,12 +4,20 @@ return [
 
         'gateUri' => 'http://10.209.33.61:90/',
 
+        'mailer_service' => [
+            'provider' => [
+                'name' => 'MailerGun',
+                 'apiKey' => 'key-22d04f5f1108f80acd648c9234c45546',
+                 'domain' => 'mg.biom.io',
+            ],
+            'template_path' => PATH_ROOT .'../components/renderer_tmpl/emails/'
+        ],
         'upload' => [
-            'profilePicturePath' => "../profileData/profilePicture/",
-            'companyLogoPath' => "../profileData/companyLogo/",
-            'locationPicturePath' => "../profileData/locationPicture/",
-            'tempWebsiteFilesPath' =>'../profileData/tempWebsiteFiles/',
-            'websiteScreenshotPath' =>'../profileData/websiteScreenshot/'
+            'profilePicturePath' => PATH_ROOT ."../profileData/profilePicture/",
+            'companyLogoPath' => PATH_ROOT ."../profileData/companyLogo/",
+            'locationPicturePath' => PATH_ROOT ."../profileData/locationPicture/",
+            'tempWebsiteFilesPath' => PATH_ROOT .'../profileData/tempWebsiteFiles/',
+            'websiteScreenshotPath' => PATH_ROOT .'../profileData/websiteScreenshot/'
         ],
         'displayErrorDetails' => true, // set to false in production
 
@@ -31,11 +39,5 @@ return [
             'path' => PATH_ROOT . '../storage/log/server.log',
         ],
 
-        // Facebook App
-        'facebook' => [
-            'app_id' => '',
-            'app_secret' => '',
-            'default_graph_version' => 'v2.5',
-        ],
     ],
 ];

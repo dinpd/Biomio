@@ -37,7 +37,8 @@
         "markstory/mini-asset": "^1.1",
         "j4mie/idiorm": "v1.5.1",
         "mandrill/mandrill": "1.0.55",
-        "akrabat/rka-slim-session-middleware": "dev-master"
+        "akrabat/rka-slim-session-middleware": "dev-master",
+        "mailgun/mailgun-php": "1.6"
         
     }
 }

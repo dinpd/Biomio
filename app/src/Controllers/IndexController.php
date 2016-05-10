@@ -10,22 +10,12 @@ final class IndexController
 {
 
     private $logger;
-    private $user;
     private $renderer;
 
-    public function __construct($renderer, LoggerInterface $logger, $user)
+    public function __construct($renderer, LoggerInterface $logger)
     {
         $this->renderer = $renderer;
         $this->logger = $logger;
-        $this->model = $user;
-    }
-
-    public function tryout(Request $request, Response $responce,$args){
-
-        $this->logger->info("tryouted");
-
-        return $responce;
-
     }
 
     public function dispatch(Request $request, Response $response, $args)

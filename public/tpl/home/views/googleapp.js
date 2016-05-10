@@ -17,7 +17,8 @@ App.Views.GoogleApp = Backbone.View.extend({
 
         $.ajax({
                 type: 'POST',
-                url: 'php/googleappinvite.php',
+              //  url: 'php/googleappinvite.php',
+                url: '/invite/googleapp_invitation',
                 data: {cmd: "googleapp_invitation", name: name, email: email},
                 success: function(data) {
                     if (data == '#success') alert('Thank you ' + name + ' for your interest in BIOMIO Email Protector. Your application will be reviewed in 24 hours, and you will recieve further instruction via ' + email);

@@ -28,7 +28,8 @@ App.Views.Developers = Backbone.View.extend({
             $('.splash-apply-help').text('');
             
             $.ajax({
-                url: 'php/splash.php',
+               // url: 'php/splash.php',
+                url: '/splash/not_implemented',
                 method: 'POST',
                 data: {name: username, email: email, type: type},
                 success: function(data) {

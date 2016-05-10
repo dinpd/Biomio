@@ -46,16 +46,6 @@ $container['session'] = function($c){
 };
 
 
-$container['facebook'] = function ($c) {
-	$settings = $c->get('settings')['facebook'];
-	$fb= new Facebook\Facebook([
-	  'app_id' => $settings['app_id'],
-	  'app_secret' => $settings['app_secret'],
-	  'default_graph_version' => $settings['default_graph_version'],
-	]);
-	return $fb;
-};
-
 // error handle
 $container['errorHandler'] = function ($c) {
   return function ($request, $response, $exception) use ($c) {
@@ -73,10 +63,6 @@ $container['errorHandler'] = function ($c) {
   };
 };
 
-// Generate Activation Code
-$container['activation'] = function ($c) {
-	return new \Cartalyst\Sentinel\Activations\IlluminateActivationRepository;
-};
 
 # -----------------------------------------------------------------------------
 # Action factories Controllers
@@ -85,8 +71,7 @@ $container['activation'] = function ($c) {
 $container['App\Controllers\IndexController'] = function ($c) {
     return new App\Controllers\IndexController(
         $c->get('renderer'),
-        $c->get('logger'),
-        $c->get('App\Repositories\HomeRepository')
+        $c->get('logger')
     );
 };
 
@@ -94,8 +79,7 @@ $container['App\Controllers\IndexController'] = function ($c) {
 $container['App\Controllers\HomeController'] = function ($c) {
     return new App\Controllers\HomeController(
 		$c->get('view'), 
-		$c->get('logger'),
-		$c->get('App\Repositories\HomeRepository')
+		$c->get('logger')
     );
 };
 
@@ -105,7 +89,8 @@ $container['App\Controllers\UserController'] = function ($c) {
 		$c->get('renderer'),
 		$c->get('logger'),
         $c->get('session'),
-        $c->get('settings')
+        $c->get('settings'),
+        $c->get('mailer')
     );
 };
 
@@ -138,10 +123,28 @@ $container['App\Controllers\DomainController'] = function ($c) {
 $container['App\Controllers\CommandController'] = function ($c) {
     return new App\Controllers\CommandController(
         $c->get('logger'),
+        $c->get('settings'),
+        $c->get('mailer')
+
+    );
+};
+
+
+$container['App\Controllers\SplashController'] = function ($c) {
+    return new App\Controllers\SplashController(
+        $c->get('logger'),
         $c->get('settings')
     );
 };
 
+$container['App\Controllers\InviteController'] = function ($c) {
+    return new App\Controllers\InviteController(
+        $c->get('renderer'),
+        $c->get('logger'),
+        $c->get('settings'),
+        $c->get('mailer')
+    );
+};
 
 $container['App\Controllers\CaptchaController'] = function ($c) {
     return new App\Controllers\UserController(
@@ -159,28 +162,15 @@ $container['Model\User'] = function ($c) {
     return new App\Models\User;
 };
 
-# -----------------------------------------------------------------------------
-# Factories Repositories
-# -----------------------------------------------------------------------------
-
-$container['App\Repositories\HomeRepository'] = function ($c) {
-	return new App\Repositories\HomeRepository(
-        $c->get('Model\User')
-	);
-};
-
-$container['App\Repositories\UserRepository'] = function ($c) {
-	return new App\Repositories\UserRepository(
-        $c->get('Model\User')
-	);
-};
 
 # -----------------------------------------------------------------------------
 # Factories Services
 # -----------------------------------------------------------------------------
 
-$container['Mailer'] = function ($c) {
-    return new App\Service\Mailer(
-        $c->get('view')
+$container['mailer'] = function ($c) {
+    return new App\Services\Mailer(
+        $c->get('view'),
+        $c->get('logger'),
+        $c->get('settings')
     );
 };
