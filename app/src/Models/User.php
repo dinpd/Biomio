@@ -232,7 +232,7 @@ class User
 
     public static function select_temp_login_code($profileId, $code)
     {
-        return ORM::for_table('Emails')->where(['profileId' => $profileId, 'code' => $code, 'status' => 1])->find_one();
+        return ORM::for_table('TempLoginCodes')->where(['profileId' => $profileId, 'code' => $code, 'status' => 1])->find_one();
     }
 
     public static function get_profile($profileId)

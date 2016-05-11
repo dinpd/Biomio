@@ -4,21 +4,67 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fc1964b76b227fe363a313161c176ff4",
-    "content-hash": "545a9c0d7605f75b9c74740b977527b2",
+    "hash": "5923ba17eb5445acc8816439c145fd4e",
+    "content-hash": "3ec79ca8db5acb8a8f81f606083b8db1",
     "packages": [
         {
-            "name": "cartalyst/sentinel",
-            "version": "v2.0.9",
+            "name": "akrabat/rka-slim-session-middleware",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/cartalyst/sentinel.git",
-                "reference": "a4921f9195835a7bc701a391e5379ef79b8837df"
+                "url": "https://github.com/akrabat/rka-slim-session-middleware.git",
+                "reference": "e4f8f485f6d52fd4c0a2254d0b12240245629e6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cartalyst/sentinel/zipball/a4921f9195835a7bc701a391e5379ef79b8837df",
-                "reference": "a4921f9195835a7bc701a391e5379ef79b8837df",
+                "url": "https://api.github.com/repos/akrabat/rka-slim-session-middleware/zipball/e4f8f485f6d52fd4c0a2254d0b12240245629e6a",
+                "reference": "e4f8f485f6d52fd4c0a2254d0b12240245629e6a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "slim/slim": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RKA\\": "RKA"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Allen",
+                    "email": "rob@akrabat.com",
+                    "homepage": "http://akrabat.com"
+                }
+            ],
+            "description": "Simple session middleware for Slim Framework",
+            "homepage": "http://github.com/akrabat/rka-slim-session-middleware",
+            "keywords": [
+                "middleware",
+                "session",
+                "slim"
+            ],
+            "time": "2016-04-18 07:52:43"
+        },
+        {
+            "name": "cartalyst/sentinel",
+            "version": "v2.0.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cartalyst/sentinel.git",
+                "reference": "3c55c1c202cf52e7a9e48b0c52801abb6533daa4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cartalyst/sentinel/zipball/3c55c1c202cf52e7a9e48b0c52801abb6533daa4",
+                "reference": "3c55c1c202cf52e7a9e48b0c52801abb6533daa4",
                 "shasum": ""
             },
             "require": {
@@ -94,7 +140,7 @@
                 "php",
                 "security"
             ],
-            "time": "2016-02-11 00:19:11"
+            "time": "2016-04-28 13:18:37"
         },
         {
             "name": "cartalyst/support",
@@ -315,17 +361,109 @@
             "time": "2015-11-19 21:07:36"
         },
         {
-            "name": "illuminate/container",
-            "version": "v5.2.21",
+            "name": "guzzle/guzzle",
+            "version": "v3.8.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/illuminate/container.git",
-                "reference": "ba7a8b3c24535ab102ebe9738a0003846c372b95"
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/container/zipball/ba7a8b3c24535ab102ebe9738a0003846c372b95",
-                "reference": "ba7a8b3c24535ab102ebe9738a0003846c372b95",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
+                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.3",
+                "symfony/event-dispatcher": ">=2.1"
+            },
+            "replace": {
+                "guzzle/batch": "self.version",
+                "guzzle/cache": "self.version",
+                "guzzle/common": "self.version",
+                "guzzle/http": "self.version",
+                "guzzle/inflection": "self.version",
+                "guzzle/iterator": "self.version",
+                "guzzle/log": "self.version",
+                "guzzle/parser": "self.version",
+                "guzzle/plugin": "self.version",
+                "guzzle/plugin-async": "self.version",
+                "guzzle/plugin-backoff": "self.version",
+                "guzzle/plugin-cache": "self.version",
+                "guzzle/plugin-cookie": "self.version",
+                "guzzle/plugin-curlauth": "self.version",
+                "guzzle/plugin-error-response": "self.version",
+                "guzzle/plugin-history": "self.version",
+                "guzzle/plugin-log": "self.version",
+                "guzzle/plugin-md5": "self.version",
+                "guzzle/plugin-mock": "self.version",
+                "guzzle/plugin-oauth": "self.version",
+                "guzzle/service": "self.version",
+                "guzzle/stream": "self.version"
+            },
+            "require-dev": {
+                "doctrine/cache": "*",
+                "monolog/monolog": "1.*",
+                "phpunit/phpunit": "3.7.*",
+                "psr/log": "1.0.*",
+                "symfony/class-loader": "*",
+                "zendframework/zend-cache": "<2.3",
+                "zendframework/zend-log": "<2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Guzzle": "src/",
+                    "Guzzle\\Tests": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Guzzle Community",
+                    "homepage": "https://github.com/guzzle/guzzle/contributors"
+                }
+            ],
+            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
+                "web service"
+            ],
+            "time": "2014-01-28 22:29:15"
+        },
+        {
+            "name": "illuminate/container",
+            "version": "v5.2.31",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/container.git",
+                "reference": "1e156f8017490f5583ab161030bf839c77c95e54"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/1e156f8017490f5583ab161030bf839c77c95e54",
+                "reference": "1e156f8017490f5583ab161030bf839c77c95e54",
                 "shasum": ""
             },
             "require": {
@@ -355,20 +493,20 @@
             ],
             "description": "The Illuminate Container package.",
             "homepage": "http://laravel.com",
-            "time": "2016-02-22 06:42:06"
+            "time": "2016-03-16 17:19:17"
         },
         {
             "name": "illuminate/contracts",
-            "version": "v5.2.21",
+            "version": "v5.2.31",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "eea3cf7ce90651e067a914d16383b019da45fcb5"
+                "reference": "411b851962c211078ade7664a6976e77a78cd2a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/eea3cf7ce90651e067a914d16383b019da45fcb5",
-                "reference": "eea3cf7ce90651e067a914d16383b019da45fcb5",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/411b851962c211078ade7664a6976e77a78cd2a5",
+                "reference": "411b851962c211078ade7664a6976e77a78cd2a5",
                 "shasum": ""
             },
             "require": {
@@ -397,20 +535,20 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "http://laravel.com",
-            "time": "2016-02-22 09:18:57"
+            "time": "2016-03-07 20:37:17"
         },
         {
             "name": "illuminate/database",
-            "version": "v5.2.21",
+            "version": "v5.2.31",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "8b0068c326652332fd364399f4d8cce894953172"
+                "reference": "becc003759a0b028a237a8c5d2aeb550077d42fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/8b0068c326652332fd364399f4d8cce894953172",
-                "reference": "8b0068c326652332fd364399f4d8cce894953172",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/becc003759a0b028a237a8c5d2aeb550077d42fd",
+                "reference": "becc003759a0b028a237a8c5d2aeb550077d42fd",
                 "shasum": ""
             },
             "require": {
@@ -457,20 +595,20 @@
                 "orm",
                 "sql"
             ],
-            "time": "2016-02-24 15:02:47"
+            "time": "2016-04-27 12:59:09"
         },
         {
             "name": "illuminate/events",
-            "version": "v5.2.21",
+            "version": "v5.2.31",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/events.git",
-                "reference": "aeebcd54a61ce3bddddcb0273b532256201cd9d1"
+                "reference": "5a5e5d72bf3a2d01d8b15e89440026a60bc4a81b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/events/zipball/aeebcd54a61ce3bddddcb0273b532256201cd9d1",
-                "reference": "aeebcd54a61ce3bddddcb0273b532256201cd9d1",
+                "url": "https://api.github.com/repos/illuminate/events/zipball/5a5e5d72bf3a2d01d8b15e89440026a60bc4a81b",
+                "reference": "5a5e5d72bf3a2d01d8b15e89440026a60bc4a81b",
                 "shasum": ""
             },
             "require": {
@@ -506,28 +644,28 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v5.2.21",
+            "version": "v5.2.31",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "6749fab3f3d38d8b15427536a8e7bbdc57497c9e"
+                "reference": "cb5b004610baabe6b4bf532e6e4ff9eaca5eb25b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/6749fab3f3d38d8b15427536a8e7bbdc57497c9e",
-                "reference": "6749fab3f3d38d8b15427536a8e7bbdc57497c9e",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/cb5b004610baabe6b4bf532e6e4ff9eaca5eb25b",
+                "reference": "cb5b004610baabe6b4bf532e6e4ff9eaca5eb25b",
                 "shasum": ""
             },
             "require": {
                 "doctrine/inflector": "~1.0",
                 "ext-mbstring": "*",
                 "illuminate/contracts": "5.2.*",
+                "paragonie/random_compat": "~1.4",
                 "php": ">=5.5.9"
             },
             "suggest": {
                 "illuminate/filesystem": "Required to use the composer class (5.2.*).",
                 "jeremeamia/superclosure": "Required to be able to serialize closures (~2.2).",
-                "paragonie/random_compat": "Provides a compatible interface like PHP7's random_bytes() in PHP 5 projects (~1.1).",
                 "symfony/polyfill-php56": "Required to use the hash_equals function on PHP 5.5 (~1.0).",
                 "symfony/process": "Required to use the composer class (2.8.*|3.0.*).",
                 "symfony/var-dumper": "Improves the dd function (2.8.*|3.0.*)."
@@ -558,7 +696,65 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "http://laravel.com",
-            "time": "2016-02-22 20:29:02"
+            "time": "2016-04-21 13:28:36"
+        },
+        {
+            "name": "j4mie/idiorm",
+            "version": "v1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/j4mie/idiorm.git",
+                "reference": "b0922d8719a94e3a0e0e4a0ca3876f4f91475dcf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/j4mie/idiorm/zipball/b0922d8719a94e3a0e0e4a0ca3876f4f91475dcf",
+                "reference": "b0922d8719a94e3a0e0e4a0ca3876f4f91475dcf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "idiorm.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause",
+                "BSD-3-Clause",
+                "BSD-4-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Holywell",
+                    "email": "treffynnon@php.net",
+                    "homepage": "http://simonholywell.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Jamie Matthews",
+                    "email": "jamie.matthews@gmail.com",
+                    "homepage": "http://j4mie.org",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Durham Hale",
+                    "email": "me@durhamhale.com",
+                    "homepage": "http://durhamhale.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A lightweight nearly-zero-configuration object-relational mapper and fluent query builder for PHP5",
+            "homepage": "http://j4mie.github.com/idiormandparis",
+            "keywords": [
+                "idiorm",
+                "orm",
+                "query builder"
+            ],
+            "time": "2014-06-23 13:08:57"
         },
         {
             "name": "league/climate",
@@ -610,6 +806,89 @@
                 "terminal"
             ],
             "time": "2016-04-04 20:24:59"
+        },
+        {
+            "name": "mailgun/mailgun-php",
+            "version": "1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mailgun/mailgun-php.git",
+                "reference": "cfa02122c976eb21d85e8bfed6a6ab83e2553c1c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mailgun/mailgun-php/zipball/cfa02122c976eb21d85e8bfed6a6ab83e2553c1c",
+                "reference": "cfa02122c976eb21d85e8bfed6a6ab83e2553c1c",
+                "shasum": ""
+            },
+            "require": {
+                "guzzle/guzzle": "3.8.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mailgun\\Tests": "tests/",
+                    "Mailgun": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Travis Swientek",
+                    "email": "travis@mailgunhq.com"
+                }
+            ],
+            "description": "The Mailgun SDK provides methods for all API functions.",
+            "time": "2014-01-15 00:30:25"
+        },
+        {
+            "name": "mandrill/mandrill",
+            "version": "1.0.55",
+            "source": {
+                "type": "git",
+                "url": "https://bitbucket.org/mailchimp/mandrill-api-php.git",
+                "reference": "da3adc10042eafac2e53de141b358a52b8e53596"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/mailchimp/mandrill-api-php/get/da3adc10042eafac2e53de141b358a52b8e53596.zip",
+                "reference": "da3adc10042eafac2e53de141b358a52b8e53596",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mandrill": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Mandrill Devs",
+                    "email": "community@mandrill.com",
+                    "homepage": "http://mandrill.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "API client library for the Mandrill email as a service platform",
+            "homepage": "https://bitbucket.org/mailchimp/mandrill-api-php",
+            "keywords": [
+                "api",
+                "email"
+            ],
+            "time": "2015-09-22 13:58:03"
         },
         {
             "name": "markstory/mini-asset",
@@ -676,16 +955,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.18.0",
+            "version": "1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc"
+                "reference": "5f56ed5212dc509c8dc8caeba2715732abb32dbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
-                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/5f56ed5212dc509c8dc8caeba2715732abb32dbf",
+                "reference": "5f56ed5212dc509c8dc8caeba2715732abb32dbf",
                 "shasum": ""
             },
             "require": {
@@ -700,13 +979,13 @@
                 "doctrine/couchdb": "~1.0@dev",
                 "graylog2/gelf-php": "~1.0",
                 "jakub-onderka/php-parallel-lint": "0.9",
+                "php-amqplib/php-amqplib": "~2.4",
                 "php-console/php-console": "^3.1.3",
                 "phpunit/phpunit": "~4.5",
                 "phpunit/phpunit-mock-objects": "2.3.0",
                 "raven/raven": "^0.13",
                 "ruflin/elastica": ">=0.90 <3.0",
-                "swiftmailer/swiftmailer": "~5.3",
-                "videlalvaro/php-amqplib": "~2.4"
+                "swiftmailer/swiftmailer": "~5.3"
             },
             "suggest": {
                 "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
@@ -715,11 +994,11 @@
                 "ext-mongo": "Allow sending log messages to a MongoDB server",
                 "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
                 "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
+                "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
                 "php-console/php-console": "Allow sending log messages to Google Chrome",
                 "raven/raven": "Allow sending log messages to a Sentry server",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
-                "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
-                "videlalvaro/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib"
+                "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
             },
             "type": "library",
             "extra": {
@@ -750,7 +1029,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2016-03-01 18:00:40"
+            "time": "2016-04-12 18:29:35"
         },
         {
             "name": "nesbot/carbon",
@@ -801,16 +1080,16 @@
         },
         {
             "name": "nikic/fast-route",
-            "version": "v0.6.0",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/FastRoute.git",
-                "reference": "31fa86924556b80735f98b294a7ffdfb26789f22"
+                "reference": "79843dce62ac52e9b628e73d5f1264cad10c65a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/31fa86924556b80735f98b294a7ffdfb26789f22",
-                "reference": "31fa86924556b80735f98b294a7ffdfb26789f22",
+                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/79843dce62ac52e9b628e73d5f1264cad10c65a6",
+                "reference": "79843dce62ac52e9b628e73d5f1264cad10c65a6",
                 "shasum": ""
             },
             "require": {
@@ -840,20 +1119,20 @@
                 "router",
                 "routing"
             ],
-            "time": "2015-06-18 19:15:47"
+            "time": "2016-04-18 11:33:20"
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v1.2.1",
+            "version": "v1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "f078eba3bcf140fd69b5fcc3ea5ac809abf729dc"
+                "reference": "c7e26a21ba357863de030f0b9e701c7d04593774"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/f078eba3bcf140fd69b5fcc3ea5ac809abf729dc",
-                "reference": "f078eba3bcf140fd69b5fcc3ea5ac809abf729dc",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/c7e26a21ba357863de030f0b9e701c7d04593774",
+                "reference": "c7e26a21ba357863de030f0b9e701c7d04593774",
                 "shasum": ""
             },
             "require": {
@@ -888,7 +1167,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-02-29 17:25:04"
+            "time": "2016-03-18 20:34:03"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -1086,16 +1365,16 @@
         },
         {
             "name": "seld/cli-prompt",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/cli-prompt.git",
-                "reference": "b27db1514f7d7bb7a366ad95d4eb2b17140a0691"
+                "reference": "8cbe10923cae5bcd7c5a713f6703fc4727c8c1b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/cli-prompt/zipball/b27db1514f7d7bb7a366ad95d4eb2b17140a0691",
-                "reference": "b27db1514f7d7bb7a366ad95d4eb2b17140a0691",
+                "url": "https://api.github.com/repos/Seldaek/cli-prompt/zipball/8cbe10923cae5bcd7c5a713f6703fc4727c8c1b4",
+                "reference": "8cbe10923cae5bcd7c5a713f6703fc4727c8c1b4",
                 "shasum": ""
             },
             "require": {
@@ -1130,7 +1409,7 @@
                 "input",
                 "prompt"
             ],
-            "time": "2016-01-09 17:55:27"
+            "time": "2016-04-18 09:31:41"
         },
         {
             "name": "slim/csrf",
@@ -1278,23 +1557,23 @@
         },
         {
             "name": "slim/php-view",
-            "version": "2.0.6",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slimphp/PHP-View.git",
-                "reference": "a4dcd7e64b56b0c1875a8cd48daf065e6066c7f9"
+                "reference": "8bae5b10d10c51596ef8d8113b3b63678718adcb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slimphp/PHP-View/zipball/a4dcd7e64b56b0c1875a8cd48daf065e6066c7f9",
-                "reference": "a4dcd7e64b56b0c1875a8cd48daf065e6066c7f9",
+                "url": "https://api.github.com/repos/slimphp/PHP-View/zipball/8bae5b10d10c51596ef8d8113b3b63678718adcb",
+                "reference": "8bae5b10d10c51596ef8d8113b3b63678718adcb",
                 "shasum": ""
             },
             "require": {
                 "psr/http-message": "^1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.0",
+                "phpunit/phpunit": "^5.0",
                 "slim/slim": "^3.0"
             },
             "type": "library",
@@ -1323,28 +1602,31 @@
                 "template",
                 "view"
             ],
-            "time": "2015-12-08 13:06:39"
+            "time": "2016-03-04 09:48:50"
         },
         {
             "name": "slim/slim",
-            "version": "3.2.1",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slimphp/Slim.git",
-                "reference": "53a4dd576dd3add4efd113ca77c3c21fa559b33e"
+                "reference": "954472c9d805802a3438d0202fc451282eaa37fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slimphp/Slim/zipball/53a4dd576dd3add4efd113ca77c3c21fa559b33e",
-                "reference": "53a4dd576dd3add4efd113ca77c3c21fa559b33e",
+                "url": "https://api.github.com/repos/slimphp/Slim/zipball/954472c9d805802a3438d0202fc451282eaa37fc",
+                "reference": "954472c9d805802a3438d0202fc451282eaa37fc",
                 "shasum": ""
             },
             "require": {
                 "container-interop/container-interop": "^1.1",
-                "nikic/fast-route": "^0.6",
+                "nikic/fast-route": "^1.0",
                 "php": ">=5.5.0",
                 "pimple/pimple": "^3.0",
                 "psr/http-message": "^1.0"
+            },
+            "provide": {
+                "psr/http-message-implementation": "1.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.0",
@@ -1390,20 +1672,20 @@
                 "micro",
                 "router"
             ],
-            "time": "2016-02-29 21:39:18"
+            "time": "2016-05-09 06:15:02"
         },
         {
             "name": "slim/twig-view",
-            "version": "2.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slimphp/Twig-View.git",
-                "reference": "fe98eab8daee498cc2821f1ad2ff7123bc327844"
+                "reference": "16fded26a44b8e8e0e041f1cff32afa21daeb284"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slimphp/Twig-View/zipball/fe98eab8daee498cc2821f1ad2ff7123bc327844",
-                "reference": "fe98eab8daee498cc2821f1ad2ff7123bc327844",
+                "url": "https://api.github.com/repos/slimphp/Twig-View/zipball/16fded26a44b8e8e0e041f1cff32afa21daeb284",
+                "reference": "16fded26a44b8e8e0e041f1cff32afa21daeb284",
                 "shasum": ""
             },
             "require": {
@@ -1431,7 +1713,7 @@
                     "homepage": "http://joshlockhart.com"
                 }
             ],
-            "description": "Slim Framework view helper built on top of the Twig templating component",
+            "description": "Slim Framework 3 view helper built on top of the Twig templating component",
             "homepage": "http://slimframework.com",
             "keywords": [
                 "framework",
@@ -1440,24 +1722,85 @@
                 "twig",
                 "view"
             ],
-            "time": "2015-08-17 08:45:48"
+            "time": "2016-03-13 20:58:41"
         },
         {
-            "name": "symfony/http-foundation",
-            "version": "v3.0.3",
+            "name": "symfony/event-dispatcher",
+            "version": "v3.0.6",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "52065702c71743c05d415a8facfcad6d4257e8d7"
+                "url": "https://github.com/symfony/event-dispatcher.git",
+                "reference": "807dde98589f9b2b00624dca326740380d78dbbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/52065702c71743c05d415a8facfcad6d4257e8d7",
-                "reference": "52065702c71743c05d415a8facfcad6d4257e8d7",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/807dde98589f9b2b00624dca326740380d78dbbc",
+                "reference": "807dde98589f9b2b00624dca326740380d78dbbc",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/config": "~2.8|~3.0",
+                "symfony/dependency-injection": "~2.8|~3.0",
+                "symfony/expression-language": "~2.8|~3.0",
+                "symfony/stopwatch": "~2.8|~3.0"
+            },
+            "suggest": {
+                "symfony/dependency-injection": "",
+                "symfony/http-kernel": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\EventDispatcher\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony EventDispatcher Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-05-05 06:56:13"
+        },
+        {
+            "name": "symfony/http-foundation",
+            "version": "v3.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/http-foundation.git",
+                "reference": "18b24bc32d2495ae79d76e777368786a6536fe31"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/18b24bc32d2495ae79d76e777368786a6536fe31",
+                "reference": "18b24bc32d2495ae79d76e777368786a6536fe31",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/polyfill-mbstring": "~1.1"
             },
             "require-dev": {
                 "symfony/expression-language": "~2.8|~3.0"
@@ -1492,11 +1835,11 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2016-02-28 16:24:34"
+            "time": "2016-04-12 18:09:53"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
@@ -1555,16 +1898,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v3.0.3",
+            "version": "v3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "2de0b6f7ebe43cffd8a06996ebec6aab79ea9e91"
+                "reference": "f7a07af51ea067745a521dab1e3152044a2fb1f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/2de0b6f7ebe43cffd8a06996ebec6aab79ea9e91",
-                "reference": "2de0b6f7ebe43cffd8a06996ebec6aab79ea9e91",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/f7a07af51ea067745a521dab1e3152044a2fb1f2",
+                "reference": "f7a07af51ea067745a521dab1e3152044a2fb1f2",
                 "shasum": ""
             },
             "require": {
@@ -1615,7 +1958,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2016-02-02 13:44:19"
+            "time": "2016-03-25 01:41:20"
         },
         {
             "name": "twig/twig",
@@ -1682,7 +2025,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "akrabat/rka-slim-session-middleware": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

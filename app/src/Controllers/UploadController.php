@@ -27,11 +27,11 @@ final class UploadController
         /* testing is required in case of usage for this style
            because it use php://input */
         // $img = $request->getParam('file'); //<-- to use this style w
-        $img = $request->$_POST['file'];
+        $img = $request->$request->getParam('file');
         $img = str_replace('data:image/png;base64,', '', $img);
         $img = str_replace(' ', '+', $img);
         $data = base64_decode($img);
-        $file = $this->_profilePath . $_POST['user'] . ".jpg";
+        $file = $this->_profilePath . $request->getParam('user') . ".jpg";
         if (file_exists($file)) {
             unlink($file);
         }
@@ -41,7 +41,10 @@ final class UploadController
     }
 
     private function _uploadHandler($path, $fileName){
-        if ($_FILES["file"]["error"] > 0)
+$this->logger->info("upload Handler");
+	$this->logger->info(var_export($_FILES,true));       
+
+	 if ($_FILES["file"]["error"] > 0)
             return "Error: " . $_FILES["file"]["error"] . "<br>";
         else if ($_FILES["file"]["size"] < 3000000) {
             $temp = explode(".", $_FILES["file"]["name"]);
@@ -59,14 +62,17 @@ final class UploadController
     public function profilePictureUpload(Request $request, Response $response, $args)
     {
         return $response->write(
-            $this->_uploadHandler($this->_profilePath,$_POST['user'])
+            $this->_uploadHandler($this->_profilePath,$request->getParam('user'))
         );
     }
 
 
     public function profilePictureDelete(Request $request, Response $response, $args)
     {
-        if (unlink($this->_profilePath . $_POST['user'] . ".jpg"))
+    $this->logger->info('profilePictureDelete');
+	$this->logger->info($this->_profilePath.$request->getParam('user'));
+
+         if (unlink($this->_profilePath . $request->getParam('user') . ".jpg"))
             return $response->write("Success");
     }
 
@@ -74,7 +80,7 @@ final class UploadController
     public function providerLogoUpload(Request $request, Response $response, $args)
     {
         return $response->write(
-            $this->_uploadHandler($this->_companyLogoPath,$_POST['provider'])
+            $this->_uploadHandler($this->_companyLogoPath,$request->getParam('provider'))
         );
 
     }
@@ -82,21 +88,21 @@ final class UploadController
 
     public function providerLogoDelete(Request $request, Response $response, $args)
     {
-        return $response->write($this->_deleteHandler($this->_companyLogoPath,$_POST['provider']));
+        return $response->write($this->_deleteHandler($this->_companyLogoPath,$request->getParam('provider')));
     }
 
 
     public function locationPictureUpload(Request $request, Response $response, $args)
     {
         return $response->write(
-            $this->_uploadHandler($this->_locationPicturePath,$_POST['location'])
+            $this->_uploadHandler($this->_locationPicturePath,$request->getParam('location'))
     );
     }
 
 
     public function locationPictureDelete(Request $request, Response $response, $args)
     {
-        return $response->write($this->_deleteHandler($this->_locationPicturePath,$_POST['location']));
+        return $response->write($this->_deleteHandler($this->_locationPicturePath,$request->getParam('location')));
     }
 
 

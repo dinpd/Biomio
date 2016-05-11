@@ -10,6 +10,7 @@ $config['db'] =  array(
 );
 
 
+/*
 $config['db'] =  array(
     'host' => '127.0.0.1',
     'user' => 'biomio_admin',
@@ -17,6 +18,7 @@ $config['db'] =  array(
     'dbName' => 'biomio_db_test',
     'port'=>'3309'
 );
+*/
 
 ORM::configure('mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['dbName'] . ';port='.$config['db']['port'].';charset=utf8');
 ORM::configure('username', $config['db']['user']);

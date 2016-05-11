@@ -2,3 +2,5 @@ vendor/
 storage/cache/
 storage/log/
 .idea/
+config/database.php
+composer.lock
