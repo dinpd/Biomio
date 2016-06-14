@@ -339,14 +339,21 @@ class User
 
     public static function delete_mobile_device($profileId, $device_id)
     {
+
+
         $userServices = ORM::for_table('UserServices')->where(['profileId' => $profileId, 'id' => $device_id])->find_many();
 
         foreach ($userServices as $userService) {
             $token = $userService->device_token;
 
-            ORM::for_table('UserServices')->where(['profileId' => $profileId, 'id' => $device_id])->delete();
-            ORM::for_table('application_userinformation')->where('application', $token)->delete();
-            ORM::for_table('Applications')->where('app_id', $token)->delete();
+            $us=ORM::for_table('UserServices')->where(['profileId' => $profileId, 'id' => $device_id])->find_one();
+	    $us->delete();
+
+           $app_uinf=ORM::for_table('application_userinformation')->where('application', $token)->find_one();
+	   $app_uinf->delete();
+
+           $apps=ORM::for_table('Applications')->where('app_id', $token)->find_one();
+	   $apps->delete();
 
             save_log('Applications', $token);
         }

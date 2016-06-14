@@ -27,6 +27,13 @@ ORM::configure('return_result_sets', true);
 // prevent returning data with string type
 ORM::configure('driver_options', array(PDO::ATTR_EMULATE_PREPARES => false));
 
+
+ORM::configure('id_column_overrides', array(
+    'Applications' => 'app_id',
+    'application_userinformation' => 'application',
+));
+
+
 //use Illuminate\Database\Capsule\Manager as Capsule;
 //
 //$capsule = new Capsule;
