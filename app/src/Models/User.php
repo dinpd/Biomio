@@ -49,8 +49,8 @@ class User
         $pgpKeysData->save();
 
         //legacy things
-       // $url = 'http://10.209.33.61:90/new_email/' . $email;
-        $url = $gateUri.'/new_email/' . $email;
+        // $url = 'http://10.209.33.61:90/new_email/' . $email;
+        $url = $gateUri . '/new_email/' . $email;
         Helper::send_post($url);
 
         return $profile->id();
@@ -98,9 +98,10 @@ class User
         return ORM::for_table('UserInfo')->where('profileId', $profileId)->find_one();
     }
 
-    public static function update_user_info($profileId,$field,$value){
-        $userInfo = ORM::for_table('UserInfo')->where('profileId',$profileId)->find_one();
-        $userInfo->set($field,$value);
+    public static function update_user_info($profileId, $field, $value)
+    {
+        $userInfo = ORM::for_table('UserInfo')->where('profileId', $profileId)->find_one();
+        $userInfo->set($field, $value);
         $userInfo->save();
         return $userInfo;
     }
@@ -118,10 +119,10 @@ class User
         return $verificationCode;
     }
 
-    public static function update_verification_code_status($status,$code)
+    public static function update_verification_code_status($status, $code)
     {
         $verificationCode = ORM::for_table('VerificationCodes')
-            ->where('code',$code)
+            ->where('code', $code)
             ->find_one();
 
         if ($verificationCode) {
@@ -137,21 +138,20 @@ class User
     }
 
 
-
-    public static function select_verification_code_with_status_above($code,$status=0)
+    public static function select_verification_code_with_status_above($code, $status = 0)
     {
         return ORM::for_table('VerificationCodes')
             ->where('code', $code)
-            ->where_raw('`status` > ?',[$status])
+            ->where_raw('`status` > ?', [$status])
             ->find_one();
     }
 
-    public static function select_verification_code_with_profileId_status_above($code,$profileId,$status=0)
+    public static function select_verification_code_with_profileId_status_above($code, $profileId, $status = 0)
     {
         return ORM::for_table('VerificationCodes')
             ->where('code', $code)
             ->where('profileId', $profileId)
-            ->where_raw('`status` > ?',[$status])
+            ->where_raw('`status` > ?', [$status])
             ->find_one();
     }
 
@@ -293,7 +293,10 @@ class User
 
     public static function delete_phone($profileId, $phone)
     {
-        return ORM::for_table('Phones')->where(['profileId' => $profileId, 'phone' => $phone])->delete();
+        $phone = ORM::for_table('Phones')->where(['profileId' => $profileId, 'phone' => $phone])->find_one();
+        return $phone->delete();
+
+
     }
 
 
@@ -346,14 +349,14 @@ class User
         foreach ($userServices as $userService) {
             $token = $userService->device_token;
 
-            $us=ORM::for_table('UserServices')->where(['profileId' => $profileId, 'id' => $device_id])->find_one();
-	    $us->delete();
+            $userService = ORM::for_table('UserServices')->where(['profileId' => $profileId, 'id' => $device_id])->find_one();
+            $userService->delete();
 
-           $app_uinf=ORM::for_table('application_userinformation')->where('application', $token)->find_one();
-	   $app_uinf->delete();
+            $app_uinf = ORM::for_table('application_userinformation')->where('application', $token)->find_one();
+            $app_uinf->delete();
 
-           $apps=ORM::for_table('Applications')->where('app_id', $token)->find_one();
-	   $apps->delete();
+            $application = ORM::for_table('Applications')->where('app_id', $token)->find_one();
+            $application->delete();
 
             save_log('Applications', $token);
         }
@@ -423,8 +426,11 @@ class User
     public static function delete_email($profileId, $email)
     {
 
-        ORM::for_table('Emails')->where(['profileId' => $profileId, 'email' => $email])->delete();
-        ORM::for_table('PgpKeysData')->where(['user' => $profileId, 'email' => $email])->delete();
+        $emailRecord = ORM::for_table('Emails')->where(['profileId' => $profileId, 'email' => $email])->find_one();
+        $emailRecord->delete();
+
+        $pgpKeyData = ORM::for_table('PgpKeysData')->where(['user' => $profileId, 'email' => $email])->find_one();
+        $pgpKeyData->delete();
 
         self::save_log('PgpKeysData', $email);
     }
@@ -522,14 +528,14 @@ class User
     /**
      *
      * Original Legacy method has an error ($profileId not $providerId in parameter list )
-     * @param $profileId
+     * @param $providerId
      * @param $key
      * @return bool
      */
     public static function delete_api_key($providerId, $key)
     {
-        return ORM::for_table('ProviderKeys')->where(['providerId' => $providerId, 'key' => $key])->delete();
-
+        $providerKey = ORM::for_table('ProviderKeys')->where(['providerId' => $providerId, 'key' => $key])->find_one();
+        return $providerKey->delete();
     }
 
 }

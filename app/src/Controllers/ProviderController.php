@@ -188,7 +188,8 @@ final class ProviderController
         $providerId = $this->session->providerId;
         $id = $request->getParam('id');
 
-        ORM::for_table('WebResources')->where(['id' => $id, 'providerId' => $providerId])->delete();
+        $webResource = ORM::for_table('WebResources')->where(['id' => $id, 'providerId' => $providerId])->find_one();
+        $webResource->delete();
     }
 
 
@@ -283,7 +284,8 @@ final class ProviderController
             return $response->write('#wrong-user');
 
 
-        ORM::for_table('ProviderUsers')->where(['provider_id' => $providerId, 'user_id' => $userId])->delete();
+        $providerUser = ORM::for_table('ProviderUsers')->where(['provider_id' => $providerId, 'user_id' => $userId])->find_one();
+        $providerUser->delete();
 
         return $response->write('#success');
 
