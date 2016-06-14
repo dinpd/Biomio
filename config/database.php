@@ -28,10 +28,20 @@ ORM::configure('return_result_sets', true);
 ORM::configure('driver_options', array(PDO::ATTR_EMULATE_PREPARES => false));
 
 
+/*
+ * TO AVOID MESSAGE "Primary key ID missing from row or is null"
+ * We need define PRIMARY key for each table,
+ * where PRIMARY KEY is not 'id'
+ *
+ */
 ORM::configure('id_column_overrides', array(
     'Applications' => 'app_id',
-    'application_userinformation' => 'application',
+    'application_userinformation' => array('application','userinformation'),
+    'EmailsData' => 'email',
+    'TrainingData' => 'probe_id'
 ));
+
+
 
 
 //use Illuminate\Database\Capsule\Manager as Capsule;
