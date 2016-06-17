@@ -246,12 +246,12 @@ App.Views.Signup = Backbone.View.extend({
                                 $('.login-phone-code').addClass('hide');
 
                             /*window.location.replace(
-                                'http://biom.io:5000/user/authorize' +
+                                'http://biom.io:5006/user/authorize' +
                                 '?response_type=code' +
                                 '&scope=openid' +
                                 '&client_id=56ce9a6a93c17d2c867c5c293482b8f9' +
                                 //'&external_token=' + email + 
-                                '&redirect_uri=https://biom.io:4433/work/login.php' +
+                                '&redirect_uri=https://biom.io:4499/work/login.php' +
                                 '&nonce=12p6bfw' +
                                 '&state=1slw5l6');*/
 

@@ -41,7 +41,7 @@ ORM::configure('id_column_overrides', array(
     'TrainingData' => 'probe_id'
 ));
 
-
+ORM::configure('return_result_sets', true);
 
 
 //use Illuminate\Database\Capsule\Manager as Capsule;

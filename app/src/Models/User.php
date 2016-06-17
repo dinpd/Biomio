@@ -218,10 +218,11 @@ class User
 
     public static function update_temp_login_code($profileId, $status)
     {
-        $tempLoginCode = ORM::for_table('TempLoginCodes')->where('profileId', $profileId)->find_one();
-        $tempLoginCode->status = $status;
-        $tempLoginCode->save();
-        return $tempLoginCode;
+        return  ORM::for_table('TempLoginCodes')
+			->where('profileId', $profileId)
+			->find_result_set()
+			->set('status',$status)
+			->save();				
     }
 
     public static function select_temp_login_email($profileId, $email)
@@ -358,7 +359,7 @@ class User
             $application = ORM::for_table('Applications')->where('app_id', $token)->find_one();
             $application->delete();
 
-            save_log('Applications', $token);
+            //save_log('Applications', $token);
         }
 
     }

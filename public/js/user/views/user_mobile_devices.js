@@ -49,7 +49,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
         });
     },
     add_application: function (e) {
-        e.preventDefault();
+	e.preventDefault();
         $('.form-1-2, .form-1-3, .form-1-4, .form-1-5').addClass('hide');
         $('.form-1-1').removeClass('hide');
 
@@ -61,7 +61,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
             $.ajax({
                 type: 'POST',
                 //url: 'php/login.php',
-                url: '/login/get_mobile_devices',
+                url: '/login/add_mobile_device',
                 data: {cmd: "add_mobile_device", name: name},
                 success: function(data) {
                     $('.add-1 input').val('');

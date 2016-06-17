@@ -549,6 +549,7 @@ final class UserController
     // --- Applications --- //
     public function get_mobile_devices(Request $request, Response $response, $args)
     {
+
         $profileId = $this->session->id;
         $mobileDevices = User::get_mobile_devices($profileId);
 
@@ -563,7 +564,13 @@ final class UserController
     {
         $name = $request->getParam('name');
         $profileId = $this->session->id;
-        $device_id = User::add_mobile_device($profileId, $name);
+       
+$this->logger->info("Profileid:".$profileId);
+
+	$device_id = User::add_mobile_device($profileId, $name);
+
+$this->logger->info("deviceId:".$device_id);
+
         return $response->write($device_id);
     }
 
@@ -623,8 +630,11 @@ final class UserController
         } while ($verificationCode);
 
         /*Legacy  stuff*/
-        $url = $this->settings['gateUri'] . '/training?device_id=' . $key . '&code=' . $code;
-        send_post($url);
+        $url = $this->settings['gateUri'] . 'training?device_id=' . $key . '&code=' . $code;
+		
+	$this->logger->info('url is:'.$url);
+	
+        $this->logger->info(Helper::send_post($url));
 
         // insert code
         $result = User::insert_verification_codes($profileId, $device_id, $application, 1, $code);
@@ -695,7 +705,7 @@ final class UserController
             }
         }
 
-        return $response->json_encode($data);
+        return $response->write(json_encode($data));
     }
 
 
