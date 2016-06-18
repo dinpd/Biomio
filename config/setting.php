@@ -3,6 +3,7 @@ return [
     'settings' => [
 
         'gateUri' => 'http://10.209.33.61:91/',
+        'openIdUri' => 'https://biom.io:5006',
 
         'mailer_service' => [
             'provider' => [

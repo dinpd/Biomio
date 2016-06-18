@@ -77,6 +77,9 @@ $app->group('/provider/', function() use ($app){
 
 $app->group('/login/',function() use($app){
 
+
+    $app->get('openId','App\Controllers\UserController:openid_login');
+
     $app->post('check_email','App\Controllers\UserController:check_email');
     $app->post('sign_up','App\Controllers\UserController:create_user');
     $app->post('login_check','App\Controllers\UserController:signup_check');

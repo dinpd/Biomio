@@ -114,6 +114,91 @@ final class UserController
     }
 
 
+    public function openid_login(Request $request, Response $response, $args)
+    {
+
+        $code = $request->getParam('code');
+       // $state = $request->getParam('state'); <<--useless
+
+        $this->logger->info('code:'.$code);
+
+        $_request = array();
+        $_request['client_id'] = '56ce9a6a93c17d2c867c5c293482b8f9';
+        $_request['client_secret'] = '85a879a19387afe791039a88b354a374';
+        $_request['grant_type'] = 'authorization_code';
+        $_request['code'] = $code;
+        $_request['redirect_uri'] = 'https://biom.io:4466/login.php'; //<--change this
+
+        $url = $this->settings['openIdUri'] . "/user/token";
+
+        $this->logger->info('$_request:');
+        $this->logger->info($_request);
+
+
+        $content = json_encode($_request);
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, ["Content-type: application/json"]);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+
+        $json_response = curl_exec($curl);
+
+        $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+        if ($status != 200) {
+            die("Error: call to URL $url failed with status $status, response $json_response, curl_error " . curl_error($curl) . ", curl_errno " . curl_errno($curl));
+        }
+
+        $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+        curl_close($curl);
+        $_response = json_decode($json_response, true);
+
+        $this->logger->info('$_responce');
+        $this->logger->info($_response);
+
+        $id_token = $_response['id_token'];
+        $id_token = explode(".", $id_token);
+        $id_token = json_decode(base64_decode($id_token[1]));
+        $email = $id_token->sub;
+
+
+        $emailData = \ORM::for_table('Emails')->where('email', $email)->find_one();
+        $profileId = $emailData->profileId;
+
+        $userInfo = \ORM::for_table('UserInfo')->where('profileId', $profileId)->find_one();
+        $first_name = $userInfo->firstName;
+        $last_name = $userInfo->lastName;
+
+
+        $profile = \ORM::for_table('Profiles')->where('id', $profileId)->find_one();
+        $type = $profile->type;
+
+        $this->_start_session($profileId, $type, $first_name, $last_name);
+
+        $javascriptResponce = <<<javascriptResponce
+    <script>
+        window.opener.profileId = "$profileId";
+        window.opener.profileFirstName = "$first_name";
+        window.opener.profileLastName = "$last_name";
+        window.opener.profileType = "$type";
+
+        if (window.opener.hash1 != '') window.opener.location.href = './' + window.opener.hash1;
+        else window.opener.location.href = './#user-info';
+        window.close();
+    </script>
+javascriptResponce;
+
+        $this->logger->info('$javascriptResponce');
+        $this->logger->info($javascriptResponce);
+
+        return $response->write($javascriptResponce);
+
+    }
+
+
     public function logout(Request $request, Response $response, $args)
     {
         $this->session->destroy();
@@ -564,12 +649,12 @@ final class UserController
     {
         $name = $request->getParam('name');
         $profileId = $this->session->id;
-       
-$this->logger->info("Profileid:".$profileId);
 
-	$device_id = User::add_mobile_device($profileId, $name);
+        $this->logger->info("Profileid:" . $profileId);
 
-$this->logger->info("deviceId:".$device_id);
+        $device_id = User::add_mobile_device($profileId, $name);
+
+        $this->logger->info("deviceId:" . $device_id);
 
         return $response->write($device_id);
     }
@@ -631,9 +716,9 @@ $this->logger->info("deviceId:".$device_id);
 
         /*Legacy  stuff*/
         $url = $this->settings['gateUri'] . 'training?device_id=' . $key . '&code=' . $code;
-		
-	$this->logger->info('url is:'.$url);
-	
+
+        $this->logger->info('url is:' . $url);
+
         $this->logger->info(Helper::send_post($url));
 
         // insert code
