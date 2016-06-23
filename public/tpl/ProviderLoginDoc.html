@@ -21,7 +21,7 @@
 
 <h4>1. Open window or redirect user to next URL:</h4>
 
-    <code>http://biom.io:5006/user/authorize<br>
+    <code>http://biom.io:5000/user/authorize<br>
    	 ?response_type=token<br>
    	 &scope=openid profile<br>
    	 &client_id=0d2f8ad8dd15ef931ae7133a145fb19d<br>
@@ -63,7 +63,7 @@
 <p>To get information about authorized user from our database, make next request:</p>
 
 <p>Request:</p>
-<code>GET http://biom.io:5006/api/user?access_token=88a71e255aa4c2daed85c4d0c496f491</code>
+<code>GET http://biom.io:5000/api/user?access_token=88a71e255aa4c2daed85c4d0c496f491</code>
 
 <p>if access_token is valid, you will receive user data in JSON format</p>
 
@@ -80,7 +80,7 @@
 <br>
 <h4>1. Open window or redirect user to next URL:</h4>
 
-    <code>http://biom.io:5006/user/authorize<br>
+    <code>http://biom.io:5000/user/authorize<br>
    	 ?response_type=<span class="yellow">code</span><br>
    	 &scope=openid profile<br>
    	 &client_id=0d2f8ad8dd15ef931ae7133a145fb19d<br>
@@ -120,7 +120,7 @@
 <p><span class="yellow">Make next request from you backend (don’t do this from frontend part, because you send client_secret):</span></p>
 
 <p><span class="yellow">Request:</span></p>
-<code><span class="yellow">POST http://biom.io:5006/user/token</span></code>
+<code><span class="yellow">POST http://biom.io:5000/user/token</span></code>
 <code><span class="yellow">Body<br>
 {<br>
 	&nbsp;&nbsp;&nbsp;"client_id": "0d2f8ad8dd15ef931ae7133a145fb19d",<br>
@@ -143,7 +143,7 @@
 <p>To get information about authorized user from our database, make next request:</p>
 
 <p>Request:</p>
-<code>GET http://biom.io:5006/api/user?access_token=88a71e255aa4c2daed85c4d0c496f491</code>
+<code>GET http://biom.io:5000/api/user?access_token=88a71e255aa4c2daed85c4d0c496f491</code>
 
 <p>if access_token is valid, you will receive user data in JSON format</p>
 <br>
@@ -151,7 +151,7 @@
 <p><span class="yellow">Make next request from you backend (don’t do this from frontend part, because you send client_secret):</span></p>
 
 <p><span class="yellow">Request:</span></p>
-<code><span class="yellow">POST http://biom.io:5006/user/token</span></code>
+<code><span class="yellow">POST http://biom.io:5000/user/token</span></code>
 <code><span class="yellow">Body<br>
 {<br>
 	&nbsp;&nbsp;&nbsp;"client_id": "0d2f8ad8dd15ef931ae7133a145fb19d",<br>
@@ -185,7 +185,7 @@
 <br>
 <p>2. Redirect your user to next URL:</p>
 
-    <code>http://biom.io:5006/user/authorize<br>
+    <code>http://biom.io:5000/user/authorize<br>
     	?response_type=code<br>
     	&scope=openid<br>
     	&client_id=56ce9a6a93c17d2c867c5c293482b8f9<br>
@@ -214,7 +214,7 @@
 <p>7. Exchange parameter "code" to token and id_token, make next request:</p>
 
 <p>Request:</p>
-<code>POST http://biom.io:5006/user/token</code>
+<code>POST http://biom.io:5000/user/token</code>
    <code>{<br>
     	&nbsp;&nbsp;&nbsp;"client_id": "56ce9a6a93c17d2c867c5c293482b8f9",<br>
    	 	&nbsp;&nbsp;&nbsp;"client_secret": "85a879a19387afe791039a88b354a374",<br>
@@ -240,7 +240,7 @@
 <code>&lt;?php<br>
 use \Firebase\JWT\JWT;<br>
 <br>
-$id_token = “...”; // id_token that you got from http://biom.io:5006/user/token<br>
+$id_token = “...”; // id_token that you got from http://biom.io:5000/user/token<br>
 $client_secret = “85a879a19387afe791039a88b354a374”; - it’s you client secret<br>
 <br>
 $decoded = JWT::decode($jwt, $client_secret, array('HS256'));<br>

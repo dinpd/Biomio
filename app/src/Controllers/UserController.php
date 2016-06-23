@@ -118,7 +118,7 @@ final class UserController
     {
 
         $code = $request->getParam('code');
-       // $state = $request->getParam('state'); <<--useless
+       // $state = $request->getParam('state'); <<--useless, used in legacy
 
         $this->logger->info('code:'.$code);
 
@@ -127,12 +127,18 @@ final class UserController
         $_request['client_secret'] = '85a879a19387afe791039a88b354a374';
         $_request['grant_type'] = 'authorization_code';
         $_request['code'] = $code;
-        $_request['redirect_uri'] = 'https://biom.io:4466/login.php'; //<--change this
+//        $_request['redirect_uri'] = 'https://biom.io:4466/login.php'; //<--change this, for old AI
+	$_request['redirect_uri'] = $this->settings['AIUri'].'/login/openId/';
 
         $url = $this->settings['openIdUri'] . "/user/token";
 
         $this->logger->info('$_request:');
-        $this->logger->info($_request);
+       
+	ob_start();
+	print_r(json_encode($_request));
+	$reee = ob_get_clean();
+
+	 $this->logger->info($reee);
 
 
         $content = json_encode($_request);
@@ -148,7 +154,7 @@ final class UserController
         $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
         if ($status != 200) {
-            die("Error: call to URL $url failed with status $status, response $json_response, curl_error " . curl_error($curl) . ", curl_errno " . curl_errno($curl));
+            echo ("Error: call to URL $url failed with status $status, response $json_response, curl_error " . curl_error($curl) . ", curl_errno " . curl_errno($curl));
         }
 
         $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
@@ -156,8 +162,15 @@ final class UserController
         curl_close($curl);
         $_response = json_decode($json_response, true);
 
+	//LOGGER DATA, feel free to remove
         $this->logger->info('$_responce');
-        $this->logger->info($_response);
+	ob_start();
+	print_r(@$_responce);
+	$respp = ob_get_clean();
+
+        $this->logger->info($respp);
+
+
 
         $id_token = $_response['id_token'];
         $id_token = explode(".", $id_token);
@@ -185,8 +198,8 @@ final class UserController
         window.opener.profileLastName = "$last_name";
         window.opener.profileType = "$type";
 
-        if (window.opener.hash1 != '') window.opener.location.href = './' + window.opener.hash1;
-        else window.opener.location.href = './#user-info';
+        if (window.opener.hash1 != '') window.opener.location.href = '../' + window.opener.hash1;
+        else window.opener.location.href = '../#user-info';
         window.close();
     </script>
 javascriptResponce;
@@ -703,8 +716,16 @@ javascriptResponce;
 
 
         $mobileDevices = User::get_mobile_devices($profileId);
+$this->logger->info('----------------mobileDevices----------------');
+ob_start();
+//print_r($mobileDevices);
+$ska = ob_get_clean();
+$this->logger->info($ska);
 
         foreach ($mobileDevices as $mobileDevice) {
+
+	$this->logger->info($mobileDevice->device_token);
+
             if ($mobileDevice->id == $device_id)
                 $key = $mobileDevice->device_token;
         }
@@ -718,8 +739,9 @@ javascriptResponce;
         $url = $this->settings['gateUri'] . 'training?device_id=' . $key . '&code=' . $code;
 
         $this->logger->info('url is:' . $url);
-
-        $this->logger->info(Helper::send_post($url));
+	$this->logger->info('key is:'. $key);
+	
+        Helper::send_post($url);
 
         // insert code
         $result = User::insert_verification_codes($profileId, $device_id, $application, 1, $code);

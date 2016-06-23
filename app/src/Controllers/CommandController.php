@@ -80,6 +80,10 @@ final class CommandController
         $code = $request->getAttribute('code');
         $probe_id = $request->getAttribute('probe_id');
 
+
+	        $this->logger->info('-----------------probe_id----------------');
+        $this->logger->info($probe_id);
+
         // 1) check if application code apc_exists;
         $verificationCode = User::select_verification_code_with_status_above($code, 0);
 
@@ -87,18 +91,32 @@ final class CommandController
             $this->_http_error_responce($response, "wrong code");
         }
 
+        $this->logger->info('verificationCode:');
+        ob_start();
+        echo 'profileId:'.$verificationCode->profileId."\r\n";
+	echo 'application:'.$verificationCode->application."\r\n";
+	echo 'device_id'.$verificationCode->device_id."\r\n";
+        $vvcode = ob_get_clean();
+        
+        $this->logger->info($vvcode);
+
+
         $profileId = $verificationCode->profileId;
         $application = $verificationCode->application;
         $device_id = $verificationCode->device_id;
 
         //2) change status of the application
 
-        if ($probe_id != 0) {
+        if ($probe_id != "0") {
+
             $userService = ORM::for_table('UserServices')->where(['id' => $device_id, 'profileId' => $profileId])->find_one();
             $userService->device_token = $probe_id;
             $userService->save();
+	$this->logger->info('device '.$userService->device_id.'should have device_token: '.$userService->device_token);
+
             return $response->write(json_encode(array('response' => '#success', 'probe_id' => $probe_id)));
         }
+
 
 
 //TODO: refactor this legacy as well as update User model
@@ -130,6 +148,8 @@ final class CommandController
             $userService->save();
 
         }
+
+
 
         return $response->write(json_encode(array('user_id' => $profileId, 'probe_id' => $probe_id)));
     }

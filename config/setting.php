@@ -2,8 +2,9 @@
 return [
     'settings' => [
 
-        'gateUri' => 'http://10.209.33.61:91/',
-        'openIdUri' => 'https://biom.io:5006',
+        'gateUri' => 'http://10.209.33.61:90/',
+        'openIdUri' => 'http://biom.io:5000',
+	'AIUri'=>'https://biom.io:4499',
 
         'mailer_service' => [
             'provider' => [
