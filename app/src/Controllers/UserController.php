@@ -832,7 +832,8 @@ $this->logger->info($ska);
     {
         $profileId = $this->session->id;
         $email = $request->getParam('email');
-        $emailObject = User::check_email($email);
+
+	    $emailObject = User::check_email($email);
 
         if ($emailObject)
             return $response->write('#registered');
@@ -841,12 +842,14 @@ $this->logger->info($ska);
         if (Helper::is_google_mx($domain)) {
             //TODO: legacy method had echo 'gmail'
             $response->write('gmail');
+
             User::add_gmail_email($profileId, $email);
         } else {
             //TODO: legacy method had echo 'not gmail'
             $response->write('not gmail');
             User::add_not_gmail_email($profileId, $email);
         }
+	
 
         return $response;
 
@@ -1017,7 +1020,9 @@ $this->logger->info($ska);
             TODO: Refactor below code to appropriate
         */
         // Send request
-        $url = "http://gate.biom.io:90/set_condition/";
+        //$url = "http://gate.biom.io:90/set_condition/";
+	$url = $this->settings['gateUri']."set_condition/";
+
         $content = json_encode($settings);
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_HEADER, false);

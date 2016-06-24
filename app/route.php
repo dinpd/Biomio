@@ -34,6 +34,8 @@ $app->group('/commands/',function() use ($app){
     $app->post('save_log[/{application_id}]','App\Controllers\CommandController:save_log');
     $app->post('get_client_info[/{public_key}]','App\Controllers\CommandController:get_client_info');
     $app->post('test[/{email}]','App\Controllers\CommandController:test');
+	
+    $app->get('verify_email[/{email}[/{code}]]','App\Controllers\CommandController:verify_email');
 
 });
 

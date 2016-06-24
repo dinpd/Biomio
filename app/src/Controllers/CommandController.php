@@ -312,6 +312,53 @@ final class CommandController
     }
 
 
+   public function verify_email(Request $request, Response $response)
+     {
+
+
+
+        $email = $request->getAttribute('email');
+        $code = $request->getAttribute('code');
+        
+        $tempEmailCodes = ORM::for_table('TempEmailCodes')
+            ->where(['email' => $email, 'code' => $code])
+            ->find_many();
+
+
+
+
+        if(!$tempEmailCodes)
+            return $response->write('Wrong information provided');
+
+
+
+        foreach($tempEmailCodes as $tempEmailCode){
+
+            if($tempEmailCode->status == 0) {
+                return $response->write('Code is expired');
+            }elseif($tempEmailCode->status == 2){
+                return $response->write('Code is already verified');
+            }
+            
+            $profileId = $tempEmailCode->profileId;
+
+            User::update_email($profileId,$email,'verified',1);
+
+            $emailTempCodes = ORM::for_table('TempEmailCodes')->where(['code' => $code, 'email' => $email])->find_many();
+
+            foreach ($emailTempCodes as $emailTempCode) {
+                $emailTempCode->status = 2;
+                $emailTempCode->save();
+            }
+
+            return $response->write('Code successfully verified');
+
+        }
+
+    }
+
+
+
     private function _http_error_responce(Response $responce, $message = '', $code = 400)
     {
         /*

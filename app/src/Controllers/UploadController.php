@@ -27,7 +27,7 @@ final class UploadController
         /* testing is required in case of usage for this style
            because it use php://input */
         // $img = $request->getParam('file'); //<-- to use this style w
-        $img = $request->$request->getParam('file');
+        $img = $request->getParam('file');
         $img = str_replace('data:image/png;base64,', '', $img);
         $img = str_replace(' ', '+', $img);
         $data = base64_decode($img);

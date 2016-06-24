@@ -399,16 +399,18 @@ class User
     }
 
 
-    public static function add_gmail_email($profileId, $email)
-    {
-        $email = ORM::for_table('Emails')->create();
-        $email->profileId = $profileId;
-        $email->email = $email;
-        $email->set_expr('date_created', 'NOW()');
-        $email->save();
 
-        return $email->id();
+   public static function add_gmail_email($profileId, $email)
+    {
+        $emailObject = ORM::for_table('Emails')->create();
+        $emailObject->profileId = $profileId;
+        $emailObject->email = $email;
+        $emailObject->set_expr('date_created', 'NOW()');
+        $emailObject->save();
+
+        return $emailObject->id();
     }
+
 
     /**
      * This may be silly,
@@ -428,15 +430,21 @@ class User
     {
 
         $emailRecord = ORM::for_table('Emails')->where(['profileId' => $profileId, 'email' => $email])->find_one();
-        $emailRecord->delete();
+
+       	if($emailRecord){
+	 $emailRecord->delete();
+	}
 
         $pgpKeyData = ORM::for_table('PgpKeysData')->where(['user' => $profileId, 'email' => $email])->find_one();
-        $pgpKeyData->delete();
+
+	if($pgpKeyData){
+	$pgpKeyData->delete();
+	}
 
         self::save_log('PgpKeysData', $email);
     }
 
-    function save_log($table_name, $record_id)
+    public static  function save_log($table_name, $record_id)
     {
         $log = ORM::for_table('UILog')->create();
         $log->table_name = $table_name;
