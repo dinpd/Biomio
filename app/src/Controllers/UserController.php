@@ -971,7 +971,7 @@ $this->logger->info($ska);
         if (!$verificationCodeId)
             return $response->write('#error');
 
-        return $response->write(json_encode(array('code' => $code, 'image' => create_image_code($code))));
+        return $response->write(json_encode(array('code' => $code, 'image' => Helper::create_image_code($code))));
 
     }
 
@@ -1076,6 +1076,8 @@ $this->logger->info($ska);
     public function get_gate_keys(Request $request, Response $response, $args)
     {
         /* Not Implemented */
+      return $response->write(json_encode(['pub'=>'','priv'=>'']));
+
     }
 
 

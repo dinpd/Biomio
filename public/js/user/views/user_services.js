@@ -4,6 +4,7 @@ App.Views.userServices = Backbone.View.extend({
 
     },
     render:function (type) {
+
         var that = this;
         var template = render('UserServicesView', {});
         this.$el.html( template );
@@ -11,6 +12,7 @@ App.Views.userServices = Backbone.View.extend({
         this.get_user_emails();
         this.get_extension_settings();
         this.get_gate_keys();
+
     },
     events: {
         // chrome extention
@@ -26,6 +28,7 @@ App.Views.userServices = Backbone.View.extend({
     // Chrome Extention
     get_extension_settings: function () {
         var that = this;
+
         $.ajax({
             type: 'POST',
             //url: 'php/login.php',
@@ -53,7 +56,6 @@ App.Views.userServices = Backbone.View.extend({
                     if (data.condition == 'all')
                         var checkbox_bio = false;
                 }
-
                 $(".checkbox-id").bootstrapSwitch({
                   size: 'mini',
                   onText: 'On',
@@ -134,7 +136,7 @@ App.Views.userServices = Backbone.View.extend({
             }
         });
     },
-    get_extension_settings: function () {
+    get_gate_keys: function () {
         $.ajax({
             type: 'POST',
             //url: 'php/login.php',

@@ -98,6 +98,56 @@ class Helper
     }
 
 
+    public static  function create_image_code($code)
+    {
+		$image = imagecreatetruecolor(260, 40); // creating an image
+
+		$background_color = imagecolorallocate($image, 255, 255, 255); // white background
+		imagefilledrectangle($image,0,0,260,40,$background_color); // rectangular shape
+
+		// 2) Adding horizontal line
+		$line_color = imagecolorallocate($image, 255,96,0); // black line color
+		for($i=0;$i<10;$i++) {
+			$line_start = rand()%40;
+			$line_end = $line_start + rand(-20, 20);
+			imageline($image,0,$line_start,260,$line_end,$line_color); // adding 10 lines (x1, y1, x2, y2)
+		}
+
+		// 3) Adding vertical line
+		$line_color = imagecolorallocate($image, 255,96,0); // black line color
+		for($i=0;$i<20;$i++) {
+			$line_start = rand()%260;
+			$line_end = $line_start + rand(-20, 20);
+			imageline($image,$line_start,0,$line_end,40,$line_color); // adding 10 lines (x1, y1, x2, y2)
+		}
+
+		// 4) Adding dots
+		$pixel_color = imagecolorallocate($image, 30,71,183); // dot color
+		for($i=0;$i<1000;$i++) {
+			imagesetpixel($image,rand()%260,rand()%40,$pixel_color); // add 1000 dots
+		}
+
+		// 5) Adding text
+		$len = strlen($code);
+		$text_color = imagecolorallocate($image, 0,0,0);
+		$text_shadow = imagecolorallocate($image, 128, 128, 128);
+		$font = 'fonts/Arial.ttf';
+
+		for ($i = 0; $i< 8;$i++) {
+			$letter = $code[$i];
+			$angle = rand(-5, 5);
+			imagettftext($image, 20, $angle, 19+($i*30), 31, $text_shadow, $font, $letter); // add shadow
+			imagettftext($image, 20, $angle, 18+($i*30), 30, $text_color, $font, $letter); //add text
+		}
+
+		ob_start();
+		imagepng($image);
+		$buffer = ob_get_clean();
+		ob_end_clean();
+		return base64_encode($buffer);
+	}
+
+
     public static function monkey_mail($to, $subject, $body, $from, $from_name)
     {
         # Instantiate the client.

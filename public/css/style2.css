@@ -199,3 +199,19 @@ font-size: 30px; padding:0; height:auto; font-weight:400; background:none; borde
   background: linear-gradient(to right,  #fe8136 0%,#ff3800 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fe8136', endColorstr='#ff3800',GradientType=1 );
 }
+
+
+.extention-verifcation-code{
+  text-align: center;
+  padding: 11px;
+  margin: 25px;
+  border-radius: 2px;
+  background-color: initial;
+  font-weight: bold;
+  border-spacing: 0;
+  border-style: dashed;
+  border-color: slategrey;
+  width: 350px
+}
+
+
