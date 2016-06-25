@@ -160,11 +160,18 @@ jQuery(document).ready(function ($) {
         });
     };
 
-    clearInterval(session_checker);
-    session_checker = setInterval(function () {
+
+    //here was original: clearInterval(session_checker)
+    //so it was renamed to session_checker_interval
+    //it can conflict with session_checker function or session_checker_interval
+    //so i've decide tp comment it
+
+    /*
+    clearInterval(session_checker_interval);
+    session_checker_interval = setInterval(function () {
         moveRight();
     }, 7000);
-
+   */
 });    
 
 

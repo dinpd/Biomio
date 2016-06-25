@@ -49,7 +49,7 @@ App.Views.Login = Backbone.View.extend({
                     window.profileType = undefined;
                     window.location.hash = 'home';
 
-                    clearInterval(session_checker);
+                    clearInterval(session_checker_interval);
                     
                     //switching tabs in pannel view
                     $('.profile-off').removeClass("hide");
