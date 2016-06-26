@@ -230,7 +230,7 @@ final class ProviderController
     {
 
         if (($this->session->get('id') === null) || ($this->session->get('providerId') === null))
-            return $response->write(json_encode(array('response' => '#session')));
+            return $response->write('#session');
 
         $providerId = $this->session->providerId;
 
