@@ -65,7 +65,7 @@ App.Views.Header = Backbone.View.extend({
                     console.log('session_checker_interval is:', session_checker_interval);
                     console.log('session_checker:', session_checker);
 
-                    clearInterval(session_checker);
+                    clearInterval(session_checker_interval);
                     
                     //switching tabs in pannel view
                     $('.profile-off').removeClass("hide");
