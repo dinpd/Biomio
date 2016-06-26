@@ -218,11 +218,11 @@ class User
 
     public static function update_temp_login_code($profileId, $status)
     {
-        return  ORM::for_table('TempLoginCodes')
-			->where('profileId', $profileId)
-			->find_result_set()
-			->set('status',$status)
-			->save();				
+        return ORM::for_table('TempLoginCodes')
+            ->where('profileId', $profileId)
+            ->find_result_set()
+            ->set('status', $status)
+            ->save();
     }
 
     public static function select_temp_login_email($profileId, $email)
@@ -351,13 +351,20 @@ class User
             $token = $userService->device_token;
 
             $userService = ORM::for_table('UserServices')->where(['profileId' => $profileId, 'id' => $device_id])->find_one();
-            $userService->delete();
+            if ($userService) {
+                $userService->delete();
+            }
 
             $app_uinf = ORM::for_table('application_userinformation')->where('application', $token)->find_one();
-            $app_uinf->delete();
+            if ($app_uinf) {
+                $app_uinf->delete();
+            };
+
 
             $application = ORM::for_table('Applications')->where('app_id', $token)->find_one();
-            $application->delete();
+            if ($application) {
+                $application->delete();
+            };
 
             //save_log('Applications', $token);
         }
@@ -399,8 +406,7 @@ class User
     }
 
 
-
-   public static function add_gmail_email($profileId, $email)
+    public static function add_gmail_email($profileId, $email)
     {
         $emailObject = ORM::for_table('Emails')->create();
         $emailObject->profileId = $profileId;
@@ -431,20 +437,20 @@ class User
 
         $emailRecord = ORM::for_table('Emails')->where(['profileId' => $profileId, 'email' => $email])->find_one();
 
-       	if($emailRecord){
-	 $emailRecord->delete();
-	}
+        if ($emailRecord) {
+            $emailRecord->delete();
+        }
 
         $pgpKeyData = ORM::for_table('PgpKeysData')->where(['user' => $profileId, 'email' => $email])->find_one();
 
-	if($pgpKeyData){
-	$pgpKeyData->delete();
-	}
+        if ($pgpKeyData) {
+            $pgpKeyData->delete();
+        }
 
         self::save_log('PgpKeysData', $email);
     }
 
-    public static  function save_log($table_name, $record_id)
+    public static function save_log($table_name, $record_id)
     {
         $log = ORM::for_table('UILog')->create();
         $log->table_name = $table_name;
