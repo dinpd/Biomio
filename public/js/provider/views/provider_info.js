@@ -3,7 +3,9 @@ App.Views.ProviderInformation = Backbone.View.extend({
     initialize:function () {
     },
     render:function () {
-        that = this;
+        console.log('perform an ajax call');
+	that = this; 
+	$.ajaxSetup({ cache: false });
         $.ajax({
             type: 'POST',
                 //url: '../php/provider.php',
@@ -11,6 +13,7 @@ App.Views.ProviderInformation = Backbone.View.extend({
                 data: {cmd: "provider_info"},
                 dataType: "json",
                 success: function(data) {
+			         
                     var template = render('ProviderInformationView', data);
                     that.$el.html( template );
                 
@@ -25,7 +28,14 @@ App.Views.ProviderInformation = Backbone.View.extend({
                             $('#provider_image_preview').html('<img id="provider_image" class="col-sm-12" style="padding: 0px" src ="../profileData/default-logo.png">');
                         }
                     });
-                }
+                },
+    error: function(XMLHttpRequest, textStatus, errorThrown) { 
+     //   alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+	//session_checker();i
+	is_logged_in();
+    } 
+
+
         });
     },
     events: {
@@ -34,12 +44,14 @@ App.Views.ProviderInformation = Backbone.View.extend({
         'click .provider-cancel-changes': 'cancelChanges'
     },
     updateInfo: function (e) {
+        check_session();
         e.preventDefault();
         $(".content").addClass('hide');
         $(".form").removeClass('hide');
     },
     //save changes for the whole form
     saveChanges: function (e) {
+	check_session();
         e.preventDefault();
         var name       = $('#name').val();
         var ein        = $('#ein').val();
@@ -90,6 +102,7 @@ App.Views.ProviderInformation = Backbone.View.extend({
 
     },
     cancelChanges: function (e) {
+	check_session();
         e.preventDefault();
         $(".form").addClass('hide');
         $(".content").removeClass('hide');
@@ -125,6 +138,7 @@ function providerPreviewImage (fileInput) {
     $("#provider_image_save").removeClass('disabled');
 }
 function providerSaveImage () {
+    check_session();
     var reader;
     if(window.FileReader){
         reader = new FileReader();
@@ -156,6 +170,7 @@ function providerSaveImage () {
     });
 }
 function providerDeleteImage () {
+    check_session();
     var formdata = new FormData();
     formdata.append("provider", window.profileId);
     formdata.append("cmd", 'providerLogoDelete');

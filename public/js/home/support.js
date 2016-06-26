@@ -238,7 +238,7 @@ function enable_media(source){
 
     var message = '<div class="' + head + ' media-allow alert alert-info">' +
                         '<a href="#" class="close" data-dismiss="alert">&times;</a>' +
-                        '<strong> Please click <img height="30" src="img/' + head + '.png"> to enable ' + source + ' <strong>' +
+                        '<strong> Please click <img height="30" src="/img/' + head + '.png"> to enable ' + source + ' <strong>' +
                     '</div>';
 
     $('.enable-media').html(message).removeClass('hide');
@@ -248,7 +248,7 @@ function enable_media(source){
 }
 
 function add_progress(size, div) {
-    var progress = '<div class="' + size + '-progress"><img src="img/' + size + '-progress.gif"></div>';
+    var progress = '<div class="' + size + '-progress"><img src="/img/' + size + '-progress.gif"></div>';
     $(div).append(progress);
 }
 

@@ -56,7 +56,7 @@ var AppRouter = Backbone.Router.extend({
     },
     //Provider menu
     provider_info: function () {
-        if (!check_session()) return;
+        if (!check_session()){ console.log('failure check for check_session: provider_info');return;};
         this.interface_navigation('Provider', 'provider-info-menu');
         if (!this.providerInfoView) this.providerInfoView = new App.Views.ProviderInformation();
         this.providerInfoView.render();
@@ -186,10 +186,10 @@ $(document).ready(function() {
         data: {cmd : 'is_loged_in'},
         success: function(data) {
             if (data.id != null) {
-                window.profileId = data.id;
-                window.profileFirstName = data.first_name;
-                window.profileLastName = data.last_name;
-                window.profileType = data.type;
+                
+               
+              
+            assign_user_data(data); 
 
                 var app = new AppRouter();
                 Backbone.history.start();
@@ -224,7 +224,16 @@ $(document).ready(function() {
     // END of main element
 });
 
+function assign_user_data(data){
+    window.profileId = data.id;
+    window.profileFirstName = data.first_name;
+    window.profileLastName = data.last_name;
+    window.profileType = data.type;
+}
+
+
 function check_session() {
+console.log('hey! provider check_session');
     if (window.profileId == null || window.profileId == undefined) {
         if (window.location.hash != '#signup' &&
                 window.location.hash != '#signup') {
@@ -272,7 +281,8 @@ function session_checker() {
     session_checker_interval = setInterval(function(){
 
         console.log('==setInterval== session_checker');
-
+ is_logged_in();
+/*
         $.ajax({
             type: 'POST',
             //url: '../php/login.php',
@@ -285,8 +295,33 @@ function session_checker() {
                     clearInterval(session_checker_interval);
                     alert('Your session expired');
                     window.location = '/';
-                }
+                }else{
+		    assign_user_data(data);
+			}
             }
         });
+
+*/
     }, 60000); 
+}
+
+
+function is_logged_in(){
+    $.ajax({
+        type: 'POST',
+        //url: '../php/login.php',
+        url: '../login/is_loged_in',
+        dataType: "json",
+        data: {cmd : 'is_loged_in'},
+        success: function(data) {
+            if (data.id == null) {
+                window.profileId = null;
+                clearInterval(session_checker_interval);
+                alert('Your session expired');
+                window.location = '/';
+            }else{
+                assign_user_data(data);
+            }
+        }
+    });
 }
