@@ -9,7 +9,7 @@ var AppRouter = Backbone.Router.extend({
         ""                           : "home",
         "signup"                     : "signup",
         "login"	                     : "login",
-        
+
     //User menu
         "provider-info"              : "provider_info",
         "provider-users"             : "provider_users",
@@ -24,22 +24,22 @@ var AppRouter = Backbone.Router.extend({
     },
     //Home menu
     home: function () {
-        this.main_navigation('home-menu'); 
+        this.main_navigation('home-menu');
         if (!this.homeView) {
             this.homeView = new App.Views.Home();
             $('#content').html(this.homeView.el);
         } else {
-           $('#content').html(this.homeView.el); 
+           $('#content').html(this.homeView.el);
         }
         $('body').children(".container").addClass('extraWidth');
         this.footer();
 
         // demid's design
         $(window).scroll(function () {
-            if ($(this).scrollTop() > 0) {$('#scroller').fadeIn();} 
+            if ($(this).scrollTop() > 0) {$('#scroller').fadeIn();}
             else {$('#scroller').fadeOut();}
         });
-            
+
         $('#scroller').click(function () {$('body,html').animate({scrollTop: 0}, 400); return false;});
     },
 	login: function() {
@@ -52,7 +52,7 @@ var AppRouter = Backbone.Router.extend({
         this.main_navigation('home-menu');
         if (!this.signupView) this.signupView = new App.Views.Signup();
         this.signupView.render();
-        this.footer(); 
+        this.footer();
     },
     //Provider menu
     provider_info: function () {
@@ -74,28 +74,28 @@ var AppRouter = Backbone.Router.extend({
         this.interface_navigation('Provider', 'provider-api-key-menu');
         if (!this.providerApiView) this.providerApiView = new App.Views.ProviderApi();
         this.providerApiView.render();
-        this.footer(); 
+        this.footer();
     },
     provider_api_doc: function () {
         if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-api-doc-menu');
         if (!this.providerApiDocView) this.providerApiDocView = new App.Views.ProviderApiDoc();
         this.providerApiDocView.render();
-        this.footer(); 
+        this.footer();
     },
     provider_login_doc: function () {
         if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-login-doc-menu');
         if (!this.providerLoginDocView) this.providerLoginDocView = new App.Views.ProviderLoginDoc();
         this.providerLoginDocView.render();
-        this.footer(); 
+        this.footer();
     },
     webresources: function () {
         if (!check_session()) return;
         this.interface_navigation('Provider', 'webresources-menu');
         if (!this.providerWebResources) this.providerWebResourcesView = new App.Views.ProviderWebResources();
         this.providerWebResourcesView.render();
-        this.footer(); 
+        this.footer();
     },
     // Header for main pages 
     main_navigation: function (menu_item) {
@@ -107,7 +107,7 @@ var AppRouter = Backbone.Router.extend({
 
         if ($('#sidebar').hasClass('col-md-3')) {
             $('#sidebar').removeClass('col-md-3');
-            $('#sidebar').html(''); 
+            $('#sidebar').html('');
             $('#content').removeClass('col-md-9');
             $('#content').addClass('col-md-12');
         }
@@ -123,7 +123,7 @@ var AppRouter = Backbone.Router.extend({
 
         // for API we need different width of container, which is .extraWidth class
         $(".container").removeClass('extraWidth');
-        
+
         if ($('#sidebar').hasClass('col-md-3') == false) {
             $('#sidebar').addClass('col-md-3');
             $('#content').removeClass('col-md-12');
@@ -151,14 +151,14 @@ var AppRouter = Backbone.Router.extend({
         this.footerView.render();
     },
     session: function () {
-        this.main_navigation('home-menu'); 
+        this.main_navigation('home-menu');
         if (!this.SessionView) this.SessionView = new App.Views.Session();
         $('#content').html(this.SessionView.el);
         $('body').children(".container").addClass('extraWidth');
         this.footer();
     },
     thankyou: function () {
-        this.main_navigation('home-menu'); 
+        this.main_navigation('home-menu');
         if (!this.ThankYouView) this.ThankYouView = new App.Views.ThankYou();
         $('#content').html(this.ThankYouView.el);
         $('body').children(".container").addClass('extraWidth');
@@ -166,7 +166,7 @@ var AppRouter = Backbone.Router.extend({
     },
     page_404: function () {
         window.location.hash = '#404';
-        this.main_navigation('home-menu'); 
+        this.main_navigation('home-menu');
         if (!this.page404View) this.page404View = new App.Views.Page404();
         $('#content').html(this.page404View.el);
         $('body').children(".container").addClass('extraWidth');
@@ -187,7 +187,7 @@ $(document).ready(function() {
         success: function(data) {
             if (data.id != null) {
 
-            assign_user_data(data); 
+            assign_user_data(data);
 
                 var app = new AppRouter();
                 Backbone.history.start();
@@ -202,7 +202,7 @@ $(document).ready(function() {
 
             } else {
                 if (window.location.hash != '#signup') {
-                    
+
                     hash = window.location.hash;
                     window.location = './index#signup';
                 }
@@ -235,7 +235,7 @@ console.log('hey! provider check_session');
     if (window.profileId == null || window.profileId == undefined) {
         if (window.location.hash != '#signup' &&
                 window.location.hash != '#signup') {
-                    
+
                 window.location = './#session';
 
                 $('.profile-off').removeClass("hide");
@@ -249,7 +249,7 @@ console.log('hey! provider check_session');
 
 // Function render is used to get HTML code out of tpl file using Underscore library
 function render(tmpl_name, tmpl_data) {
-    if ( !render.tmpl_cache ) { 
+    if ( !render.tmpl_cache ) {
         render.tmpl_cache = {};
     }
     var time = new Date().getTime();
@@ -280,7 +280,7 @@ function session_checker() {
 
         console.log('==setInterval== session_checker');
     is_logged_in();
-    }, 60000); 
+    }, 60000);
 }
 
 
@@ -292,7 +292,7 @@ function is_logged_in(){
         dataType: "json",
         data: {cmd : 'is_loged_in'},
         success: function(data) {
-            if (data.id == null) {
+            if (data.id == null || data.current_provider == null) {
                 window.profileId = null;
                 clearInterval(session_checker_interval);
                 alert('Your session expired');

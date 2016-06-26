@@ -110,7 +110,8 @@ final class UserController
             "id" => $this->session->get('id'),
             "type" => $this->session->get('type'),
             "first_name" => $this->session->get('first_name'),
-            "last_name" => $this->session->get('last_name'));
+            "last_name" => $this->session->get('last_name'),
+            "current_provider"=>$this->session->get('providerId'));
     }
 
 
