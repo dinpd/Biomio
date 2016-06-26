@@ -624,6 +624,12 @@ $(document).ready(function() {
                 var app = new AppRouter();
                 Backbone.history.start();
 
+                console.log(' ');
+                console.log(' ------------------------------------------------------ ');
+                console.log('session_checker(). main.js document ready');
+                console.log('session_checker_interval is:', session_checker_interval);
+                console.log('session_checker:', session_checker);
+
                 session_checker();
 
             } else {
@@ -715,6 +721,9 @@ var session_checker_interval;
 function session_checker() {
     clearInterval(session_checker_interval);
     session_checker_interval = setInterval(function(){
+
+        console.log('==setInterval== session_checker_interval');
+
         $.ajax({
             type: 'POST',
           //  url: 'php/login.php',

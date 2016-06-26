@@ -163,6 +163,13 @@ App.Views.Login = Backbone.View.extend({
                         //alert("Welcome to BIOMIO!")
                         if (hash != '') window.location = './' + hash;
                         else window.location = './#user-info';
+
+                        console.log(' ');
+                        console.log(' ------------------------------------------------------ ');
+                        console.log('session_checker(). provider/provider_login.js submit_login_code');
+                        console.log('session_checker_interval is:', session_checker_interval);
+                        console.log('session_checker:', session_checker);
+
                         session_checker();
                     }
                     //if error remove alert after 5 seconds
@@ -280,6 +287,13 @@ App.Views.Login = Backbone.View.extend({
                         window.profileType = data.type;
                         //alert("Welcome to BIOMIO!")
                         window.location.hash = 'user-info';
+
+                        console.log(' ');
+                        console.log(' ------------------------------------------------------ ');
+                        console.log('session_checker(). provider/provider_login.js check_bioauth');
+                        console.log('session_checker_interval is:', session_checker_interval);
+                        console.log('session_checker:', session_checker);
+
                         session_checker();
                     }
                 }

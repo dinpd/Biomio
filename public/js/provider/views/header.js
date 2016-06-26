@@ -58,6 +58,13 @@ App.Views.Header = Backbone.View.extend({
                     window.profileType = undefined;
                     window.location = '../#home';
 
+
+                    console.log(' ');
+                    console.log(' ------------------------------------------------------ ');
+                    console.log('clearInterval(session_checker). provider/header.js logout');
+                    console.log('session_checker_interval is:', session_checker_interval);
+                    console.log('session_checker:', session_checker);
+
                     clearInterval(session_checker);
                     
                     //switching tabs in pannel view

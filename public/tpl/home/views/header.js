@@ -75,6 +75,12 @@ App.Views.Header = Backbone.View.extend({
                     window.profileType = undefined;
                     window.location.hash = 'home';
 
+                    console.log(' ');
+                    console.log(' ------------------------------------------------------ ');
+                    console.log('clearInterval(session_checker). public/tpl/home/views/header.js logout');
+                    console.log('session_checker_interval is:', session_checker_interval);
+                    console.log('session_checker:', session_checker);
+
                     clearInterval(session_checker);
                     
                     //switching tabs in pannel view
@@ -239,6 +245,13 @@ App.Views.Header = Backbone.View.extend({
                         //alert("Welcome to BIOMIO!")
                         if (hash != '') window.location = './' + hash;
                         else window.location = './#user-info';
+
+                        console.log(' ');
+                        console.log(' ------------------------------------------------------ ');
+                        console.log('session_checker(). public/tpl/home/views/header.js submit_login_code');
+                        console.log('session_checker_interval is:', session_checker_interval);
+                        console.log('session_checker:', session_checker);
+
                         session_checker();
                     }
                     //if error remove alert after 5 seconds
@@ -356,6 +369,13 @@ App.Views.Header = Backbone.View.extend({
                         window.profileType = data.type;
                         //alert("Welcome to BIOMIO!")
                         window.location.hash = 'user-info';
+
+                        console.log(' ');
+                        console.log(' ------------------------------------------------------ ');
+                        console.log('session_checker(). public/tpl/home/views/header.js check_bioauth');
+                        console.log('session_checker_interval is:', session_checker_interval);
+                        console.log('session_checker:', session_checker);
+
                         session_checker();
                     }
                 }

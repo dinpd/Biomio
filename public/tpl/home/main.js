@@ -617,6 +617,12 @@ $(document).ready(function() {
                 var app = new AppRouter();
                 Backbone.history.start();
 
+                console.log(' ');
+                console.log(' ------------------------------------------------------ ');
+                console.log('session_checker(). public/tpl/home/main.js document.ready');
+                console.log('session_checker_interval is:', session_checker_interval);
+                console.log('session_checker:', session_checker);
+
                 session_checker();
             } else {
                 if (window.location.hash != '' && 
@@ -704,7 +710,10 @@ function render(tmpl_name, tmpl_data) {
 var session_checker;
 function session_checker() {
     clearInterval(session_checker);
-    session_checker = setInterval(function(){ 
+    session_checker = setInterval(function(){
+
+        console.log('==setInterval== session_checker');
+
         $.ajax({
             type: 'POST',
             //url: 'php/login.php',
