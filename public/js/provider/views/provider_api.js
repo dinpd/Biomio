@@ -24,6 +24,11 @@ App.Views.ProviderApi = Backbone.View.extend({
                 	jQuery.each(data, function(i, keys) {
                         that.render_key(keys.pub);
                     });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                //check for log out, if response '#session'
+                //possible parse error
+                is_logged_in();
             }
         });
     },

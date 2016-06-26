@@ -56,7 +56,7 @@ var AppRouter = Backbone.Router.extend({
     },
     //Provider menu
     provider_info: function () {
-        if (!check_session()){ console.log('failure check for check_session: provider_info');return;};
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-info-menu');
         if (!this.providerInfoView) this.providerInfoView = new App.Views.ProviderInformation();
         this.providerInfoView.render();
@@ -186,9 +186,7 @@ $(document).ready(function() {
         data: {cmd : 'is_loged_in'},
         success: function(data) {
             if (data.id != null) {
-                
-               
-              
+
             assign_user_data(data); 
 
                 var app = new AppRouter();
@@ -281,27 +279,7 @@ function session_checker() {
     session_checker_interval = setInterval(function(){
 
         console.log('==setInterval== session_checker');
- is_logged_in();
-/*
-        $.ajax({
-            type: 'POST',
-            //url: '../php/login.php',
-            url: '../login/is_loged_in',
-            dataType: "json",
-            data: {cmd : 'is_loged_in'},
-            success: function(data) {
-                if (data.id == null) {
-                    window.profileId = null;
-                    clearInterval(session_checker_interval);
-                    alert('Your session expired');
-                    window.location = '/';
-                }else{
-		    assign_user_data(data);
-			}
-            }
-        });
-
-*/
+    is_logged_in();
     }, 60000); 
 }
 

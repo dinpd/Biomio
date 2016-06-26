@@ -24,6 +24,11 @@ App.Views.ProviderUsers = Backbone.View.extend({
                     jQuery.each(data, function(j, user) {
                       that.render_user(user);
                     });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                //check for log out, if response '#session'
+                //possible parse error
+                is_logged_in();
             }
         });
     },

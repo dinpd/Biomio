@@ -41,6 +41,11 @@ App.Views.ProviderWebResources = Backbone.View.extend({
               jQuery.each(data, function(i, website) {
                 that.render_website(website.id, website.title, website.domain, website.hook);
               });
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            //check for log out, if response '#session'
+            //possible parse error
+            is_logged_in();
         }
     });
   },
@@ -66,6 +71,11 @@ App.Views.ProviderWebResources = Backbone.View.extend({
         data: {cmd: "delete_website", id: id},
         success: function(data) {
           $('#resource_' + id).remove();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            //check for log out, if response '#session'
+            //possible parse error
+            is_logged_in();
         }
     });
   },
@@ -120,6 +130,11 @@ App.Views.ProviderWebResources = Backbone.View.extend({
               $('.verification').addClass('hide');
 
             }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            //check for log out, if response '#session'
+            //possible parse error
+            is_logged_in();
         }
     });
   },
@@ -160,6 +175,11 @@ App.Views.ProviderWebResources = Backbone.View.extend({
             $('.verification').removeClass('hide');
 
             $('.file-download').attr('href','../profileData/tempWebsiteFiles/' + data[0]);
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+              //check for log out, if response '#session'
+              //possible parse error
+              is_logged_in();
           }
       });
 
@@ -173,6 +193,11 @@ App.Views.ProviderWebResources = Backbone.View.extend({
               var time = new Date().getTime();
               $('#website_screenshot_preview').html('<img id="user_image" class="img-responsive" style="padding: 0px" src ="../profileData/websiteScreenshot/' + domain + '.png?' + time +'">');
             }
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+              //check for log out, if response '#session'
+              //possible parse error
+              is_logged_in();
           }
       });
     }
@@ -194,6 +219,11 @@ App.Views.ProviderWebResources = Backbone.View.extend({
             } else {
               $('.span-provider-websites-verify').removeClass('green').addClass('red').text('Website is not verified');
             }
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+              //check for log out, if response '#session'
+              //possible parse error
+              is_logged_in();
           }
       });
     }
