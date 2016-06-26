@@ -526,6 +526,12 @@ class User
 
     /* API */
 
+    public static function count_api_keys($field,$value)
+    {
+        return ORM::for_table('ProviderKeys')->where($field, $value)->count();
+    }	
+
+
     public static function select_api_keys($field, $value)
     {
         return ORM::for_table('ProviderKeys')->where($field, $value)->find_many();

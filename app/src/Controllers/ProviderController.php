@@ -32,6 +32,32 @@ final class ProviderController
         return $response;
     }
 
+
+    public function get_session(Request $request, Response $response, $args){
+
+
+
+        if(!isset($_SESSION['id'])){
+            header( 'Location: ./#signup' );
+            return $response;
+        }
+
+        $providerId = $request->getAttribute('provider_id');
+        $profileId = $_SESSION['id'];
+
+       $providerAdmin = \ORM::for_table('ProviderAdmins')->where(['providerId'=>$providerId,'profileId'=>$profileId])->find_one();
+
+        if(!$providerAdmin){
+           // header( 'Location: ./#signup' );
+            return $response->withRedirect('../index#signup');
+        }
+
+        $_SESSION['providerId'] = $providerId;
+	//        header( 'Location: ./#provider-info' );
+	return $response->withRedirect('../index#provider-info');
+    }
+
+
     public function register(Request $request, Response $response, $args)
     {
 

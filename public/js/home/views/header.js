@@ -29,7 +29,7 @@ App.Views.Header = Backbone.View.extend({
                 success: function(data) {
                     if (data != null)
                         jQuery.each(data, function(j, provider) {
-                            $( ".provider-header" ).after('<li><a href="./provider/session.php?p=' + provider.id + '">' + provider.name + '</a></li>');
+                            $( ".provider-header" ).after('<li><a href="./provider/session/' + provider.id + '">' + provider.name + '</a></li>');
                         });
                 }
             });

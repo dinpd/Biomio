@@ -1115,11 +1115,11 @@ $this->logger->info($ska);
 
         do {
             $publicKey = Helper::genApiCode();
-        } while (User::select_api_keys('public_key', $publicKey));
+        } while (User::count_api_keys('public_key', $publicKey) > 0);
 
         do {
             $privateKey = Helper::genApiCode();
-        } while (User::select_api_keys('private_key', $privateKey));
+        } while (User::count_api_keys('private_key', $privateKey) > 0);
 
 
         User::save_api_keys($providerId, $publicKey, $privateKey);

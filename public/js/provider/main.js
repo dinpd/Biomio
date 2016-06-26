@@ -206,7 +206,7 @@ $(document).ready(function() {
                 if (window.location.hash != '#signup') {
                     
                     hash = window.location.hash;
-                    window.location = './#signup';
+                    window.location = './index#signup';
                 }
 
                 var app = new AppRouter();
