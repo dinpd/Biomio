@@ -282,7 +282,7 @@ function session_checker() {
             success: function(data) {
                 if (data.id == null) {
                     clearInterval(session_checker);
-                    alert('Your session expired')
+                    alert('Your session expired');
                     window.location = './';
                 }
             }
