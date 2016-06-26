@@ -83,6 +83,13 @@ App.Views.Signup = Backbone.View.extend({
                         window.profileType = type;
                         
                         window.location.hash = 'wizard/1';
+
+                        console.log(' ');
+                        console.log(' ------------------------------------------------------ ');
+                        console.log('session_checker(). public/tpl/home/views/signup.js submit_check');
+                        console.log('session_checker_interval is:', session_checker_interval);
+                        console.log('session_checker:', session_checker);
+
                         session_checker();
                     }
                     //if error, remove alert after 5 seconds

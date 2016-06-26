@@ -199,10 +199,20 @@ jQuery(document).ready(function ($) {
         });
     };
 
+    console.log(' ');
+    console.log(' ! ------------------------------------------------------ ! ');
+    console.log('clearInterval(session_checker). public/tpl/HomeView.html document.ready');
+    console.log('session_checker_interval is:', session_checker_interval);
+    console.log('session_checker:', session_checker);
+
     clearInterval(session_checker);
     session_checker = setInterval(function () {
+
+        console.log('==setInterval== session_checker <--home View');
+
         moveRight();
     }, 7000);
+
 
 });    
 
