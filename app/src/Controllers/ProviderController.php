@@ -23,6 +23,15 @@ final class ProviderController
         $this->session = $session;
     }
 
+
+    public function dispatch(Request $request, Response $response, $args)
+    {
+        $this->logger->info("Provider Index page action dispatched");
+
+        $this->renderer->render($response,'/provider_index.php');
+        return $response;
+    }
+
     public function register(Request $request, Response $response, $args)
     {
 

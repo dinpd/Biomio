@@ -63,6 +63,8 @@ $app->group('/captcha/', function() use ($app){
 
 $app->group('/provider/', function() use ($app){
 
+    $app->get('/', 'App\Controllers\ProviderController:dispatch')->setName('index');
+
     $app->post('register','App\Controllers\ProviderController:register');
     $app->post('load_providers','App\Controllers\ProviderController:load_providers');
     $app->post('provider_info','App\Controllers\ProviderController:provider_info');

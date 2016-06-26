@@ -732,6 +732,7 @@ function session_checker() {
             data: {cmd : 'is_loged_in'},
             success: function(data) {
                 if (data.id == null) {
+                    window.profileId = null;
                     clearInterval(session_checker_interval);
                     alert('Your session expired');
                     window.location = './';
