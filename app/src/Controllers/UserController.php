@@ -47,12 +47,11 @@ final class UserController
 
         $tempLoginCode = \ORM::for_table('TempLoginCodes')
             ->where('code',$code)
-            ->where_raw('(`status` = ? OR `status` = ? OR `status` = ?)', array(1,0,3))
             ->find_one();
 
         /* Assuming user already pass wizard */
         if($tempLoginCode->status == 3)
-            return $response->withRedirect('../#user-info');
+            return $response->withRedirect('/#user-info');
 
         if(!$tempLoginCode)
             return $response->write('<h1>The code is expired or invalid</h1>');
@@ -74,10 +73,10 @@ final class UserController
                                 $userInfo->lastName);
 
         if($state == 0){
-            return $response->withRedirect('../#user-info');
+            return $response->withRedirect('/#user-info');
         }
 
-          return $response->withRedirect('../#wizard/' . $state);
+          return $response->withRedirect('/#wizard/' . $state);
 
     }
 
