@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\Helper as Helper;
 use Psr\Log\LoggerInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -36,7 +37,7 @@ final class CommandController
 
         $email = strtolower($email);
         list($user, $domain) = explode('@', $email);
-        if (!is_google_mx($domain)) {
+        if (!Helper::is_google_mx($domain)) {
             return $this->_http_error_responce($response, "not gmail");
         }
 
