@@ -10,11 +10,7 @@ class User
 
     public static function check_email($email)
     {
-        $email = ORM::for_table('Emails')->where('email', $email)->find_one();
-        if (!$email) {
-            return false;
-        }
-        return $email;
+        return ORM::for_table('Emails')->where('email', $email)->find_one();
     }
 
 

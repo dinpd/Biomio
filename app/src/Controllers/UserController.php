@@ -221,7 +221,7 @@ javascriptResponce;
 
     public function check_email(Request $request, Response $response, $args)
     {
-        if (User::check_email("email here")) {
+        if (User::check_email($request->getParam('email'))) {
             return $response->write('#registered');
         } else {
             return $response->write('#fine');
