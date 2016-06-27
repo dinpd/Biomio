@@ -8,9 +8,6 @@ use \Slim\Http\Uri;
 
 $app->get('/', 'App\Controllers\IndexController:dispatch')->setName('index');
 
-//for testing purposes
-$app->get('/tryx[/{wow}[/{xx}]]', 'App\Controllers\UserController:tryx')->setName('tryx');
-
 
 $app->group('/splash/', function() use ($app){
     /*
@@ -82,6 +79,8 @@ $app->group('/provider/', function() use ($app){
 
 $app->group('/login/',function() use($app){
 
+
+    $app->get('wizard[/{code}[/{state}]]','App\Controllers\UserController:wizard');
 
     $app->get('openId','App\Controllers\UserController:openid_login');
 

@@ -29,66 +29,6 @@ final class UserController
         $this->mailerService = $mailerService;
     }
 
-    public function tryx(Request $request, Response $response, $args)
-    {
-
-        $textoutput = $request->getParam('textinput');
-
-        //$textoutput = $input['textinput'];
-        if ($this->session->get('wow'))
-            $this->session->wow = $this->session->wow + 1;
-        else
-            $this->session->wow = 22;
-        //$this->session->set('wow',1);
-
-        //return $response->write('hii ja!:' . $this->session->wow);
-
-
-        // $container = $this->app->getContainer();
-        // $gateUri = $this->get('settings')['gateUri'];
-        print_r($request->getAttribute('wow'));
-
-        //print_r($this);
-        //print_r($this->settings['gateUri']);
-//
-//        $body = $this->renderer->render($response, '/emails/NewGoogleAppApplication.html',
-//            ['name' => 'ypypy', 'email' => 'titit@titit.com']);
-//
-//
-//
-//
-//        echo $response->getBody()->getContents();;
-
-
-        // $r = Helper::monkey_mail('orest.zagaiskyi@vakoms.com.ua','i ha','body bdy','www-data@biom.io','dumbass');
-
-        //  print_r($this->mailerService->sendMail('orest.zagaiskyi@vakoms.com.ua','i ha','body bdy','www-data@biom.io','dumbass'));
-        // print_r($this->mailerService->sendMailHtml('orest.zagaiskyi@vakoms.com.ua','i ha','NewGoogleAppApplication.php','www-data@biom.io','dumbass',['name' => 'xzz', 'email' => 'asdsa@fdf.com']));
-//        print_r($this->mailerService->
-//            welcome_email('orest.zagaiskyi@vakoms.com.ua','first','last',12312)
-//    //    sendMailHtml('orest.zagaiskyi@vakoms.com.ua','i ha','NewGoogleAppApplication.php','www-data@biom.io','dumbass',['name' => 'xzz', 'email' => 'asdsa@fdf.com'])
-//    );
-
-
-//        print_r($this->mailerService->
-//        send_email_verification_code('orest.zagaiskyi@vakoms.com.ua','first','last',12312)
-//        //    sendMailHtml('orest.zagaiskyi@vakoms.com.ua','i ha','NewGoogleAppApplication.php','www-data@biom.io','dumbass',['name' => 'xzz', 'email' => 'asdsa@fdf.com'])
-//        );
-
-        print_r($this->mailerService->
-        send_email_verification_code('orest.zagaiskyi@vakoms.com.ua', 'first', 'last', 9999)
-        //    sendMailHtml('orest.zagaiskyi@vakoms.com.ua','i ha','NewGoogleAppApplication.php','www-data@biom.io','dumbass',['name' => 'xzz', 'email' => 'asdsa@fdf.com'])
-        );
-
-        // $r = Helper::monkey_mail('orest.zagaiskyi@vakoms.com.ua','i ha','body bdy','www-data@biom.io','dumbass');
-
-        //print_r($r);
-
-        return $response->write('success');
-
-        //return ;
-        // return $this->renderer->render($response, '/tmp.php', ['wow' => $this->session->wow, 'textoutput' => $textoutput]);
-    }
 
     private function _start_session($id, $type, $first_name, $last_name)
     {
@@ -98,6 +38,45 @@ final class UserController
         $this->session->last_name = $last_name;
     }
 
+
+    public function wizard(Request $request, Response $response, $args)
+    {
+
+        $code = $request->getAttribute('code');
+        $state = $request->getAttribute('state');
+
+        $tempLoginCode = \ORM::for_table('TempLoginCodes')
+            ->where('code',$code)
+            ->where_raw('(`status` = ? OR `status` = ?)', array(1, 0))
+            ->find_one();
+
+
+        if(!$tempLoginCode)
+            return $response->write('<h1>The code is expired or invalid</h1>');
+
+        $profileId = $tempLoginCode->profileId;
+
+        $profile = User::find_user('id',$profileId);
+        $userInfo = User::get_user_info($profileId);
+
+        \ORM::for_table('TempLoginCodes')
+            ->where('code',$code)
+            ->find_result_set()
+            ->set('status', 3)
+            ->save();
+
+        $this->_start_session($profileId,
+                                $profile->type,
+                                $userInfo->firstName,
+                                $userInfo->lastName);
+
+        if($state == 0){
+            return $response->withRedirect('../#user-info');
+        }
+
+          return $response->withRedirect('../#wizard/' . $state);
+
+    }
 
     public function get_user_session(Request $request, Response $response, $args)
     {
@@ -117,6 +96,7 @@ final class UserController
 
     public function openid_login(Request $request, Response $response, $args)
     {
+        //TODO: this stuff require refactor, please, be that good Samaritan
 
         $code = $request->getParam('code');
        // $state = $request->getParam('state'); <<--useless, used in legacy
@@ -129,17 +109,10 @@ final class UserController
         $_request['grant_type'] = 'authorization_code';
         $_request['code'] = $code;
 //        $_request['redirect_uri'] = 'https://biom.io:4466/login.php'; //<--change this, for old AI
-	$_request['redirect_uri'] = $this->settings['AIUri'].'/login/openId/';
+	    $_request['redirect_uri'] = $this->settings['AIUri'].'/login/openId/';
 
         $url = $this->settings['openIdUri'] . "/user/token";
 
-        $this->logger->info('$_request:');
-       
-	ob_start();
-	print_r(json_encode($_request));
-	$reee = ob_get_clean();
-
-	 $this->logger->info($reee);
 
 
         $content = json_encode($_request);
@@ -162,15 +135,6 @@ final class UserController
 
         curl_close($curl);
         $_response = json_decode($json_response, true);
-
-	//LOGGER DATA, feel free to remove
-        $this->logger->info('$_responce');
-	ob_start();
-	print_r(@$_responce);
-	$respp = ob_get_clean();
-
-        $this->logger->info($respp);
-
 
 
         $id_token = $_response['id_token'];
@@ -205,8 +169,6 @@ final class UserController
     </script>
 javascriptResponce;
 
-        $this->logger->info('$javascriptResponce');
-        $this->logger->info($javascriptResponce);
 
         return $response->write($javascriptResponce);
 
