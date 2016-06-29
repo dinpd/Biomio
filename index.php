@@ -109,6 +109,10 @@
 <!-- App -->
 <script src="<?php autoVer('js/home/app.js'); ?>"></script>
 
+<!-- Routers -->
+<script src="<?php autoVer('js/home/main.js'); ?>"></script>
+<script src="<?php autoVer('js/home/support.js'); ?>"></script>
+
 <!-- Views -->
 <script src="<?php autoVer('js/home/views/home.js'); ?>"></script>
 <script src="<?php autoVer('js/home/views/about.js'); ?>"></script>
@@ -211,9 +215,7 @@
 <!--<script src="js/forms/register-fingerprint.js"></script>-->
 <!--<script src="js/forms/verify-fingerprint.js"></script>-->
 
-<!-- Routers -->
-<script src="<?php autoVer('js/home/main.js'); ?>"></script>
-<script src="<?php autoVer('js/home/support.js'); ?>"></script>
+
 
 <!--<script src="biomio_login/audio/js/audiodisplay.js"></script>-->
 <!--<script src="biomio_login/audio/js/recorder.js"></script>-->

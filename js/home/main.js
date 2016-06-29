@@ -605,6 +605,33 @@ var AppRouter = Backbone.Router.extend({
 
 });
 
+
+
+
+// Session checker - checks every minute that session isn't expired; if expired reloads the page and returns to #home
+var session_checker_interval;
+var session_checker=function() {
+    clearInterval(session_checker_interval);
+    session_checker_interval = setInterval(function(){ 
+        $.ajax({
+            type: 'POST',
+            url: 'php/login.php',
+            dataType: "json",
+            data: {cmd : 'is_loged_in'},
+            success: function(data) {
+                if (data.id == null) {
+                    clearInterval(session_checker_interval);
+                    alert('Your session expired')
+                    window.location = './';
+                }
+            }
+        });
+    }, 60000); 
+}
+
+
+
+
 // Main function that starts the aplication
 $(document).ready(function() {
     // Main element: gets user ID and starts the router history
@@ -709,10 +736,10 @@ function render(tmpl_name, tmpl_data) {
 }
 
 // Session checker - checks every minute that session isn't expired; if expired reloads the page and returns to #home
-var session_checker;
-function session_checker() {
-    clearInterval(session_checker);
-    session_checker = setInterval(function(){ 
+var session_checker_interval_x;
+function session_checker_x() {
+    clearInterval(session_checker_interval);
+    session_checker_interval = setInterval(function(){ 
         $.ajax({
             type: 'POST',
             url: 'php/login.php',
@@ -720,7 +747,7 @@ function session_checker() {
             data: {cmd : 'is_loged_in'},
             success: function(data) {
                 if (data.id == null) {
-                    clearInterval(session_checker);
+                    clearInterval(session_checker_interval);
                     alert('Your session expired')
                     window.location = './';
                 }

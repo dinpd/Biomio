@@ -6,6 +6,8 @@ $pdo = new PDO('mysql:dbname=biomio_db; host=6da7f2ba42c999a5da5b0937632bd595a03
 $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+require 'vendor/autoload.php';
+
 require_once '../php/NotORM.php';
 
 $db = new NotORM($pdo);

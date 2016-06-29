@@ -1,5 +1,9 @@
 <?php
 header('Access-Control-Allow-Origin: *');
+
+
+require 'vendor/autoload.php';
+
 require ('connect.php');
 require ('controllers/EmailController.php');
 require ('models/User.php');

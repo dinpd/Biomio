@@ -88,9 +88,10 @@ if ($profileId) {
     //if (hash != '') window.opener.location.href = './' + hash;
     //else window.opener.location.href = './#user-info';
 
-    
+//        if (window.opener.hash1 != '') window.opener.location.href = './' + window.opener.hash1;
+//        else window.opener.location.href = './#user-info';    
 
-    window.close();
+//    window.close();
 </script>
 <?php
 }

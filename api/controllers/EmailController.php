@@ -147,6 +147,16 @@ class Email {
 
 function monkey_mail($to, $subject, $body, $from, $from_name) {
 
+        $mgClient = new \Mailgun\Mailgun('key-22d04f5f1108f80acd648c9234c45546');
+        $domain = "mg.biom.io";
+
+        return $mgClient->sendMessage("$domain",
+            array('from'    => $from_name.' <'.$from.'>',
+                'to'      => $to,
+                'subject' => $subject,
+                'html'    => $body));
+
+/*
 	require_once 'mandrill/Mandrill.php';
 	try {
 	    $mandrill = new Mandrill('vyS5QUBZJP9bstzF1zeVNA');
@@ -170,5 +180,5 @@ function monkey_mail($to, $subject, $body, $from, $from_name) {
 	    // A mandrill error occurred: Mandrill_Unknown_Subaccount - No subaccount exists with the id 'customer-123'
 	    throw $e;
 	}
-
+*/
 }

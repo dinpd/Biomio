@@ -10,7 +10,7 @@ App.Views.userServices = Backbone.View.extend({
         this.get_user_extensions();
         this.get_user_emails();
         this.get_extension_settings();
-        this.get_gate_keys();
+//        this.get_gate_keys();
     },
     events: {
         // chrome extention
