@@ -1,1 +1,5 @@
 .idea
+api/vendor/
+php/vendor/
+profileData/
+
