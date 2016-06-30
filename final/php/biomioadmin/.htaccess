@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "Admin Only"
-AuthUserFile /home/biom/public_html/php/biomioadmin/.htpasswd
-require valid-user

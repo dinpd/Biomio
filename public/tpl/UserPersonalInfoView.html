@@ -1,0 +1,245 @@
+<div class="well">
+	<legend><h2 class="form-signin-heading">User - Personal Info</h2></legend>
+	<div class="form-horizontal font16">
+		<fieldset>
+			<div class="col-sm-8">
+				<!-- Name-->
+				<div class="col-sm-12" style="margin-bottom: 15px">
+					<legend>Profile name</legend>
+					<div class="col-sm-9 col-xs-2">
+						<p id="span_name" class="content form-control-static">
+							<% if (firstName == '' && lastName == '')
+								print('<p class="content small-align">no information</p>');
+							   else
+								print(firstName + ' ' + lastName);
+							%>
+						</p>
+						<div class="form hide col-sm-12">
+							<input id="firstName" class="form-control" type="text" value="<%= firstName %>">
+							<p class='help-block'><small>first name</small></p>
+
+							<input id="lastName" class="form-control" type="text" value="<%= lastName %>">
+							<p class='help-block'><small>last name</small></p>
+						</div>
+					</div>
+					<div class="col-sm-3 control-label">
+						<span style="display: inline; float: right; cursor: pointer; font-style: italic;" class="edit-name text-primary hidden-xs">Edit &nbsp;<span class="glyphicon glyphicon-pencil" style="font-size: 13px" aria-hidden="true"></span></span>
+						<button type="button" class="btn btn-success save-name pull-right hide">Save</button>
+					</div>
+				</div>
+
+				<div class="col-sm-12 user-emails" style="margin-bottom: 15px">
+					<legend>User emails</legend>
+					<div class="profile-emails"></div>
+					<style>
+						.form-2-2 {
+							border-radius: 3px;
+							border: 1px solid #CCC;
+							padding: 15px 5px;
+							margin-top: 15px;
+						}
+					</style>
+					<div class="form hide">
+						<form class="col-sm-12" style="margin-top: 15px; margin-bottom: 15px">
+							<div class="col-sm-8">
+								<input type="text" class="form-control new-email" placeholder="new email address">
+							</div>
+							<div class="col-sm-4">
+								<button type="submit" class="btn btn-success add-email">Add</button>
+							</div>
+						</form>
+
+						<div class="form-2-2 col-sm-12 text-center hide">
+							<h3>Verify Email</h3>
+							<p><strong>alexander.lomov1@gmail.com</strong></p>
+
+							<form class="form">
+								<div class="col-sm-8">
+									<input placeholder="verification code" class="form-control">
+								</div>
+								<div class="col-sm-4">
+									<button type="submit" class="btn btn-success">Verify</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-12 user-phones text-left">
+					<legend>User phones</legend>
+					<!-- Notifications: -->
+
+					<p class="registered hide text-success">Registered Phone Numbers:</p>
+					<strong>
+						<div class="registered registered-numbers"></div>
+					</strong>
+					<p class="not-registered hide text-warning">No registered phone numbers</p>
+
+					<style>
+						.phone-number {
+							min-width: 318px;
+							font-size: 20px;
+						}
+						.phone-number input {
+							display: inline-block;
+							height: 32px;
+							font-size: 16px;
+							margin-top: 15px;
+						}
+						.phone-number .country-code {
+							width: 32px;
+							text-align: center;
+						}
+						.phone-number .region-code {
+							width: 42px;
+							text-align: center;
+						}
+						.phone-number .first-part {
+							width: 42px;
+							text-align: center;
+						}
+						.phone-number .second-part {
+							width: 52px;
+							text-align: center;
+						}
+						.phone-number button {
+							vertical-align: top;
+							width: 150px;
+							margin-top: 8px;
+						}
+						.phone-step-2 {
+							min-width: 318px;
+						}
+						.phone-step-2 input {
+							height: 32px;
+						}
+						.phone-step-2 .request-phone-code:hover {
+							text-decoration: underline;
+							cursor: pointer;
+						}
+					</style>
+					<br>
+					<form class="form-inline font16" style="clear: both">
+						<fieldset class="form hide">
+							    <div class="form-group">
+									<div class="col-sm-12 phone-number">
+										<input type="text" class="country-code disabled" placeholder="1" value="1" maxlength="1"> 
+										(<input type="text" class="region-code" placeholder="222" maxlength="3">)
+										<input type="text" class="first-part" placeholder="333" maxlength="3"> &ndash;
+										<input type="text" class="second-part" placeholder="4444" maxlength="4">
+										
+										<button class="request-phone-code btn btn-primary">Get Verification Code</button>
+									</div>
+
+									<div class="col-sm-12 phone-step-2 hide">
+										<p class="text-success">A text message with verification code was sent to your phone. Please enter the code in the area below.</p>
+										<p>Didn't get the code? <span class="text-primary request-phone-code">Send another one.</span></p>
+
+										<input type="text" class="phone-code form-control col-sm-6" placeholder="enter your code">
+										<button class="verify-phone btn btn-primary col-sm-4 pull-right">Verify</button>
+										<p class="invalid-code hide text-warning col-sm-12">The code is incorrect or expired, please request a new code</p>
+								    </div>
+								    <div class="col-sm-12 error hide">
+								    	<p class="text-warning">Error occured. Please reload the page and try again.</p>
+								    </div>
+								</div>
+						</fieldset>
+					</form>
+				</div>
+			</div> <!-- left div -->
+
+			<div class="col-sm-4 col-sm-offset-0 text-center">
+				<div class="col-sm-12">	
+					<div>
+						<span id="user_image_frame">
+							<input id="user_image_input" onChange="userPreviewImage(this)" type="file" accept="image/*" style="display:none"/>
+						</span>
+
+					  	<span id="user_image_preview">
+							
+					  	</span>
+				  	</div>
+				  	
+					<div>
+						<button id ="user_image_upload" onClick="userTriggerImageUpload(); return false;" class="btn btn-warning form hide col-sm-6" > Upload<br>Picture</button><br>
+						<button id ="user_image_webcam" onClick="return false;" class="btn btn-warning form hide col-sm-6" > Use<br>Webcam</button><br>
+						<button id="user_image_save"  onClick="userSaveImage(); return false;" class="btn btn-success form hide col-sm-12 disabled"> Save Picture</button>
+						<button id="user_image_delete"  onClick="userDeleteImage(); return false;" class="btn btn-danger form hide col-sm-12 disabled"> Remove Picture</button>
+					</div>
+					<small class="col-sm-12"><p id="user_image_progress" class='help-block form hide'></p></small>
+				</div>
+
+			</div> <!-- right div -->
+		</fieldset>
+	</div>
+
+</div>
+
+<style>
+	/* Black and white boxes */
+	.webcam_overlay {
+	    position: absolute;
+	    top: 0%;
+	    left: 0%;
+	    width: 100%;
+	    height: 100%;
+	    background-color: black;
+	    z-index:1001;
+	    -moz-opacity: 0.8;
+	    opacity:.80;
+	    filter: alpha(opacity=80);
+	}
+	.webcam_content {
+	    position: absolute;
+	    top: 10%;
+	    left: 10%;
+	    width: 700px;
+	    height: 640px;
+	    padding: 16px;
+	    border: 16px solid #77B55A;
+	    background-color: white;
+	    z-index:1002;
+	    overflow: auto;
+	}
+	.webcam {
+		position: relative;
+		width: 100%;
+		margin-top: -100px;
+	}
+	.webcam_content div {
+		overflow: hidden;
+		width: 360px;
+		margin-left: 140px;
+	}
+	.webcam_content div div {
+		width: 360px;
+		height: 480px;
+		overflow: hidden;
+
+		background-image: url("img/face-background.png");
+		background-size: 360px 480px;
+		background-repeat: no-repeat;
+		background-position: center;
+		opacity: 0.4;
+		z-index: 10000;
+		position: fixed;
+	}
+	.webcam_content #user_info_video {
+		margin-left: -140px;
+	}
+</style>
+
+<div class="webcam_overlay hide">
+</div>
+
+<div class="webcam_content hide align-center">
+	<div class="policies-form">
+		<input id="user_info_snap" type="button" class="btn btn-primary" value="Snap Photo" />
+		<input id="user_info_snap_again" type="button" class="btn btn-primary hide" value="Again" />
+		<input id="user_info_snap_save" type="button" class="btn btn-primary hide" value="Save picture" />
+	</div>
+	<div>
+		<video id="user_info_video" width="640" height="480" autoplay></video>
+		<canvas id="user_info_canvas" class="hide" width="360" height="480"></canvas>
+	</div>
+</div>

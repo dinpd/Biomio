@@ -1,0 +1,252 @@
+<style> .yellow { background: yellow; }</style>
+
+<div class="well">
+
+<h2>OpenID provider documentation</h2>
+
+<p>How make a request to OpenId provider to additional check user?</p>
+<p>You an external site, you must register in our OpenID provider and get:</p>
+<ul>
+	<li>client_id</li>
+	<li>client_secret</li>
+</ul>
+<p>You will send client_id with authorization request to OpenId provider</p> 
+<p><a href="http://biom.io:5001" target="_blank">http://biom.io:5001</a> - URL of our OpenId provider<br>
+<a href="https://biom.io" target="_blank">http://external.site</a> - URL of your site</p>
+
+<p>We provide two authentication flows:</p>
+<br>
+<h3>Implicit Flow (the simplest way, only frontend part)</h3>
+<p>User is already registered and logged in your site, you have some unique token that identifies user and you want to make additional authentication check, follow next steps:</p>
+
+<h4>1. Open window or redirect user to next URL:</h4>
+
+    <code>http://biom.io:5001/user/authorize<br>
+   	 ?response_type=token<br>
+   	 &scope=openid profile<br>
+   	 &client_id=0d2f8ad8dd15ef931ae7133a145fb19d<br>
+   	 &external_token=external-token-success<br>
+   	 &redirect_uri=http://external.site/callback.html<br>
+   	 &nonce=12p6bfw<br>
+   	 &state=1slw5l6</code>
+
+<ul>
+<li><strong>response_type</strong>: token (return access token)</li>
+<li><strong>scope</strong>: openid (required), profile (used to get user’s info from server)</li>
+
+<li><strong>client_id</strong>: every external site will get an own client_id</li>
+<li><strong>external_token</strong>: unique token that identify user in external site, we will find user in our database by this token</li>
+<li><strong>redirect_uri</strong>: external site URI, after authentication user will be redirected to this URL with access token</li>
+<li><strong>nonce</strong>: unique string (you must generate it and save in browser local storage), prevents from replay attack</li>
+<li><strong>state</strong>: uniq string (you must generate it and save in browser local storage), this prevents from CSRF, XSRF attacks</li>
+</ul>
+<br>
+<h4>2. OpenID provider login page</h4>
+    <p>If user is not found by external_token in our database, we will show a screen where user can create account and install mobile application</p>
+
+    <p>If user is found, we will show a timer and message like this: <em>"Please run mobile application and go through face recognition"</em></p>
+
+<p>After success face recognition we return user back to external site (look at redirect_uri parameter) with necessary parameters in URL:</p>
+
+    <code>http://external.site/callback.html<br>
+   	 #access_token=88a71e255aa4c2daed85c4d0c496f491<br>
+   	 &token_type=Bearer<br>
+   	 &expires_in=3600<br>
+   	 &state=1slw5l6</code>
+
+<ul>
+<li><strong>access_token</strong>: use it to get info of current user from our database</li>
+<li><strong>state</strong>: compare it with value of “state” from browser local storage, if they are not equal - reject authorization!</li>
+</ul>
+<br>
+<h4>3. Get user data</h4>
+<p>To get information about authorized user from our database, make next request:</p>
+
+<p>Request:</p>
+<code>GET http://biom.io:5001/api/user?access_token=88a71e255aa4c2daed85c4d0c496f491</code>
+
+<p>if access_token is valid, you will receive user data in JSON format</p>
+
+<br>
+<h4>4. Refresh access token</h4>
+<p>In implicit flow you can’t refresh acess_token!</p>
+
+<br>
+
+<h3>Authorization Code Flow</h3>
+<p>This flow very similar with implicit flow, I highlight difference to <span class="yellow">yellow</span> color.</p>
+
+<p>User is already registered and logged in your site, you have some unique token that identifies user and you want to make additional authentication check, follow next steps:</p>
+<br>
+<h4>1. Open window or redirect user to next URL:</h4>
+
+    <code>http://biom.io:5001/user/authorize<br>
+   	 ?response_type=<span class="yellow">code</span><br>
+   	 &scope=openid profile<br>
+   	 &client_id=0d2f8ad8dd15ef931ae7133a145fb19d<br>
+   	 &external_token=external-token-success<br>
+   	 &redirect_uri=http://external.site/callback.html<br>
+   	 &nonce=12p6bfw<br>
+   	 &state=1slw5l6</code>
+
+<ul>
+<li><strong>response_type</strong>: <span class="yellow">code (you will use it to exchange it to access token and refresh_token)</span></li>
+<li><strong>scope</strong>: openid (required), profile (used to get user’s info from server)</li>
+<li><strong>client_id</strong>: every external site will get an own client_id
+<li><strong>external_token</strong>: unique token that identify user in external site, we will find user in our database by this token
+<li><strong>redirect_uri</strong>: external site URI, after authentication user will be redirected to this URL with access token
+<li><strong>nonce</strong>: unique string (you must generate it and save in browser local storage), prevents from replay attack
+<li><strong>state</strong>: uniq string (you must generate it and save in browser local storage), this prevents from CSRF, XSRF attacks
+</ul>
+<br>
+<h4>2. OpenId provider login page</h4>
+    <p>If user is not found by external_token in our database, we will show a screen where user can create account and install mobile application</p>
+
+    <p>If user is found, we will show a timer and message like this: <p>"Please run mobile application and go through face recognition"</em></p>
+
+<p>After success face recognition we return user back to external site (look at redirect_uri parameter) with necessary parameters in URL:</p>
+
+    <code>http://external.site/callback.html<br>
+   	 <span class="yellow">?code=ece499114d691042a8e743cb90daeb7c</br></span>
+&state=1slw5l6</code>   
+
+<ul>
+<li><span class="yellow"><strong>code</strong>: use it to exchange it to access token and refresh_token</span></li>
+<li><strong>state</strong>: compare it with value of “state” from browser local storage, if they are not equal - reject authorization!</li>
+</ul>
+<br>
+
+<h4>3. Exchange code to access_token and refresh_token</h4>
+<p><span class="yellow">Make next request from you backend (don’t do this from frontend part, because you send client_secret):</span></p>
+
+<p><span class="yellow">Request:</span></p>
+<code><span class="yellow">POST http://biom.io:5001/user/token</span></code>
+<code><span class="yellow">Body<br>
+{<br>
+	&nbsp;&nbsp;&nbsp;"client_id": "0d2f8ad8dd15ef931ae7133a145fb19d",<br>
+	&nbsp;&nbsp;&nbsp;"client_secret": "211437a683e2c3f647510ca2b3565658",<br>
+	&nbsp;&nbsp;&nbsp;"grant_type": "authorization_code",<br>
+	&nbsp;&nbsp;&nbsp;"code": "ece499114d691042a8e743cb90daeb7c",<br>
+	&nbsp;&nbsp;&nbsp;"redirect_uri": "http://external.site/callback.html"<br>
+}</span></code>
+<br>
+<code><span class="yellow">Response:<br>
+	{<br>
+        &nbsp;&nbsp;&nbsp;"access_token": "9b975ed2ba275332e5e600bad6f0b582",<br>
+        &nbsp;&nbsp;&nbsp;"token_type": "Bearer",<br>
+        &nbsp;&nbsp;&nbsp;"expires_in": 3600,<br>
+        &nbsp;&nbsp;&nbsp;"refresh_token": "fae1f7ccce2cdcfb2a308e6c68e6518e",<br>
+        &nbsp;&nbsp;&nbsp;"id_token": "eyJ0eXAiOiJKV1QiLCJhbGX…."<br>
+     }</span></code>
+<br>
+<h4>4. Get user data</h4>
+<p>To get information about authorized user from our database, make next request:</p>
+
+<p>Request:</p>
+<code>GET http://biom.io:5001/api/user?access_token=88a71e255aa4c2daed85c4d0c496f491</code>
+
+<p>if access_token is valid, you will receive user data in JSON format</p>
+<br>
+<h4>5. Refresh access token</h4>
+<p><span class="yellow">Make next request from you backend (don’t do this from frontend part, because you send client_secret):</span></p>
+
+<p><span class="yellow">Request:</span></p>
+<code><span class="yellow">POST http://biom.io:5001/user/token</span></code>
+<code><span class="yellow">Body<br>
+{<br>
+	&nbsp;&nbsp;&nbsp;"client_id": "0d2f8ad8dd15ef931ae7133a145fb19d",<br>
+	&nbsp;&nbsp;&nbsp;"client_secret": "211437a683e2c3f647510ca2b3565658",<br>
+	&nbsp;&nbsp;&nbsp;"grant_type": "refresh_token",<br>
+	&nbsp;&nbsp;&nbsp;"refresh_token": "fae1f7ccce2cdcfb2a308e6c68e6518e"<br>
+}
+</span></code>
+<br>
+<code><span class="yellow">Response:<br>
+	{<br>
+        &nbsp;&nbsp;&nbsp;"access_token": "9b975ed2ba275332e5e600bad6f0b582",<br>
+        &nbsp;&nbsp;&nbsp;"token_type": "Bearer",<br>
+        &nbsp;&nbsp;&nbsp;"expires_in": 3600,<br>
+        &nbsp;&nbsp;&nbsp;"refresh_token": "fae1f7ccce2cdcfb2a308e6c68e6518e",<br>
+        &nbsp;&nbsp;&nbsp;"id_token": "eyJ0eXAiOiJKV1QiLCJhbGX…."<br>
+     }
+</span></code>
+
+<br>
+<br>
+<h3>Example:</h3> 
+<h4>Authorization Code Flow (most secure flow)</h4>
+<p>Small schema: https://drive.google.com/open?id=0B4ImstinTWgjZDFDb0dscHJxSlk</p>
+
+<p>1. You need to get client_id and client_secret (currently we just hardcode this data in OpenID provider)</p>
+
+    <p>You can use next:<br>
+	"<strong>client_id</strong>": "56ce9a6a93c17d2c867c5c293482b8f9",<br>
+	"<strong>client_secret</strong>": "85a879a19387afe791039a88b354a374"</p>
+<br>
+<p>2. Redirect your user to next URL:</p>
+
+    <code>http://biom.io:5001/user/authorize<br>
+    	?response_type=code<br>
+    	&scope=openid<br>
+    	&client_id=56ce9a6a93c17d2c867c5c293482b8f9<br>
+    	&redirect_uri=http://your-external.site/callback.html<br>
+    	&nonce=12p6bfw<br>
+    	&state=1slw5l6</code>
+
+<p>
+- <strong>redirect_uri</strong>: you site where you want handle authorization result<br>
+- <strong>nonce</strong>: unique string (you must generate it and save in cookie), prevents from replay attack<br>
+- <strong>state</strong>: uniq string (you must generate it and save in cookie), this prevents from CSRF/XSRF attacks
+</p>
+
+<p>3. User will see a form, where he can enter email and start authorization process</p>
+
+<p>4. After success authorization user will be redirected to "redirect_uri" for example:</p>
+    
+    <code>http://your-external.site/callback.html<br>
+   	 ?code=ece499114d691042a8e743cb90daeb7c<br>
+   	 &state=1slw5l6</code>
+
+<p>5. On your backend you will get above request</p>
+
+<p>6. Compare parameter "state" with value of "state" from cookie, if they are not equal - reject authorization!</p>
+
+<p>7. Exchange parameter "code" to token and id_token, make next request:</p>
+
+<p>Request:</p>
+<code>POST http://biom.io:5001/user/token</code>
+   <code>{<br>
+    	&nbsp;&nbsp;&nbsp;"client_id": "56ce9a6a93c17d2c867c5c293482b8f9",<br>
+   	 	&nbsp;&nbsp;&nbsp;"client_secret": "85a879a19387afe791039a88b354a374",<br>
+    	&nbsp;&nbsp;&nbsp;"grant_type": "authorization_code",<br>
+    	&nbsp;&nbsp;&nbsp;"code": "ece499114d691042a8e743cb90daeb7c",<br>
+    	&nbsp;&nbsp;&nbsp;"redirect_uri": "http://your-external.site/callback.html"
+    }</code>
+<br>
+<code>Response:<br>
+	<code>{<br>
+    	&nbsp;&nbsp;&nbsp;"access_token": "9b975ed2ba275332e5e600bad6f0b582",<br>
+    	&nbsp;&nbsp;&nbsp;"token_type": "Bearer",<br>
+    	&nbsp;&nbsp;&nbsp;"expires_in": 3600,<br>
+    	&nbsp;&nbsp;&nbsp;"refresh_token": "fae1f7ccce2cdcfb2a308e6c68e6518e",<br>
+    	&nbsp;&nbsp;&nbsp;"id_token": eyJ0eXAiOiJKV1QiLCJhbGX…."
+    }</code>
+
+<p>
+<br>
+<strong>id_token</strong> - it’s Json Web token <a href="http://jwt.io/" target="_blank">http://jwt.io/</a> - next you can use PHP library
+<a href="https://github.com/firebase/php-jwt" target="_blank">https://github.com/firebase/php-jwt<a> - to validate this token</p>
+
+<code>&lt;?php<br>
+use \Firebase\JWT\JWT;<br>
+<br>
+$id_token = “...”; // id_token that you got from http://biom.io:5001/user/token<br>
+$client_secret = “85a879a19387afe791039a88b354a374”; - it’s you client secret<br>
+<br>
+$decoded = JWT::decode($jwt, $client_secret, array('HS256'));<br>
+<br>
+print_r($decoded);
+</code>
+<p>If id_token decoded correctly you will get some information of user</p>
+
+</div>
