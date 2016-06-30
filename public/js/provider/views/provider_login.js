@@ -84,7 +84,7 @@ App.Views.Login = Backbone.View.extend({
                                 '&scope=openid' +
                                 '&client_id=56ce9a6a93c17d2c867c5c293482b8f9' +
                                 //'&external_token=' + email + 
-                                '&redirect_uri=https://biom.io:4499/work/login.php' +
+                                '&redirect_uri=https://biom.io:4433/work/login.php' +
                                 '&nonce=12p6bfw' +
                                 '&state=1slw5l6');*/
 

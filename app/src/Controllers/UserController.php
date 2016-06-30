@@ -110,7 +110,7 @@ final class UserController
         $_request['client_secret'] = '85a879a19387afe791039a88b354a374';
         $_request['grant_type'] = 'authorization_code';
         $_request['code'] = $code;
-//        $_request['redirect_uri'] = 'https://biom.io:4466/login.php'; //<--change this, for old AI
+//        $_request['redirect_uri'] = 'https://biom.io:4433/login.php'; //<--change this, for old AI
 	    $_request['redirect_uri'] = $this->settings['AIUri'].'/login/openId/';
 
         $url = $this->settings['openIdUri'] . "/user/token";
