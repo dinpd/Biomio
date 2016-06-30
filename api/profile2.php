@@ -47,7 +47,7 @@ $app->post('/create_user(/:email)', function($email) use ($app, $db) {
 				// new email rest
 				if ($extention == 0) {
 					//echo 'rest';
-					$url = 'http://10.209.33.61:90/new_email/' . $email;
+					$url = 'http://10.209.33.61:91/new_email/' . $email;
 					send_post($url);
 				}
 
@@ -145,7 +145,7 @@ $app->post('/generate_biometrics_code(/:providerKey)(/:profileId)(/:device_id)',
     	$result = User::select_verification_codes($code);
 	} while ($result->rowCount() > 0);
 		//echo 'key: ' . $key;
-		$url = 'http://10.209.33.61:90/training?device_id=' . $key . '&code=' . $code;
+		$url = 'http://10.209.33.61:91/training?device_id=' . $key . '&code=' . $code;
 		//echo $url;
 		send_post($url);
 

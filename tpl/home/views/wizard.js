@@ -300,7 +300,7 @@ App.Views.Wizard = Backbone.View.extend({
         }, 3000);
     },
     check_biometrics_verification: function () {
-        var timer = 300;
+        var timer = 30000;
         var that = this;
 
         clearInterval(check);

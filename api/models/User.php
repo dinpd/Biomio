@@ -36,7 +36,7 @@ class User {
 	$result->execute(array('profileId'=>$profileId, 'email'=>$email));
 
 	// send rest with email to create code for this email
-	$url = 'http://10.209.33.61:90/new_email/' . $email;
+	$url = 'http://10.209.33.61:91/new_email/' . $email;
 	send_post($url);
 
   	return $profileId;
