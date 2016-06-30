@@ -5,3 +5,4 @@ storage/log/
 config/database.php
 composer.lock
 public/profileData/
+profileData/
