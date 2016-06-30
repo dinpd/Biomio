@@ -1,0 +1,83 @@
+<!-- Phone registration -->
+<div class="well user-services">
+	<legend><h2 class="form-signin-heading">BIOMIO Services</h2></legend>
+	<div class="col-sm-7">
+		
+		<h3>Google Chrome Extension</h3>
+
+		<h5 class="col-sm-12">Eligible Emails:</h5>
+		<div class="extention-emails"></div>
+		<h5 class="no-2 text-warning col-sm-12 hide">No Extension yet registered for this account</h5>
+		<form class="col-sm-12 form add-2" style="margin-top: 15px">
+			<div class="col-sm-8">
+				<input type="text" class="form-control" placeholder="new email address">
+			</div>
+			<div class="col-sm-4">
+				<button type="submit" class="btn btn-success">Add</button>
+			</div>
+		</form>
+
+		<div class="col-sm-12 verify-extention" style="margin-top: 15px">
+			<button type="button" class="btn btn-primary btn-lg btn-block">Verify Extension</button>
+			<p class="verified-extensions"></p>
+		</div>
+
+		<div class="col-sm-12" style="margin: 25px 0; extension settings;">
+			<h4>Extension settings:</h4>
+
+			<div style="border: 1px solid #efefef; font-weight: 300; padding: 8px">
+				<p style="font-weight: 400">Biometrics methods:</p>
+				<div style="width: 100%;"><div class="checkbox"><input type="checkbox" class="checkbox-id"> Apple TouchID</div></div>
+				<div style="width: 100%;"><div class="checkbox"><input type="checkbox" class="checkbox-face"> Face Recognition</div></div>
+				<div style="width: 100%; padding-left: 30px"><div class="checkbox"><input type="checkbox" class="checkbox-face2"><small> acknowledge recipient enrollment data</small></div></div>
+				<div style="width: 100%; text-align: center; margin-top: 10px">Required: <div class="checkbox" style="display:inline"><label><input type="checkbox" class="checkbox-bio"></label></div></div>
+			</div>
+			<div style="margin: 10px; text-align: center">
+				<div style="display: inline;" class="checkbox"><label><input type="checkbox" class="checkbox-option"></label></div>
+			</div>
+			<div style="border: 1px solid #efefef; padding: 8px">
+				<div class="checkbox"><input type="checkbox" class="checkbox-location"> Location</div>
+			</div>
+		</div>
+	</div>
+
+	<style>
+		.form-2-1, .form-2-2, .form-2-3 {
+			border-radius: 3px;
+			border: 1px solid #CCC;
+			padding: 15px 5px;
+		}
+	</style>
+
+
+	<div class="col-sm-5">
+
+		<div class="form-2-1 col-sm-12 text-center hide">
+			<h3>Verify Chrome Extension</h3>
+
+			<div class="col-sm-6 col-sm-offset-3 extention-verifcation" style="margin-top: 20px; padding: 5px; border-radius: 5px; border: 1px solid #eee; margin-bottom: 15px"><h2 style="margin-top: 10px"></h2></div>
+			<button type="button" class="btn btn-success extention-new-code">Get a new code</button>
+			<input type="text" class="hide extention-verifcation-code">
+		</div>
+
+		<div class="form-2-2 col-sm-12 text-center hide">
+			<h3>Verify Email</h3>
+			<p><strong>alexander.lomov1@gmail.com</strong></p>
+
+			<form class="form">
+				<div class="col-sm-8">
+					<input placeholder="verification code" class="form-control">
+				</div>
+				<div class="col-sm-4">
+					<button type="submit" class="btn btn-success">Verify</button>
+				</div>
+			</form>
+		</div>
+
+		<div class="form-2-3 col-sm-12 text-center hide text-success">
+			<h3>Chrome extension was successfully verified</h3>
+		</div>
+	</div>
+
+	
+</div>

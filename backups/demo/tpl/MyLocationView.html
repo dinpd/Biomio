@@ -1,0 +1,140 @@
+<div class="well">
+	<legend><h2 class="form-signin-heading">My Secure Location</h2></legend>
+	<form class="form-horizontal font16">
+		<fieldset>
+			<input id="id" class="form-control hide" type="text" value="<%= id %>">
+
+			<div class="col-sm-8">
+				<!-- Name-->
+			    <div class="form-group">
+					<label class="col-sm-3 control-label">Name</label>
+					<div class="col-sm-9">
+						<p id="span_name"  class="content form-control-static"><%= name %></p>
+						<div class="form hide col-sm-12">
+							<input id="name" class="form-control" type="text" value="<%= name %>">
+							<p class='help-block'><small>location name</small></p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Description-->
+			    <div class="form-group">
+					<label class="col-sm-3 control-label">Description</label>
+					<div class="col-sm-9">
+						<% if (description == '') { print('<p class="content small-align">no information</p>'); }%>
+						<p id="span_description"  class="content form-control-static"><%= description %></p>
+						<div class="form hide col-sm-12">
+							<textarea id="description" name="textarea" class="form hide form-control"><%= description %></textarea>
+							<p class='help-block'><small>description of the location</small></p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Address-->
+			    <div class="form-group">
+					<label class="col-sm-3 control-label">Address</label>
+					<div class="col-sm-9">
+						<% if (address.street1 == '' && address.street2 == '' && address.continent == '' &&
+								address.country == '' && address.province == '' && address.region == '' &&
+								 address.city == '' && address.postcode == '') { print('<p class="content small-align">no information</p>'); }%>
+
+						<div><p id="span_street1"  class="content form-control-static"><%= address.street1 %></span></div>
+						<!--to avoid extra white space we print 2nd address line only if it has some content in it -->
+						<div id="span_street2">
+							<% if (address.street2 != '') {
+							    print('<span class="content">' + address.street2 + '</span>');
+							}%>
+						</div>
+						<div class="content">
+							<% if (address.country != '') {
+								print('<span id="span_country">' + address.country + '</span>');
+							}%>	
+							<% if (address.province != '') {
+								print('<span id="span_province">, ' + address.province + '</span>');
+							}%>	
+							<% if (address.city != '') {
+								print('<span id="span_city">, ' + address.city + '</span>');
+							}%>	
+							<% if (address.postcode != '') {
+								print('<span id="span_postcode">, ' + address.postcode + '</span>');
+							}%>
+						</div>
+
+						<div class="form hide col-sm-12">
+							<input id="address_street1" class="form-control" type="text" value="<%= address.street1 %>">
+							<p class='help-block'><small>street line</small></p>
+							<input id="address_street2" class="form-control" type="text" value="<%= address.street2 %>">
+							<p class='help-block'><small>second street line (optional)</small></p>
+							
+							<select id="continent" name="continent" class="form-control location-geolocation"></select>
+							<p class='help-block'><small>continent</small></p>
+
+							<select id="country" name="country" class="form-control location-geolocation"></select>
+							<p class='help-block'><small>country</small></p>
+
+							<select id="province" name="province" class="form-control location-geolocation"></select>
+							<p class='help-block'><small>state / province</small></p>
+
+							<select id="region" name="region" class="form-control location-geolocation"></select>
+							<p class='help-block'><small>country / region</small></p>
+
+							<select id="city" name="city" class="form-control location-geolocation"></select>
+							<p class='help-block'><small>city</small></p>
+
+							<input id="address_postcode" class="form-control" type="text" value="<%= address.postcode %>">
+							<p class='help-block'><small>postcode</small></p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Map-->
+			    <div class="form-group">
+					<label class="col-sm-3 control-label">Map</label>
+					<div class="col-sm-9">
+						<% if (map == '') { print('<p class="content small-align">no information</p>'); } else { %>
+							<iframe src="<%= map %>" class="col-md-10" height="300" frameborder="0" style="border:0"></iframe>
+						<% } %>
+						<div class="form hide col-sm-12">
+							<input id="map" class="form-control" type="text" value="">
+							<p class='help-block'><small>google link for embeded map</small></p>
+						</div>
+					</div>
+				</div>
+			</div> <!-- /left div -->
+
+			<div class="col-sm-4 col-sm-offset-0 text-center">
+					<div>
+						<span id="location_image_frame">
+							<input id="location_image_input" onChange="locationPreviewImage(this)" type="file" accept="image/*" style="display:none"/>
+						</span>
+
+					  	<span id="location_image_preview">
+							
+					  	</span>
+				  	</div>
+				  	
+					<div>
+						<button id ="location_image_upload" onClick="locationTriggerImageUpload(); return false;" class="btn btn-warning form hide col-sm-offset-2 col-sm-8" > Upload Picture</button><br>
+						<button id="location_image_save"  onClick="locationSaveImage(); return false;" class="btn btn-success form hide col-sm-offset-2 col-sm-8 disabled">Save Picture</button>
+						<button id="location_image_delete"  onClick="locationDeleteImage(); return false;" class="btn btn-danger form hide col-sm-offset-2 col-sm-8 disabled"> Remove Picture</button>
+					</div>
+					<small class="col-sm-offset-2 col-sm-8"><p id="location_image_progress" class='help-block form hide'></p></small>
+			</div> <!-- /right div -->
+
+			<div class="col-sm-12 col-sm-offset-0 text-center">
+				<div class="form-group">
+					<label class="col-sm-2 control-label"></label>
+				    <div class="col-sm-10">
+					    <input type="button" class="btn btn-primary location-update-info content" value="Update Information" />
+					    <div class="col-sm-12">
+							<input type="button" class="btn btn-success location-save-changes form hide" value="Save Changes" />
+							<input type="button" class="btn btn-default location-cancel-changes form hide" value="Cancel" />
+							<br/>
+							<span class="span-save form hide"></span>
+						</div>
+					</div>
+			    </div>
+			</div> <!-- /center div -->
+		</fieldset>
+	</form>
+</div>

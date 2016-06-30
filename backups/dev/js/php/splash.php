@@ -1,0 +1,139 @@
+<?php
+include ('connect.php');
+session_start();
+if (isset($_POST['name'])) {
+	$name = $_POST['name'];
+	$email = $_POST['email'];
+	$type = $_POST['type'];
+
+
+	$charset = array('0', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
+		$code = '';
+			for ($i=0; $i<15; $i++) { $code = $code . $charset[rand(0, count($charset))-1]; }
+
+	mysqli_query($db_conx, "INSERT INTO Splash (name, email, type, code) VALUES ('$name', '$email', '$type', '$code')") or die (mysqli_error());
+	
+	$to = 'ditkis@gmail.com';
+	$from = "Splash@biom.io";
+	$subject = "BIOMIO: New application";
+
+	$body = file_get_contents("../tpl/forms/NewApplication.html");
+	$body = str_replace('%name%', $name, $body);
+	$body = str_replace('%email%', $email, $body);
+	$body = str_replace('%type%', $type, $body);
+	$body = str_replace('%code%', $code, $body);
+
+	$headers = "From: $from\n";
+	        $headers .= "MIME-Version: 1.0\n";
+	        $headers .= "Content-type: text/html; charset=iso-8859-1\n";
+	//mail($to, $subject, $body, $headers);
+
+	$to = 'alexander.lomov1@gmail.com';	
+	mail($to, $subject, $body, $headers);
+
+
+	echo 'success';
+
+} else if (isset($_POST['code'])) {
+	$code = $_POST['code'];
+	
+	$result = mysqli_query($db_conx, "SELECT * FROM Splash WHERE code = '$code'") or die (mysqli_error());
+	if (mysqli_num_rows($result) == 0) {
+		echo "#incorrect";
+	} else if (mysqli_num_rows($result) > 1) {
+		echo "#error";
+	} else if (mysqli_num_rows($result) == 1) {
+		$row = mysqli_fetch_array($result);
+		$name = $row['name'];
+
+		setcookie('apply', $name, time()+365*24*60*60); //set cookie for a year
+		echo $name;
+	}
+
+} else if (isset($_POST['check'])) {
+	if (isset($_COOKIE['apply'])) echo 'COOKIE:' . $_COOKIE['apply'];
+	else echo '';
+
+//For invitations, it will work, only if both code and username are set
+} else if (isset($_GET['u']) &&  isset($_GET['c'])  && !isset($_GET['e']) && !isset($_GET['d'])) {
+	$name = $_GET['u'];
+	$code = $_GET['c'];
+
+	$name = str_replace('%20', ' ', $name);
+
+	//check if the code is valid for this username
+	$result = mysqli_query($db_conx, "SELECT * FROM Splash WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
+	if (mysqli_num_rows($result) == 0) {
+		echo "Username or the invitation code is incorrect";
+	} else if (mysqli_num_rows($result) > 1) {
+		echo "Something strange is going on, ask Developer for assistance";
+	} else {
+		$result = mysqli_query($db_conx, "SELECT * FROM Splash WHERE name = '$name' AND code = '$code' AND invitation = 'no'") or die (mysqli_error());
+		if (mysqli_num_rows($result) == 0) {
+			echo "Invitation has already been sent";
+		} else {
+
+			//get additional data from the database
+			$row = mysqli_fetch_array($result);
+			$email = $row['email'];
+			$type = $row['type'];
+
+			//send a message
+			$to = $email;	 
+			$from = "Splash@biom.io";
+			$subject = "BIOMIO: Application accepted";
+
+			$body = file_get_contents("../tpl/forms/NewInvitation.html");
+			$body = str_replace('%name%', $name, $body);
+			$body = str_replace('%code%', $code, $body);
+
+			$headers = "From: $from\n";
+			        $headers .= "MIME-Version: 1.0\n";
+			        $headers .= "Content-type: text/html; charset=iso-8859-1\n";
+			mail($to, $subject, $body, $headers);
+
+			mysqli_query($db_conx, "UPDATE Splash SET invitation = 'yes' WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
+
+			echo 'Invitation code has been successfully sent';
+		}
+
+	}
+
+//In case when user pressed the button -> saving cookies, redirecting him to the main page 
+} else if (isset($_GET['u']) &&  isset($_GET['c'])  && isset($_GET['e'])) {
+	$name = $_GET['u'];
+	$code = $_GET['c'];
+
+	$name = str_replace('%20', ' ', $name);
+
+	//check if the code is valid for this username
+	$result = mysqli_query($db_conx, "SELECT * FROM Splash WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
+	if (mysqli_num_rows($result) == 0) {
+		echo "Username or the invitation code is incorrect";
+	} else if (mysqli_num_rows($result) > 1) {
+		echo "Something strange is going on, ask Developer for assistance";
+	} else {
+		setcookie('apply', $name, time()+365*24*60*60); //set cookie for a year
+
+		header("Location: http://biom.io/");
+	}
+//In case when we want to delete a row
+} else if (isset($_GET['u']) &&  isset($_GET['c'])  && isset($_GET['d'])) {
+	$name = $_GET['u'];
+	$code = $_GET['c'];
+
+	$name = str_replace('%20', ' ', $name);
+
+	//check if the code is valid for this username
+	$result = mysqli_query($db_conx, "SELECT * FROM Splash WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
+	if (mysqli_num_rows($result) == 0) {
+		echo "Username or the invitation code is incorrect";
+	} else if (mysqli_num_rows($result) > 1) {
+		echo "Something strange is going on, ask Developer for assistance";
+	} else {
+		$result = mysqli_query($db_conx, "DELETE FROM Splash WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
+		echo "Application is removed from the list";
+	}
+} else {
+	echo 'Wrong place to be';
+}

@@ -8,12 +8,17 @@ var AppRouter = Backbone.Router.extend({
     //Home menu
         ""                           : "home",
         "home"                       : "home",
-        "signup/:type"               : "signup",
+        "signup"                     : "signup",
+        "wizard/:type"               : "wizard",
         "login"	                     : "login",
-        "reset-password"             : "reset",
-        "account-settings"           : "settings",
+        //"account-settings"           : "settings",
         "about"                      : "about",
+        "emailprotector"             : "emailprotector",
+        "learnmore"                  : "learnmore",
+        "developers"                 : "developers",
+        "mobilebeta"                 : "mobilebeta",
         "contact"                    : "contact",
+        "ssogateway"                 : "ssogateway",
         "apis"                       : "apis",
         "profiles/:id"               : "users",
         "providers/:id"              : "providers",
@@ -22,7 +27,8 @@ var AppRouter = Backbone.Router.extend({
     //User menu
         "user-info"                  : "user_info",
         "phone"                      : "phone",
-        "verify-application"         : "verify_application",
+        "user-services"              : "user_services",
+        "user-mobile-devices"        : "user_mobile_devices",
         "user-fingerprints"          : "user_fingerprints",
         "user-face"                  : "user_face",
         "user-iris"                  : "user_iris",
@@ -31,47 +37,101 @@ var AppRouter = Backbone.Router.extend({
         "user-websites"              : "user_websites",
         "user-reports"               : "user_reports",
     //Provider menu
-        "provider-info"              : "provider_info",
-        "provider-locations"         : "provider_locations",
-        "provider-websites"          : "provider_websites",
-        "provider-policies"          : "provider_policies",
-        "provider-users"             : "provider_users",
-        "provider-users/:locationId" : "provider_users",
-        "provider-devices"           : "provider_devices",
-        "provider-reports"           : "provider_reports",
+        //"provider-info"              : "provider_info",
+        //"provider-locations"         : "provider_locations",
+        //"provider-websites"          : "provider_websites",
+        //"provider-policies"          : "provider_policies",
+        //"provider-users"             : "provider_users",
+        //"provider-users/:locationId" : "provider_users",
+        //"provider-devices"           : "provider_devices",
+        //"provider-reports"           : "provider_reports",
+        "provider-api"               : "provider_api",
         "login-implementation"       : "login_implementation",
         "captcha-implementation"     : "captcha_implementation",
-    //Partner menu
-        "partner-how"                : "partner_how",
-        "partner-apply"              : "partner_apply",
-        "partner-resources"          : "partner_resources",
-        "partner-support"            : "partner_support",
-
+        "session"                    : "session",
+        "thankyou"                   : "thankyou",
         "*other"                     : "page_404"
     },
     //Home menu
-    //Note: implement header cashing
-    initialize: function () {
-        
-    },
     home: function () {
         this.main_navigation('home-menu'); 
-        if (!this.homeView) this.homeView = new App.Views.Home();
-        $('#content').html(this.homeView.el);
+        if (!this.homeView) {
+            this.homeView = new App.Views.Home();
+            $('#content').html(this.homeView.el);
+
+            
+
+        } else {
+           $('#content').html(this.homeView.el); 
+        }
         $('body').children(".container").addClass('extraWidth');
         this.footer();
+
+        // demid's design
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 0) {$('#scroller').fadeIn();} 
+            else {$('#scroller').fadeOut();}
+        });
+            
+        $('#scroller').click(function () {$('body,html').animate({scrollTop: 0}, 400); return false;});
+
+        /*
+        $('.post').addClass("hidden").viewportChecker({
+        classToAdd: 'visible animated fadeIn',
+        offset: 100
+        });
+
+
+        $('.minpost').addClass("hidden").viewportChecker({
+        classToAdd: 'visible animated fadeInUp',
+        offset: 200
+        });
+        */
+
+        /*$('#slider').nivoSlider({
+            effect:'fade',
+            pauseTime: 5000,
+            animSpeed: 1000,
+            directionNav:false,
+            controlNav:true,
+            pauseOnHover: false
+        });*/
     },
     about: function () {
         this.main_navigation('about-menu');
         if (!this.aboutView) this.aboutView = new App.Views.About();
         this.aboutView.render();
-         $('body').children(".container").addClass('extraWidth');
+         /*$('body').children(".container").addClass('extraWidth');*/
         this.footer();
 
         //set height of the video
         var width = $(".about-video").width();
         var height = width / 1280 * 720;
         $(".about-video").height(height);
+    },
+    emailprotector: function () {
+        this.main_navigation('home-menu');
+        if (!this.googleappView) this.googleappView = new App.Views.GoogleApp();
+        this.googleappView.render();
+        this.footer();
+    },
+    learnmore: function () {
+        this.main_navigation('home-menu');
+        if (!this.learnmoreView) this.learnmoreView = new App.Views.LearnMore();
+        this.learnmoreView.render();
+        this.footer();
+    },
+    developers: function () {
+        this.main_navigation('home-menu');
+        if (!this.developersView) this.developersView = new App.Views.Developers();
+        this.developersView.render();
+        this.footer();
+    },
+    mobilebeta: function () {
+        this.main_navigation('home-menu');
+        if (!this.mobilebetaView) this.mobilebetaView = new App.Views.MobileBeta();
+        this.mobilebetaView.render();
+        this.footer();
     },
     apis: function () {
         this.main_navigation('apis-menu');
@@ -82,29 +142,29 @@ var AppRouter = Backbone.Router.extend({
     contact: function () {
         this.main_navigation('contact-menu');
         if (!this.contactView) this.contactView = new App.Views.Contact();
-        $('#content').html(this.contactView.el);
+        this.contactView.render();
         this.footer();
     },
 	login: function() {
         this.main_navigation('home-menu');
-		if (!this.loginModel) this.loginModel = new App.Models.Login();
-        if (!this.loginView) this.loginView = new App.Views.Login({model: this.loginModel});
+        if (!this.loginView) this.loginView = new App.Views.Login();
         this.loginView.render();
         this.footer();
 	},
-    signup: function(type) {
+    signup: function() {
         this.main_navigation('home-menu');
         if (!this.signupView) this.signupView = new App.Views.Signup();
-        this.signupView.render(type);
+        this.signupView.render();
         this.footer(); 
     },
-    reset: function(type) {
+    wizard: function(type) {
         this.main_navigation('home-menu');
-        var model = new App.Models.ResetPassword();
-        var view = new App.Views.ResetPassword({model: model});
-        this.footer();
+        if (!this.wizardView) this.wizardView = new App.Views.Wizard();
+        this.wizardView.render(type);
+        this.footer(); 
     },
     settings: function(type) {
+        if (!check_session()) return;
         this.main_navigation('home-menu');
         var type = window.profileType;
         
@@ -134,6 +194,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     users: function(id) {
+        if (!check_session()) return;
         this.main_navigation('home-menu');
         if (!this.userModel) this.userModel = new App.Models.UserPersonalInfo();
         if (!this.userView) this.userView = new App.Views.User({model: this.userModel});
@@ -147,6 +208,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     providers: function(id) {
+        if (!check_session()) return;
         this.main_navigation('home-menu');
         if (!this.providerInfoModel) this.providerInfoModel = new App.Models.ProviderInformation();
         if (!this.providerView) this.providerView = new App.Views.Provider({model: this.providerInfoModel});
@@ -160,6 +222,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     locations: function(id) {
+        if (!check_session()) return;
         this.main_navigation('home-menu');
         if (!this.locationModel) this.locationModel = new App.Models.ProviderLocation();
         if (!this.locationView) this.locationView = new App.Views.SecureLocation({model: this.locationModel});
@@ -173,6 +236,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     websites: function(id) {
+        if (!check_session()) return;
         this.main_navigation('home-menu');
         if (!this.websiteModel) this.websiteModel = new App.Models.ProviderWebsite();
         if (!this.websiteView) this.websiteView = new App.Views.Website({model: this.websiteModel});
@@ -187,6 +251,7 @@ var AppRouter = Backbone.Router.extend({
     },
     //User menu
     user_info: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-info-menu'); 
         if (!this.userInfoModel) this.userInfoModel = new App.Models.UserPersonalInfo();
         if (!this.userInfoView) this.userInfoView = new App.Views.UserPersonalInfo({model: this.userInfoModel});
@@ -200,16 +265,27 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     phone: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-info-menu');
         if (!this.userPhoneView) this.userPhoneView = new App.Views.UserPhone();
         this.footer();
     },
-    verify_application: function () {
-        this.interface_navigation('User', 'user-info-menu');
-        if (!this.userVerifyApplication) this.userVerifyApplication = new App.Views.VerifyApplication();
+    user_services: function () {
+        if (!check_session()) return;
+        this.interface_navigation('User', 'user-services-menu');
+        if (!this.userServices) this.userServices = new App.Views.userServices();
+        this.userServices.render();
+        this.footer();
+    },
+    user_mobile_devices: function () {
+        if (!check_session()) return;
+        this.interface_navigation('User', 'user-mobile-devices-menu');
+        if (!this.userMobileDevices) this.userMobileDevices = new App.Views.userMobileDevices();
+        this.userMobileDevices.render();
         this.footer();
     },
     user_fingerprints: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-bio-menu');
         if (!this.userFingerprintsModel) this.userFingerprintsModel = new App.Models.UserPersonalInfo();
         if (!this.userFingerprintsView) this.userFingerprintsView = new App.Views.UserFingerprints({model: this.userFingerprintsModel});
@@ -223,24 +299,20 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     user_face: function () {
-        this.interface_navigation('User', 'user-bio-menu');
-        if (!this.userFaceModel) this.userFaceModel = new App.Models.UserPersonalInfo();
-        if (!this.userFaceView) this.userFaceView = new App.Views.UserFace({model: this.userFaceModel});
-        var that = this;
-        this.userFaceModel.url = App.Url + '/users/' + window.profileId;
-        this.userFaceModel.fetch({
-            success: function () {
-                that.userFaceView.render();
-            }
-        });
+        if (!check_session()) return;
+        this.interface_navigation('User', 'user-face-menu');
+        if (!this.userFace) this.userFace = new App.Views.UserFace();
+        this.userFace.render();
         this.footer();
     },
     user_iris: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-bio-menu');
         if (!this.irisView) this.irisView = new App.Views.UserIris();
         this.irisView.render();
     },
     user_voice: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-bio-menu');
         if (!this.userVoiceModel) this.userVoiceModel = new App.Models.UserPersonalInfo();
         if (!this.voiceView) this.voiceView = new App.Views.UserVoice({model: this.userVoiceModel});
@@ -254,6 +326,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     user_resources: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-locations-menu');
         if (!this.userResourcesMainView) this.userResourcesMainView = new App.Views.UserResourcesMain ();
         this.userResourcesMainView.render();
@@ -268,12 +341,14 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     user_websites: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-websites-menu');
         if (!this.websitesView) this.websitesView = new App.Views.UserWebsites();
         this.websitesView.render();
         this.footer();
     },
     user_reports: function () {
+        if (!check_session()) return;
         this.interface_navigation('User', 'user-reports-menu');
         if (!this.userReportsMainView) this.userReportsMainView = new App.Views.UserReportsMain ();
         this.userReportsMainView.render();
@@ -288,6 +363,7 @@ var AppRouter = Backbone.Router.extend({
     },
     //Provider menu
     provider_info: function () {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-info-menu');
         if (!this.providerInfoModel) this.providerInfoModel = new App.Models.ProviderInformation();
         if (!this.providerInfoView) this.providerInfoView = new App.Views.ProviderInformation({model: this.providerInfoModel});
@@ -301,6 +377,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     provider_locations: function () {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-locations-menu');
         if (!this.providerLocationsMainView) this.providerLocationsMainView = new App.Views.ProviderLocationsMain ();
         this.providerLocationsMainView.render();
@@ -323,6 +400,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     provider_websites: function () {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-websites-menu');
         if (!this.providerWebsitesMainView) this.providerWebsitesMainView = new App.Views.ProviderWebsitesMain();
         this.providerWebsitesMainView.render();
@@ -337,6 +415,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     provider_policies: function () {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-policies-menu');
         if (!this.providerPoliciesMainView) this.providerPoliciesMainView = new App.Views.ProviderPoliciesMain ();
         this.providerPoliciesMainView.render();
@@ -351,6 +430,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     provider_users: function (locationId) {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-users-menu');                                                   
         if (!this.providerUsersMainView) this.providerUsersMainView = new App.Views.ProviderUsersMain ();
         this.providerUsersMainView.render();
@@ -371,6 +451,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     provider_devices: function () {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-devices-menu');
         if (!this.providerDevicesMainView) this.providerDevicesMainView = new App.Views.ProviderDevicesMain();
         this.providerDevicesMainView.render();
@@ -394,6 +475,7 @@ var AppRouter = Backbone.Router.extend({
         this.footer();
     },
     provider_reports: function () {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'provider-reports-menu');
         if (!this.userReportsMainView) this.userReportsMainView = new App.Views.UserReportsMain ();
         this.userReportsMainView.render();
@@ -406,42 +488,25 @@ var AppRouter = Backbone.Router.extend({
         this.userReportsCollection.fetch();
         this.footer();
     },
+    provider_api: function () {
+        if (!check_session()) return;
+        this.interface_navigation('Provider', 'provider-api-menu');
+        if (!this.providerApiView) this.providerApiView = new App.Views.ProviderApi();
+        this.providerApiView.render();
+        this.footer(); 
+    },
     login_implementation: function () {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'login-implementation-menu');
         if (!this.loginImplementationView) this.loginImplementationView = new App.Views.LoginImplementation();
         this.loginImplementationView.render();
         this.footer();
     },
     captcha_implementation: function () {
+        if (!check_session()) return;
         this.interface_navigation('Provider', 'captcha-implementation-menu');
         if (!this.captchaImplementationView) this.captchaImplementationView = new App.Views.CaptchaImplementation();
         this.captchaImplementationView.render();
-        this.footer();
-    },
-    //Partner menu
-    partner_how: function () {
-        this.interface_navigation('Partner', 'partner-how-menu');
-        if (!this.partnerHowView) this.partnerHowView = new App.Views.PartnerHow();
-        this.partnerHowView.render();
-        this.footer();
-    },
-    partner_apply: function () {
-        this.interface_navigation('Partner', 'partner-apply-menu');
-        if (!this.partnerApplyView) this.partnerApplyView = new App.Views.PartnerApply();
-        this.partnerApplyView.render();
-        this.footer();
-    },
-    partner_resources: function () {
-        this.interface_navigation('Partner', 'partner-resources-menu');
-        if (!this.partnerResourcesModel) this.partnerResourcesModel = new App.Models.PartnerResources();
-        if (!this.partnerResourcesView) this.partnerResourcesView = new App.Views.PartnerResources({model: this.partnerResourcesModel});
-        this.partnerResourcesView.render();
-        this.footer();
-    },
-    partner_support: function () {
-        this.interface_navigation('Partner', 'partner-support-menu');
-        if (!this.partnerSupportView) this.partnerSupportView = new App.Views.PartnerSupport();
-        this.partnerSupportView.render();
         this.footer();
     },
     // Header for main pages 
@@ -465,7 +530,7 @@ var AppRouter = Backbone.Router.extend({
 
         // Temporary Splash Page
         // For every page we check if the user is invited and then show the actual website
-        if (menu_item != 'contact-menu' && menu_item != 'about-menu') {
+        /*if (menu_item != 'contact-menu' && menu_item != 'about-menu') {
             $.ajax({
                 url: 'php/splash.php',
                 method: 'POST',
@@ -474,16 +539,13 @@ var AppRouter = Backbone.Router.extend({
                     if (data == '') {
                         if (!window.splashView) window.splashView = new App.Views.Splash();
                         window.splashView.render();
-                        $('.footer').addClass('hide');
-                        $('.container').addClass('hide');
-                        $('.header .container').removeClass('hide');
-                        $('.splash-footer').removeClass('hide');
+                        $('.container').addClass('extraWidth');
                         $('#login').addClass('hide');
                     } else {
                     }
                 }
             });
-        }
+        }*/
     },
     interface_navigation: function (type, menu_item) {
         $('#content').html('');
@@ -513,42 +575,127 @@ var AppRouter = Backbone.Router.extend({
         this.header.changeType(type);
         if (type == 'USER') $('#user_header').addClass('hide');
         else if (type == 'PROVIDER') $('#provider_header').addClass('hide');
-        else if (type == 'PARTNER') $('#partner_header').addClass('hide');
     },
     footer: function() {
         //footer
         if (!this.footerView) this.footerView = new App.Views.Footer();
         this.footerView.render();
     },
+    session: function () {
+        this.main_navigation('home-menu'); 
+        if (!this.SessionView) this.SessionView = new App.Views.Session();
+        $('#content').html(this.SessionView.el);
+        $('body').children(".container").addClass('extraWidth');
+        this.footer();
+    },
+    thankyou: function () {
+        this.main_navigation('home-menu'); 
+        if (!this.ThankYouView) this.ThankYouView = new App.Views.ThankYou();
+        $('#content').html(this.ThankYouView.el);
+        $('body').children(".container").addClass('extraWidth');
+        this.footer();
+    },
     page_404: function () {
+        window.location.hash = '#404';
         this.main_navigation('home-menu'); 
         if (!this.page404View) this.page404View = new App.Views.Page404();
         $('#content').html(this.page404View.el);
         $('body').children(".container").addClass('extraWidth');
         this.footer();
     },
+    
+    ssogateway: function () {
+        window.location.hash = '#ssogateway';
+        this.main_navigation('home-menu'); 
+        if (!this.SsoGatewayView) this.SsoGatewayView = new App.Views.ssogateway();
+        $('#content').html(this.SsoGatewayView.el);
+        this.footer();
+    },
+
 
 });
 
+// Main function that starts the aplication
 $(document).ready(function() {
     // Main element: gets user ID and starts the router history
-    $.post('php/login.php', 
-    {   cmd : 'is_loged_in'
-    },
-    function(data) {
-        if (data != '') {
-            window.profileName = data.username;
-            window.profileId = data.id;
-            window.profileApiId = data.api_id;
-            window.profileType = data.type;
+    $.ajax({
+        type: 'POST',
+        url: 'php/login.php',
+        dataType: "json",
+        data: {cmd : 'is_loged_in'},
+        success: function(data) {
+            if (data.id != null) {
+                window.profileId = data.id;
+                window.profileFirstName = data.first_name;
+                window.profileLastName = data.last_name;
+                window.profileType = data.type;
 
-            var app = new AppRouter();
-            Backbone.history.start();
+                var app = new AppRouter();
+                Backbone.history.start();
+
+                session_checker();
+            } else {
+                if (window.location.hash != '' && 
+                    window.location.hash != '#home' && 
+                    window.location.hash != '#signup' &&
+                    window.location.hash != '#login' &&
+                    window.location.hash != '#about' &&
+                    window.location.hash != '#emailprotector' &&
+                    window.location.hash != '#learnmore' &&
+                    window.location.hash != '#developers' &&
+                    window.location.hash != '#mobilebeta' &&
+                    window.location.hash != '#404' &&
+                    window.location.hash != '#ssogateway' &&
+                    window.location.hash != '#thankyou' &&
+                    window.location.hash != '#contact') {
+                    
+                    window.hash1 = window.location.hash;
+                    window.location = './#login';
+                }
+
+                var app = new AppRouter();
+                Backbone.history.start();
+
+                $('.profile-off').removeClass("hide");
+                $('.profile-on').addClass("hide");
+            }
+            //if error, remove alert after 5 seconds
+            setTimeout(function() {
+                $('#sign_in_submit_span').text('');
+            }, 5000);
         }
-    },"json");
+    });
     // END of main element
 });
 
+function check_session() {
+    if (window.profileId == null || window.profileId == undefined) {
+        if (window.location.hash != '' && 
+                    window.location.hash != '#home' && 
+                    window.location.hash != '#signup' &&
+                    window.location.hash != '#login' &&
+                    window.location.hash != '#about' &&
+                    window.location.hash != '#emailprotector' &&
+                    window.location.hash != '#learnmore' &&
+                    window.location.hash != '#developers' &&
+                    window.location.hash != '#mobilebeta' &&
+                    window.location.hash != '#404' &&
+                    window.location.hash != '#ssogateway' &&
+                    window.location.hash != '#thankyou' &&
+                    window.location.hash != '#contact') {
+                    
+                window.location = './#session';
+
+                $('.profile-off').removeClass("hide");
+                $('.profile-on').addClass("hide");
+
+                return false;
+        }
+    }
+    return true;
+}
+
+// Function render is used to get HTML code out of tpl file using Underscore library
 function render(tmpl_name, tmpl_data) {
     if ( !render.tmpl_cache ) { 
         render.tmpl_cache = {};
@@ -573,262 +720,23 @@ function render(tmpl_name, tmpl_data) {
     return render.tmpl_cache[tmpl_name](tmpl_data);
 }
 
-function message(type, bold, text) {
-    var alert = '<div class="text-center alert alert-dismissable alert-' + type + '">' +
-                '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
-                '<strong>' + bold + '</strong> ' + text +
-            '</div>';
-    $('#alert').html(alert);
-
-    setTimeout(function() {
-        $('#alert').html('');
-    }, 5000);
-}
-
-function set_cookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
-}
-
-function get_yourself_a_cookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) != -1) return c.substring(name.length,c.length);
-    }
-    return "";
-} 
-
-$(document).on('click touchend', "#fade, .close-box", function () {    
-    $('.white_content').addClass('hide');
-    $('.black_overlay').addClass('hide');
-    $('.content-div').html('');
-});
-
-function get_browser_info() {
-    var unknown = '-';
-
-    // screen
-    var screenSize = '';
-    if (screen.width) {
-        width = (screen.width) ? screen.width : '';
-        height = (screen.height) ? screen.height : '';
-        screenSize += '' + width + " x " + height;
-    }
-
-    //browser
-    var nVer = navigator.appVersion;
-    var nAgt = navigator.userAgent;
-    var browser = navigator.appName;
-    var version = '' + parseFloat(navigator.appVersion);
-    var majorVersion = parseInt(navigator.appVersion, 10);
-    var nameOffset, verOffset, ix;
-
-    // Opera
-    if ((verOffset = nAgt.indexOf('Opera')) != -1) {
-        browser = 'Opera';
-        version = nAgt.substring(verOffset + 6);
-        if ((verOffset = nAgt.indexOf('Version')) != -1) {
-            version = nAgt.substring(verOffset + 8);
-        }
-    }
-    // MSIE
-    else if ((verOffset = nAgt.indexOf('MSIE')) != -1) {
-        browser = 'Microsoft Internet Explorer';
-        version = nAgt.substring(verOffset + 5);
-    }
-    // Chrome
-    else if ((verOffset = nAgt.indexOf('Chrome')) != -1) {
-        browser = 'Chrome';
-        version = nAgt.substring(verOffset + 7);
-    }
-    // Safari
-    else if ((verOffset = nAgt.indexOf('Safari')) != -1) {
-        browser = 'Safari';
-        version = nAgt.substring(verOffset + 7);
-        if ((verOffset = nAgt.indexOf('Version')) != -1) {
-            version = nAgt.substring(verOffset + 8);
-        }
-    }
-    // Firefox
-    else if ((verOffset = nAgt.indexOf('Firefox')) != -1) {
-        browser = 'Firefox';
-        version = nAgt.substring(verOffset + 8);
-    }
-    // MSIE 11+
-    else if (nAgt.indexOf('Trident/') != -1) {
-        browser = 'Microsoft Internet Explorer';
-        version = nAgt.substring(nAgt.indexOf('rv:') + 3);
-    }
-    // Other browsers
-    else if ((nameOffset = nAgt.lastIndexOf(' ') + 1) < (verOffset = nAgt.lastIndexOf('/'))) {
-        browser = nAgt.substring(nameOffset, verOffset);
-        version = nAgt.substring(verOffset + 1);
-        if (browser.toLowerCase() == browser.toUpperCase()) {
-            browser = navigator.appName;
-        }
-    }
-    // trim the version string
-    if ((ix = version.indexOf(';')) != -1) version = version.substring(0, ix);
-    if ((ix = version.indexOf(' ')) != -1) version = version.substring(0, ix);
-    if ((ix = version.indexOf(')')) != -1) version = version.substring(0, ix);
-
-    majorVersion = parseInt('' + version, 10);
-    if (isNaN(majorVersion)) {
-        version = '' + parseFloat(navigator.appVersion);
-        majorVersion = parseInt(navigator.appVersion, 10);
-    }
-
-    // mobile version
-    var mobile = /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(nVer);
-
-    // cookie
-    var cookieEnabled = (navigator.cookieEnabled) ? true : false;
-
-    if (typeof navigator.cookieEnabled == 'undefined' && !cookieEnabled) {
-        document.cookie = 'testcookie';
-        cookieEnabled = (document.cookie.indexOf('testcookie') != -1) ? true : false;
-    }
-
-    // system
-    var os = unknown;
-    var clientStrings = [
-        {s:'Windows 3.11', r:/Win16/},
-        {s:'Windows 95', r:/(Windows 95|Win95|Windows_95)/},
-        {s:'Windows ME', r:/(Win 9x 4.90|Windows ME)/},
-        {s:'Windows 98', r:/(Windows 98|Win98)/},
-        {s:'Windows CE', r:/Windows CE/},
-        {s:'Windows 2000', r:/(Windows NT 5.0|Windows 2000)/},
-        {s:'Windows XP', r:/(Windows NT 5.1|Windows XP)/},
-        {s:'Windows Server 2003', r:/Windows NT 5.2/},
-        {s:'Windows Vista', r:/Windows NT 6.0/},
-        {s:'Windows 7', r:/(Windows 7|Windows NT 6.1)/},
-        {s:'Windows 8.1', r:/(Windows 8.1|Windows NT 6.3)/},
-        {s:'Windows 8', r:/(Windows 8|Windows NT 6.2)/},
-        {s:'Windows NT 4.0', r:/(Windows NT 4.0|WinNT4.0|WinNT|Windows NT)/},
-        {s:'Windows ME', r:/Windows ME/},
-        {s:'Android', r:/Android/},
-        {s:'Open BSD', r:/OpenBSD/},
-        {s:'Sun OS', r:/SunOS/},
-        {s:'Linux', r:/(Linux|X11)/},
-        {s:'iOS', r:/(iPhone|iPad|iPod)/},
-        {s:'Mac OS X', r:/Mac OS X/},
-        {s:'Mac OS', r:/(MacPPC|MacIntel|Mac_PowerPC|Macintosh)/},
-        {s:'QNX', r:/QNX/},
-        {s:'UNIX', r:/UNIX/},
-        {s:'BeOS', r:/BeOS/},
-        {s:'OS/2', r:/OS\/2/},
-        {s:'Search Bot', r:/(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/}
-    ];
-    for (var id in clientStrings) {
-        var cs = clientStrings[id];
-        if (cs.r.test(nAgt)) {
-            os = cs.s;
-            break;
-        }
-    }
-
-    var osVersion = unknown;
-
-    if (/Windows/.test(os)) {
-        osVersion = /Windows (.*)/.exec(os)[1];
-        os = 'Windows';
-    }
-
-    switch (os) {
-        case 'Mac OS X':
-            osVersion = /Mac OS X (10[\.\_\d]+)/.exec(nAgt)[1];
-            break;
-
-        case 'Android':
-            osVersion = /Android ([\.\_\d]+)/.exec(nAgt)[1];
-            break;
-
-        case 'iOS':
-            osVersion = /OS (\d+)_(\d+)_?(\d+)?/.exec(nVer);
-            osVersion = osVersion[1] + '.' + osVersion[2] + '.' + (osVersion[3] | 0);
-            break;
-    }
-
-    // flash (you'll need to include swfobject)
-    /* script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" */
-    var flashVersion = 'no check';
-    if (typeof swfobject != 'undefined') {
-        var fv = swfobject.getFlashPlayerVersion();
-        if (fv.major > 0) {
-            flashVersion = fv.major + '.' + fv.minor + ' r' + fv.release;
-        }
-        else  {
-            flashVersion = unknown;
-        }
-    }
-
-    var info = {
-                screen: screenSize,
-                browser: browser,
-                browserVersion: version,
-                mobile: mobile,
-                os: os,
-                osVersion: osVersion,
-                cookies: cookieEnabled,
-                flashVersion: flashVersion
-            };
-    return info;
-}
-
-function enable_media(source){
-    var info = get_browser_info();
-    var os = info.os;
-    var browser = info.browser;
-    console.log('OS detected: ' + os);
-    console.log('Browser detected: ' + browser);
-
-    var head;
-
-    if (os == 'Windows') {
-
-        if (browser == 'Firefox') head = 'windows-firefox-allow';
-        else if (browser == 'Chrome') head = 'windows-chrome-allow';
-        else if (browser == 'Opera') head = 'windows-opera-allow';
-        else return; // return if OS is Windows and browser is not Chrome, Opera, or Firefox
-
-    } else if (os == 'Mac OS X') {
-
-        if (browser == 'Firefox') head = 'mac-firefox-allow';
-        else if (browser == 'Chrome') head = 'mac-chrome-allow';
-        else if (browser == 'Opera') head = 'mac-opera-allow';
-        else return; // return if OS is Mac and browser is not Chrome, Opera, or Firefox
-
-    } else {
-        return; // return if not Mac or Windows
-    }
-
-    var message = '<div class="' + head + ' media-allow alert alert-info">' +
-                        '<a href="#" class="close" data-dismiss="alert">&times;</a>' +
-                        '<strong> Please click <img height="30" src="img/' + head + '.png"> to enable ' + source + ' <strong>' +
-                    '</div>';
-
-    $('.enable-media').html(message).removeClass('hide');
-    setTimeout(function() {
-        $('.enable-media').addClass('hide');
-    }, 10000);
-}
-
-function add_progress(size, div) {
-    var progress = '<div class="' + size + '-progress"><img src="img/' + size + '-progress.gif"></div>';
-    $(div).append(progress);
-}
-
-function remove_progress() {
-    $('.progress-animation').remove();
-}
-
-function temporary_fade_out() {
-    setTimeout(function() {
-        $('.temporary_highlight').remove();
-    }, 1000);
+// Session checker - checks every minute that session isn't expired; if expired reloads the page and returns to #home
+var session_checker;
+function session_checker() {
+    clearInterval(session_checker);
+    session_checker = setInterval(function(){ 
+        $.ajax({
+            type: 'POST',
+            url: 'php/login.php',
+            dataType: "json",
+            data: {cmd : 'is_loged_in'},
+            success: function(data) {
+                if (data.id == null) {
+                    clearInterval(session_checker);
+                    alert('Your session expired')
+                    window.location = './';
+                }
+            }
+        });
+    }, 60000); 
 }

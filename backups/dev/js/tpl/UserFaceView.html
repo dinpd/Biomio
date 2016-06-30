@@ -1,0 +1,73 @@
+<style>
+
+.on {
+  background: #5CB85C;
+  /*background: #77B55A;*/
+}
+
+.off {
+  background: #D9534F;
+  /*background: #CC3333;*/
+}
+
+.part {
+  background: #F0AD4E;
+}
+
+.show-box {
+	width: 40px;
+	height: 12px;
+	display: inline-block;
+}
+
+.show-span {
+	margin-left: 5px;
+}
+
+</style>
+
+<div class="well">
+	<input id="fingeprints_snapshots" class="hide" type="text" />
+
+	<legend><h2 class="form-signin-heading">User - Face</h2></legend>
+
+	<form class="form-horizontal font16">
+		<fieldset>
+			<div class="col-sm-8">
+				<!-- if face exist in the database -->
+				<% if (face == 2) { %>
+			    <div class="form-group">
+					<label class="col-sm-3 control-label"><div class="show-box on"></div></label>
+					<div class="col-sm-9">
+						<p>Face is successfully registred</p>
+						<p><button class="train-face btn btn-primary col-sm-4 disabled">Retrain</button></p>
+					</div>
+				</div>
+				<% } %>
+
+				<!-- if face stored incorrectly -->
+				<% if (face == 1) { %>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><div class="show-box part"></div></label>
+					<div class="col-sm-9">
+						<p>Face is registration is incomplete; please, retrain</p>
+						<p><button class="train-face btn btn-warning col-sm-4 disabled">Retrain</button></p>
+					</div>
+				</div>
+				<% } %>
+
+				<!-- if face stored correctly -->
+				<% if (face == 0) { %>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><div class="show-box off"></div></label>
+					<div class="col-sm-9">
+						<p>Face is not registed</p>
+						<p><button class="train-face btn btn-primary col-sm-4 disabled">Train</button></p>
+					</div>
+				</div>
+				<% } %>
+			</div>
+		</fieldset>
+	</form>
+
+</div>

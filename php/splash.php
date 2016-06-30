@@ -1,5 +1,9 @@
 <?php
 include ('connect.php');
+
+
+require 'vendor/autoload.php';
+
 session_start();
 if (isset($_POST['name'])) {
 	$name = $_POST['name'];
@@ -11,18 +15,25 @@ if (isset($_POST['name'])) {
 		$code = '';
 			for ($i=0; $i<15; $i++) { $code = $code . $charset[rand(0, count($charset))-1]; }
 
-	mysqli_query($db_conx, "INSERT INTO Applications (name, email, type, code) VALUES ('$name', '$email', '$type', '$code')") or die (mysqli_error());
+	mysqli_query($db_conx, "INSERT INTO Splash (name, email, type, code, date_created) VALUES ('$name', '$email', '$type', '$code', now())") or die (mysqli_error());
 	
-	$to = 'ditkis@gmail.com';
-	$from = "applications@biom.io";
+	$from = "splash@biom.io";
+	$from_name = "Splash BIOMIO";
 	$subject = "BIOMIO: New application";
 
-	$body = file_get_contents("../tpl/forms/NewApplication.html");
+	$body = file_get_contents("../tpl/emails/NewApplication.html");
 	$body = str_replace('%name%', $name, $body);
 	$body = str_replace('%email%', $email, $body);
 	$body = str_replace('%type%', $type, $body);
 	$body = str_replace('%code%', $code, $body);
 
+	$to = "alexander.lomov1@gmail.com";
+	monkey_mail($to, $subject, $body, $from, $from_name);
+
+	$to = "ditkis@gmail.com";
+	monkey_mail($to, $subject, $body, $from, $from_name);
+
+	/*
 	$headers = "From: $from\n";
 	        $headers .= "MIME-Version: 1.0\n";
 	        $headers .= "Content-type: text/html; charset=iso-8859-1\n";
@@ -30,14 +41,17 @@ if (isset($_POST['name'])) {
 
 	$to = 'alexander.lomov1@gmail.com';	
 	mail($to, $subject, $body, $headers);
+	*/
 
 
 	echo 'success';
 
 } else if (isset($_POST['code'])) {
 	$code = $_POST['code'];
+
+	//echo $code;
 	
-	$result = mysqli_query($db_conx, "SELECT * FROM Applications WHERE code = '$code'") or die (mysqli_error());
+	$result = mysqli_query($db_conx, "SELECT * FROM Splash WHERE code = '$code'") or die (mysqli_error());
 	if (mysqli_num_rows($result) == 0) {
 		echo "#incorrect";
 	} else if (mysqli_num_rows($result) > 1) {
@@ -62,13 +76,13 @@ if (isset($_POST['name'])) {
 	$name = str_replace('%20', ' ', $name);
 
 	//check if the code is valid for this username
-	$result = mysqli_query($db_conx, "SELECT * FROM Applications WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
+	$result = mysqli_query($db_conx, "SELECT * FROM Splash WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
 	if (mysqli_num_rows($result) == 0) {
 		echo "Username or the invitation code is incorrect";
 	} else if (mysqli_num_rows($result) > 1) {
 		echo "Something strange is going on, ask Developer for assistance";
 	} else {
-		$result = mysqli_query($db_conx, "SELECT * FROM Applications WHERE name = '$name' AND code = '$code' AND invitation = 'no'") or die (mysqli_error());
+		$result = mysqli_query($db_conx, "SELECT * FROM Splash WHERE name = '$name' AND code = '$code' AND invitation = 'no'") or die (mysqli_error());
 		if (mysqli_num_rows($result) == 0) {
 			echo "Invitation has already been sent";
 		} else {
@@ -78,21 +92,28 @@ if (isset($_POST['name'])) {
 			$email = $row['email'];
 			$type = $row['type'];
 
+			echo '<br>email: ' . $email . '<br>';
+
 			//send a message
 			$to = $email;	 
-			$from = "applications@biom.io";
+			$from = "Splash@biom.io";
+			$from_name = "BIOMIO service";
 			$subject = "BIOMIO: Application accepted";
 
-			$body = file_get_contents("../tpl/forms/NewInvitation.html");
+			$body = file_get_contents("../tpl/emails/NewInvitation.html");
 			$body = str_replace('%name%', $name, $body);
 			$body = str_replace('%code%', $code, $body);
 
+			/*
 			$headers = "From: $from\n";
 			        $headers .= "MIME-Version: 1.0\n";
 			        $headers .= "Content-type: text/html; charset=iso-8859-1\n";
 			mail($to, $subject, $body, $headers);
+			*/
 
-			mysqli_query($db_conx, "UPDATE Applications SET invitation = 'yes' WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
+			monkey_mail($to, $subject, $body, $from, $from_name);
+
+			mysqli_query($db_conx, "UPDATE Splash SET invitation = 'yes' WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
 
 			echo 'Invitation code has been successfully sent';
 		}
@@ -107,7 +128,7 @@ if (isset($_POST['name'])) {
 	$name = str_replace('%20', ' ', $name);
 
 	//check if the code is valid for this username
-	$result = mysqli_query($db_conx, "SELECT * FROM Applications WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
+	$result = mysqli_query($db_conx, "SELECT * FROM Splash WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
 	if (mysqli_num_rows($result) == 0) {
 		echo "Username or the invitation code is incorrect";
 	} else if (mysqli_num_rows($result) > 1) {
@@ -125,15 +146,58 @@ if (isset($_POST['name'])) {
 	$name = str_replace('%20', ' ', $name);
 
 	//check if the code is valid for this username
-	$result = mysqli_query($db_conx, "SELECT * FROM Applications WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
+	$result = mysqli_query($db_conx, "SELECT * FROM Splash WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
 	if (mysqli_num_rows($result) == 0) {
 		echo "Username or the invitation code is incorrect";
 	} else if (mysqli_num_rows($result) > 1) {
 		echo "Something strange is going on, ask Developer for assistance";
 	} else {
-		$result = mysqli_query($db_conx, "DELETE FROM Applications WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
+		$result = mysqli_query($db_conx, "DELETE FROM Splash WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
 		echo "Application is removed from the list";
 	}
 } else {
 	echo 'Wrong place to be';
+}
+
+
+
+function monkey_mail($to, $subject, $body, $from, $from_name) {
+
+
+
+        $mgClient = new \Mailgun\Mailgun('key-22d04f5f1108f80acd648c9234c45546');
+        $domain = "mg.biom.io";
+
+        return $mgClient->sendMessage("$domain",
+            array('from'    => $from_name.' <'.$from.'>',
+                'to'      => $to,
+                'subject' => $subject,
+                'html'    => $body));
+
+
+/*
+	require_once 'mandrill/Mandrill.php';
+	try {
+	    $mandrill = new Mandrill('vyS5QUBZJP9bstzF1zeVNA');
+	    $message = array(
+	        'html' => $body,
+	        'subject' => $subject,
+	        'from_email' => $from,
+	        'from_name' => $from_name,
+	        'to' => array(
+	            array(
+	                'email' => $to,
+	                'type' => 'to'
+	            )
+	        )  
+	    );
+	    $async = false;
+	    $result = $mandrill->messages->send($message, $async);
+	} catch(Mandrill_Error $e) {
+	    // Mandrill errors are thrown as exceptions
+	    //echo 'A mandrill error occurred: ' . get_class($e) . ' - ' . $e->getMessage();
+	    // A mandrill error occurred: Mandrill_Unknown_Subaccount - No subaccount exists with the id 'customer-123'
+	    throw $e;
+	}
+*/
 }

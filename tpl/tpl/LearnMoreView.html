@@ -1,0 +1,41 @@
+<div class='main-block'>
+<div class='inner post text-left class="col-sm-10'>
+
+<h2 class="col-sm-12 text-center" style="margin-bottom: 35px">Learn More</h2>
+
+<p class="col-sm-12 text-center"><strong>Combination of biometric and non-biometric factors</p></strong>
+<p>Biometric id verification factors make identity verification and identification faster, remove most of the friction by avoiding memorization and typing, and prevent password-loggers from capturing the keyboard strokes that make up the password.   Biometric checks however by themselves are subject to a delicate false positives / false negatives balance.  To solve that weakness, biometric checks are augmented by other factors, like location, device and network fingerprints, “transparent” biometrics, etc.  The combination allows for the best of both worlds when it comes to usability vs. precision.</p>
+<br>
+
+
+<p class="col-sm-12 text-center"><strong>Client and Server-based Biometrics</p></strong>
+<p>Biomio supports 2 types of biometric verifications: client and server-based.  Client based biometrics has the advantage of having all the data stored (securely) on the device; the disadvantage is that it’s device-dependant.  Server-based biometrics allow for independence from having biometric sensor built into the device, but stores the data (pretty securely if done right) on the server.  As an added benefit, server-based biometrics adds identification capability to  verification.</p>
+<br> 
+
+<p class="col-sm-12 text-center"><strong>Confidence and Rule-based policies</p></strong>
+<p>Confidence (or risk)-based policies allow the administrator to set a minimum confidence threshold on passing the verification.  This technique is useful across the board as it allows to assign a confidence value to each authentication factor, but particularly useful for biometric-based verifications.  While individually, biometric identity verification methods almost never yield to 100% certainty, combination brings the cumulative level to same or higher of the strongest usable passwords and without all the password’s known vulnerabilities.</p>   
+
+<p>Rule based policies allow the administrator to script tests and verifications depending on results of previous tests and environment variables.  An example of this might be scripting a rule that says "if this login attempt is coming from a known location and a known device, we will only ask the user to identify themselves without the need for verification”, or “if this login attempt comes from an unknown device and unknown location, we will ask for 4 factors, 2 of which have to be biometric."</p>
+<br>
+
+<p class="col-sm-12 text-center"><strong>Usability</p></strong>  
+<p>Perhaps no element of effective authentication is as important as usability.  Lack of usability in authentication frustrates the user and elicits corner-cutting and “hacks” to circumvent the dreaded login system.  Such is the case with strong rotating passwords where the user is required to come up with a strong password for each resource they are using (and it could be over a hundred), and she’s required to change those passwords regularly - no user can keep up with that.  Such is also the case with SMS or token-based 2nd factors - they only add one more thing to worry about to an already complex password.  For Biomio focus on usability means picking the least intrusive methods out of the ones available to authenticate the user and giving the user choices in the authentication process.</p> 
+<br>
+
+<p class="col-sm-12 text-center"><strong>Identification</p></strong> 
+<p>The industry has come to rely on user ID's as part of the authentication pair and since User ID is commonly sent in the clear, it’s akin to giving up one half of the secret.  Biomio sees UserID as something that can be successfully replaced by biometric factors like face, voice, palm recognition, with other factors fulfilling the verification requirements.</p>  
+<br>
+
+<p class="col-sm-12 text-center"><strong>Compliance</p></strong>
+<p>Most prominent security and privacy compliance standards like PCI DSS, HIPAA, and NIST are asking for strong authentication in general and calling out biometric authentication in particular as desirable option.  While they don’t prescribe the usage, they leave implementation up to the customer which provides both the opportunity to freedom of implementation but also opens up risk to vendor-specific technology lock-ins.  Biomio has taken a comprehensive, technology-independent approach to the problem but embracing the ability to include any and all identity verification techniques available on the market.</p> 
+<br>
+
+<p class="col-sm-12 text-center"><strong>Compatibility</p></strong>
+<p>Biomio goal is to make biometric authentication work across all types of systems and devices, supporting both older legacy as well as newer devices with cutting edge capabilities.  To accomplish that Biomio makes mixed use of “out-of-band” clients, such as mobile phones, leverages latest browser capabilities to access standard peripherals for biometrics acquisition, and implements “up-the-stack” support for onboard biometric sensors and capabilities of newer platforms (TouchID, Intel Authenticate*,others)</p>
+<br>
+
+<p class="col-sm-12 text-center"><strong>Integration</p></strong>
+<p>For an Authenticator solution like Biomio to be easily leveraged across different markets, applications, and use cases, it needs to support a complete set of integration options.  Biomio supports OpenID Connect oAuth-based integration for integration with web applications.  RPC API provides a universal interface for non-web integrations.  An LDAP proxy agent provides a system integration option to the enterprise administrators who desire to avoid making application-level changes.</p> 
+
+</div>
+</div>

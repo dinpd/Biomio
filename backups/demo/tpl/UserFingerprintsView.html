@@ -1,0 +1,129 @@
+<style>
+.finger {
+  width: 7.5%;
+  height: 6%;
+  border-radius: 100%;
+}
+
+.spot {
+  width: 7.5%;
+  height: 6%;
+  border-radius: 100%;
+  width: 100%;
+  height: 100%;
+  opacity: 0.95;
+  filter: alpha(opacity=95); /* For IE8 and earlier */
+}
+
+.on {
+  background: #5CB85C;
+  /*background: #77B55A;*/
+}
+
+.off {
+  background: #D9534F;
+  /*background: #CC3333;*/
+}
+
+.part {
+  background: #F0AD4E;
+}
+
+.no {
+  background: #BBBBBB;
+}
+
+.finger div:hover {
+   -moz-box-shadow:    inset 0 0 10px #000000;
+   -webkit-box-shadow: inset 0 0 10px #000000;
+   box-shadow:         inset 0 0 10px #000000;
+}
+
+.left-image, .right-image {
+	position: relative;
+	top: 0; 
+	left: 0;
+	width: 100%;
+}
+
+.show-box {
+	width: 40px;
+	height: 12px;
+	display: inline-block;
+}
+
+.show-span {
+	margin-left: 5px;
+}
+
+
+#LEFTTHUMB {position: absolute; top: 43%; left: 5%; z-index: 1000;}
+#LEFTINDEX {position: absolute; top: 7%; left: 27%; z-index: 1000;}
+#LEFTMIDDLE {position: absolute; top: 0%; left: 53%; z-index: 1000;}
+#LEFTRING {position: absolute; top: 4%; left: 73%; z-index: 1000;}
+#LEFTPINKY {position: absolute; top: 20%; left: 89.5%; z-index: 1000;}
+
+#RIGHTTHUMB {position: absolute; top: 43%; left: 88%; z-index: 1000;}
+#RIGHTINDEX {position: absolute; top: 7%; left: 66%; z-index: 1000;}
+#RIGHTMIDDLE {position: absolute; top: 0%; left: 40%; z-index: 1000;}
+#RIGHTRING {position: absolute; top: 4%; left: 20%; z-index: 1000;}
+#RIGHTPINKY {position: absolute; top: 20%; left: 3.5%; z-index: 1000;}
+
+</style>
+
+<div class="well">
+	<input id="fingeprints_snapshots" class="hide" type="text" />
+
+	<legend><h2 class="form-signin-heading">User - Fingerprints</h2></legend>
+
+	<h5><strong> You can train and retrain each fingerptint to use them for BIOMIO login</strong></h5>
+	<p>
+		<div class="show-box on"></div><span class="show-span">fingerprint is saved</span> <br>
+		<div class="show-box off"></div><span class="show-span">fingerprint is not saved</span> <br>
+		<div class="show-box part"></div><span class="show-span">fingerprint is saved with error; we recommend you to reregister this finger</span> <br>
+		<div class="show-box no"></div><span class="show-span">not supported</span> <br>
+	</p>
+
+	  <div class="row">
+	    <div class="col-md-6">
+	      <img class="left-image" src="img/left.png">
+	      <div id="LEFTTHUMB" class="finger"><div class="no spot <% if (fingerprints[0] == 2) print ('on'); else if (fingerprints[0] == 1) print ("part"); else print ('off'); %>"></div></div>
+	      <div id="LEFTINDEX" class="finger"><div class="no spot <% if (fingerprints[1] == 2) print ('on'); else if (fingerprints[1] == 1) print ("part"); else print ('off'); %>"></div></div>
+	      <div id="LEFTMIDDLE" class="finger"><div class="no spot <% if (fingerprints[2] == 2) print ('on'); else if (fingerprints[2] == 1) print ("part"); else print ('off'); %>"></div></div>
+	      <div id="LEFTRING" class="finger"><div class="no spot <% if (fingerprints[3] == 2) print ('on'); else if (fingerprints[3] == 1) print ("part"); else print ('off'); %>"></div></div>
+	      <div id="LEFTPINKY" class="finger"><div class="no spot <% if (fingerprints[4] == 2) print ('on'); else if (fingerprints[4] == 1) print ("part"); else print ('off'); %>"></div></div>
+	    </div>
+	    <div class="col-md-6">
+	      <img class="right-image" src="img/right.png">
+	      <div id="RIGHTTHUMB" class="finger"><div class="no spot <% if (fingerprints[5] == 2) print ('on'); else if (fingerprints[5] == 1) print ("part"); else print ('off'); %>"></div></div>
+	      <div id="RIGHTINDEX" class="finger"><div class="spot <% if (fingerprints[6] == 2) print ('on'); else if (fingerprints[6] == 1) print ("part"); else print ('off'); %>"></div></div>
+	      <div id="RIGHTMIDDLE" class="finger"><div class="no spot <% if (fingerprints[7] == 2) print ('on'); else if (fingerprints[7] == 1) print ("part"); else print ('off'); %>"></div></div>
+	      <div id="RIGHTRING" class="finger"><div class="no spot <% if (fingerprints[8] == 2) print ('on'); else if (fingerprints[8] == 1) print ("part"); else print ('off'); %>"></div></div>
+	      <div id="RIGHTPINKY" class="finger"><div class="no spot <% if (fingerprints[9] == 2) print ('on'); else if (fingerprints[9] == 1) print ("part"); else print ('off'); %>"></div></div>
+	    </div>
+	  </div>
+
+	<input id="finger_status" type="text" class="hide">
+</div>
+
+
+<footer>
+      <div class="row alert alert-warning" role="alert">
+        <div class="col-sm-1">
+          <img src="img/chrome.png" class="hidden-xs" width="55">
+        </div>
+        <div class="col-sm-11" style="padding-top: 5px">
+          Please use Google Chrome for Fingerprint Registration. On this stage of BIOMIO development we can't guarantee successful functionality of registration client in other browsers.
+        </div>
+      </div>
+      <!--<p> <strong>Security Note: </strong>We understand that privacy of your
+          biometric data is of utmost importance!&nbsp; As such, we're taking
+          measures to make sure that 1) bio metrics are encrypted to a point
+          where they can not be restored to anything close to the original, 2)
+          the service providers do not have access to your biometric data - they
+          can only inquire "is this so-and-so", 3) no-one, no matter how much
+          authority they have will ever be able to receive your biometric data.<strong>
+            <br>
+          </strong></p>-->
+      <p>&#169; BIOMIO 2014</p>
+    </footer>

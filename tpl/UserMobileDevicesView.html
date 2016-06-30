@@ -1,0 +1,73 @@
+<!-- Phone registration -->
+<div class="well user-services">
+	<legend><h2 class="form-signin-heading">Mobile Devices</h2></legend>
+	<div class="col-sm-7">
+		
+		<h3>Mobile Application</h3>
+		<div class="mobile-devices"></div>
+		<h5 class="no-1 text-warning col-sm-12 hide">No Mobile Applications yet registered for this account</h5>
+		<form class="col-sm-12 form add-1" style="margin-top: 15px">
+			<div class="col-sm-8">
+				<input type="text" class="form-control" placeholder="new device name">
+			</div>
+			<div class="col-sm-4">
+				<button type="submit" class="btn btn-success">Add</button>
+			</div>
+		</form>
+	</div>
+
+	<style>
+		.form-1-1, .form-1-2, .form-1-3, .form-1-4 {
+			border-radius: 3px;
+			border: 1px solid #CCC;
+			padding: 15px 5px;
+		}
+	</style>
+
+
+	<div class="col-sm-5">
+		<div class="form-1-1 col-sm-12 text-center hide">
+			<h3>Verify Mobile Application</h3>
+			<p><strong>My Device</strong></p>
+			<input class="hide" type="text">
+
+			<div id="qr_div" class="col-sm-12" style="margin-top: 20px">
+				<div id="qr_code" style="height: 205px"></div>
+				<br>
+				<div class="col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2">
+					<div class="col-sm-7 col-sm-offset-1 col-xs-7 col-xs-offset-1 text-center" id="qr_code_text"><strong></strong></div>
+					<div class="col-sm-3 col-xs-3">
+						<button type="button" class="close update-qr-code" aria-hidden="true">
+							<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-1-2 col-sm-12 text-center hide">
+			<h3>Face Registration</h3>
+			<p><strong>My Device</strong></p>
+			<br>
+			<p><img src="img/large-progress.gif"></p>
+			<br>
+			<p><small>Please, open the application to register biometrics data</small></p>
+			<input class="hide" type="text">
+		</div>
+
+		<div class="form-1-3 col-sm-12 text-center hide text-success">
+			<h3>Mobile device was successfully verified</h3>
+		</div>
+
+		<div class="form-1-4 col-sm-12 text-center hide text-info">
+			<h3>Registration started</h3>
+		</div>
+
+		<div class="form-1-5 col-sm-12 text-center hide text-success">
+			<h3>Biometrics data was successfully registered</h3>
+		</div>
+
+	</div>
+
+	
+</div>

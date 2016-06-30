@@ -1,0 +1,74 @@
+<div class="well">
+	<legend><h2 class="form-signin-heading"><%= name %></h2></legend>
+	<form class="form-horizontal font16">
+		<fieldset>
+			<div class="col-sm-8">
+
+				<% if (description != '') { %>
+				<!-- Description-->
+			    <div class="form-group">
+					<label class="col-sm-3 control-label">Description</label>
+					<div class="col-sm-9">
+						<p id="span_description"  class="content form-control-static"><%= description %></p>
+					</div>
+				</div>
+				<% } %>
+
+				<% if (address.street1 != '' || address.street2 != '' || address.continent != '' ||
+								address.country != '' || address.province != '' || address.region != '' ||
+								 address.city != '' || address.postcode != '') { %>
+				<!-- Address-->
+			    <div class="form-group">
+					<label class="col-sm-3 control-label">Address</label>
+					<div class="col-sm-9">
+						<% if (address.street1 == '' && address.street2 == '' && address.continent == '' &&
+								address.country == '' && address.province == '' && address.region == '' &&
+								 address.city == '' && address.postcode == '') { print('<p class="content small-align">no information</p>'); }%>
+
+						<div><p id="span_street1"  class="content form-control-static"><%= address.street1 %></span></div>
+						<!--to avoid extra white space we print 2nd address line only if it has some content in it -->
+						<div id="span_street2">
+							<% if (address.street2 != '') {
+							    print('<span class="content">' + address.street2 + '</span>');
+							}%>
+						</div>
+						<div class="content">
+							<% if (address.country != '') {
+								print('<span id="span_country">' + address.country + '</span>');
+							}%>	
+							<% if (address.province != '') {
+								print('<span id="span_province">, ' + address.province + '</span>');
+							}%>	
+							<% if (address.city != '') {
+								print('<span id="span_city">, ' + address.city + '</span>');
+							}%>	
+							<% if (address.postcode != '') {
+								print('<span id="span_postcode">, ' + address.postcode + '</span>');
+							}%>
+						</div>
+					</div>
+				</div>
+				<% } %>
+
+				<!-- Map-->
+				<% if (map != '') { %>
+			    <div class="form-group">
+					<label class="col-sm-3 control-label">Map</label>
+					<div class="col-sm-9">
+						<iframe src="<%= map %>" class="col-md-10" height="300" frameborder="0" style="border:0"></iframe>
+					</div>
+				</div>
+				<% } %>
+
+			</div> <!-- left div -->
+
+			<div class="col-sm-4 col-sm-offset-0 text-center">
+					<div>
+					  	<span id="location_image_preview">
+							
+					  	</span>
+				  	</div>
+			</div> <!-- right div -->
+		</fieldset>
+	</form>
+</div>

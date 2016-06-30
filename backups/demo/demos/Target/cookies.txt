@@ -1,0 +1,20 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+.target.com	TRUE	/	FALSE	1999999999	SSLB	1
+.target.com	TRUE	/	FALSE	1999999999	SSID	BwAcrB0cAAAAAABx26ZTwaIGP3HbplMBAAAAAAAAAAAAcdumUwCqJxovAAFYegYAcdumUwEAEC4AAWFeBgBx26ZTAQA
+.target.com	TRUE	/	FALSE	1999999999	SSSC	163.G6027746430717174465.1|11792.417377:12058.424536
+.target.com	TRUE	/	FALSE	1999999999	SSRT	cdumUwABAQ
+.target.com	TRUE	/	FALSE	1999999999	SSOD	AD_rAAAAEAAifwEAAQAAAHHbplNx26ZT
+.target.com	TRUE	/	FALSE	1999999999	SSPV	yBgAAAAAAAIAAgAAAAAAAAAAAAEAAAAAAAA
+.target.com	TRUE	/	FALSE	1999999999	estoreJSESSIONID	0000arOpeL7dPymmiGbPXzZtmiV:02h3189
+.target.com	TRUE	/	FALSE	1999999999	WC_SESSION_ESTABLISHED	true
+.target.com	TRUE	/	FALSE	1999999999	WC_PERSISTENT	iOPECpnxIXA6sJwla%2byTPpViWAM%3d%0a%3b2014%2d06%2d22+13%3a34%3a41%2e512%5f1403444081507%2d81349%5f10151%5f%2d1002%2c%2d1%2cUSD%5f10151
+.target.com	TRUE	/	FALSE	1999999999	WC_AUTHENTICATION_-1002	%2d1002%2cgUv2c%2fCQNEdulPRjQ%2fH1nCpi6k8%3d
+.target.com	TRUE	/	FALSE	1999999999	WC_ACTIVEPOINTER	%2d1%2c10151
+.target.com	TRUE	/	FALSE	1999999999	WC_USERACTIVITY_-1002	%2d1002%2c10151%2cnull%2cnull%2cnull%2cnull%2cnull%2cnull%2cnull%2cnull%2cfdqkGeS5O5fB4FqLrohfz9owgJ5HfNbSTZ4VR53AK442g7v75PNrMGRQWR8z%2bvAibq670q%2bN3Hxq%0aCaBjpefYrCkFQf4mmbtvSt6zwQFRiBhTtEUIHEgKXdshkWjCzzPIzdnON%2fmf%2fJj6jLY%2bBcFubQ%3d%3d
+.target.com	TRUE	/	FALSE	1999999999	WC_GENERIC_ACTIVITYDATA	[60693809052%3atrue%3afalse%3a0%3a4PUVqQoqEwdbGWXw0l9kXYPvS60%3d][com.ibm.commerce.context.audit.AuditContext|1403444081507%2d81349][com.ibm.commerce.store.facade.server.context.StoreGeoCodeContext|null%26null%26null%26null%26null%26null][CTXSETNAME|Store][com.ibm.commerce.context.globalization.GlobalizationContext|%2d1%26USD%26%2d1%26USD][com.ibm.commerce.catalog.businesscontext.CatalogContext|10051%26null%26false%26false%26false][com.ibm.commerce.context.base.BaseContext|10151%26%2d1002%26%2d1002%2610][com.ibm.commerce.context.experiment.ExperimentContext|null][com.ibm.commerce.context.entitlement.EntitlementContext|4000000000000000005%264000000000000000005%26null%26%2d2000%26null%26null%26null]
+target.com	TRUE	/	FALSE	1999999999	tgtakalb	scs
+.target.com	TRUE	/	FALSE	1999999999	akaau	1403444983~id=820016e930f0de00bb8c677da244f292
+.target.com	TRUE	/	FALSE	1999999999	TealeafAkaUID	F6ACF2E39FDC2A3D1A4ABC37B1D2EC3E
+.target.com	TRUE	/	FALSE	1999999999	TealeafAkaSid	DC799C51D97F55992E2523B54A294C07
+

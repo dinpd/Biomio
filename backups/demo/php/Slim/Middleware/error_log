@@ -1,0 +1,7 @@
+[26-Sep-2014 03:16:49 America/Chicago] PHP Fatal error:  Class 'Slim\Middleware' not found in /home/biom/public_html/php/Slim/Middleware/Flash.php on line 48
+[26-Sep-2014 03:29:31 America/Chicago] PHP Fatal error:  Class 'Slim\Middleware' not found in /home/biom/public_html/php/Slim/Middleware/Flash.php on line 48
+[26-Sep-2014 03:29:40 America/Chicago] PHP Fatal error:  Class 'Slim\Middleware' not found in /home/biom/public_html/php/Slim/Middleware/ContentTypes.php on line 49
+[26-Sep-2014 03:29:47 America/Chicago] PHP Fatal error:  Class 'Slim\Middleware' not found in /home/biom/public_html/php/Slim/Middleware/PrettyExceptions.php on line 46
+[26-Sep-2014 03:29:51 America/Chicago] PHP Fatal error:  Class 'Slim\Middleware' not found in /home/biom/public_html/php/Slim/Middleware/SessionCookie.php on line 62
+[26-Sep-2014 03:29:55 America/Chicago] PHP Fatal error:  Class 'Slim\Middleware' not found in /home/biom/public_html/php/Slim/Middleware/MethodOverride.php on line 50
+[26-Sep-2014 03:31:14 America/Chicago] PHP Fatal error:  Class 'Slim\Middleware' not found in /home/biom/public_html/php/Slim/Middleware/Flash.php on line 48

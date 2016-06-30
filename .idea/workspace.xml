@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="74609bcc-ce02-4d6d-9ff6-d6dcffaffa7f" name="Default" comment="" />
+    <ignored path="biomioai.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="ComposerSettings">
+    <pharConfigPath>$PROJECT_DIR$/api2/composer.json</pharConfigPath>
+    <pharPath>/usr/local/bin/composer</pharPath>
+    <phpPath>/usr/bin/php</phpPath>
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="biomioai" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/Controllers/UserController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.3333333">
+              <caret line="112" column="59" selection-start-line="112" selection-start-column="59" selection-end-line="112" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HeaderView.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/tpl/HeaderView.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.111111">
+              <caret line="137" column="336" selection-start-line="137" selection-start-column="336" selection-end-line="137" selection-end-column="336" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="composer.lock" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/composer.lock">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="115" column="58" selection-start-line="115" selection-start-column="58" selection-end-line="115" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/home/views/header.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="173" column="55" selection-start-line="173" selection-start-column="55" selection-end-line="173" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/home/views/login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="143" column="55" selection-start-line="143" selection-start-column="55" selection-end-line="143" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="provider_login.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/provider/views/provider_login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="86" column="55" selection-start-line="86" selection-start-column="55" selection-end-line="86" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="provider_signup.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/provider/views/provider_signup.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="253" column="55" selection-start-line="253" selection-start-column="55" selection-end-line="253" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginView.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/tpl/LoginView.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-47.148148">
+              <caret line="67" column="312" selection-start-line="67" selection-start-column="312" selection-end-line="67" selection-end-column="312" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="setting.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/setting.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.3333335">
+              <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Provider.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api2/controllers/Provider.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Orest Zagaiskyi &lt;orest.zagaiskyi@vakoms.com.ua&gt;API2 Originaly started developing by Sergiy Dragunov, finished by Orest Zagaiskyi. to install components, run composer install." />
+        <option value="Sergiy Dragunov &lt;sergiy.dragunov@vakoms.com.ua&gt;" />
+        <option value="Orest Zagaiskyi &lt;orest.zagaiskyi@vakoms.com.ua&gt;" />
+      </list>
+    </option>
+    <option name="UPDATE_TYPE" value="MERGE" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="development-v2" />
+      </map>
+    </option>
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/api2/models/User.php" />
+        <option value="$PROJECT_DIR$/php/provider.php" />
+        <option value="$PROJECT_DIR$/js/user/views/user_mobile_devices.js" />
+        <option value="$PROJECT_DIR$/api/biomio-login/js/wizard.js" />
+        <option value="$PROJECT_DIR$/php/splash.php" />
+        <option value="$PROJECT_DIR$/php/controllers/EmailController.php" />
+        <option value="$PROJECT_DIR$/php/models/User.php" />
+        <option value="$PROJECT_DIR$/php/api.php" />
+        <option value="$PROJECT_DIR$/Betta/css/style2.css" />
+        <option value="$PROJECT_DIR$/php/controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/app/src/Controllers/ProviderController.php" />
+        <option value="$PROJECT_DIR$/app/src/Models/User.php" />
+        <option value="$PROJECT_DIR$/config/database.php" />
+        <option value="$PROJECT_DIR$/login.php" />
+        <option value="$PROJECT_DIR$/php/commands.php" />
+        <option value="$PROJECT_DIR$/css/css.css" />
+        <option value="$PROJECT_DIR$/php/biomioadmin/applications.php" />
+        <option value="$PROJECT_DIR$/app/src/Controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/public/tpl/HeaderView.html" />
+        <option value="$PROJECT_DIR$/public/js/home/views/header.js" />
+        <option value="$PROJECT_DIR$/public/js/home/views/login.js" />
+        <option value="$PROJECT_DIR$/public/js/provider/views/provider_login.js" />
+        <option value="$PROJECT_DIR$/public/js/provider/views/provider_signup.js" />
+        <option value="$PROJECT_DIR$/public/tpl/LoginView.html" />
+        <option value="$PROJECT_DIR$/config/setting.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true">
+    <include_path>
+      <path value="$PROJECT_DIR$/api2/vendor/container-interop/container-interop" />
+      <path value="$PROJECT_DIR$/api2/vendor/slim/middleware" />
+      <path value="$PROJECT_DIR$/api2/vendor/flynsarmy/slim-monolog" />
+      <path value="$PROJECT_DIR$/api2/vendor/slim/slim" />
+      <path value="$PROJECT_DIR$/api2/vendor/pimple/pimple" />
+      <path value="$PROJECT_DIR$/api2/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/api2/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/api2/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/api2/vendor/nikic/fast-route" />
+      <path value="$PROJECT_DIR$/api2/vendor/j4mie/idiorm" />
+      <path value="$PROJECT_DIR$/api2/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/api2/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/api2/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/api2/vendor/composer" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-1" />
+    <option name="y" value="-1" />
+    <option name="width" value="1922" />
+    <option name="height" value="1057" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="biomioai" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="biomioai" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="biomioai" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js-jscs-nodeInterpreter" value="$USER_HOME$/.nvm/versions/node/v4.2.2/bin/node" />
+    <property name="ignore_missing_gitignore" value="true" />
+    <property name="GO_FMT" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api2" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="" />
+      <working_directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GoRunFileConfiguration" factoryName="Go Single File">
+      <module name="" />
+      <working_directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="DIRECTORY" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="74609bcc-ce02-4d6d-9ff6-d6dcffaffa7f" name="Default" comment="" />
+      <created>1459865861795</created>
+      <option name="number" value="Default" />
+      <updated>1459865861795</updated>
+    </task>
+    <task id="LOCAL-00001" summary="mail delivery changed to MailGun&#10;&#10;# Conflicts:&#10;#&#9;.gitignore&#10;">
+      <created>1463058663877</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1463058663877</updated>
+    </task>
+    <task id="LOCAL-00002" summary="idiorm delete() fixes">
+      <created>1465940647061</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1465940647061</updated>
+    </task>
+    <task id="LOCAL-00003" summary="TO AVOID MESSAGE &quot;Primary key ID missing from row or is null&quot;&#10;We need define PRIMARY key for each table,&#10;where PRIMARY KEY is not 'id'">
+      <created>1465941391065</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1465941391065</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Prepare development to gate, and to work on 4433 port">
+      <created>1467303532003</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1467303532003</updated>
+    </task>
+    <task id="LOCAL-00005" summary="API2 Originaly started developing by Sergiy Dragunov, finished by Orest Zagaiskyi. to install components, run composer install.">
+      <created>1467308095341</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1467308095341</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1" y="-1" width="1922" height="1057" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3029001" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.62204725" sideWeight="0.50215054" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6621773" sideWeight="0.4979145" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4298541" sideWeight="0.49784946" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24880889" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21661055" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="mail delivery changed to MailGun&#10;&#10;# Conflicts:&#10;#&#9;.gitignore&#10;" />
+    <MESSAGE value="idiorm delete() fixes" />
+    <MESSAGE value="TO AVOID MESSAGE &quot;Primary key ID missing from row or is null&quot;&#10;We need define PRIMARY key for each table,&#10;where PRIMARY KEY is not 'id'" />
+    <MESSAGE value="Prepare development to gate, and to work on 4433 port" />
+    <MESSAGE value="API2 Originaly started developing by Sergiy Dragunov, finished by Orest Zagaiskyi. to install components, run composer install." />
+    <option name="LAST_COMMIT_MESSAGE" value="API2 Originaly started developing by Sergiy Dragunov, finished by Orest Zagaiskyi. to install components, run composer install." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/public/css/style2.css~Stashed changes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://PHP/\NotORM">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>\NotORM</OriginalElement>
+          <nodes>
+            <node x="" y="">\NotORM</node>
+            <node x="" y="">\NotORM_Abstract</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="96.0" y="62.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/standard_4.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.89555824">
+          <caret line="1134" column="9" selection-start-line="1134" selection-start-column="9" selection-end-line="1134" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/standard_7.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.022809124">
+          <caret line="1018" column="9" selection-start-line="1018" selection-start-column="9" selection-end-line="1018" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/style2.css~Stashed changes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8729604">
+          <caret line="213" column="1" selection-start-line="213" selection-start-column="1" selection-end-line="213" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/Controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.3333333">
+          <caret line="112" column="59" selection-start-line="112" selection-start-column="59" selection-end-line="112" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/tpl/HeaderView.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.111111">
+          <caret line="137" column="336" selection-start-line="137" selection-start-column="336" selection-end-line="137" selection-end-column="336" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/composer.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="115" column="58" selection-start-line="115" selection-start-column="58" selection-end-line="115" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/home/views/header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="173" column="55" selection-start-line="173" selection-start-column="55" selection-end-line="173" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/home/views/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="143" column="55" selection-start-line="143" selection-start-column="55" selection-end-line="143" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/provider/views/provider_login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="86" column="55" selection-start-line="86" selection-start-column="55" selection-end-line="86" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/provider/views/provider_signup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="253" column="55" selection-start-line="253" selection-start-column="55" selection-end-line="253" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/tpl/LoginView.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-47.148148">
+          <caret line="67" column="312" selection-start-line="67" selection-start-column="312" selection-end-line="67" selection-end-column="312" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/setting.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.3333335">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api2/controllers/Provider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
