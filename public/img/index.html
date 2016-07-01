@@ -1,0 +1,1018 @@
+<html lang="en"><head>
+  <meta charset="utf-8">
+	<title>Biomio Passwordless Authenticator - Biomio Sidekick</title>
+
+  <meta name="Description" content="Biomio Sidekick - self-contained Encrypted USB Storage and FIDO authenticator.  Your best Defense against Ransomware.">
+  
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <!--
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">-->
+  
+  <link rel="stylesheet" type="text/css" href="/css/css.css?v=1448902666">
+  <link rel="stylesheet" type="text/css" href="/css/fingerprint-style.css?v=1411347131">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap-datetimepicker.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/tooltipster.css">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap-switch.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/ihover.css">
+  
+  <!--<link rel="stylesheet" type="text/css" href="css/biomio-style.css" />-->
+
+  <!-- Demid's Design -->
+  <link rel="stylesheet" type="text/css" href="/css/themes/default/default.css">
+  <link rel="stylesheet" type="text/css" href="/css/animate.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+  <link rel="stylesheet" type="text/css" href="/css/style2.css">
+<style>
+body{
+/* overflow: visible !important; */
+}
+</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google Analytics &  ClickDesk Live Chat Service for websites -->
+ <script id="twitter-wjs" src="https://platform.twitter.com/widgets.js"></script><script async="" src="//www.google-analytics.com/analytics.js"></script><script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-56617539-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+<!-- 
+  <script type='text/javascript'>
+    var _glc =_glc || []; _glc.push('all_ag9zfmNsaWNrZGVza2NoYXRyDwsSBXVzZXJzGO-W_aECDA');
+    var glcpath = (('https:' == document.location.protocol) ?
+    'https://my.clickdesk.com/clickdesk-ui/browser/' : 'http://my.clickdesk.com/clickdesk-ui/browser/');
+    var glcp = (('https:' == document.location.protocol) ? 'https://' : 'http://');
+    var glcspt = document.createElement('script'); glcspt.type = 'text/javascript'; 
+    glcspt.async = true; glcspt.src = glcpath + 'livechat-new.js';
+    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(glcspt, s);
+  </script>
+   End of Google Analytics & ClickDesk -->
+  <script type="text/javascript" charset="utf-8" async="" src="https://platform.twitter.com/js/timeline.f80add415609dfac297fd37eb66584ee.js"></script></head>
+<body><div id="StayFocusd-infobar" style="display:none;">
+    <img src="chrome-extension://laankejkbhbdhmipfmgcngdelahlfoji/common/img/eye_19x19_red.png">
+    <span id="StayFocusd-infobar-msg"></span>
+    <span id="StayFocusd-infobar-links">
+        <a id="StayFocusd-infobar-never-show">скрыть навсегда</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a id="StayFocusd-infobar-hide">скрыть только сейчас</a>
+    </span>
+</div>
+
+<div id="alert" style="position: fixed; z-index: 100000; margin: 0 auto" class="col-md-12"></div>
+
+<div class="header"><!--
+<div class="navbar navbar-inverse navbar-static-top" role="banner" style='z-index: 1000;'>
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#main_menu">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="#" class="navbar-brand">BIOMIO</a>
+    </div>
+    <nav id="main_menu" class="collapse navbar-collapse" role="navigation">
+		<ul class="nav navbar-nav navbar-right pull-right" style='z-index: 1000;'>
+	    	
+			<li id="login" class="profile-off hide"><a href="#login">Login</a></li>
+
+	    	<li class="profile-on dropdown hide">
+				<a class="dropdown-toggle" href="#user-info" data-toggle="dropdown"><span class='profile'></span> <b class="caret"></b></a>
+				<ul class="dropdown-menu pull-right" style='z-index: 1000;'>
+					<li id="user_header"><a href="#user-info">User profile</a></li>
+					<li id="provider_header"><a href="#provider-info">Provider profile</a></li>
+					<li><a href="#account-settings">Accout settings</a></li>
+					<li class='logout-menu pointer'><a>Log out</a></li>
+				</ul>
+			</li>
+	   	</ul>
+    </nav>
+  </div>
+</div>
+-->
+
+<style>
+
+.drop-menu {
+  padding: 0;
+  vertical-align: top;
+}
+.drop-menu .drop-image {
+  width: 160px; border-radius: 2px; border-right: 1px solid #C56146;
+}
+.drop-menu .drop-content {
+  background: #fff;
+  border: 1px solid #ccc;
+  min-height: 300px!important;
+  max-height: 800px!important;
+  width: 300px;
+  padding: 10px;
+}
+</style>
+
+
+<style>
+  .login-phone {
+    max-width: 300px;
+    font-size: 20px;
+  }
+  .login-phone input {
+    display: inline-block;
+    height: 32px;
+    font-size: 16px;
+  }
+  .login-phone .country-code {
+    width: 32px;
+    text-align: center;
+  }
+  .login-phone .region-code {
+    width: 42px;
+    text-align: center;
+  }
+  .login-phone .first-part {
+    width: 42px;
+    text-align: center;
+  }
+  .login-phone .second-part {
+    width: 52px;
+    text-align: center;
+  }
+  .biomio-submit {
+    cursor: pointer;
+  }
+  .switch_methods {
+    text-decoration: underline;
+    font-size: 16px;
+    color: #aaa;
+    cursor: pointer;
+  }
+  .or {
+    font-size: 16px;
+    color: #aaa;
+  }
+  .switch_methods:hover {
+    color: #bbb;
+  }
+  .biometrics-login {
+    font-size: 20px;
+  }
+  .timeout {
+    font-size: 36px;
+    font-weight: 500;
+    color: #E26C22;
+  }
+</style>
+
+
+
+<!-- HEADER -->
+<header class="clearfix bigest" id="header_nav">
+  <div class="inner">
+    <div class="lefthead">
+      <div class="logo"> <a href="/#home"> <img src="/img/home/logo.png?v=1"></a> </div>
+      <div class="slogan"> Multi-factor, Password-optional Authentication and Identity Verification
+      </div>
+    </div>
+    <div class="righthead">
+      <div class="trynow"><img src="/img/trynow.png"></div>
+      <div class="toplinks"> 
+          <!--<li style="list-style-type: none;" id="login" class="profile-off hide">-->
+          
+
+          <ul class="drop-menu hidden-xs profile-off" style="display: inline-block; list-style: none;">
+              <li>
+                  <a class="drop-login" href='https://biom.io/#login'><img class="drop-image" src="/img/home/button2.png"></a>
+                  <ul class="drop-content hide row">
+                      
+
+                    <form role="form" class="col-sm-12 text-center">
+                        <br>
+                        <legend><h2 class="form-signin-heading text-center" style="margin-top: 5px">PASSWORDLESS LOGIN</h2></legend>
+                        <div class="form-group biomio-email col-sm-12 text-center" style="padding: 0">
+                          <div class="col-sm-12">
+                            <input id="external_token" class="biomio-input form-control" type="email" placeholder="myemail@gmail.com">
+                            <span class="biomio-error text-danger"></span>
+                          </div>
+
+                          <div class="original-method form-group col-sm-12 text-center" style="margin-top: 25px">
+                            <a onclick="var external_token = document.getElementById('external_token').value; if (external_token.length != 0) window.open('https://biom.io/openid/user/authorize?response_type=code&amp;external_token=' + external_token + '&amp;scope=openid&amp;client_id=56ce9a6a93c17d2c867c5c293482b8f9&amp;redirect_uri=https://biom.io/login.php&amp;nonce=12p6bfw&amp;state=1slw5l8', 'null','width=460, height=485, location=no'); return false;" class="biomio-submit" type="submit" style="padding: 0">
+                              <img style="width: 100%;" src="/img/home/button2.png">
+                            </a>
+                          </div>
+                          <input class="bioauth-code hide" type="text">
+
+                          <br>
+                          <br>
+                          <p class="original-method col-sm-12 text-center or">
+                            or
+                          </p>
+                          <br>
+                          <p class="original-method switch_methods col-sm-12 text-center">
+                            Login with One-time token sent over email
+                          </p>
+
+                        </div>
+                        
+                      </form>
+
+                      <!-- Biometrics Authentication Handling -->
+                      <div class="col-sm-12 biometrics-login hide">
+                        <div class="col-sm-12 text-center hide">
+                          <p class="text-warning">You need to use Google Chrome with BIOMIO extension to login with biometrics data</p>
+                        </div>
+
+                        <div class="col-sm-12 error-block text-center hide">
+                          <p class="text-warning"><strong>Error: </strong><span class="message"></span></p>
+                        </div>
+
+                        <div class="col-sm-12 in-progress-1-block text-center hide">
+                          <p class="text-primary">To proceed with the login please open Biomio application on your phone.</p>
+                          <br>
+                          <p class="text-primary">Server will wait for 5 minutes to receive the results</p>
+                          <br>
+                          <p><strong class="timeout"></strong></p>
+                          <br>
+                        </div>
+
+                        <div class="col-sm-12 in-progress-2-block text-primary text-center hide">
+                          <p class="message text-info"></p>
+                        </div>
+                      </div>
+
+                      <form role="form" class="col-sm-12 code-form">
+                        <fieldset>
+                          <div class="form-group login-buttons hide col-sm-12">
+                            <p>Use your registered phone number or email address to recieve a temporary login code</p><p>
+
+                            </p><p><strong>Send Code to:</strong></p>
+                            <p class="login-phone-code">My phone</p>
+                            <div class="login-phone login-phone-code" style="margin-bottom: 10px">
+                              <input type="text" class="country-code" disabled="" placeholder="1" value="1" maxlength="1"> 
+                              (<input type="text" class="region-code" placeholder="222" maxlength="3">)
+                              <input type="text" class="first-part" placeholder="333" maxlength="3"> –
+                              <input type="text" class="second-part" placeholder="4444" maxlength="4">
+                            </div>
+
+                            <p>My email address</p>
+                            <input class="login-email form-control col-sm-12" type="text" placeholder="my email">
+                            <button class="btn btn-lg btn-primary login-send-code col-sm-12" type="button">Send Code</button>
+                            <span class="text-success"></span>
+                          </div>
+
+                          <div class="form-group login-code hide col-sm-12">
+                            <input class="form-control" type="text" placeholder="Login Code">
+                          </div>
+
+                          <div class="form-group text-center submit-login-code hide col-sm-12">
+                            <button class="btn btn-lg btn-block btn-primary" type="button">Submit</button>
+                            <span class="text-danger"></span>
+                          </div>
+
+                          <!--
+                            <div class="form-group guest-login col-sm-12 text-center">
+                              <button class="btn btn-lg btn-block btn-default" type="submit">Guest Login</button>
+                              <small>for BIOMIO developers and QA</small>
+                            </div>
+
+                            <div class="form-group test-login col-sm-12 text-center">
+                              <button class="btn btn-lg btn-block btn-default" type="submit">Test Login</button>
+                              <small></small>
+                            </div>
+                          -->
+
+                        </fieldset>
+                      </form>
+
+
+
+
+
+
+                  </ul>
+              </li>
+          </ul> 
+          
+          <li class="visible-xs">
+            <a class="login profile-off" href="/#login"> <img src="/img/home/signin.png"> Log In</a>
+          </li>
+
+          <a class="profile-off signupbutton" href="/#signup"> <img src="/img/home/signup.png"> <div class="signupbuttontext">Register</div></a>
+          <!--</li>-->
+          <li style="list-style-type: none;" class="profile-on dropdown hide">
+          
+          <a class="dropdown-toggle" href="#user-info" data-toggle="dropdown"><span class="profile"></span> <b class="caret"></b></a>
+
+          <ul class="dropdown-menu pull-right" style="z-index: 1000;">
+            <li id="user_header"><a href="#user-info">User profile</a></li>
+            <hr>
+            <li class="dropdown-header provider-header">Provider</li>
+
+            <li id="add_provider"><a href="/provider/#signup">+ add provider</a></li>
+            <hr>
+            <li class="logout-menu pointer"><a>Log out</a></li>
+          </ul>
+        </li>
+      </div>
+    </div>
+  </div>
+</header></div>
+
+<div class="container extraWidth">
+	<div class="row">
+		<div id="sidebar" class=""></div>
+
+		<div id="content" class="col-md-12"><div><div class="sidesplash">
+  <div class="inner">
+    <div class="splashtext">
+      <div class="splashcapt"><strong>Biomio</strong>Sidekick</div>
+      <div class="splashacapt">Your best Defense against Ransomware</div>
+ 
+    
+    </div>
+          
+  </div>
+
+  
+</div>
+<div class='subsidesplash'>
+<img src='/img/sdsubheader.png'>
+</div>  
+<!-- CONTAINER 
+<div style='background-color:#7f3e98;'>
+<div class='inner'>
+<img src='img/undersplash.png' width=100%>
+</div>
+</div>
+-->
+
+  <div class='whiteblock'>
+ <div class="inner post">
+
+<!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+<form action="//biom.us9.list-manage.com/subscribe/post?u=659361c2763fba59859cfe775&amp;id=7c9c84da96" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+ <h2>Notify me when Sidekick is available</h2>
+<div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+<div class="mc-field-group">
+ <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+</label>
+ <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+</div>
+<div class="mc-field-group">
+ <label for="mce-FNAME">First Name </label>
+ <input type="text" value="" name="FNAME" class="" id="mce-FNAME">
+</div>
+<div class="mc-field-group input-group">
+    <strong>CrowdFunding Option </strong>
+    <ul><li><input type="checkbox" value="1" name="group[21929][1]" id="mce-group[21929]-21929-0"><label for="mce-group[21929]-21929-0">I'm interested in backing a crowd funding project for the Sidekick</label></li>
+</ul>
+</div>
+ <div id="mce-responses" class="clear">
+  <div class="response" id="mce-error-response" style="display:none"></div>
+  <div class="response" id="mce-success-response" style="display:none"></div>
+ </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_659361c2763fba59859cfe775_7c9c84da96" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<!--End mc_embed_signup-->
+</div>
+</div>
+
+
+  <div class="main-block">
+
+
+    <div class="inner post">
+      <h2>Why Sidekick?</h2>
+    <br><br>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/shDgBHUXnr8" frameborder="0" allowfullscreen></iframe>
+<br><br><br>     
+    
+<div class='ttext'>
+
+
+Ransomware is becoming a very big problem for both individuals and corporates alike.  
+The attacker gets into the victim's system either through a virus or directly and encrypts all the user files with their key.  The only way to recover those files is to pay the attacker a ransom to decrypt them.
+<br><br>  
+
+</div>  
+
+ 
+     
+    </div>
+    
+    <div class='grayblock'>
+ <div class="inner post">
+      <h2>Biomio Sidekick Features:</h2>    
+            
+<div class='sdtwocol'>
+
+<div class='sdcol'>
+<h3>Secure USB File Storage</h3>
+Save all your sensitive files onto the USB vault and never worry about having the wrong files get into the wrong hands.
+</div>
+
+<div class='sdcol'>
+<img src='/img/sdicon1.png'>
+</div>
+
+</div>    
+
+    
+</div>  
+</div>
+
+
+    <div class='whiteblock'>
+ <div class="inner post">
+              
+<div class='sdtwocol'>
+
+<div class='sdcol'>
+<img src='/img/sdicon2.png'>
+</div>
+
+<div class='sdcol'>
+<h3>State-of-the-art Configurable, Remote Authentication</h3>
+
+
+Verify identity when the drive is inserted, when folder is accessed, when file is opened - you get to decide.  The identity verification is quick and painless and allows for different modes of authentication based on device capabilities and user preferences
+
+</div>
+
+
+
+</div>    
+
+    
+</div>  
+</div>
+
+    <div class='grayblock'>
+ <div class="inner post">
+<div class='sdtwocol'>
+
+<div class='sdcol'>
+<h3>Computer and phone support</h3>
+
+
+Sidekick can be used with the computer or with the phone.  Good way to securely transfer and share files between your devices.
+
+</div>
+
+<div class='sdcol'>
+<img src='/img/sdicon3.png'>
+</div>
+
+</div>    
+
+    
+</div>  
+</div>
+
+
+    <div class='whiteblock'>
+ <div class="inner post">
+              
+<div class='sdtwocol'>
+
+<div class='sdcol'>
+<img src='/img/sdicon4.png'>
+</div>
+
+<div class='sdcol'>
+<h3>Easy 2nd Factor or Go Password-less*</h3>
+
+
+
+Access the browser applications without having to type in passwords (like iPhone's Touch ID) or use it as a 2nd factor.  
+
+</div>
+
+
+
+</div>    
+
+    
+</div>  
+</div>
+
+
+    <div class='grayblock'>
+ <div class="inner post">
+<div class='sdtwocol'>
+
+<div class='sdcol'>
+<h3>Email and Share Protected Files</h3>
+
+
+
+
+When you share a file from the 007 Drive, you have the power to decide how it is protected - what the recipient will have to do that open that file - via a shared secret, or by identifying themselves with a biometric, or even by sending you a picture of whoever has opened up that document.
+
+</div>
+
+<div class='sdcol'>
+<img src='/img/sdicon5.png'>
+</div>
+
+</div>    
+
+    
+</div>  
+</div>
+
+
+    <div class='whiteblock'>
+ <div class="inner post">
+              
+<div class='sdtwocol'>
+
+<div class='sdcol'>
+<img src='/img/sdicon6.png'>
+</div>
+
+<div class='sdcol'>
+<h3>Encrypted key storage</h3>
+
+Private keys is the most valuable commodity on your computer as they provide access to all of your encrypted data.  It makes sense to store them on an independently encrypted device.
+
+Bitcoin in particular is promoting cold storage of private keys on an offline computer or hardware wallet.  
+
+* via FIDO
+
+</div>
+
+
+
+</div>    
+
+    
+</div>  
+</div>
+
+
+
+
+    <div class='grayblock'>
+ <div class="inner post">
+<div class='sdtwocol'>
+
+<div class='sdcol'>
+<h3>Blockchain-based Peer-to-peer Backup</h3>
+
+
+
+All the files are automatically backed up across Sidekick devices that participate in the back up peer network.  The service uses available space on your drive to store parts of other people's files and vice versa with built-in redundancy and fault tolerance
+
+</div>
+
+<div class='sdcol'>
+<img src='/img/sdicon7.png'>
+</div>
+
+</div>    
+
+    
+</div>  
+</div>
+
+  
+
+  </div>
+
+
+
+
+<script>
+jQuery(document).ready(function ($) {
+  
+  var slideCount = $('#slider ul li').length;
+  var slideWidth = $('#slider ul li').width();
+  var slideHeight = $('#slider ul li').height();
+  var sliderUlWidth = slideCount * slideWidth;
+  
+  $('#slider').css({ width: slideWidth, height: slideHeight });
+  
+  $('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
+  
+    $('#slider ul li:last-child').prependTo('#slider ul');
+
+    function moveLeft() {
+        $('#slider ul').animate({
+            left: + slideWidth
+        }, 1000, function () {
+            $('#slider ul li:last-child').prependTo('#slider ul');
+            $('#slider ul').css('left', '');
+        });
+    };
+
+    function moveRight() {
+        $('#slider ul').animate({
+            left: - slideWidth
+        }, 1000, function () {
+            $('#slider ul li:first-child').appendTo('#slider ul');
+            $('#slider ul').css('left', '');
+        });
+    };
+
+    clearInterval(session_checker);
+    session_checker = setInterval(function () {
+        moveRight();
+    }, 7000);
+
+});    
+
+
+</script></div></div>
+		
+	</div>
+
+</div> <!-- /container -->
+
+<footer class="footer"><!--<hr>
+
+<ol class="breadcrumb text-center">
+  <li><a href="#about">About</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li><a href="#apis">APIs</a></li>
+  <li><a href="https://www.facebook.com/biomio123" style="background: #3b5998" class="badge">Facebook</a></li>
+  <li><a href="https://twitter.com/_biomio_" style="background: #55ACEE" class="badge">Twitter</a></li>
+  <li>&#169; BIOMIO 2014</li>
+</ol>
+
+<div class="navbar navbar-inverse navbar-static-top" role="banner" style='z-index: 1000;'>
+<div class="col-sm-12 container" style="vertical-align: middle; background: #ccc">
+	<div class="col-sm-3">
+		<h2>BIOM.IO</h2>
+		<p>All rights reserved | 2014<p>
+	</div>
+
+	<div class="col-sm-3">
+		<strong>Company</strong>
+		<ul>
+			<li>About</li>
+			<li>Contact</li>
+		</ul>
+	</div>
+
+	<div class="col-sm-3">
+		<strong>Stay in Touch</strong>
+		<ul>
+			<li>Facebook</li>
+			<li>Twitter</li>
+		</ul>
+	</div>
+
+	<div class="col-sm-3">
+		<strong>Investors</strong>
+		<ul>
+			<li><a href="https://angel.co">AngelList</a></li>
+		</ul>
+	</div>
+</div>
+<div>-->
+
+<!--
+<div class="container hide">
+	<div class="row">
+		<div class="col-sm-4 col-sm-offset-1" style="padding-left: 3%">
+			<h3>BIOM.IO</h3>
+			<small><a href="http://biom.io">biom.io</a> | <a src="tel:408-673-7780">408-673-7780</a></small><br>
+
+			<small>Complete Password-less Access Control</small>
+		</div>
+		<div class="col-sm-2">
+			<h5><strong>STAY IN TOUCH</strong></h5>
+			<ul style="margin-left: -75px">
+				<li><a href="https://www.facebook.com/biomio123"><img src="img/facebook_icon_gray.png"> &nbsp; Facebook </a></li>
+				<li><a href="https://twitter.com/_biomio_"><img src="img/twitter_icon_gray.png"> &nbsp; Twitter </a></li>
+			</ul>
+		</div>
+		<div class="col-sm-2">
+			<h5><strong>COMPANY</strong></h5>
+			<ul>
+				<li><a href="#about">About</a></li>
+				<li><a href="http://biom.io/#contact">Contact</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-2">
+			<h5><strong>INVESTORS</strong></h5>
+			<ul>
+				<li><a href="https://angel.co/biomio#" target="_blank">AngelList</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-12 text-right">
+			<img width="150" src="img/rackspace.png">
+		</div>
+	</div>
+</div>
+-->
+
+<!-- FOOTER -->
+<div class="overfooter post">
+  <footer>
+    <div class="inner">
+      <div class="f-cols clearfix">
+        <div class="f-col">
+          <div class="footlogo"> <img src="/img/home/footlogo.png"> <br>
+            All rights reserved | 2016
+            <br><br>
+340 S Lemon Ave #6825<br>
+Walnut, CA 91789
+
+          </div>
+          <div class="social-buttons col-sm-12" style="padding: 10px 0 0 0">
+            <a href="https://www.facebook.com/biomio123"><img width="36" src="/img/home/social2.png"></a>
+            <a href="https://twitter.com/_biomio_"><img width="36" src="/img/home/social1.png"></a>
+          </div>
+          
+         
+          
+
+<!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{ clear:left; }
+  #mc_embed_signup form {
+   padding: 0;
+   padding-top:15px;
+  } 
+  #mc_embed_signup input.email {
+  margin:0;
+  display:inline-block;
+  width:190px;
+  color:#555;
+  }
+  
+  #mc_embed_signup input.button {
+  display:inline-block;
+  width:70px;
+  margin:0;
+  margin-left:10px;
+  }
+
+
+.mc-modal{
+top: 140px !important;
+}
+@media 
+.modalContent{
+height: 50px;
+}
+  
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//biom.us9.list-manage.com/subscribe/post?u=659361c2763fba59859cfe775&amp;id=6833ddd2c9" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+    <div id="mc_embed_signup_scroll">
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required="">
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_659361c2763fba59859cfe775_6833ddd2c9" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--> 
+
+
+
+
+        </div>
+
+
+
+        <div class="f-col" style="width: 270px;">
+          <h2>Tweets from @_biomio_</h2>
+          <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 520px; height: 250px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px; min-height: 200px;" data-widget-id="637005832236986369" title="Twitter Timeline"></iframe>
+        </div>
+        <!--
+        <div class="f-col">
+          <h2>Biomio</h2>
+          <ul>
+            <li> <a class="disabled" href="#">Provider </a> </li>
+            <li> <a class="disabled" href="#">Solutions</a> </li>
+            <li> <a class="disabled" href="#">API</a> </li>
+          </ul>
+        </div>
+        -->
+        <div class="f-col">
+          <h2>Company</h2>
+          <ul>
+            <li> <a href="#about">About </a> </li>
+            <li> <a href="#contact">Contact</a> </li>
+          </ul>
+          <br>
+          <h2>Investors</h2>
+          <ul>
+            <li> <a href="https://angel.co/biomio#" target="_blank">AngelList </a> </li>
+          </ul>
+        </div>
+        
+        <!--
+        <div class="f-col">
+          <h2>Investors</h2>
+          <ul>
+            <li> <a href="https://angel.co/biomio# target="_blank"">AngelList </a> </li>
+          </ul>
+        </div>
+        -->
+        <div class="f-col">
+          <h2>Downloads</h2>
+          <ul>
+            <!--<li> <a class="disabled" href="#emailprotector">Chrome ext</a> </li>-->
+            <li> <a class="disabled" target="_bank" href="https://itunes.apple.com/us/app/biomio/id1044562871?ls=1&amp;mt=8">iPhone Authenticator</a> </li>
+              <li> <a class="disabled" target="_bank" href="https://chrome.google.com/webstore/detail/biomio-email-protector-fo/lgefcndmlikkmgielaeiflkmmgboljhm?hl=en">Email Protector Chrome Extension</a> </li>
+          
+          
+          </ul>
+          <br>
+          <h2>Developers</h2>
+          <ul>
+            <li> <a class="disabled" href="#developers">OAuth API</a> </li>
+            <li> <a class="disabled" href="#developers">Registration API</a> </li>
+          </ul>
+        </div>
+        
+        
+      </div>
+    </div>
+    <div class="subfooter clearfix">
+      <div class="inner">
+        <div class="sf-menu"> 
+          <a class="disabled" href="#">Privacy Policy</a> 
+          <a class="disabled" href="#">Terms of Use</a> </div>
+      </div>
+    </div>
+  </footer>
+</div>
+<!-- END FOOTER -->
+
+
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+</script>
+</footer>
+
+<div class="white_content hide">
+  <span class="close-box">x</span>
+  <div class="content-div"></div>
+</div>
+<div id="fade" class="black_overlay hide"></div>
+
+<div class="enable-media hide"></div>
+
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<!--script type="text/javascript" src="js/libs/moment.min.js"></script-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<!--
+<script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+-->
+<!--script type="text/javascript" src="js/libs/underscore.js"></script>
+<script type="text/javascript" src="js/libs/backbone.js"></script>
+<script type="text/javascript" src="js/libs/backbone-validation.js"></script>
+<script type="text/javascript" src="js/libs/backbone-paginator.js"></script>
+<script type="text/javascript" src="js/libs/bootbox.min.js"></script>
+<script type="text/javascript" src="js/libs/bootstrap-datetimepicker.min.js"></script>
+<!--<script type="text/javascript" src="js/libs/biomio-style.js"></script>-->
+<!--script type="text/javascript" src="js/libs/jquery.qrcode.min.js"></script>
+<script type="text/javascript" src="js/libs/jquery.tooltipster.min.js"></script>
+<script type="text/javascript" src="js/libs/bootstrap-switch.min.js"></script>
+
+<script type="text/javascript" src="js/libs/unslider.js"></script>
+
+<!-- Demid's Design -->
+<!--script src="js/libs/jquery.viewportchecker.js"></script>
+
+<!-- App -->
+<!--script src="js/home/app.js?v=1431971047"></script>
+
+<!-- Views -->
+<!--script src="js/home/views/home.js?v=1444244856"></script>
+<script src="js/home/views/about.js?v=1412647464"></script>
+<script src="js/home/views/googleapp.js?v=1454389160"></script>
+<script src="js/home/views/developers.js?v=1446844070"></script>
+<script src="js/home/views/mobilebeta.js?v=1447782067"></script>
+<script src="js/home/views/contact.js?v=1447459481"></script>
+<script src="js/home/views/login.js?v=1450374486"></script>
+<script src="js/home/views/settings.js?v=1427832606"></script>
+<script src="js/home/views/signup.js?v=1447783102"></script>
+<script src="js/home/views/wizard.js?v=1450734180"></script>
+<script src="js/home/views/header.js?v=1450374509"></script>
+<script src="js/home/views/footer.js?v=1412237987"></script>
+<script src="js/home/views/apis.js?v=1406103894"></script>
+<script src="js/home/views/splash.js?v=1445470167"></script>
+<script src="js/home/views/user.js?v=1413245345"></script>
+<script src="js/home/views/provider.js?v=1407698928"></script>
+<script src="js/home/views/location.js?v=1413245342"></script>
+<script src="js/home/views/website.js?v=1409208491"></script>
+<script src="js/home/views/page404.js?v=1447784556"></script>
+<script src="js/home/views/ssogateway.js?v=1458048411"></script>
+
+<script src="js/user/views/user_info.js?v=1446193456"></script>
+<script src="js/user/views/user_phone.js?v=1429902208"></script>
+<script src="js/user/views/user_services.js?v=1450371753"></script>
+<script src="js/user/views/user_mobile_devices.js?v=1447363604s"></script>
+<script src="js/user/views/user_fingerprints.js?v=1413230116"></script>
+<script src="js/user/views/user_face.js?v=1447363740"></script>
+<script src="js/user/views/user_iris.js?v=1406202564"></script>
+<script src="js/user/views/user_voice.js?v=1413184187"></script>
+<script src="js/user/views/user_resources.js?v=1406207338"></script>
+<script src="js/user/views/user_locations.js?v=1408789727"></script>
+<script src="js/user/views/user_devices.js?v=1430332204"></script>
+<script src="js/user/views/user_reporting.js?v=1410646940"></script>
+<script src="js/user/views/user_websites.js?v=1408355938"></script>
+
+<script src="js/provider/views/provider_info.js?v=1449604113"></script>
+<script src="js/provider/views/provider_locations.js?v=1409076053"></script>
+<script src="js/provider/views/provider_websites.js?v=1409208203"></script>
+<script src="js/provider/views/provider_policies.js?v=1406214991"></script>
+<script src="js/provider/views/provider_users.js?v=1408707707"></script>
+<script src="js/provider/views/provider_devices.js?v=1414439776"></script>
+<script src="js/provider/views/provider_reporting.js?v=1397676541"></script>
+<script src="js/provider/views/login_implementation.js?v=1445967395"></script>
+<script src="js/provider/views/captcha_implementation.js?v=1413729662"></script>
+<script src="js/provider/views/provider_api.js?v=1449777304"></script>
+
+<!-- Models -->
+<!--script src="js/home/models/home.js?v=1397676534"></script>
+<script src="js/home/models/about.js?v=1397676534"></script>
+<script src="js/home/models/contact.js?v=1399656337"></script>
+<script src="js/home/models/settings.js?v=1427834442"></script>
+<script src="js/home/models/apis.js?v=1397676534"></script>
+
+<script src="js/user/models/user_info.js?v=1429901529"></script>
+<script src="js/user/models/user_fingerprints.js?v=1401610268"></script>
+<script src="js/user/models/user_face.js?v=1408354346"></script>
+<script src="js/user/models/user_iris.js?v=1397676542"></script>
+<script src="js/user/models/user_voice.js?v=1397676541"></script>
+<script src="js/user/models/user_resources.js?v=1405269540"></script>
+<script src="js/user/models/user_locations.js?v=1408276378"></script>
+<script src="js/user/models/user_devices.js?v=1402042547"></script>
+<script src="js/user/models/user_reporting.js?v=1405899638"></script>
+<script src="js/user/models/user_websites.js?v=1408355911"></script>
+
+<script src="js/provider/models/provider_info.js?v=1405591841"></script>
+<script src="js/provider/models/provider_locations.js?v=1408784158"></script>
+<script src="js/provider/models/provider_websites.js?v=1408924725"></script>
+<script src="js/provider/models/provider_policies.js?v=1402221462"></script>
+<script src="js/provider/models/provider_users.js?v=1405911694"></script>
+<script src="js/provider/models/provider_devices.js?v=1402042555"></script>
+<script src="js/provider/models/provider_reporting.js?v=1397676539"></script>
+
+<!-- Collections -->
+<!--script src="js/user/collections/user_info.js?v=1398712607"></script>
+<script src="js/user/collections/user_fingerprints.js?v=1401609574"></script>
+<script src="js/user/collections/user_face.js?v=1408354335"></script>
+<script src="js/user/collections/user_iris.js?v=1398712606"></script>
+<script src="js/user/collections/user_voice.js?v=1398712602"></script>
+<script src="js/user/collections/user_resources.js?v=1405264532"></script>
+<script src="js/user/collections/user_locations.js?v=1405314438"></script>
+<script src="js/user/collections/user_devices.js?v=1401357295"></script>
+<script src="js/user/collections/user_reporting.js?v=1405889647"></script>
+<script src="js/user/collections/user_websites.js?v=1408355909"></script>
+
+<script src="js/provider/collections/provider_info.js?v=1397676541"></script>
+<script src="js/provider/collections/provider_locations.js?v=1408705226"></script>
+<script src="js/provider/collections/provider_websites.js?v=1408355467"></script>
+<script src="js/provider/collections/provider_policies.js?v=1406328214"></script>
+<script src="js/provider/collections/provider_users.js?v=1402261835"></script>
+<script src="js/provider/collections/provider_devices.js?v=1401992422"></script>
+<script src="js/provider/collections/provider_reporting.js?v=1398712639"></script>
+
+<!-- Supporting files -->
+<!--script src="js/forms/avaliable-devices.js?v=1405293661"></script>
+<script src="js/forms/avaliable-policies.js?v=1409046363"></script>
+<script src="js/forms/avaliable-locations.js?v=1409089893"></script>
+<script src="js/forms/paginator.js?v=1399229806"></script>
+<!--<script src="js/forms/biomio-verify.js"></script>-->
+<!--<script src="js/forms/fingerprint-common.js"></script>-->
+<!--<script src="js/forms/register-fingerprint.js"></script>-->
+<!--<script src="js/forms/verify-fingerprint.js"></script>-->
+
+<!-- Routers -->
+<!--script src="js/home/main.js?v=1458052933"></script>
+<script src="js/home/support.js?v=1450372518"></script>
+
+<!--<script src="biomio_login/audio/js/audiodisplay.js"></script>-->
+<!--<script src="biomio_login/audio/js/recorder.js"></script>-->
+<!--<script src="biomio_login/audio/js/main.js"></script>-->
+
+
+
+<iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;"></iframe></body></html>
