@@ -9,6 +9,10 @@ use \Slim\Http\Uri;
 $app->get('/', 'App\Controllers\IndexController:dispatch')->setName('index');
 
 
+
+$app->get('/users','App\Controllers\IndexController:get_all_users');
+
+
 $app->group('/splash/', function() use ($app){
     /*
     Require full re-implementration for splash.php
