@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Models;
-use \Mandrill;
-use Mailgun\Mailgun;
+
+require dirname(__DIR__) . '/../../vendor/autoload.php';
+
+use Mailgun\Mailgun as Mailgun;
 
 class Helper
 {
@@ -159,34 +161,19 @@ class Helper
                 'to'      => $to,
                 'subject' => $subject,
                 'text'    => $body));
-
-
-
-//        //require_once 'mandrill/Mandrill.php';
-//        try {
-//            $mandrill = new Mandrill('vyS5QUBZJP9bstzF1zeVNA');
-//            $message = array(
-//                'html' => $body,
-//                'subject' => $subject,
-//                'from_email' => $from,
-//                'from_name' => $from_name,
-//                'to' => array(
-//                    array(
-//                        'email' => $to,
-//                        'type' => 'to'
-//                    )
-//                )
-//            );
-//            $async = false;
-//            return $mandrill->messages->send($message, $async);
-//        } catch (Mandrill_Error $e) {
-//            // Mandrill errors are thrown as exceptions
-//            //echo 'A mandrill error occurred: ' . get_class($e) . ' - ' . $e->getMessage();
-//            // A mandrill error occurred: Mandrill_Unknown_Subaccount - No subaccount exists with the id 'customer-123'
-//            throw $e;
-//        }
-
     }
 
+    public static function sent_email($to, $subject, $body, $from, $from_name)
+    {
+        # Instantiate the client.
+        $mgClient = new Mailgun('key-22d04f5f1108f80acd648c9234c45546');
+        $domain = "mg.biom.io";
+
+        return $mgClient->sendMessage("$domain",
+            array('from'    => $from_name.' <'.$from.'>',
+                'to'      => $to,
+                'subject' => $subject,
+                'html'    => $body));
+    }
 
 }
