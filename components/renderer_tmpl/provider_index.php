@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <title>BIOMIO</title>
 
-    <meta name="Description" CONTENT="Biomio Authenticator adds Frictionless, Password-optional Multi-factor Authentication to Web Sites, SaaS, Mobile apps, IoT, and Files.">
+    <meta name="Description" CONTENT="Frictionless and Secure, Adaptive Multi-factor Authentication and Identity Verification Platform.  NIST 800-63 v5 compliant.  Open Source.">
 
     <link rel="shortcut icon" href="favicon.ico" >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">

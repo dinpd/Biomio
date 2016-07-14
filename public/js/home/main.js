@@ -108,6 +108,7 @@ var AppRouter = Backbone.Router.extend({
         var height = width / 1280 * 720;
         $(".about-video").height(height);
     },
+
     emailprotector: function () {
         this.main_navigation('home-menu');
         if (!this.googleappView) this.googleappView = new App.Views.GoogleApp();
