@@ -124,7 +124,12 @@ App.Views.userServices = Backbone.View.extend({
                   that.change_events();
                 });
 
-                var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
+                //var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
+
+                console.log('inside user_servicesz line 127');
+                console.log(chromeRuntimeKey);
+
+                var port = chrome.runtime.connect(chromeRuntimeKey);
                 port.postMessage({command: "is_registered"});
                 port.onMessage.addListener(function(response){
                     if (response.is_registered) {
@@ -306,7 +311,11 @@ App.Views.userServices = Backbone.View.extend({
         });
         */
         var code = $('.extention-verifcation-code').val();
-        var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
+        //var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
+        console.log('inside user_servicesz line 312' );
+        console.log(chromeRuntimeKey);
+
+        var port = chrome.runtime.connect(chromeRuntimeKey);
         port.postMessage({command: "register_biomio_extension", "data": {"secret_code":code}});
         port.onMessage.addListener(function(response){
             $('.have-extension').removeClass('hide');

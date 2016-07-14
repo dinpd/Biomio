@@ -380,7 +380,10 @@ App.Views.Signup = Backbone.View.extend({
                     //that.check_bioauth();
                 //}, 3000);
 
-                var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
+                //var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
+                console.log('in provider_signup file line 384: ' + chromeRuntimeKey);
+                var port = chrome.runtime.connect(chromeRuntimeKey);
+
                 port.postMessage({command: "run_auth", email: email, auth_code: code.toString()});
                 port.onMessage.addListener(function(response){
                     console.log(response);

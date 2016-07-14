@@ -1,6 +1,10 @@
 <?php
 include ('connect.php');
 
+use App\Models\Helper;
+include ( dirname(__DIR__) . '/../app/src/Models/Hepler.php');
+
+
 session_start();
 if (isset($_POST['name'])) {
 	$name = $_POST['name'];
@@ -25,10 +29,11 @@ if (isset($_POST['name'])) {
 	$body = str_replace('%code%', $code, $body);
 
 	$to = "alexander.lomov1@gmail.com";
-	monkey_mail($to, $subject, $body, $from, $from_name);
+	Helper::sent_email($to, $subject, $body, $from, $from_name);
+
 
 	$to = "ditkis@gmail.com";
-	monkey_mail($to, $subject, $body, $from, $from_name);
+	Helper::sent_email($to, $subject, $body, $from, $from_name);
 
 	/*
 	$headers = "From: $from\n";
@@ -36,10 +41,9 @@ if (isset($_POST['name'])) {
 	        $headers .= "Content-type: text/html; charset=iso-8859-1\n";
 	mail($to, $subject, $body, $headers);
 
-	$to = 'alexander.lomov1@gmail.com';	
+	$to = 'alexander.lomov1@gmail.com';
 	mail($to, $subject, $body, $headers);
 	*/
-
 
 	echo 'success';
 
@@ -47,7 +51,7 @@ if (isset($_POST['name'])) {
 	$code = $_POST['code'];
 
 	//echo $code;
-	
+
 	$result = mysqli_query($db_conx, "SELECT * FROM Splash WHERE code = '$code'") or die (mysqli_error());
 	if (mysqli_num_rows($result) == 0) {
 		echo "#incorrect";
@@ -101,14 +105,7 @@ if (isset($_POST['name'])) {
 			$body = str_replace('%name%', $name, $body);
 			$body = str_replace('%code%', $code, $body);
 
-			/*
-			$headers = "From: $from\n";
-			        $headers .= "MIME-Version: 1.0\n";
-			        $headers .= "Content-type: text/html; charset=iso-8859-1\n";
-			mail($to, $subject, $body, $headers);
-			*/
-
-			monkey_mail($to, $subject, $body, $from, $from_name);
+			Helper::sent_email($to, $subject, $body, $from, $from_name);
 
 			mysqli_query($db_conx, "UPDATE Splash SET invitation = 'yes' WHERE name = '$name' AND code = '$code'") or die (mysqli_error());
 
@@ -157,31 +154,3 @@ if (isset($_POST['name'])) {
 }
 
 
-
-function monkey_mail($to, $subject, $body, $from, $from_name) {
-
-	require_once 'mandrill/Mandrill.php';
-	try {
-	    $mandrill = new Mandrill('vyS5QUBZJP9bstzF1zeVNA');
-	    $message = array(
-	        'html' => $body,
-	        'subject' => $subject,
-	        'from_email' => $from,
-	        'from_name' => $from_name,
-	        'to' => array(
-	            array(
-	                'email' => $to,
-	                'type' => 'to'
-	            )
-	        )  
-	    );
-	    $async = false;
-	    $result = $mandrill->messages->send($message, $async);
-	} catch(Mandrill_Error $e) {
-	    // Mandrill errors are thrown as exceptions
-	    //echo 'A mandrill error occurred: ' . get_class($e) . ' - ' . $e->getMessage();
-	    // A mandrill error occurred: Mandrill_Unknown_Subaccount - No subaccount exists with the id 'customer-123'
-	    throw $e;
-	}
-
-}
