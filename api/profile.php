@@ -15,6 +15,8 @@ require ('./models/User.php');
 
 require 'Slim/Slim.php';
 
+$config = include ('../config/setting.php');
+
 \Slim\Slim::registerAutoloader();
 
 $app = new \Slim\Slim();
@@ -200,7 +202,8 @@ $app->post('/generate_biometrics_code/', function() use ($app) {
 	    	$result = $pdo->prepare("SELECT * FROM VerificationCodes WHERE code = :code");
 			$result->execute(array('code'=>$code));
     	} while ($result->rowCount() > 0);
-		$url = 'http://10.209.33.61/training?device_id=' . $key . '&code=' . $code;
+//		$url = 'http://10.209.33.61/training?device_id=' . $key . '&code=' . $code;
+		$url = $config['settings']['gateUrl'] . 'training?device_id=' . $key . '&code=' . $code;
 		send_post($url);
 
     	// insert code

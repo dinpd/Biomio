@@ -1,7 +1,10 @@
 <?php
 header('Access-Control-Allow-Origin: *');
+$config = include ('../config/setting.php');
 
-$pdo = new PDO('mysql:dbname=biomio_db_test; host=6da7f2ba42c999a5da5b0937632bd595a03f65c1.rackspaceclouddb.com', 'biomio_admin', 'admin');
+//$pdo = new PDO('mysql:dbname=biomio_db_test; host=6da7f2ba42c999a5da5b0937632bd595a03f65c1.rackspaceclouddb.com', 'biomio_admin', 'admin');
+$pdo = new PDO('mysql:dbname='.$config['db']['dbName'].'; host='.$config['db']['host'], $config['db']['user'], $config['db']['password']);
+
 
 $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -9,6 +12,7 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 require 'vendor/autoload.php';
 
 require_once '../php/NotORM.php';
+
 
 $db = new NotORM($pdo);
 
@@ -20,7 +24,9 @@ $app = new \Slim\Slim();
 
 $app->post('/check_email(/:email)', function($email) use ($app, $db) {
 
-	$pdo = new PDO('mysql:dbname=biomio_db_test; host=6da7f2ba42c999a5da5b0937632bd595a03f65c1.rackspaceclouddb.com', 'biomio_admin', 'admin');
+	//$pdo = new PDO('mysql:dbname=biomio_db_test; host=6da7f2ba42c999a5da5b0937632bd595a03f65c1.rackspaceclouddb.com', 'biomio_admin', 'admin');
+	$pdo = new PDO('mysql:dbname='.$config['db']['dbName'].'; host='.$config['db']['host'], $config['db']['user'], $config['db']['password']);
+
 	$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	
@@ -66,8 +72,9 @@ $app->post('/check_email(/:email)', function($email) use ($app, $db) {
 });
 
 $app->post('/check_code(/:code)', function($code) use ($app, $db) {
+	//$pdo = new PDO('mysql:dbname=biomio_db_test; host=6da7f2ba42c999a5da5b0937632bd595a03f65c1.rackspaceclouddb.com', 'biomio_admin', 'admin');
+	$pdo = new PDO('mysql:dbname='.$config['db']['dbName'].'; host='.$config['db']['host'], $config['db']['user'], $config['db']['password']);
 
-	$pdo = new PDO('mysql:dbname=biomio_db_test; host=6da7f2ba42c999a5da5b0937632bd595a03f65c1.rackspaceclouddb.com', 'biomio_admin', 'admin');
 	$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
