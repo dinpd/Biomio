@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <title>BIOMIO</title>
 
-    <meta name="Description" CONTENT="Complete, enterprise and cloud-ready, password-less access control.  Any device, anywhere. Drop it in into your active directory infrastructure or plug it into web or mobile application.">
+    <meta name="Description" CONTENT="Frictionless and Secure, Adaptive Multi-factor Authentication and Identity Verification Platform.  NIST 800-63 v5 compliant.  Open Source.">
 
     <link rel="shortcut icon" href="favicon.ico" >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -122,6 +122,7 @@
 <script src="<?php autoVer('js/home/views/about.js'); ?>"></script>
 <script src="<?php autoVer('js/home/views/googleapp.js'); ?>"></script>
 <script src="<?php autoVer('js/home/views/developers.js'); ?>"></script>
+<script src="<?php autoVer('js/home/views/zeroleak.js'); ?>"></script>
 <script src="<?php autoVer('js/home/views/mobilebeta.js'); ?>"></script>
 <script src="<?php autoVer('js/home/views/contact.js'); ?>"></script>
 <script src="<?php autoVer('js/home/views/login.js'); ?>"></script>

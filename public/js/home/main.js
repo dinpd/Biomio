@@ -14,6 +14,7 @@ var AppRouter = Backbone.Router.extend({
         //"account-settings"           : "settings",
         "about"                      : "about",
         "emailprotector"             : "emailprotector",
+        "zeroleak"                   : "zeroleak",
         "learnmore"                  : "learnmore",
         "developers"                 : "developers",
         "mobilebeta"                 : "mobilebeta",
@@ -108,7 +109,7 @@ var AppRouter = Backbone.Router.extend({
         var height = width / 1280 * 720;
         $(".about-video").height(height);
     },
-
+    
     emailprotector: function () {
         this.main_navigation('home-menu');
         if (!this.googleappView) this.googleappView = new App.Views.GoogleApp();
@@ -125,6 +126,13 @@ var AppRouter = Backbone.Router.extend({
         this.main_navigation('home-menu');
         if (!this.developersView) this.developersView = new App.Views.Developers();
         this.developersView.render();
+        this.footer();
+    },
+    
+    zeroleak: function () {
+        this.main_navigation('home-menu');
+        if (!this.zeroleakView) this.zeroleakView = new App.Views.Zeroleak();
+        this.zeroleakView.render();
         this.footer();
     },
     mobilebeta: function () {
@@ -642,6 +650,7 @@ $(document).ready(function() {
                     window.location.hash != '#emailprotector' &&
                     window.location.hash != '#learnmore' &&
                     window.location.hash != '#developers' &&
+                    window.location.hash != '#zeroleak' &&
                     window.location.hash != '#mobilebeta' &&
                     window.location.hash != '#404' &&
                     window.location.hash != '#thankyou' &&
@@ -676,6 +685,7 @@ function check_session() {
                     window.location.hash != '#emailprotector' &&
                     window.location.hash != '#learnmore' &&
                     window.location.hash != '#developers' &&
+                    window.location.hash != '#zeroleak' &&
                     window.location.hash != '#mobilebeta' &&
                     window.location.hash != '#404' &&
                     window.location.hash != '#thankyou' &&
