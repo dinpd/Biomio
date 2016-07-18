@@ -11,6 +11,7 @@
     # Rewrite rules for static content	
     RewriteCond %{REQUEST_URI} ^(?!/sidekick/).+ [NC]
     RewriteCond %{REQUEST_URI} ^(?!/sidekick2/).+ [NC]
+    RewriteCond %{REQUEST_URI} ^(?!/sidekick3/).+ [NC]
 
     # RewriteCond %{REQUEST_URI} ^(?!/profileData/).+ [NC]
 
