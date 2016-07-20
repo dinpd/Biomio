@@ -1,5 +1,5 @@
 App.Views.ProviderUsers = Backbone.View.extend({
-  el: $("#content"),
+    el: $("#content"),
     initialize:function () {
     },
     render:function () {
@@ -22,7 +22,7 @@ App.Views.ProviderUsers = Backbone.View.extend({
             success: function(data) {
                 if (data != '')
                     jQuery.each(data, function(j, user) {
-                      that.render_user(user);
+                        that.render_user(user);
                     });
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -56,8 +56,8 @@ App.Views.ProviderUsers = Backbone.View.extend({
 
         if (emails.length > 0) {
             bootbox.dialog({
-              message: "&nbsp;",
-              title: "",
+                message: "&nbsp;",
+                title: "",
             });
             $('.bootbox').css('z-index', '10001');
 
@@ -104,6 +104,6 @@ App.Views.ProviderUsers = Backbone.View.extend({
                 message('success', 'Success: ', 'the user has been deleted');
                 $('#user_' + userId).remove();
             }
-        }); 
+        });
     }
 });

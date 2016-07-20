@@ -42,7 +42,7 @@ App.Views.UserFace = Backbone.View.extend({
                 if (data != null)
                     jQuery.each(data, function(i, device) {
                         if (device.status == 1) {
-                            $('.mobile-devices .no-devices').addClass('hide'); 
+                            $('.mobile-devices .no-devices').addClass('hide');
                             $('.user-face .devices').append('<option value="' + device.id + '">' + device.title + '</option>');
                             $('.train-face').removeClass('btn-default').addClass('btn-primary').removeClass('disabled');
                         }
@@ -73,7 +73,7 @@ App.Views.UserFace = Backbone.View.extend({
     },
     check_biometrics_verification: function () {
         clearInterval(check);
-        check = setInterval(function(){ 
+        check = setInterval(function(){
             var code = $('.form-1-2 input').val();
             console.log('verification call for ' + code);
             if (code != '' && code != undefined)

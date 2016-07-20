@@ -1,91 +1,91 @@
 .container {
-  margin-top: 100px;
+    margin-top: 100px;
 }
 .link {
-  color: #33b5e5;
-  cursor: pointer;
-  font-size: 16px;
+    color: #33b5e5;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 .pointer {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .align {
-  padding: 5px 0;
-  display: inline-block;
+    padding: 5px 0;
+    display: inline-block;
 }
 
 .small-align {
-  padding: 8px 0;
-  display: inline-block;
-  color: #77B55A;
-  font-size: 16px;
+    padding: 8px 0;
+    display: inline-block;
+    color: #77B55A;
+    font-size: 16px;
 }
 
 .control-label {
-  /*font-size: 16px;*/
+    /*font-size: 16px;*/
 }
 
 .font16 {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 .right {
-  float: right;
+    float: right;
 }
 
 .blue {
-  background: #356fac;
+    background: #356fac;
 }
 
 .red {
-  color: #D9534F;
+    color: #D9534F;
 }
 
 .green {
-  color: #449D44;
+    color: #449D44;
 }
 
 .blackbox {
-  width: 30px;
-  height: 20px; display: inline-block; 
-  border: solid 1px #000; margin-right: 20px; vertical-align: top
+    width: 30px;
+    height: 20px; display: inline-block;
+    border: solid 1px #000; margin-right: 20px; vertical-align: top
 }
 
 .border {
-  border: 1px solid #ccc;
-  border-radius: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .device-on {
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  background: green;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: green;
 }
 
 .device-off {
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  background: red;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: red;
 }
 
 .finger-on {
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  background: green;
-  float: right;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: green;
+    float: right;
 }
 
 .finger-off {
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  background: red;
-  float: right;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: red;
+    float: right;
 }
 
 /*************************************
@@ -99,12 +99,12 @@ GRIDS
 
 /* Biomio Button */
 #biomio-button {
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
 }
 #biomio-fingerptint:hover {
-  box-shadow: 3px 0px 5px #888888;
+    box-shadow: 3px 0px 5px #888888;
 }
 
 /* Black and white boxes */
@@ -137,17 +137,17 @@ GRIDS
     border-radius: 10px;
 }
 .close-box {
-  text-decoration: none;
-  color: #999;
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  font-weight: bold;
+    text-decoration: none;
+    color: #999;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-weight: bold;
 }
 
 .close-box:hover {
-  cursor: pointer;
-  color: #555;
+    cursor: pointer;
+    color: #555;
 }
 
 #user_image_preview img, #provider_image_preview img, #location_image_preview img {
@@ -157,41 +157,41 @@ GRIDS
 }
 
 .active {
-  background: #eee;
-  font-color: #111;
-  text-decoration: none;
-  border-radius: 5px;
+    background: #eee;
+    font-color: #111;
+    text-decoration: none;
+    border-radius: 5px;
 }
 
 .temporary_highlight {
-  background: #99CCFF;
+    background: #99CCFF;
 }
 /* for #about page to make video full screen*/
 .extraWidth {
-  width: 100%;
-  padding: 0;
-  margin-top: 0;
+    width: 100%;
+    padding: 0;
+    margin-top: 0;
 }
 .extraWidth .row {
-  margin: 0;
+    margin: 0;
 }
 .extraWidth .row #content {
-  padding: 0;
+    padding: 0;
 }
 .extraWidth .jumbotron {
-  border-radius: 0;
+    border-radius: 0;
 }
 
 .large-progress {
-  width: 100%;
-  text-align: center;
-  margin-top: 80px;
+    width: 100%;
+    text-align: center;
+    margin-top: 80px;
 }
 
 .small-progress {
-  width: 100%;
-  text-align: center;
-  margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
 }
 
 
@@ -225,63 +225,63 @@ GRIDS
 */
 
 /* Webcam/Microphone allow */
-  .enable-media .media-allow {
-      position:absolute;
-      background: #FFF;
-      padding: 15px 5px 5px 5px;
-      border: 3px solid #eb1700;
-      z-index:1002;
-      overflow: auto;
-      border-radius: 10px;
-    }
+.enable-media .media-allow {
+    position:absolute;
+    background: #FFF;
+    padding: 15px 5px 5px 5px;
+    border: 3px solid #eb1700;
+    z-index:1002;
+    overflow: auto;
+    border-radius: 10px;
+}
 
-    .enable-media .windows-firefox-allow {
-      left:30px;
-      top: 150px;
-      height: 65px;
-      width: 450px;
-    }
+.enable-media .windows-firefox-allow {
+    left:30px;
+    top: 150px;
+    height: 65px;
+    width: 450px;
+}
 
-    .enable-media .mac-firefox-allow {
-      left:30px;
-      top: 150px;
-      height: 65px;
-      width: 450px;
-    }
+.enable-media .mac-firefox-allow {
+    left:30px;
+    top: 150px;
+    height: 65px;
+    width: 450px;
+}
 
-    .enable-media .windows-chrome-allow {
-      left:30px;
-      top: 5px;
-      height: 65px;
-      width: 450px;
-    }
+.enable-media .windows-chrome-allow {
+    left:30px;
+    top: 5px;
+    height: 65px;
+    width: 450px;
+}
 
-    .enable-media .mac-chrome-allow {
-      float: right;
-      right:30px;
-      top: 5px;
-      height: 65px;
-      width: 450px;
-    }
+.enable-media .mac-chrome-allow {
+    float: right;
+    right:30px;
+    top: 5px;
+    height: 65px;
+    width: 450px;
+}
 
-    .enable-media .windows-opera-allow {
-      left:0;
-      right:0;
-      top: 400px;
-      margin-left:auto;
-      margin-right:auto;
-      height: 65px;
-      width: 450px;
-    }
+.enable-media .windows-opera-allow {
+    left:0;
+    right:0;
+    top: 400px;
+    margin-left:auto;
+    margin-right:auto;
+    height: 65px;
+    width: 450px;
+}
 
-    .enable-media .mac-opera-allow {
-      left:0;
-      right:0;
-      top: 400px;
-      margin-left:auto;
-      margin-right:auto;
-      height: 65px;
-      width: 450px;
-    }
-  /* End Webcam/Microphone allow */
+.enable-media .mac-opera-allow {
+    left:0;
+    right:0;
+    top: 400px;
+    margin-left:auto;
+    margin-right:auto;
+    height: 65px;
+    width: 450px;
+}
+/* End Webcam/Microphone allow */
 

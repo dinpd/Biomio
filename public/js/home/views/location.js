@@ -1,32 +1,32 @@
 App.Views.SecureLocation = Backbone.View.extend({
-	el: $("#content"),
-	initialize:function () {
-		this.model.on('change', this.render, this);
-	},
-	render:function () {
-		if (this.model.id) {
-			if (this.model.get('owner') == window.profileId) 
-				var template = render('MyLocationView', this.model.toJSON());
-			else 
-				var template = render('LocationView', this.model.toJSON());
+    el: $("#content"),
+    initialize:function () {
+        this.model.on('change', this.render, this);
+    },
+    render:function () {
+        if (this.model.id) {
+            if (this.model.get('owner') == window.profileId)
+                var template = render('MyLocationView', this.model.toJSON());
+            else
+                var template = render('LocationView', this.model.toJSON());
 
-			this.$el.html( template );
-		    that = this;
-		    var time = new Date().getTime();
-	        $.ajax({
-	            url: 'profileData/locationPicture/' + that.model.id + '.jpg',
-	            success: function (data) {
-	                $('#location_image_preview').html('<img id="location_image" class="col-sm-12" style="padding: 0px; width: 100%" src ="profileData/locationPicture/' + that.model.id + '.jpg?' + time +'">');
-	                $("#location_image_delete").removeClass('disabled');  
+            this.$el.html( template );
+            that = this;
+            var time = new Date().getTime();
+            $.ajax({
+                url: 'profileData/locationPicture/' + that.model.id + '.jpg',
+                success: function (data) {
+                    $('#location_image_preview').html('<img id="location_image" class="col-sm-12" style="padding: 0px; width: 100%" src ="profileData/locationPicture/' + that.model.id + '.jpg?' + time +'">');
+                    $("#location_image_delete").removeClass('disabled');
                 },
-	            error: function (data) {
-	                $('#location_image_preview').html('<img id="location_image" class="col-sm-12" style="padding: 0px; width: 100%" src ="img/house.png">');
+                error: function (data) {
+                    $('#location_image_preview').html('<img id="location_image" class="col-sm-12" style="padding: 0px; width: 100%" src ="img/house.png">');
                 }
-	        });
-		} else {
-			window.location.hash = 'not-found';
-		}
-	},
+            });
+        } else {
+            window.location.hash = 'not-found';
+        }
+    },
     events: {
         'click .location-update-info'   : 'updateInfo',
         'click .location-save-changes'  : 'saveChanges',
@@ -47,29 +47,29 @@ App.Views.SecureLocation = Backbone.View.extend({
         var name        = $('#name').val();
         var description = $('#description').val();
         var map = $('#map').val();
-		map = map.substring(map.indexOf('src="') + 5, map.indexOf('" '));
-		if (map == '') map = this.model.get('map');
+        map = map.substring(map.indexOf('src="') + 5, map.indexOf('" '));
+        if (map == '') map = this.model.get('map');
 
 
         var street1   = $('#address_street1').val();
         var street2   = $('#address_street2').val();
         var continent = $('#continent option:selected').text();
-            if (continent.search('Select ') != -1 || continent.search('No Data ') != -1) continent = '';
+        if (continent.search('Select ') != -1 || continent.search('No Data ') != -1) continent = '';
         var country   = $('#country option:selected').text();
-            if (country.search('Select ') != -1 || country.search('No Data ') != -1) country = '';
+        if (country.search('Select ') != -1 || country.search('No Data ') != -1) country = '';
         var province  = $('#province option:selected').text();
-            if (province.search('Select ') != -1 || province.search('No Data ') != -1) province = '';
+        if (province.search('Select ') != -1 || province.search('No Data ') != -1) province = '';
         var region    = $('#region option:selected').text();
-            if (region.search('Select ') != -1 || region.search('No Data ') != -1) region = '';
+        if (region.search('Select ') != -1 || region.search('No Data ') != -1) region = '';
         var city      = $('#city option:selected').text();
-            if (city.search('Select ') != -1 || city.search('No Data ') != -1) city = '';
+        if (city.search('Select ') != -1 || city.search('No Data ') != -1) city = '';
         var postcode  = $('#address_postcode').val();
 
         //put
-        this.model.save({ name: name, description: description, map: map, address: 
-                {"street1": street1, "street2": street2, "continent": continent, 
-                "country": country, "province": province, "region": region, "city": city, 
-                "postcode": postcode}}, {
+        this.model.save({ name: name, description: description, map: map, address:
+        {"street1": street1, "street2": street2, "continent": continent,
+            "country": country, "province": province, "region": region, "city": city,
+            "postcode": postcode}}, {
             success: function (data) {
                 message('success', 'Success: ', 'Information successfully changed');
 
@@ -98,10 +98,10 @@ App.Views.SecureLocation = Backbone.View.extend({
         } else if (location == 'country') {
             postTo = 'province';
             $('#province, #region, #city').html('');
-        } else if (location == 'province') { 
+        } else if (location == 'province') {
             postTo = 'region';
             $('#region, #city').html('');
-        } else if (location == 'region') { 
+        } else if (location == 'region') {
             postTo = 'city';
             $('#city').html('');
         }
@@ -151,19 +151,19 @@ function locationPreviewImage (fileInput) {
     current = file;
     var imageType = /image.*/;
     var img = document.createElement("img");
-    
+
     img.classList.add("obj");
     img.classList.add("preview");
     img.file = file;
 
     var reader = new FileReader();
-    reader.onload = (function(aImg) { 
-        return function(e) { 
-            aImg.src = e.target.result; 
-        }; 
+    reader.onload = (function(aImg) {
+        return function(e) {
+            aImg.src = e.target.result;
+        };
     })(img);
     reader.readAsDataURL(file);
-      
+
     $("#location_image_preview").html(img);
     $("#location_image_preview img").addClass("col-sm-12").css("border-radius", "5px");
     $("#location_image_save").removeClass('disabled');
@@ -188,7 +188,7 @@ function locationSaveImage () {
         processData:false,
         contentType:false,
         success:function(data){
-            if(data == "Success"){          
+            if(data == "Success"){
                 $('#location_image_progress').css("color","green");
                 $('#location_image_progress').text("Upload Success!");
                 $("#location_image_delete").removeClass('disabled');
@@ -214,7 +214,7 @@ function locationDeleteImage () {
         processData:false,
         contentType:false,
         success:function(data){
-            if(data == "Success"){          
+            if(data == "Success"){
                 $('#location_image_progress').css("color","green");
                 $('#location_image_progress').text("Delete Success!");
                 $('#location_image_preview').html('<img id="location_image" class="col-sm-12" style="padding: 0px" src ="img/house.png">');

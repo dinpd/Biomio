@@ -18,7 +18,7 @@ App.Views.Signup = Backbone.View.extend({
     },
     verify_name: function (e) {
         var id = $(e.currentTarget).attr("id"); //automatically determines whether first_name or last name was changed
-        
+
         var nameRegex = /[^a-z0-9_-]/gi; //allowed symbols for name; the rest will be removed on fly
         var name = $("#" + id).val();
         name = name.replace(nameRegex, "");
@@ -28,7 +28,7 @@ App.Views.Signup = Backbone.View.extend({
         var email = $("#sign_in_email").val();
         var emailRegex = /\b[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,4}\b/;
         email_check = emailRegex.test(email)
-        
+
         if (!email_check) {
             $('#sign_in_email_group').removeClass("has-success").addClass("has-warning");
             $('#sign_in_email_span').text('E-mail has incorrect formatting');
@@ -81,7 +81,7 @@ App.Views.Signup = Backbone.View.extend({
                         window.profileFirstName = first_name;
                         window.profileLastName = last_name;
                         window.profileType = type;
-                        
+
                         window.location.hash = 'wizard/1';
 
                         console.log(' ');

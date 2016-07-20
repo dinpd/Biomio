@@ -4,8 +4,8 @@ App.Views.UserDevicesMain = Backbone.View.extend({
   initialize:function () {
   },
   render:function () {
-      var template = render('UserDevicesView', {});
-      this.$el.html( template );
+    var template = render('UserDevicesView', {});
+    this.$el.html( template );
   }
 });
 
@@ -56,7 +56,7 @@ App.Views.UserDevice = Backbone.View.extend({
           message('danger', 'Error: ', data);
         }
       });
-    }); 
+    });
   },
   submitDevice: function (e) {
     e.preventDefault();
@@ -91,8 +91,8 @@ App.Views.UserDevice = Backbone.View.extend({
 App.Views.UserDevices = Backbone.View.extend({
   el: $(".user_devices"),
   initialize: function () {
-      this.collection.on('add', this.addOne, this);
-      this.collection.on('reset', this.render, this);
+    this.collection.on('add', this.addOne, this);
+    this.collection.on('reset', this.render, this);
   },
   render: function () {
     this.collection.each(this.addOne, this);
@@ -116,13 +116,13 @@ App.Views.UserAddDevice = Backbone.View.extend({
     'click .user-devices-submit': 'submitForm',
   },
   addDevice: function(e) {
-      $('.user-devices-add').addClass('hide');
-      $('.user_devices_form').removeClass('hide');
+    $('.user-devices-add').addClass('hide');
+    $('.user_devices_form').removeClass('hide');
 
   },
   cancelForm: function(e) {
-      $('.user_devices_form').addClass('hide');
-      $('.user-devices-add').removeClass('hide');
+    $('.user_devices_form').addClass('hide');
+    $('.user-devices-add').removeClass('hide');
 
   },
   submitForm: function(e) {

@@ -43,13 +43,13 @@ App.Views.userMobileDevices = Backbone.View.extend({
                 if (data != null)
                     jQuery.each(data, function(i, device) {
                         var template = render('forms/MobileDevice', {id: device.id, title: device.title, status: device.status, face: window.face});
-                        $('.mobile-devices').append(template); 
+                        $('.mobile-devices').append(template);
                     });
             }
         });
     },
     add_application: function (e) {
-	e.preventDefault();
+        e.preventDefault();
         $('.form-1-2, .form-1-3, .form-1-4, .form-1-5').addClass('hide');
         $('.form-1-1').removeClass('hide');
 
@@ -57,7 +57,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
         var id = $('.form-1-1 input').val();
         var name = $('.add-1 input').val();
         if (name.length < 2) message('danger', 'Error: ', "Device name should be at least 2 symbols");
-        else 
+        else
             $.ajax({
                 type: 'POST',
                 //url: 'php/login.php',
@@ -72,7 +72,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
                     that.generate_code();
 
                     var template = render('forms/MobileDevice', {id: data, title: name, status: 0});
-                    $('.mobile-devices').append(template); 
+                    $('.mobile-devices').append(template);
                 }
             });
     },
@@ -173,7 +173,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
         });
     },
     check_device_verification: function () {
-        var check = setInterval(function(){ 
+        var check = setInterval(function(){
             var code = $('#qr_code_text strong').text();
             console.log('verification call for ' + code);
             if (code != '' && code != undefined)
@@ -200,7 +200,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
         var timer = 300;
 
         clearInterval(check);
-        check = setInterval(function(){ 
+        check = setInterval(function(){
             var code = $('.form-1-2 input').val();
             console.log('verification call for ' + code);
             if (code != '' && code != undefined)
@@ -245,3 +245,4 @@ App.Views.userMobileDevices = Backbone.View.extend({
         }, 3000);
     }
 });
+

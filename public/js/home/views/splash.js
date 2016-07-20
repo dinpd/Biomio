@@ -32,7 +32,7 @@ App.Views.Splash = Backbone.View.extend({
         } else {
             $('.splash-apply-group').removeClass("has-warning");
             $('.splash-apply-help').text('');
-            
+
             $.ajax({
                 url: 'php/splash.php',
                 method: 'POST',
@@ -52,20 +52,20 @@ App.Views.Splash = Backbone.View.extend({
         var code = $('.splash-code').val();
 
         $.ajax({
-                url: 'php/splash.php',
-                method: 'POST',
-                data: {code: code},
-                success: function(data) {
-                    if (data == '#error' || data == '') {
-                        alert("error occured, please try again");
-                    } else if (data == '#incorrect') {
-                        alert("wrong invitation code");
-                    } else {
-                        alert("Welcome " + data);
-                        window.location = './';
-                    }
+            url: 'php/splash.php',
+            method: 'POST',
+            data: {code: code},
+            success: function(data) {
+                if (data == '#error' || data == '') {
+                    alert("error occured, please try again");
+                } else if (data == '#incorrect') {
+                    alert("wrong invitation code");
+                } else {
+                    alert("Welcome " + data);
+                    window.location = './';
                 }
-            });
+            }
+        });
     },
     verifyName: function (event) {
         var nameRegex = /[^ a-z0-9]/gi;
