@@ -22,7 +22,7 @@ if (isset($_POST['cmd'])) {
 			for($i=0;$i<10;$i++) {
 				$line_start = rand()%40;
 				$line_end = $line_start + rand(-20, 20);
-				imageline($image,0,$line_start,200,$line_end,$line_color); // adding 10 lines (x1, y1, x2, y2)
+			    imageline($image,0,$line_start,200,$line_end,$line_color); // adding 10 lines (x1, y1, x2, y2)
 			}
 
 			// 3) Adding vertical line
@@ -30,14 +30,14 @@ if (isset($_POST['cmd'])) {
 			for($i=0;$i<20;$i++) {
 				$line_start = rand()%200;
 				$line_end = $line_start + rand(-20, 20);
-				imageline($image,$line_start,0,$line_end,40,$line_color); // adding 10 lines (x1, y1, x2, y2)
+			    imageline($image,$line_start,0,$line_end,40,$line_color); // adding 10 lines (x1, y1, x2, y2)
 			}
 
 			// 4) Adding dots
 			$pixel_color = imagecolorallocate($image, 30,71,183); // dot color
 			for($i=0;$i<1000;$i++) {
-				imagesetpixel($image,rand()%200,rand()%40,$pixel_color); // add 1000 dots
-			}
+			    imagesetpixel($image,rand()%200,rand()%40,$pixel_color); // add 1000 dots
+			}  
 
 			// 5) Adding text
 			$letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890123456789';
@@ -47,23 +47,23 @@ if (isset($_POST['cmd'])) {
 			$font = 'fonts/Arial.ttf';
 
 			for ($i = 0; $i< 6;$i++) {
-				$letter = $letters[rand(0, $len-1)];
-				$angle = rand(-5, 5);
-				imagettftext($image, 20, $angle, 19+($i*30), 31, $text_shadow, $font, $letter); // add shadow
-				imagettftext($image, 20, $angle, 18+($i*30), 30, $text_color, $font, $letter); //add text
-				$word.=$letter;
+			    $letter = $letters[rand(0, $len-1)];
+			    $angle = rand(-5, 5);
+			    imagettftext($image, 20, $angle, 19+($i*30), 31, $text_shadow, $font, $letter); // add shadow
+			    imagettftext($image, 20, $angle, 18+($i*30), 30, $text_color, $font, $letter); //add text
+			    $word.=$letter;
 			}
 			$_SESSION['captcha'] = $word;
 			$_SESSION['bio_captcha'] = 0;
 
-			ob_start();
+        	ob_start();
 			imagepng($image);
 			$buffer = ob_get_clean();
 			ob_end_clean();
 			echo base64_encode($buffer);
 
 
-			break;
+		break;
 
 		case 'check_code':
 			if (isset($_SESSION['captcha'])) {
@@ -77,16 +77,16 @@ if (isset($_POST['cmd'])) {
 					contact($name, $email, $message);
 					echo '#success';
 					session_unset();     // unset $_SESSION variable for the run-time 
-					session_destroy();   // destroy session data in storage
+				    session_destroy();   // destroy session data in storage
 				} else {
 					echo '#captcha';
 					session_unset();     // unset $_SESSION variable for the run-time 
-					session_destroy();   // destroy session data in storage
+				    session_destroy();   // destroy session data in storage
 				}
 			} else {
 				echo '#session';
 			}
 
-			break;
+		break;
 	}
 }

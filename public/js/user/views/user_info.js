@@ -76,15 +76,15 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
                     window.profileFirstName = first_name;
                     window.profileLastName = last_name;
 
-                    if ((window.profileFirstName == null && window.profileLastName == null) || (window.profileFirstName == '' && window.profileLastName == ''))
-                    { $('.profile').html('User'); $('#span_name').html('<p class="content small-align">no information</p>'); }
-                    else if (window.profileFirstName == null || window.profileFirstName == '')
-                    { $('.profile').html(window.profileLastName); $('#span_name').html(window.profileLastName); }
-                    else if (window.profileLastName == null || window.profileLastName == '')
-                    { $('.profile').html(window.profileFirstName); $('#span_name').html(window.profileFirstName); }
-                    else
-                    { $('.profile').html(window.profileFirstName + ' ' + window.profileLastName); $('#span_name').html(window.profileFirstName + ' ' + window.profileLastName); }
-                } else
+                    if ((window.profileFirstName == null && window.profileLastName == null) || (window.profileFirstName == '' && window.profileLastName == '')) 
+                        { $('.profile').html('User'); $('#span_name').html('<p class="content small-align">no information</p>'); }
+                    else if (window.profileFirstName == null || window.profileFirstName == '') 
+                        { $('.profile').html(window.profileLastName); $('#span_name').html(window.profileLastName); }
+                    else if (window.profileLastName == null || window.profileLastName == '') 
+                        { $('.profile').html(window.profileFirstName); $('#span_name').html(window.profileFirstName); }
+                    else 
+                        { $('.profile').html(window.profileFirstName + ' ' + window.profileLastName); $('#span_name').html(window.profileFirstName + ' ' + window.profileLastName); }
+                } else 
                     message('danger', 'Error: ', 'reload the page and try again');
 
                 $(".form").addClass('hide');
@@ -102,7 +102,7 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         $(".form").removeClass('hide');
 
         this.generateLocationList(6295630,'continent','continent'); //get list of continents to start geolocation
-
+        
         var education = this.model.get('education'); // select real education from the list
         $("#education option").filter(function() { return this.text == education; }).attr('selected', true);
     },
@@ -119,15 +119,15 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         var street1   = $('#address_street1').val();
         var street2   = $('#address_street2').val();
         var continent = $('#continent option:selected').text();
-        if (continent.search('Select ') != -1 || continent.search('No Data ') != -1) continent = '';
+            if (continent.search('Select ') != -1 || continent.search('No Data ') != -1) continent = '';
         var country   = $('#country option:selected').text();
-        if (country.search('Select ') != -1 || country.search('No Data ') != -1) country = '';
+            if (country.search('Select ') != -1 || country.search('No Data ') != -1) country = '';
         var province  = $('#province option:selected').text();
-        if (province.search('Select ') != -1 || province.search('No Data ') != -1) province = '';
+            if (province.search('Select ') != -1 || province.search('No Data ') != -1) province = '';
         var region    = $('#region option:selected').text();
-        if (region.search('Select ') != -1 || region.search('No Data ') != -1) region = '';
+            if (region.search('Select ') != -1 || region.search('No Data ') != -1) region = '';
         var city      = $('#city option:selected').text();
-        if (city.search('Select ') != -1 || city.search('No Data ') != -1) city = '';
+            if (city.search('Select ') != -1 || city.search('No Data ') != -1) city = '';
         var postcode  = $('#address_postcode').val();
 
         var facebook = $('#facebook').val();
@@ -135,11 +135,11 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         var linkedin = $('#linkedin').val();
         var google   = $('#google').val();
 
-        var user_array = {firstName: firstName, lastName: lastName, motto: motto,
-            address: {"street1": street1, "street2": street2, "continent": continent,
-                "country": country, "province": province, "region": region, "city": city,
-                "postcode": postcode}, education: education,
-            occupation: occupation, bday: bday, socialBar: {"facebook": facebook,
+        var user_array = {firstName: firstName, lastName: lastName, motto: motto, 
+                address: {"street1": street1, "street2": street2, "continent": continent, 
+                "country": country, "province": province, "region": region, "city": city, 
+                "postcode": postcode}, education: education, 
+                occupation: occupation, bday: bday, socialBar: {"facebook": facebook, 
                 "twitter": twitter, "linkedin": linkedin, "google": google}};
 
         console.log(this.model);
@@ -173,10 +173,10 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         } else if (location == 'country') {
             postTo = 'province';
             $('#province, #region, #city').html('');
-        } else if (location == 'province') {
+        } else if (location == 'province') { 
             postTo = 'region';
             $('#region, #city').html('');
-        } else if (location == 'region') {
+        } else if (location == 'region') { 
             postTo = 'city';
             $('#city').html('');
         }
@@ -218,12 +218,12 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         $('.webcam_content, .webcam_overlay').removeClass('hide');
 
         this.canvas = document.getElementById("user_info_canvas"),
-            context = this.canvas.getContext("2d"),
-            video = document.getElementById("user_info_video"),
-            videoObj = { "video": true },
-            errBack = function(error) {
-                console.log("Video capture error: ", error.code);
-            };
+        context = this.canvas.getContext("2d"),
+        video = document.getElementById("user_info_video"),
+        videoObj = { "video": true },
+        errBack = function(error) {
+            console.log("Video capture error: ", error.code); 
+        };
 
         if(window.navigator.getUserMedia) {
             window.navigator.getUserMedia(videoObj, function(stream) {
@@ -247,7 +247,7 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         if(window.navigator.getUserMedia) {
             video.pause();
             video.src=null;
-        }
+        } 
         else if(window.navigator.mozGetUserMedia) {
             video.pause();
             video.mozSrcObject=null;
@@ -255,7 +255,7 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         else if(window.navigator.webkitGetUserMedia) {
             video.pause();
             video.src="";
-        }
+        }  
     },
     snap: function(){
         var context = this.canvas.getContext("2d");
@@ -277,7 +277,7 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
 
         that = this;
         that.done();
-
+        
         $.ajax({
             //url:"php/uploadPicture.php",
             url:"/upload/profilePictureWebcam",
@@ -285,11 +285,11 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
             data: formdata,
             processData:false,
             contentType:false,
-            success:function(data){
+            success:function(data){    
                 $("#user_info_video").removeClass('hide');
                 $("#user_info_canvas").addClass('hide');
                 $("#user_info_snap").removeClass('hide');
-                $("#user_info_snap_again, #user_info_snap_save").addClass('hide');
+                $("#user_info_snap_again, #user_info_snap_save").addClass('hide'); 
 
                 $('#user_image_progress').css("color","green");
                 $('#user_image_progress').text("Upload Success!");
@@ -299,7 +299,7 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
                 $("#user_image_preview").html(image);
                 $("#user_image_preview img").addClass("col-sm-12").css("border-radius", "5px");
                 $("#user_image_preview img").css("padding", "0");
-
+                
                 $("#user_image_delete").removeClass('disabled');
             }
         });
@@ -323,7 +323,7 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
                 if (data != null)
                     jQuery.each(data, function(i, email) {
                         var template = render('forms/ProfileEmail', {id: email.id, email: email.email, verified: email.verified, primary: email.primary, extention: email.extention});
-                        $('.profile-emails').append(template);
+                        $('.profile-emails').append(template); 
                     });
             }
         });
@@ -336,7 +336,7 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         email_check = emailRegex.test(email)
         console.log(email);
         if (!email_check) message('danger', 'Error: ', "Email is in a wrong format");
-        else
+        else 
             $.ajax({
                 type: 'POST',
                 //url: 'php/login.php',
@@ -346,7 +346,7 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
                     $('.new-email').val('');
 
                     var template = render('forms/ProfileEmail', {id: data, email: email, verified: 0, primary: 0, extention: 0});
-                    $('.profile-emails').append(template);
+                    $('.profile-emails').append(template); 
                     $('.profile-emails .form').removeClass('hide');
                 }
             });
@@ -366,7 +366,7 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
                     $('.form-2-2 p strong').text(email);
                     $('.form-2-2').removeClass('hide');
                 } else {
-                    message('danger', 'Error: ', "please reload the page and try again");
+                    message('danger', 'Error: ', "please reload the page and try again"); 
                 }
             }
         });
@@ -422,9 +422,9 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
                     $('.registered').removeClass('hide');
                     jQuery.each(data, function(i, phone) {
                         var text =  '<div class="registered-number col-sm-12">' +
-                            '<div class="number col-sm-10 text-left">' + phone + '</div>' +
-                            '<div class="delete col-sm-2 text-left form hide"><button type="button" class="close" aria-hidden="true">&times;</button></div>' +
-                            '</div>';
+                                        '<div class="number col-sm-10 text-left">' + phone + '</div>' +
+                                        '<div class="delete col-sm-2 text-left form hide"><button type="button" class="close" aria-hidden="true">&times;</button></div>' +
+                                    '</div>';
                         $('.registered-numbers').append(text);
                     });
                 } else $('.not-registered').removeClass('hide');
@@ -456,7 +456,7 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         var phone = String($('.country-code').val()) + String($('.region-code').val()) + String($('.first-part').val()) + String($('.second-part').val());
         $('.invalid-code').addClass('hide');
         if (phone.length < 11) message('danger', 'Error: ', 'phone is in wrong format');
-        else
+        else 
             $.ajax({
                 type: 'POST',
                 //url: 'php/login.php',
@@ -483,13 +483,13 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
                     if (data != 0) {
                         $('.registered').removeClass('hide');
                         $('.not-registered').addClass('hide');
-
+                        
                         var text =  '<div class="registered-number col-sm-12">' +
-                            '<div class="number col-sm-10 text-left">' + data + '</div>' +
-                            '<div class="delete col-sm-2 text-left form"><button type="button" class="close" aria-hidden="true">&times;</button></div>' +
-                            '</div>';
+                                        '<div class="number col-sm-10 text-left">' + data + '</div>' +
+                                        '<div class="delete col-sm-2 text-left form"><button type="button" class="close" aria-hidden="true">&times;</button></div>' +
+                                    '</div>';
                         $('.registered-numbers').append(text);
-
+                                    
                         $('.invalid-code').addClass('hide');
                         $('.phone-step-2').addClass('hide');
 
@@ -506,7 +506,7 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
     delete_phone: function (e) {
         e.preventDefault();
         $this = $(e.currentTarget).closest('.registered-number');
-
+       
         $this.remove();
         var number = $this.find('.number').text()
         console.log(number);
@@ -542,19 +542,19 @@ function userPreviewImage (fileInput) {
     current = file;
     var imageType = /image.*/;
     var img = document.createElement("img");
-
+    
     img.classList.add("obj");
     img.classList.add("preview");
     img.file = file;
 
     var reader = new FileReader();
-    reader.onload = (function(aImg) {
-        return function(e) {
-            aImg.src = e.target.result;
-        };
+    reader.onload = (function(aImg) { 
+        return function(e) { 
+            aImg.src = e.target.result; 
+        }; 
     })(img);
     reader.readAsDataURL(file);
-
+      
     $("#user_image_preview").html(img);
     $("#user_image_preview img").addClass("col-sm-12").css("border-radius", "5px");
     $("#user_image_save").removeClass('disabled');
@@ -578,7 +578,7 @@ function userSaveImage () {
         processData:false,
         contentType:false,
         success:function(data){
-            if(data == "Success"){
+            if(data == "Success"){          
                 $('#user_image_progress').css("color","green");
                 $('#user_image_progress').text("Upload Success!");
                 $("#user_image_delete").removeClass('disabled');
@@ -603,7 +603,7 @@ function userDeleteImage () {
         processData:false,
         contentType:false,
         success:function(data){
-            if(data == "Success"){
+            if(data == "Success"){          
                 $('#user_image_progress').css("color","green");
                 $('#user_image_progress').text("Delete Success!");
                 $('#user_image_preview').html('<img id="user_image" class="col-sm-12" style="padding: 0px" src ="profileData/default-portrait.jpg">');

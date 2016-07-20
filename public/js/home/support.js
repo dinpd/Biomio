@@ -2,9 +2,9 @@ window.hash1 = '';
 
 function message(type, bold, text) {
     var alert = '<div class="text-center alert alert-dismissable alert-' + type + '">' +
-        '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
-        '<strong>' + bold + '</strong> ' + text +
-        '</div>';
+                '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+                '<strong>' + bold + '</strong> ' + text +
+            '</div>';
     $('#alert').html(alert);
 
     setTimeout(function() {
@@ -30,9 +30,9 @@ function get_yourself_a_cookie(cname) {
         if (c.indexOf(name) != -1) return c.substring(name.length,c.length);
     }
     return "";
-}
+} 
 
-$(document).on('click touchend', "#fade, .close-box", function () {
+$(document).on('click touchend', "#fade, .close-box", function () {    
     $('.white_content').addClass('hide');
     $('.black_overlay').addClass('hide');
     $('.content-div').html('');
@@ -197,15 +197,15 @@ function get_browser_info() {
     }
 
     var info = {
-        screen: screenSize,
-        browser: browser,
-        browserVersion: version,
-        mobile: mobile,
-        os: os,
-        osVersion: osVersion,
-        cookies: cookieEnabled,
-        flashVersion: flashVersion
-    };
+                screen: screenSize,
+                browser: browser,
+                browserVersion: version,
+                mobile: mobile,
+                os: os,
+                osVersion: osVersion,
+                cookies: cookieEnabled,
+                flashVersion: flashVersion
+            };
     return info;
 }
 
@@ -237,9 +237,9 @@ function enable_media(source){
     }
 
     var message = '<div class="' + head + ' media-allow alert alert-info">' +
-        '<a href="#" class="close" data-dismiss="alert">&times;</a>' +
-        '<strong> Please click <img height="30" src="/img/' + head + '.png"> to enable ' + source + ' <strong>' +
-        '</div>';
+                        '<a href="#" class="close" data-dismiss="alert">&times;</a>' +
+                        '<strong> Please click <img height="30" src="/img/' + head + '.png"> to enable ' + source + ' <strong>' +
+                    '</div>';
 
     $('.enable-media').html(message).removeClass('hide');
     setTimeout(function() {

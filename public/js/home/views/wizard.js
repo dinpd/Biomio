@@ -126,7 +126,7 @@ App.Views.Wizard = Backbone.View.extend({
     next_2: function(e) {
         e.preventDefault(e);
         console.log('next_2');
-
+        
         if (!$('.div-2-1').hasClass('hide')) {
             $('.div-2-1').addClass('hide');
             $('.div-2-2').removeClass('hide');
@@ -158,7 +158,7 @@ App.Views.Wizard = Backbone.View.extend({
                 var name = $('.div-2-2 .phone').val();
                 that = this;
                 if (name.length < 2) message('danger', 'Error: ', "Device name should be at least 2 symbols");
-                else
+                else 
                     $.ajax({
                         type: 'POST',
                         //url: 'php/login.php',
@@ -184,7 +184,7 @@ App.Views.Wizard = Backbone.View.extend({
                 $('.next-3').removeClass('btn-primary');
             }
         } else if (!$('.div-2-3').hasClass('hide')) {
-
+            
         } else if (!$('.div-2-4').hasClass('hide')) {
             $('.div-2').addClass('hide');
             $('.div-3').removeClass('hide');
@@ -197,7 +197,7 @@ App.Views.Wizard = Backbone.View.extend({
     next_3: function(e) {
         e.preventDefault(e);
         console.log('next_3');
-
+        
         $('.div-3').addClass('hide');
         //$('.div-4').removeClass('hide');
         $('.menu').removeClass('menu-active');
@@ -208,7 +208,7 @@ App.Views.Wizard = Backbone.View.extend({
     next_4: function(e) {
         e.preventDefault(e);
         console.log('next_4');
-
+        
         if (!$('.div-4-1').hasClass('hide')) {
             $('.div-4-1').addClass('hide');
             $('.div-4-2').removeClass('hide');
@@ -232,19 +232,19 @@ App.Views.Wizard = Backbone.View.extend({
 
         if (!$('.div-5-1').hasClass('hide')) {
             window.location.hash = 'user-info';
-        }
+        } 
     },
     prev_2: function(e) {
         e.preventDefault(e);
-
+        
     },
     prev_3: function(e) {
         e.preventDefault(e);
-
+        
     },
     prev_4: function(e) {
         e.preventDefault(e);
-
+        
     },
     generate_code: function (e) {
         that = this;
@@ -292,7 +292,7 @@ App.Views.Wizard = Backbone.View.extend({
     },
     check_device_verification: function () {
         that = this;
-        var check = setInterval(function(){
+        var check = setInterval(function(){ 
             var code = $('#qr_code_text').text();
             console.log('verification call for ' + code);
             if (code != '' && code != undefined && !$('.div-2-3').hasClass('hide'))
@@ -318,7 +318,7 @@ App.Views.Wizard = Backbone.View.extend({
         var that = this;
 
         clearInterval(check);
-        check = setInterval(function() {
+        check = setInterval(function() { 
             var code = $('#biometrics_code').text();
             console.log('verification call for ' + code);
             if (code != '' && code != undefined)
@@ -373,7 +373,7 @@ App.Views.Wizard = Backbone.View.extend({
                 $('.menu-4 span').removeClass('hide');
                 $('.next-4').text('Finish');
                 $('.next-4').addClass('btn-primary');
-            } else
+            } else 
                 $.ajax({
                     type: 'POST',
                     //url: 'php/login.php',
@@ -383,7 +383,7 @@ App.Views.Wizard = Backbone.View.extend({
                     success: function(data) {
                         //var img = new Image();
                         //img.onload = function () {
-                        //   context.drawImage(this, 0, 0, canvas.width, canvas.height);
+                         //   context.drawImage(this, 0, 0, canvas.width, canvas.height);
                         //}
                         //img.src = "data:image/png;base64," + data.image;
                         //$('.extention-verifcation-image').html(img);
@@ -409,7 +409,7 @@ App.Views.Wizard = Backbone.View.extend({
             $('.have-extension').removeClass('hide');
             $('.no-extention').addClass('hide');
 
-            if (response.result == true)
+            if (response.result == true) 
                 $.ajax({
                     type: 'POST',
                     //url: 'php/login.php',

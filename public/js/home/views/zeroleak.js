@@ -1,17 +1,14 @@
-App.Views.About = Backbone.View.extend({
-	el: $("#content"),
+App.Views.Zeroleak = Backbone.View.extend({
+    captcha: 0,
     initialize:function () {
         this.render();
-        $(window).on("resize", this.changeVideoHeight);
     },
     render:function () {
-        var template = render('ZeroLeak', {});
-        this.$el.html( template );
+        $("#content").html( render('ZeroleakView', {}) );
+        //this.captcha_get_image();
     },
-    changeVideoHeight: function() {
-    	var width = $(".about-video").width();
-        var height = width / 1280 * 720;
-        $(".about-video").height(height);
+    events: {
+        //"click #contact_submit": "submit",
+        //"click #captcha_refresh": "captcha_get_image",
     },
-
 });

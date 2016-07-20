@@ -4,8 +4,8 @@ App.Views.ProviderWebsitesMain = Backbone.View.extend({
   initialize:function () {
   },
   render:function () {
-    var template = render('ProviderWebsitesView', {});
-    this.$el.html( template );
+      var template = render('ProviderWebsitesView', {});
+      this.$el.html( template );
   }
 });
 
@@ -56,12 +56,12 @@ App.Views.ProviderWebsite = Backbone.View.extend({
           message('danger', 'Error: ', data);
         }
       });
-    });
+    }); 
   },
   submitWebsite: function (e) {
     e.preventDefault();
     var that = this;
-
+    
     var title = $('#provider_websites_title').val();
     var description = $('#provider_websites_description').val();
 
@@ -97,8 +97,8 @@ App.Views.ProviderWebsite = Backbone.View.extend({
 App.Views.ProviderWebsites = Backbone.View.extend({
   el: $(".provider_websites"),
   initialize: function () {
-    this.collection.on('add', this.addOne, this);
-    this.collection.on('reset', this.render, this);
+      this.collection.on('add', this.addOne, this);
+      this.collection.on('reset', this.render, this);
   },
   render: function () {
     this.collection.each(this.addOne, this);
@@ -126,13 +126,13 @@ App.Views.ProviderAddWebsite = Backbone.View.extend({
     'click .provider-website-checkbox [type="checkbox"]': 'categories',
   },
   addWebsite: function(e) {
-    $('.provider-websites-add').addClass('hide');
-    $('.provider_websites_form').removeClass('hide');
+      $('.provider-websites-add').addClass('hide');
+      $('.provider_websites_form').removeClass('hide');
 
   },
   cancelForm: function(e) {
-    $('.provider_websites_form').addClass('hide');
-    $('.provider-websites-add').removeClass('hide');
+      $('.provider_websites_form').addClass('hide');
+      $('.provider-websites-add').removeClass('hide');
 
   },
   submitForm: function(e) {
@@ -141,10 +141,10 @@ App.Views.ProviderAddWebsite = Backbone.View.extend({
 
     var title = $('#provider_websites_title').val();
     var description = $('#provider_websites_description').val();
-
+  
     var categories = new Array();
     $('.provider-website-checkbox [type="checkbox"]:checked').each(function() {
-      categories.push(this.value);
+        categories.push(this.value);
     });
 
     var domains = new Array();
@@ -203,38 +203,38 @@ App.Views.ProviderAddWebsite = Backbone.View.extend({
     e.preventDefault();
     var domain  = $('#provider_websites_domain').val();
     var urlRegex = /[^a-z0-9._-]/gi;
-    var domain = domain.replace(urlRegex, "");
-
+    var domain = domain.replace(urlRegex, ""); 
+    
     var that = this;
     if (!urlRegex.test(domain)) {
 
       $.ajax({
-        // url: 'php/checkDomain.php',
-        url: '/domain/create',
-        method: 'POST',
-        data: {cmd: 'create', domain: domain},
-        success: function(data) {
-          data = data.split('|');
+         // url: 'php/checkDomain.php',
+          url: '/domain/create',
+          method: 'POST',
+          data: {cmd: 'create', domain: domain},
+          success: function(data) {
+            data = data.split('|');
 
-          $('#file').text(data[0]);
-          $('#code').text(data[1]);
-          $('.verification').removeClass('hide');
+            $('#file').text(data[0]);
+            $('#code').text(data[1]);
+            $('.verification').removeClass('hide');
 
-          $('.file-download').attr('href','profileData/tempWebsiteFiles/' + data[0]);
-        }
+            $('.file-download').attr('href','profileData/tempWebsiteFiles/' + data[0]);
+          }
       });
 
       $.ajax({
-        // url: 'php/checkDomain.php',
-        url: '/domain/createScreenshot',
-        method: 'POST',
-        data: {cmd: 'createScreenshot', domain: domain},
-        success: function(data) {
-          if (data == '') {
-            var time = new Date().getTime();
-            $('#website_screenshot_preview').html('<img id="user_image" class="img-responsive" style="padding: 0px" src ="profileData/websiteScreenshot/' + domain + '.png?' + time +'">');
+         // url: 'php/checkDomain.php',
+          url: '/domain/createScreenshot',
+          method: 'POST',
+          data: {cmd: 'createScreenshot', domain: domain},
+          success: function(data) {
+            if (data == '') {
+              var time = new Date().getTime();
+              $('#website_screenshot_preview').html('<img id="user_image" class="img-responsive" style="padding: 0px" src ="profileData/websiteScreenshot/' + domain + '.png?' + time +'">');
+            }
           }
-        }
       });
     }
   },
@@ -244,18 +244,18 @@ App.Views.ProviderAddWebsite = Backbone.View.extend({
     var that = this;
     if (domain != '') {
       $.ajax({
-        //url: 'php/checkDomain.php',
-        url: '/domain/verify',
-        method: 'POST',
-        data: {cmd: 'verify', domain: domain},
-        success: function(data) {
-          if (data == 'approved') {
-            $('.provider-websites-submit').removeClass('disabled');
-            $('.span-provider-websites-verify').removeClass('red').addClass('green').text('Website is verified');
-          } else {
-            $('.span-provider-websites-verify').removeClass('green').addClass('red').text('Website is not verified');
+          //url: 'php/checkDomain.php',
+          url: '/domain/verify',
+          method: 'POST',
+          data: {cmd: 'verify', domain: domain},
+          success: function(data) {
+            if (data == 'approved') {
+              $('.provider-websites-submit').removeClass('disabled');
+              $('.span-provider-websites-verify').removeClass('red').addClass('green').text('Website is verified');
+            } else {
+              $('.span-provider-websites-verify').removeClass('green').addClass('red').text('Website is not verified');
+            }
           }
-        }
       });
     }
   },

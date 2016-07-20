@@ -5,12 +5,12 @@ var AppRouter = Backbone.Router.extend({
         Backbone.history.on('route', function() { this.routesHit++; }, this);
     },
     routes: {
-        //Home menu
+    //Home menu
         ""                           : "home",
         "signup"                     : "signup",
         "login"	                     : "login",
 
-        //User menu
+    //User menu
         "provider-info"              : "provider_info",
         "provider-users"             : "provider_users",
         "provider-api-key"           : "provider_api",
@@ -29,7 +29,7 @@ var AppRouter = Backbone.Router.extend({
             this.homeView = new App.Views.Home();
             $('#content').html(this.homeView.el);
         } else {
-            $('#content').html(this.homeView.el);
+           $('#content').html(this.homeView.el);
         }
         $('body').children(".container").addClass('extraWidth');
         this.footer();
@@ -42,12 +42,12 @@ var AppRouter = Backbone.Router.extend({
 
         $('#scroller').click(function () {$('body,html').animate({scrollTop: 0}, 400); return false;});
     },
-    login: function() {
+	login: function() {
         this.main_navigation('home-menu');
         if (!this.loginView) this.loginView = new App.Views.Login();
         this.loginView.render();
         this.footer();
-    },
+	},
     signup: function() {
         this.main_navigation('home-menu');
         if (!this.signupView) this.signupView = new App.Views.Signup();
@@ -187,7 +187,7 @@ $(document).ready(function() {
         success: function(data) {
             if (data.id != null) {
 
-                assign_user_data(data);
+            assign_user_data(data);
 
                 var app = new AppRouter();
                 Backbone.history.start();
@@ -231,17 +231,17 @@ function assign_user_data(data){
 
 
 function check_session() {
-    console.log('hey! provider check_session');
+console.log('hey! provider check_session');
     if (window.profileId == null || window.profileId == undefined) {
         if (window.location.hash != '#signup' &&
-            window.location.hash != '#signup') {
+                window.location.hash != '#signup') {
 
-            window.location = './#session';
+                window.location = './#session';
 
-            $('.profile-off').removeClass("hide");
-            $('.profile-on').addClass("hide");
+                $('.profile-off').removeClass("hide");
+                $('.profile-on').addClass("hide");
 
-            return false;
+                return false;
         }
     }
     return true;
@@ -279,7 +279,7 @@ function session_checker() {
     session_checker_interval = setInterval(function(){
 
         console.log('==setInterval== session_checker');
-        is_logged_in();
+    is_logged_in();
     }, 60000);
 }
 

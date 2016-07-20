@@ -22,6 +22,6 @@ App.Models.AccountSettings = Backbone.Model.extend({
                 }
             }
         });
-    },
+	},
 
 });

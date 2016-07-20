@@ -17,18 +17,18 @@ App.Views.Header = Backbone.View.extend({
             else $('.profile').html(window.profileFirstName + ' ' + window.profileLastName);
 
             $.ajax({
-                type: 'POST',
-                //url: '../php/provider.php',
-                url: '../provider/load_providers',
-                data: {cmd: "load_providers"},
-                dataType: "json",
-                success: function(data) {
-                    if (data != null)
-                        jQuery.each(data, function(j, provider) {
-                            $( ".provider-header" ).after('<li><a href="./session/' + provider.id + '">' + provider.name + '</a></li>');
-                        });
-                }
-            });
+            type: 'POST',
+            //url: '../php/provider.php',
+            url: '../provider/load_providers',
+            data: {cmd: "load_providers"},
+            dataType: "json",
+            success: function(data) {
+                if (data != null)
+                    jQuery.each(data, function(j, provider) {
+                        $( ".provider-header" ).after('<li><a href="./session/' + provider.id + '">' + provider.name + '</a></li>');
+                    });
+            }
+        });
 
         } else {
             $('.profile-off').removeClass("hide");
@@ -66,7 +66,7 @@ App.Views.Header = Backbone.View.extend({
                     console.log('session_checker:', session_checker);
 
                     clearInterval(session_checker_interval);
-
+                    
                     //switching tabs in pannel view
                     $('.profile-off').removeClass("hide");
                     $('.profile-on').addClass("hide");

@@ -18,13 +18,15 @@ final class IndexController
         $this->renderer = $renderer;
         $this->logger = $logger;
     }
-   
+
+    
 
     public function get_all_users(Request $request, Response $response, $args){
 	$users = User::get_all_users();
 	$this->renderer->render($response, '/users.php', array("users" => $users));
 	return $response;
     }
+
 
     public function dispatch(Request $request, Response $response, $args)
     {

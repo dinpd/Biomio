@@ -49,7 +49,7 @@ App.Views.Signup = Backbone.View.extend({
     },
     user_submit_check: function(e) {
         e.preventDefault(e);
-
+        
         var first_name = $('#sign_in_first_name').val();
         var last_name = $('#sign_in_last_name').val();
         var email = $('#sign_in_email').val();
@@ -76,7 +76,7 @@ App.Views.Signup = Backbone.View.extend({
                         window.profileFirstName = first_name;
                         window.profileLastName = last_name;
                         window.profileType = type;
-
+                        
                         provider_contact();
                     }
                     //if error, remove alert after 5 seconds
@@ -113,7 +113,7 @@ App.Views.Signup = Backbone.View.extend({
                     if (data == '#name') message('danger', 'Error: ', 'this name is already registered');
                     else if (data == '#session') message('danger', 'Error: ', 'sission error. Please log in');
                     else if (data == '#success') window.location.hash = '#provider-info';
-
+                    
                     //if error, remove alert after 5 seconds
                     setTimeout(function() {
                         $('#sign_in_submit_span').text('');
@@ -125,7 +125,7 @@ App.Views.Signup = Backbone.View.extend({
     //Signup
     verify_name: function (e) {
         var id = $(e.currentTarget).attr("id"); //automatically determines whether first_name or last name was changed
-
+        
         var nameRegex = /[^a-z0-9_-]/gi; //allowed symbols for name; the rest will be removed on fly
         var name = $("#" + id).val();
         name = name.replace(nameRegex, "");
@@ -135,7 +135,7 @@ App.Views.Signup = Backbone.View.extend({
         var email = $("#sign_in_email").val();
         var emailRegex = /\b[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,4}\b/;
         email_check = emailRegex.test(email)
-
+        
         if (!email_check) {
             $('#sign_in_email_group').removeClass("has-success").addClass("has-warning");
             $('#sign_in_email_span').text('E-mail has incorrect formatting');
@@ -188,7 +188,7 @@ App.Views.Signup = Backbone.View.extend({
                         window.profileFirstName = first_name;
                         window.profileLastName = last_name;
                         window.profileType = type;
-
+                        
                         provider_contact();
                     }
                     //if error, remove alert after 5 seconds
@@ -235,7 +235,7 @@ App.Views.Signup = Backbone.View.extend({
                         var profilePhone = data.phone; // number of phones
 
                         $('.login-phone-code').removeClass('hide');
-
+                        
                         console.log(face);
                         if (face != 999) {
                             $('.biometrics-login').removeClass('hide');
@@ -246,14 +246,14 @@ App.Views.Signup = Backbone.View.extend({
                                 $('.login-phone-code').addClass('hide');
 
                             /*window.location.replace(
-                             'http://biom.io:5000/user/authorize' +
-                             '?response_type=code' +
-                             '&scope=openid' +
-                             '&client_id=56ce9a6a93c17d2c867c5c293482b8f9' +
-                             //'&external_token=' + email + 
-                             '&redirect_uri=https://biom.io:4433/work/login.php' +
-                             '&nonce=12p6bfw' +
-                             '&state=1slw5l6');*/
+                                'http://biom.io:5000/user/authorize' +
+                                '?response_type=code' +
+                                '&scope=openid' +
+                                '&client_id=56ce9a6a93c17d2c867c5c293482b8f9' +
+                                //'&external_token=' + email + 
+                                '&redirect_uri=https://biom.io:4433/work/login.php' +
+                                '&nonce=12p6bfw' +
+                                '&state=1slw5l6');*/
 
                         } else {
                             alert('Biometrics Login is coming soon');
@@ -377,7 +377,7 @@ App.Views.Signup = Backbone.View.extend({
 
                 //clearInterval(check);
                 //check = setInterval(function() {
-                //that.check_bioauth();
+                    //that.check_bioauth();
                 //}, 3000);
 
                 //var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
@@ -420,7 +420,7 @@ App.Views.Signup = Backbone.View.extend({
                         $('.biometrics-login .biometrics-success').removeClass('hide');
                         that.check_bioauth();
                     }
-
+                        
                 });
             }
         });
@@ -487,10 +487,10 @@ App.Views.Signup = Backbone.View.extend({
                         var profilePhone = data.phone; // number of phones
 
                         $('.login-phone-code').removeClass('hide');
-
+                        
                         $('.login-email').val(email);
-                        if (profilePhone == 0)
-                            $('.login-phone-code').addClass('hide');
+                            if (profilePhone == 0)
+                                $('.login-phone-code').addClass('hide');
 
                         clearInterval(check);
                         $('.original-method').addClass('hide');
@@ -501,9 +501,9 @@ App.Views.Signup = Backbone.View.extend({
             });
     },
     refresh_methods: function() {
-        $('.login-buttons').addClass('hide');
-        $('.login-code').addClass('hide');
-        $('.submit-login-code').addClass('hide');
+        $('.login-buttons').addClass('hide');  
+        $('.login-code').addClass('hide');  
+        $('.submit-login-code').addClass('hide');  
         $('.original-method').removeClass('hide');
         $('.biometrics-login').removeClass('hide');
     }

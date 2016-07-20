@@ -26,7 +26,7 @@ App.Views.Developers = Backbone.View.extend({
         } else {
             $('.splash-apply-group').removeClass("has-warning");
             $('.splash-apply-help').text('');
-
+            
             $.ajax({
                 url: 'php/splash.php',
                 method: 'POST',
@@ -41,5 +41,5 @@ App.Views.Developers = Backbone.View.extend({
             });
         }
     },
-
+    
 });

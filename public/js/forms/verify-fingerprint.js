@@ -27,7 +27,7 @@ function startSnapshots() {
 
 function stopSnapshots() {
     block = 1;
-    snapshotInProgress = true;
+    snapshotInProgress = true; 
     clearInterval(snapshotTimer);//for some reason this doesn't work, so I use var block to stop
     localMediaStream.stop();
     $('body').removeClass('capturing');
@@ -93,7 +93,7 @@ function loadUser(username) {
         else window.LastName = "";
         window.Email = data.emails;
         $('body').addClass('user-loaded');
-
+        
         userId = data.id;
 
         render_form();
@@ -132,11 +132,11 @@ var processDaraURL = function(image) {
     }
 };
 
-$(document).on('click touchend', ".biomio-button", function (event) {
+$(document).on('click touchend', ".biomio-button", function (event) {    
     $('.biomio_user_form').removeClass("hide");
 });
 
-$(document).on('click touchend', ".biomio-cancel", function (event) {
+$(document).on('click touchend', ".biomio-cancel", function (event) {    
     $('.biomio_user_form').addClass("hide");
 });
 
@@ -146,7 +146,7 @@ function biomio_verify() {
         loadUser(username);
         block = 0;
 
-    } else
+    } else 
         $('.biomio-error').html("Please, enter your BIOMIO Username");
 }
 
@@ -176,34 +176,34 @@ function render_form() {
 function biomio_submit (api_id) {
     $.ajax({
         type: 'POST',
-        // url: 'php/login.php',
+       // url: 'php/login.php',
         url: '/login/biomio_login',
         dataType: "json",
         data: {cmd: "biomio_login", api_id: api_id},
         success: function(data) {
             if (data == '#email') $('#log_in_span_submit').text("we don't have this email address in our system");
-            else if (data == '#password') $('#log_in_span_submit').text("password is incorrect");
-            else {
-                window.profileName = data.username;
-                window.profileId = data.id;
-                window.profileApiId = data.api_id;
-                window.profileType = data.type;
+                else if (data == '#password') $('#log_in_span_submit').text("password is incorrect");
+                else {
+                    window.profileName = data.username;
+                    window.profileId = data.id;
+                    window.profileApiId = data.api_id;
+                    window.profileType = data.type;
 
-                //saving cookies - 30 days expiration
-                set_cookie('biomio_username', window.profileName, 30)
+                    //saving cookies - 30 days expiration
+                    set_cookie('biomio_username', window.profileName, 30)
 
-                //w8 for 2 seconds to enjoy 'Success' sign and redirect the user to the profile page
-                setTimeout(function() {
-                    if (data.type == 'USER') window.location.hash = 'user-info';
-                    else if (data.type == 'PROVIDER') window.location.hash = 'provider-info';
+                    //w8 for 2 seconds to enjoy 'Success' sign and redirect the user to the profile page
+                    setTimeout(function() {
+                        if (data.type == 'USER') window.location.hash = 'user-info';
+                        else if (data.type == 'PROVIDER') window.location.hash = 'provider-info';
 
-                    stopSnapshots();
-                    $('.white_content').addClass('hide');
-                    $('.black_overlay').addClass('hide');
-                    $('body').removeClass('match');
-                    $('.content-div').html('');
-                }, 1500);
-            }
+                        stopSnapshots();
+                        $('.white_content').addClass('hide');
+                        $('.black_overlay').addClass('hide');
+                        $('body').removeClass('match');
+                        $('.content-div').html('');
+                    }, 1500);
+                }
         }
     });
 }

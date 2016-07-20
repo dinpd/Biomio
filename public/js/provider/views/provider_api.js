@@ -1,5 +1,5 @@
 App.Views.ProviderApi = Backbone.View.extend({
-    el: $("#content"),
+	el: $("#content"),
     initialize:function () {
     },
     render:function () {
@@ -8,12 +8,12 @@ App.Views.ProviderApi = Backbone.View.extend({
         this.get_api_keys();
     },
     events: {
-        'click .generate-keys': 'generate_keys',
-        'click .delete-api-key': 'delete_key',
+      'click .generate-keys': 'generate_keys',
+      'click .delete-api-key': 'delete_key',
     },
     get_api_keys:function () {
-        var that = this;
-        $.ajax({
+    	var that = this;
+    	$.ajax({
             type: 'POST',
             //url: '../php/login.php',
             url: '../login/get_api_keys',
@@ -21,7 +21,7 @@ App.Views.ProviderApi = Backbone.View.extend({
             data: {cmd: "get_api_keys"},
             success: function(data) {
                 if (data != null)
-                    jQuery.each(data, function(i, keys) {
+                	jQuery.each(data, function(i, keys) {
                         that.render_key(keys.pub);
                     });
             },
@@ -33,15 +33,15 @@ App.Views.ProviderApi = Backbone.View.extend({
         });
     },
     render_key:function(pub) {
-        var text =  '<tr key="' + pub + '">' +
-            '<td>' + pub + '</td>' +
-            '<td><button type="button" class="close delete-api-key" aria-hidden="true">&times;</button></td>' +
-            '</tr>';
-        $('.api-keys').prepend(text);
+    	var text =  '<tr key="' + pub + '">' +
+	                	'<td>' + pub + '</td>' +
+	                	'<td><button type="button" class="close delete-api-key" aria-hidden="true">&times;</button></td>' +
+	                '</tr>';
+        $('.api-keys').prepend(text); 
     },
     generate_keys:function () {
-        var that = this;
-        $.ajax({
+    	var that = this;
+    	$.ajax({
             type: 'POST',
             //url: '../php/login.php',
             url: '../login/generate_api_key',
@@ -56,17 +56,17 @@ App.Views.ProviderApi = Backbone.View.extend({
         });
     },
     delete_key:function (e) {
-        $that = $(e.target).closest('tr');
-        var key = $that.attr('key');
-
-        $.ajax({
+    	$that = $(e.target).closest('tr');
+    	var key = $that.attr('key');
+    	
+    	$.ajax({
             type: 'POST',
             //url: '../php/login.php',
             url: '../login/delete_api_key',
             data: {cmd: "delete_api_key", key: key},
             success: function(data) {
-                if (data == '#success')
-                    $that.remove();
+            	if (data == '#success')
+                	$that.remove();
             }
         });
     }

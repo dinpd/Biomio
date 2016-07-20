@@ -1,32 +1,32 @@
 App.Views.Website = Backbone.View.extend({
-    el: $("#content"),
-    initialize:function () {
-        this.model.on('change', this.render, this);
-    },
-    render:function () {
-        if (this.model.id) {
-            if (this.model.get('owner') == window.profileId)
-                var template = render('MyWebsiteView', this.model.toJSON());
-            else
-                var template = render('WebsiteView', this.model.toJSON());
+	el: $("#content"),
+	initialize:function () {
+		this.model.on('change', this.render, this);
+	},
+	render:function () {
+		if (this.model.id) {
+			if (this.model.get('owner') == window.profileId) 
+				var template = render('MyWebsiteView', this.model.toJSON());
+			else 
+				var template = render('WebsiteView', this.model.toJSON());
 
-            this.$el.html( template );
-            that = this;
-            var time = new Date().getTime();
-            $.ajax({
-                url: 'profileData/websiteScreenshot/' + that.model.get('domains')[0] + '.png',
-                success: function (data) {
-                    $('#website_screenshot_preview').html('<img id="website_image" class="col-sm-12" style="padding: 0px" src ="profileData/websiteScreenshot/' + that.model.get('domains')[0] + '.png?' + time +'">');
-                    $("#website_screenshot_preview").removeClass('disabled');
+			this.$el.html( template );
+		    that = this;
+		    var time = new Date().getTime();
+	        $.ajax({
+	            url: 'profileData/websiteScreenshot/' + that.model.get('domains')[0] + '.png',
+	            success: function (data) {
+	                $('#website_screenshot_preview').html('<img id="website_image" class="col-sm-12" style="padding: 0px" src ="profileData/websiteScreenshot/' + that.model.get('domains')[0] + '.png?' + time +'">');
+	                $("#website_screenshot_preview").removeClass('disabled');  
                 },
-                error: function (data) {
-                    $('#website_screenshot_preview').html('<img id="website_image" class="col-sm-12" style="padding: 0px" src ="profileData/default-website.png">');
+	            error: function (data) {
+	                $('#website_screenshot_preview').html('<img id="website_image" class="col-sm-12" style="padding: 0px" src ="profileData/default-website.png">');
                 }
-            });
-        } else {
-            window.website.hash = 'not-found';
-        }
-    },
+	        });
+		} else {
+			window.website.hash = 'not-found';
+		}
+	},
     events: {
         'click .website-update-info'   : 'updateInfo',
         'click .website-save-changes'  : 'saveChanges',
@@ -76,8 +76,8 @@ App.Views.Website = Backbone.View.extend({
             //url: 'php/checkDomain.php',
             url: '/domain/createScreenshot',
             method: 'POST',
-            data: {cmd: 'createScreenshot', domain: that.model.get('domains')[0]},
-            success: function(data) {
+             data: {cmd: 'createScreenshot', domain: that.model.get('domains')[0]},
+             success: function(data) {
                 if (data == '') {
                     var time = new Date().getTime();
                     $('#website_screenshot_preview').html('<img id="website_image" class="col-sm-12" style="padding: 0px" src ="profileData/websiteScreenshot/' + that.model.get('domains')[0] + '.png?' + time +'">');

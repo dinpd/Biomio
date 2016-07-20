@@ -86,7 +86,7 @@ App.Views.Header = Backbone.View.extend({
                     console.log('ession_checker:', session_checker);
 
                     clearInterval(session_checker);
-
+                    
                     //switching tabs in pannel view
                     $('.profile-off').removeClass("hide");
                     $('.profile-on').addClass("hide");
@@ -155,7 +155,7 @@ App.Views.Header = Backbone.View.extend({
                         var profilePhone = data.phone; // number of phones
 
                         $('.login-phone-code').removeClass('hide');
-
+                        
                         console.log(face);
 
                         if (face != 999) {
@@ -167,14 +167,14 @@ App.Views.Header = Backbone.View.extend({
                                 $('.login-phone-code').addClass('hide');
 
                             /*window.location.replace(
-                             'http://biom.io:5000/user/authorize' +
-                             '?response_type=code' +
-                             '&scope=openid' +
-                             '&client_id=56ce9a6a93c17d2c867c5c293482b8f9' +
-                             //'&external_token=' + email + 
-                             '&redirect_uri=https://biom.io:4433/work/login.php' +
-                             '&nonce=12p6bfw' +
-                             '&state=1slw5l6');*/
+                                'http://biom.io:5000/user/authorize' +
+                                '?response_type=code' +
+                                '&scope=openid' +
+                                '&client_id=56ce9a6a93c17d2c867c5c293482b8f9' +
+                                //'&external_token=' + email + 
+                                '&redirect_uri=https://biom.io:4433/work/login.php' +
+                                '&nonce=12p6bfw' +
+                                '&state=1slw5l6');*/
 
                         } else {
                             alert('Biometrics Login is coming soon');
@@ -306,7 +306,7 @@ App.Views.Header = Backbone.View.extend({
 
                 //clearInterval(check);
                 //check = setInterval(function() {
-                //that.check_bioauth();
+                    //that.check_bioauth();
                 //}, 3000);
 
                 console.log('in header file line 312');
@@ -349,7 +349,7 @@ App.Views.Header = Backbone.View.extend({
                         $('.biometrics-login .biometrics-success').removeClass('hide');
                         that.check_bioauth();
                     }
-
+                        
                 });
             }
         });
@@ -360,7 +360,7 @@ App.Views.Header = Backbone.View.extend({
         if (code != '' && code != undefined)
             $.ajax({
                 type: 'POST',
-                // url: 'php/login.php',
+               // url: 'php/login.php',
                 url: '/login/check_bioauth_code',
                 dataType: "json",
                 data: {cmd: "check_bioauth_code", code: code},
@@ -424,10 +424,10 @@ App.Views.Header = Backbone.View.extend({
                         var profilePhone = data.phone; // number of phones
 
                         $('.login-phone-code').removeClass('hide');
-
+                        
                         $('.login-email').val(email);
-                        if (profilePhone == 0)
-                            $('.login-phone-code').addClass('hide');
+                            if (profilePhone == 0)
+                                $('.login-phone-code').addClass('hide');
 
                         clearInterval(check);
                         $('.original-method').addClass('hide');
@@ -438,9 +438,9 @@ App.Views.Header = Backbone.View.extend({
             });
     },
     refresh_methods: function() {
-        $('.login-buttons').addClass('hide');
-        $('.login-code').addClass('hide');
-        $('.submit-login-code').addClass('hide');
+        $('.login-buttons').addClass('hide');  
+        $('.login-code').addClass('hide');  
+        $('.submit-login-code').addClass('hide');  
         $('.original-method').removeClass('hide');
         $('.biometrics-login').removeClass('hide');
     }
