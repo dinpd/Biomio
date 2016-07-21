@@ -13,6 +13,10 @@ class User
         return ORM::for_table('Emails')->where('email', $email)->find_one();
     }
 
+    public static function get_all_users()
+    {
+	return ORM::for_table('UserInfo')->join('Emails', array('UserInfo.profileId' , '='  , 'Emails.profileId'))->order_by_desc('date_created')->find_array();
+    }
 
     public static function add_profile($first_name, $last_name, $email, $type, $ip, $extention, $gateUri)
     {

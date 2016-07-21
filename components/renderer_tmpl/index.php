@@ -103,6 +103,10 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="js/libs/unslider.js"></script>
 
+<!-- Config file  -->
+<script src="js/config.js"></script>
+
+
 <!-- Demid's Design -->
 <script src="js/libs/jquery.viewportchecker.js"></script>
 
@@ -118,6 +122,7 @@
 <script src="<?php autoVer('js/home/views/about.js'); ?>"></script>
 <script src="<?php autoVer('js/home/views/googleapp.js'); ?>"></script>
 <script src="<?php autoVer('js/home/views/developers.js'); ?>"></script>
+<script src="<?php autoVer('js/home/views/zeroleak.js'); ?>"></script>
 <script src="<?php autoVer('js/home/views/mobilebeta.js'); ?>"></script>
 <script src="<?php autoVer('js/home/views/contact.js'); ?>"></script>
 <script src="<?php autoVer('js/home/views/login.js'); ?>"></script>

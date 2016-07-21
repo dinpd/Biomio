@@ -201,6 +201,7 @@
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
             "time": "2016-05-03 18:59:18"
+
         }
     ],
     "packages-dev": [],

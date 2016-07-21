@@ -623,6 +623,32 @@ width:100%;
     margin-top: 230px;
 }
 
+.nistblock {
+text-align:center;
+color:#fff;
+}
+
+.nistblock  a{
+color:#fff;
+}
+
+.nistblock h2 {
+    font-weight: 300;
+}
+
+.orangeblock {
+    background-color: #f98565;
+    width: 75%;
+    padding: 12px;
+    margin: 25px auto;
+}
+
+.nistdownload {
+    background-image: url(/img/nistdoc.png);
+    background-repeat: no-repeat;
+    padding: 20px 0 20px 43px;
+    background-position: 0px 12px
+}
 
 .main-features {
 	width: 100%;
@@ -839,6 +865,20 @@ margin:0 auto;
   text-align: center;
 }
 
+.featurestable td{
+    padding: 8px;
+    text-align: center;
+}
+
+.featurestable th {
+    padding: 8px;
+    text-align: center;
+}
+
+.featurestable tr:nth-child(odd) {
+    background-color:#f0eae9;
+}
+
 a.control_prev, a.control_next {
   position: absolute;
   top: 40%;
@@ -895,7 +935,11 @@ a.control_next {
 
 
 .threethings {
-    background: #14a8bb;
+    background-color: #14a8bb;
+background-image:url(/img/nistbg.png);
+background-repeat:no-repeat;
+background-position:bottom center;
+
     padding: 40px 0 40px 0;
 }
 

@@ -314,7 +314,7 @@ App.Views.Wizard = Backbone.View.extend({
         }, 3000);
     },
     check_biometrics_verification: function () {
-        var timer = 300;
+        var timer = 30000;
         var that = this;
 
         clearInterval(check);
@@ -362,7 +362,9 @@ App.Views.Wizard = Backbone.View.extend({
         var that = this;
         var context = 0;
 
-        var port = chrome.runtime.connect('lgefcndmlikkmgielaeiflkmmgboljhm');
+        console.log('in wizard file line 365: ' + chromeRuntimeKey);
+        //var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
+        var port = chrome.runtime.connect(chromeRuntimeKey);
         port.postMessage({command: "is_registered"});
         port.onMessage.addListener(function(response){
             if (response.is_registered) {
@@ -398,7 +400,10 @@ App.Views.Wizard = Backbone.View.extend({
         that = this;
 
         var code = $('.extention-verifcation-code').val();
-        var port = chrome.runtime.connect('lgefcndmlikkmgielaeiflkmmgboljhm');
+
+        console.log('in wizard file line 365: ' + chromeRuntimeKey);
+        //var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
+        var port = chrome.runtime.connect(chromeRuntimeKey);
         port.postMessage({command: "register_biomio_extension", "data": {"secret_code":code}});
         port.onMessage.addListener(function(response){
             $('.have-extension').removeClass('hide');

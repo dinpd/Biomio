@@ -42,8 +42,10 @@ class User {
   	$result = $pdo->prepare("INSERT INTO PgpKeysData (user, email) VALUES (:profileId, :email)");
 	$result->execute(array('profileId'=>$profileId, 'email'=>$email));
 
+	  $config = include ('../../../config/setting.php');
 	// send rest with email to create code for this email
-	$url = 'http://10.209.33.61:90/new_email/' . $email;
+//	$url = 'http://10.209.33.61:91/new_email/' . $email;
+	$url = $config['settings']['gateUri'] . 'new_email/' . $email;
 	send_post($url);
 
   	return $profileId;

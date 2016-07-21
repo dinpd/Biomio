@@ -246,12 +246,12 @@ App.Views.Signup = Backbone.View.extend({
                                 $('.login-phone-code').addClass('hide');
 
                             /*window.location.replace(
-                                'http://biom.io:5001/user/authorize' +
+                                'http://biom.io:5000/user/authorize' +
                                 '?response_type=code' +
                                 '&scope=openid' +
                                 '&client_id=56ce9a6a93c17d2c867c5c293482b8f9' +
                                 //'&external_token=' + email + 
-                                '&redirect_uri=https://biom.io/work/login.php' +
+                                '&redirect_uri=https://biom.io:4433/work/login.php' +
                                 '&nonce=12p6bfw' +
                                 '&state=1slw5l6');*/
 
@@ -380,7 +380,10 @@ App.Views.Signup = Backbone.View.extend({
                     //that.check_bioauth();
                 //}, 3000);
 
-                var port = chrome.runtime.connect('lgefcndmlikkmgielaeiflkmmgboljhm');
+                //var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
+                console.log('in provider_signup file line 384: ' + chromeRuntimeKey);
+                var port = chrome.runtime.connect(chromeRuntimeKey);
+
                 port.postMessage({command: "run_auth", email: email, auth_code: code.toString()});
                 port.onMessage.addListener(function(response){
                     console.log(response);

@@ -29,7 +29,9 @@ class UserController {
 			// new email key (we still create user if email is not gmail, just don't create the key)
 			if ($extention == 0 && is_google_mx($domain)) {
 				//echo 'rest';
-				$url = 'http://10.209.33.61:90/new_email/' . $email;
+				$config = include('../../../config/setting.php')
+//				$url = 'http://10.209.33.61:91/new_email/' . $email;
+				$url = $config['setting']['gateUri'] .'new_email/' . $email;
 				send_post($url);
 			}
 
@@ -468,7 +470,7 @@ class UserController {
 			//if ($profileId == 23)
 			// TEST TEST TEST
 			//{
-				//$url = 'http://10.209.33.61:90/training?device_id=88b960b1c9805fb586810f270def7378&code=magiccode';
+				//$url = 'http://10.209.33.61:91/training?device_id=88b960b1c9805fb586810f270def7378&code=magiccode';
 				//send_post($url);
 			//} else {
 			// TEST TEST TEST
@@ -481,7 +483,9 @@ class UserController {
 			    	$result = User::select_verification_codes($code);
 		    	} while ($result->rowCount() > 0);
 		    		//echo 'key: ' . $key;
-		    		$url = 'http://10.209.33.61:90/training?device_id=' . $key . '&code=' . $code;
+					$config = include('../../../config/setting.php')
+//		    		$url = 'http://10.209.33.61:91/training?device_id=' . $key . '&code=' . $code;
+		    		$url = $config['settings']['gateUri'] . 'training?device_id=' . $key . '&code=' . $code;
 		    		//echo $url;
 		    		send_post($url);
 		    //}
@@ -614,7 +618,7 @@ class UserController {
 
 			/*list($user, $domain) = explode('@', $email);
 			if (is_google_mx($domain)) {
-				$url = 'http://10.209.33.61:90/new_email/' . $email;
+				$url = 'http://10.209.33.61:91/new_email/' . $email;
 				send_post($url);
 			}*/
 

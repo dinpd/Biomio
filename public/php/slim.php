@@ -1,9 +1,10 @@
 <?php
 
 require_once 'NotORM.php';
+$config = include ('../../config/setting.php');
 
-$pdo = new PDO('mysql:dbname=biomio_db; host=6da7f2ba42c999a5da5b0937632bd595a03f65c1.rackspaceclouddb.com', 'biomio_admin', 'admin');
-
+//$pdo = new PDO('mysql:dbname=biomio_db_test; host=6da7f2ba42c999a5da5b0937632bd595a03f65c1.rackspaceclouddb.com', 'biomio_admin', 'admin');
+$pdo = new PDO('mysql:dbname='.$config['db']['dbName'].'; host='.$config['db']['host'], $config['db']['user'], $config['db']['password']);
 $db = new NotORM($pdo);
 
 require 'Slim/Slim.php';
