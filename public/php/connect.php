@@ -12,7 +12,7 @@
 	$pdo = new PDO('mysql:dbname=biom_website;host=localhost', 'biom_admin', 'uFa-rEm-6a8-fuD');
 */
 
-$config = include ('../../config/setting.php');
+$config = include (__DIR__  . '/../../config/setting.php');
 
 
 //$pdo = new PDO('mysql:dbname=biomio_db_test; host=6da7f2ba42c999a5da5b0937632bd595a03f65c1.rackspaceclouddb.com', 'biomio_admin', 'admin');

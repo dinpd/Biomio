@@ -21,7 +21,7 @@
 <?php 
 include ('../connect.php');
 
-	$result = mysqli_query($db_conx, "SELECT * FROM Splash ORDER BY dateCreated DESC") or die (mysqli_error());
+	$result = mysqli_query($db_conx, "SELECT * FROM Splash ORDER BY date_created DESC") or die (mysqli_error($db_conx));
 	echo "<table class='table table-striped panel tablesorter'>";
 	echo 	"<thead>";
 	echo 		"<th>Name</th>";
@@ -44,7 +44,7 @@ include ('../connect.php');
 		} else {
 			echo 		"<th>" . $row['invitation'] . "</th>";
 		}
-		echo 		"<th>" . $row['dateCreated'] . "</th>";
+		echo 		"<th>" . $row['date_created'] . "</th>";
 		echo 		"<th>
 						<button class='close' role='button'>&times;</button>
 						<button class='btn btn-default btn-xs options no hide' role='button'>Cancel</button>
@@ -60,9 +60,10 @@ include ('../connect.php');
   </div>
 </div>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="../../js/libs/jquery.tablesorter.min.js"></script>
+
 <script>
 	$(document).ready(function() 
 	    { 
