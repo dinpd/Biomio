@@ -115,8 +115,9 @@ App.Views.userMobileDevices = Backbone.View.extend({
         var id = $that.attr('id').substring(7);
 
         if (e.type == 'focusout') {
+            var name = $(e.target).val();
             if (name == '' || name == undefined){
-                name = $(e.target).closest('.form-control').attr('placeholder');
+                name = $(e.target).closest('.form-control').attr('value');
             }
             $.ajax({
                 type: 'POST',
