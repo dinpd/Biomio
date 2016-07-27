@@ -64,36 +64,42 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         var first_name = $('#firstName').val();
         var last_name = $('#lastName').val();
 
-        $.ajax({
-            type: 'POST',
-            //url: 'php/login.php',
-            url: '/login/update_name',
-            data: {cmd: "update_name", first_name: first_name, last_name: last_name},
-            success: function(data) {
-                if (data == '#success') {
-                    message('danger', 'Success: ', 'name has been successfully updated');
+        if (first_name.length < 2 || first_name.length > 10) {
+            message('danger', 'Error: ', "First name should be at least 2 symbols or less than 10 symbols");
+        } else if (last_name.length < 2 || last_name.length > 10) {
+            message('danger', 'Error: ', "Last name should be at least 2 symbols or less than 10 symbols");
+        }else {
+            $.ajax({
+                type: 'POST',
+                //url: 'php/login.php',
+                url: '/login/update_name',
+                data: {cmd: "update_name", first_name: first_name, last_name: last_name},
+                success: function(data) {
+                    if (data == '#success') {
+                        message('danger', 'Success: ', 'name has been successfully updated');
 
-                    window.profileFirstName = first_name;
-                    window.profileLastName = last_name;
+                        window.profileFirstName = first_name;
+                        window.profileLastName = last_name;
 
-                    if ((window.profileFirstName == null && window.profileLastName == null) || (window.profileFirstName == '' && window.profileLastName == '')) 
+                        if ((window.profileFirstName == null && window.profileLastName == null) || (window.profileFirstName == '' && window.profileLastName == ''))
                         { $('.profile').html('User'); $('#span_name').html('<p class="content small-align">no information</p>'); }
-                    else if (window.profileFirstName == null || window.profileFirstName == '') 
+                        else if (window.profileFirstName == null || window.profileFirstName == '')
                         { $('.profile').html(window.profileLastName); $('#span_name').html(window.profileLastName); }
-                    else if (window.profileLastName == null || window.profileLastName == '') 
+                        else if (window.profileLastName == null || window.profileLastName == '')
                         { $('.profile').html(window.profileFirstName); $('#span_name').html(window.profileFirstName); }
-                    else 
+                        else
                         { $('.profile').html(window.profileFirstName + ' ' + window.profileLastName); $('#span_name').html(window.profileFirstName + ' ' + window.profileLastName); }
-                } else 
-                    message('danger', 'Error: ', 'reload the page and try again');
+                    } else
+                        message('danger', 'Error: ', 'reload the page and try again');
 
-                $(".form").addClass('hide');
-                $(".content").removeClass('hide');
-                $('.save-name').addClass('hide');
-                $('.edit-name').removeClass('hide');
+                    $(".form").addClass('hide');
+                    $(".content").removeClass('hide');
+                    $('.save-name').addClass('hide');
+                    $('.edit-name').removeClass('hide');
 
-            }
-        });
+                }
+            });
+        }
 
     },
     updateInfo: function (e) {
