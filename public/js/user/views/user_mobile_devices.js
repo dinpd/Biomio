@@ -14,6 +14,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
         "click .update-qr-code"                :  "generate_code",
         "click .mobile-device .update"         :  "update_mobile_device",
         "submit .mobile-device form"           :  "submit_mobile_device",
+        "focusout .mobile-device form"         :  "submit_mobile_device",
         "click .mobile-device .remove"         :  "delete_mobile_device",
         "click .mobile-device-verify"          :  "mobile_device_verify",
         "click .mobile-device-face"            :  "register_face",
@@ -56,7 +57,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
         that = this;
         var id = $('.form-1-1 input').val();
         var name = $('.add-1 input').val();
-        if (name.length < 2) message('danger', 'Error: ', "Device name should be at least 2 symbols");
+        if (name.length < 2 || name.length > 20) message('danger', 'Error: ', "Device name should be at least 2 symbols or less than 20 symbols");
         else 
             $.ajax({
                 type: 'POST',
@@ -107,23 +108,31 @@ App.Views.userMobileDevices = Backbone.View.extend({
         $that = $(e.target).closest('.mobile-device');
         $that.find('.mobile-device-name p').addClass('hide');
         $that.find('form').removeClass('hide');
+        console.log('update_mobile_device');
     },
     submit_mobile_device: function(e) {
         $that = $(e.target).closest('.mobile-device');
         var id = $that.attr('id').substring(7);
 
-        var id = $(e.target).closest('.mobile-device').attr('id').substring(7);
-        var name = $(e.target).find('input').val();
-        $.ajax({
-            type: 'POST',
-            //url: 'php/login.php',
-            url: '/login/rename_mobile_device',
-            data: {cmd: "rename_mobile_device", device_id: id, name: name},
-            success: function(data) {
-                $that.find('form').addClass('hide');
-                $that.find('.mobile-device-name p').text(name).removeClass('hide');
+        if (e.type == 'focusout') {
+            if (name == '' || name == undefined){
+                name = $(e.target).closest('.form-control').attr('placeholder');
             }
-        });
+            $.ajax({
+                type: 'POST',
+                //url: 'php/login.php',
+                url: '/login/rename_mobile_device',
+                data: {cmd: "rename_mobile_device", device_id: id, name: name},
+                success: function(data) {
+                    $that.find('form').addClass('hide');
+                    $that.find('.mobile-device-name p').text(name).removeClass('hide');
+                }
+            });
+        }else {
+            $that.find('form').addClass('hide');
+            $that.find('.mobile-device-name p').text(name).removeClass('hide');
+        }
+
     },
     delete_mobile_device: function(e) {
         var id = $(e.target).closest('.mobile-device').attr('id').substring(7);

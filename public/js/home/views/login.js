@@ -200,6 +200,10 @@ App.Views.Login = Backbone.View.extend({
     submit_login_code: function(e) {
         e.preventDefault();
         var code = $('.login-code input').val();
+
+        var data =  $('.login-code input');
+        var code = $(data[0]).val() ? $(data[0]).val() : $(data[1]).val();
+
         if (window.tempId == null || window.tempId == undefined) {
             alert('something is wrong, please reload the page and try again');
         } else {
@@ -279,7 +283,6 @@ App.Views.Login = Backbone.View.extend({
                     //that.check_bioauth();
                 //}, 3000);
 
-                console.log('in login file line 282: ' + chromeRuntimeKey)
                 //var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
                 var port = chrome.runtime.connect(chromeRuntimeKey);
                 port.postMessage({command: "run_auth", email: email, auth_code: code.toString()});
