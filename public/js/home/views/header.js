@@ -230,7 +230,10 @@ App.Views.Header = Backbone.View.extend({
     // 4) submit entered code
     submit_login_code: function(e) {
         e.preventDefault();
-        var code = $('.login-code input').val();
+
+        var data =  $('.login-code input');
+        var code = $(data[0]).val() ? $(data[0]).val() : $(data[1]).val();
+
         if (window.tempId == null || window.tempId == undefined) {
             alert('something is wrong, please reload the page and try again');
         } else {
