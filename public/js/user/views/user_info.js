@@ -18,6 +18,8 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
             }
         });
 
+        console.log('render UserPersonalInfo');
+
         this.get_user_phones();
         this.get_user_emails();
     },
@@ -61,14 +63,14 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
     save_name: function (e) {
         e.preventDefault();
 
-        var first_name = $('#firstName').val();
-        var last_name = $('#lastName').val();
+        var first_name = $('#firstName').val().trim();
+        var last_name = $('#lastName').val().trim();
 
         if (first_name.length < 2 || first_name.length > 10) {
             message('danger', 'Error: ', "First name should be at least 2 symbols or less than 10 symbols");
         } else if (last_name.length < 2 || last_name.length > 10) {
             message('danger', 'Error: ', "Last name should be at least 2 symbols or less than 10 symbols");
-        }else {
+        } else {
             $.ajax({
                 type: 'POST',
                 //url: 'php/login.php',
