@@ -14,10 +14,13 @@ App.Views.userMobileDevices = Backbone.View.extend({
         "click .update-qr-code"                :  "generate_code",
         "click .mobile-device .update"         :  "update_mobile_device",
         "submit .mobile-device form"           :  "submit_mobile_device",
-        "focusout .mobile-device form"         :  "submit_mobile_device",
+        "focusout .mobile-device form"         :  "focusout_submit_mobile_device",
         "click .mobile-device .remove"         :  "delete_mobile_device",
         "click .mobile-device-verify"          :  "mobile_device_verify",
         "click .mobile-device-face"            :  "register_face",
+    },
+    isEmpty: function(str) {
+        return (str.length === 0 || !str.trim());
     },
     get_face: function () {
         that = this;
@@ -57,7 +60,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
         that = this;
         var id = $('.form-1-1 input').val();
         var name = $('.add-1 input').val();
-        if (name.length < 2 || name.length > 20) message('danger', 'Error: ', "Device name should be at least 2 symbols or less than 20 symbols");
+        if (this.isEmpty(name) || name.trim().length < 2 || name.trim().length > 20) message('danger', 'Error: ', "Device name should be at least 2 symbols or less than 20 symbols");
         else 
             $.ajax({
                 type: 'POST',
@@ -111,14 +114,27 @@ App.Views.userMobileDevices = Backbone.View.extend({
         console.log('update_mobile_device');
     },
     submit_mobile_device: function(e) {
+        var name = $(e.target).children('.form-control').val().trim();
+
+        if (this.isEmpty(name) || name.length < 2 || name.length > 20) {
+            message('danger', 'Error: ', "Device name should be at least 2 symbols or less than 20 symbols");
+        } else {
+            $that.find('form').addClass('hide');
+            $that.find('.mobile-device-name p').text(name).removeClass('hide');
+        }
+
+    },
+    focusout_submit_mobile_device: function(e) {
         $that = $(e.target).closest('.mobile-device');
         var id = $that.attr('id').substring(7);
 
-        if (e.type == 'focusout') {
-            var name = $(e.target).val();
-            if (name == '' || name == undefined){
-                name = $(e.target).closest('.form-control').attr('value');
-            }
+        var name = $(e.target).val().trim();
+        if (name == '' || name == undefined){
+            name = $(e.target).closest('.form-control').attr('value').trim();
+        }
+        if (this.isEmpty(name) || name.length < 2 || name.length > 20) {
+            message('danger', 'Error: ', "Device name should be at least 2 symbols or less than 20 symbols");
+        } else {
             $.ajax({
                 type: 'POST',
                 //url: 'php/login.php',
@@ -129,9 +145,6 @@ App.Views.userMobileDevices = Backbone.View.extend({
                     $that.find('.mobile-device-name p').text(name).removeClass('hide');
                 }
             });
-        }else {
-            $that.find('form').addClass('hide');
-            $that.find('.mobile-device-name p').text(name).removeClass('hide');
         }
 
     },
