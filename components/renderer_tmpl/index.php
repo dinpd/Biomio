@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>BIOMIO</title>
+    <title>Password-Optional Multi-Factor Authentication and Identity Verification Platform | BIOMIO</title>
 
     <meta name="Description" CONTENT="Frictionless and Secure, Adaptive Multi-factor Authentication and Identity Verification Platform.  NIST 800-63 v5 compliant.  Open Source.">
 
