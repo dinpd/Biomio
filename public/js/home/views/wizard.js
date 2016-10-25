@@ -20,6 +20,7 @@ App.Views.Wizard = Backbone.View.extend({
         "click .wizard .next-5"                    : "next_5",
         "click .wizard .update-qr-code"            : "generate_code",
         "click .wizard .activate-biometrics"       : "check_biometrics_verification",
+        "click .wizard .register-biometrics"       : "register_biometrics",
         "click .wizard .extention-new-code"        : "generate_extention_code",
         "click .wizard .finish"                    : "finish",
 
@@ -36,7 +37,6 @@ App.Views.Wizard = Backbone.View.extend({
             dataType: "json",
             data: {cmd: "get_state", type: this.type},
             success: function(data) {
-                console.log(data);
                 if (that.type == 1) {
                     $('.finish').removeClass('hide');
                     $('.div-1').addClass('hide');
@@ -44,7 +44,8 @@ App.Views.Wizard = Backbone.View.extend({
                     //$('.menu-1').addClass('hide');
                     $('.menu-1 span').removeClass('hide');
                     $('.menu').removeClass('menu-active');
-                    $('.menu-2').addClass('menu-active');
+                    //$('.menu-2').addClass('menu-active');
+                    $('.submenu-1').addClass('menu-active');
                 } else if (this.type == 2) {
                     this.get_email();
                 }
@@ -52,7 +53,8 @@ App.Views.Wizard = Backbone.View.extend({
                 if (data == 1) {
                     $('.menu').removeClass('menu-active');
                     $('.div-1').addClass('hide');
-                    $('.menu-2').addClass('menu-active');
+                    //$('.menu-2').addClass('menu-active');
+                    $('.submenu-1').addClass('menu-active');
 
                     $('.div-2').removeClass('hide');
                     $('.menu-1 span').removeClass('hide');
@@ -64,12 +66,14 @@ App.Views.Wizard = Backbone.View.extend({
 
                     $('.div-4').removeClass('hide');
                     $('.menu-1 span').removeClass('hide');
-                    $('.menu-2 span').removeClass('hide');
+                    //$('.menu-2 span').removeClass('hide');
+                    $('.submenu-1 span').removeClass('hide');
                     $('.menu-3 span').removeClass('hide');
                 } else if (data == 4) {
                     $('.menu').removeClass('menu-active');
                     $('.menu-1 span').removeClass('hide');
-                    $('.menu-2 span').removeClass('hide');
+                    //$('.menu-2 span').removeClass('hide');
+                    $('.submenu-1 span').removeClass('hide');
                     $('.menu-3 span').removeClass('hide');
                     $('.menu-4 span').removeClass('hide');
                     $('.view-2').addClass('hide');
@@ -130,6 +134,8 @@ App.Views.Wizard = Backbone.View.extend({
         if (!$('.div-2-1').hasClass('hide')) {
             $('.div-2-1').addClass('hide');
             $('.div-2-2').removeClass('hide');
+            $('.submenu-1').removeClass('menu-active');
+            $('.submenu-2').addClass('menu-active');
 
             if (this.type == 1) {
                 $.ajax({
@@ -152,7 +158,9 @@ App.Views.Wizard = Backbone.View.extend({
             }
 
         } else if (!$('.div-2-2').hasClass('hide')) {
-            console.log('saving device name');
+            $('.submenu-2').removeClass('menu-active');
+            $('.submenu-3').addClass('menu-active');
+
 
             if ($('.phone-select').val() == '') {
                 var name = $('.div-2-2 .phone').val();
@@ -188,7 +196,7 @@ App.Views.Wizard = Backbone.View.extend({
         } else if (!$('.div-2-4').hasClass('hide')) {
             $('.div-2').addClass('hide');
             $('.div-3').removeClass('hide');
-            $('.menu').removeClass('menu-active');
+            $('.submenu-3').removeClass('menu-active');
             $('.menu-3').addClass('menu-active');
             this.register_biometrics();
             $('.menu-2 span').removeClass('hide');
@@ -274,7 +282,6 @@ App.Views.Wizard = Backbone.View.extend({
     },
     register_biometrics: function(e) {
         var that = this;
-
         var device_id = $('.device-id').val();
 
         // create session code
@@ -317,6 +324,8 @@ App.Views.Wizard = Backbone.View.extend({
         var timer = 30000;
         var that = this;
 
+        //this.register_biometrics();
+
         clearInterval(check);
         check = setInterval(function() { 
             var code = $('#biometrics_code').text();
@@ -328,9 +337,8 @@ App.Views.Wizard = Backbone.View.extend({
                     url: '/login/check_status',
                     data: {cmd: "check_status", code: code},
                     success: function(data) {
-                        console.log(data);
                         if (data == '#in-process') {
-                            $('.enroll-status').text("Training started").removeClass('text-warning').addClass('text-info').removeClass('hide');
+                            $('.enroll-status').text("Training started, please wait").removeClass('text-warning').addClass('text-info').removeClass('hide');
                         } else if (data == '#canceled') {
                             $('.enroll-status').text("Training was canceled").removeClass('text-info').addClass('text-warning').removeClass('hide');
                         } else if (data == '#failed1') {
@@ -362,7 +370,6 @@ App.Views.Wizard = Backbone.View.extend({
         var that = this;
         var context = 0;
 
-        console.log('in wizard file line 365: ' + chromeRuntimeKey);
         //var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
         var port = chrome.runtime.connect(chromeRuntimeKey);
         port.postMessage({command: "is_registered"});
@@ -401,7 +408,6 @@ App.Views.Wizard = Backbone.View.extend({
 
         var code = $('.extention-verifcation-code').val();
 
-        console.log('in wizard file line 365: ' + chromeRuntimeKey);
         //var port = chrome.runtime.connect('ooilnppgcbcdgmomhgnbjjkbcpfemlnj');
         var port = chrome.runtime.connect(chromeRuntimeKey);
         port.postMessage({command: "register_biomio_extension", "data": {"secret_code":code}});
