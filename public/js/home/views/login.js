@@ -186,7 +186,7 @@ App.Views.Login = Backbone.View.extend({
             data: {cmd: cmd, profileId: window.tempId, value: value},
             success: function(data) {
                 if (data == "#success") {
-                    $('.login-buttons span').removeClass('text-danger').addClass('text-success').text('Login code has been texted to your ' + message);
+                    $('.login-buttons span').removeClass('text-danger').addClass('text-success').text('Sent to your ' + message);
                     $('.login-code').removeClass('hide');
                     $('.submit-login-code').removeClass('hide');
                 } else if (data =="#not-found") {

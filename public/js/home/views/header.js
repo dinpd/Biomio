@@ -134,7 +134,9 @@ App.Views.Header = Backbone.View.extend({
         var email = $('.biomio-email input').val();
         var emailRegex = /\b[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,4}\b/;
 
-        if (!emailRegex.test(email))
+        if (email.length == 0)
+            $('.biomio-email span').text('please enter your email');
+        else if (!emailRegex.test(email))
             $('.biomio-email span').text('email is in a wrong format');
         else
             $.ajax({
@@ -217,7 +219,7 @@ App.Views.Header = Backbone.View.extend({
             data: {cmd: cmd, profileId: window.tempId, value: value},
             success: function(data) {
                 if (data == "#success") {
-                    $('.login-buttons span').removeClass('text-danger').addClass('text-success').text('Login code has been texted to your ' + message);
+                    $('.login-buttons span').removeClass('text-danger').addClass('text-success').text('Sent to your ' + message);
                     $('.login-code').removeClass('hide');
                     $('.submit-login-code').removeClass('hide');
                 } else if (data =="#not-found") {
@@ -293,8 +295,6 @@ App.Views.Header = Backbone.View.extend({
     biometric_authentication: function () {
         clearInterval(check);
         var email = $('.biomio-email input').val();
-
-        console.log(email);
 
         var that = this;
         var context = 0;
