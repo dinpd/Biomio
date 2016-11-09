@@ -775,6 +775,7 @@ a.graybutton {
 	vertical-align: middle;
 	font-weight: 400;
 	color: #fff;
+	border-radius: 0;
 }
 .page {
 	width: 800px;
@@ -1055,6 +1056,8 @@ header {
 
 .splashbottom {
    font-size: 12px;
+	width: 100%;
+	text-align: center;
 }    
 
 
@@ -1094,12 +1097,19 @@ header {
 	font-size: 19px;
 }
 .f-col:nth-child(1) {
-	width: 200px;
+	/*width: 200px;*/
+	width: 100%;
+	/*text-align: center;*/
+	margin-bottom: 15px;
 }
 .footlogo {
 	margin: 0px 0 0;
 	font-size: 14px;
 	line-height: 30px;
+	width: 100%;
+}
+.social-buttons{
+	display: inline-block;
 }
 .f-col ul {
 	font-size: 14px;
@@ -1109,6 +1119,7 @@ header {
 	font-size: 16px;
 	margin: 4px 0 6px;
 }
+
 }
 @media (max-width: 900px) {
 body {
@@ -1234,6 +1245,7 @@ body {
 }
 .splashtext {
     top: 18px;
+	text-align: center;
 }
 .sticker {
 	display: none
@@ -1285,76 +1297,172 @@ body {
 	.row{
 		margin: 0;
 	}
-body {
-	min-width: 440px;
-	/*min-width: 100%;*/
+	body {
+		/*min-width: 440px;*/
+		min-width: 100%;
+	}
+	.sidesplash .splashtext {
+		top: 14px;
+		width: 100%;
+	}
+	.phonescreen {
+		position: absolute;
+		z-index: 1000;
+		top: 78px;
+		right: 47px!important;
+		width: 108px!important;
+	}
+	.infograph {
+		font-size: 23px;
+		width: 320px;
+		margin-left: 10px;
+		line-height: 32px;
+	}
+	.infographim img {
+		width: 96px;
+	}
+	.phonesplash img {
+		width: 60%;
+		right: -107px;
+	}
+	.phonescreen {
+		position: absolute;
+		z-index: 1000;
+		top: 78px;
+		right: 47px;
+		width: 108px!important;
+	}
+	.inner {
+		/*width: 440px;*/
+		width: 100%;
+		padding-right: 10px;
+		padding-left: 10px;
+		box-sizing: border-box !important;
+	}
+
+	.splashacapt h1 {
+		padding-right: 10px;
+		line-height: 28px;
+
+	}
+	.mfblock{
+		display: block;
+		margin: 0 auto;
+	}
+	.lefthead {
+		/*margin-left: 10px;*/
+	}
+	.ih-item.square {
+		margin: 0 auto 5px;
+	}
+	.scheme img {
+		/*width: 380px;*/
+		width: 360px;
+	}
+	#slider {
+		width: 400px;
+	}
+	#slider ul {
+		position: relative;
+		margin: 0;
+		padding: 0;
+		width: 400px;
+		list-style: none;
+	}
+	#slider ul li {
+		position: relative;
+		display: block;
+		float: left;
+		margin: 0;
+		padding: 0;
+		/*width: 400px;*/
+		width: 360px;
+		height: 256px;
+	}
+	.underscheme {
+		font-size: 16px;
+		margin-bottom: 20px;
+		/*width: 380px;*/
+		width: 100%;
+		margin: 0 auto 30px auto;
+	}
+	.f-col:nth-child(3) {
+		/*width: 100px;*/
+		width: 50%;
+	}
+	.f-col:nth-child(4) {
+		/*width: 100px;*/
+		width: 50%;
+	}
+	.supporttext{
+		padding: 25px 10px;
+	}
+	.threethings .inner {
+		text-align: center;
+	}
+	.mfblock {
+		margin-bottom: 10px;
+		width: 90%;
+	}
+	.trynow {
+		display: none;
+	}
+	.righthead {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+	.banner {
+		padding-left: 0;
+	}
+	.devblock {
+		display: block;
+	}
+	.devblocktext{
+		padding-left: 0;
+	}
+	.view-1 {
+		padding-top: 15px;
+	}
+	.well.about {
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+	center > img {
+		width: 280px;
+	}
+	.whiteblock {
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
-.sidesplash .splashtext {
-	top: 14px;
-	width: 100%;
+@media (max-width: 360px) {
+	.splashcapt {
+		font-size: 34px;
+	}
+	.splashacapt h1{
+		font-size: 20px;
+		line-height: 25px;
+	}
+	.ih-item.square {
+		width: inherit;
+	}
+	.threethings {
+		padding: 20px 0 20px 0;
+	}
+
+	.mfblock > img {
+		width: 200px;
+	}
+	.scheme img {
+		width: 300px;
+	}
+	#slider ul li {
+		width: 350px;
+	}
 }
-.phonescreen {
-	position: absolute;
-	z-index: 1000;
-	top: 78px;
-	right: 47px!important;
-	width: 108px!important;
-}
-.infograph {
-	font-size: 23px;
-	width: 320px;
-	margin-left: 10px;
-	line-height: 32px;
-}
-.infographim img {
-	width: 96px;
-}
-.phonesplash img {
-	width: 60%;
-	right: -107px;
-}
-.phonescreen {
-	position: absolute;
-	z-index: 1000;
-	top: 78px;
-	right: 47px;
-	width: 108px!important;
-}
-.inner {
-	width: 440px;
-}
-.scheme img {
-	width: 380px;
-}
-#slider {
-	width: 400px;
-}
-#slider ul {
-	position: relative;
-	margin: 0;
-	padding: 0;
-	width: 400px;
-	list-style: none;
-}
-#slider ul li {
-	position: relative;
-	display: block;
-	float: left;
-	margin: 0;
-	padding: 0;
-	width: 400px;
-	height: 256px;
-}
-.underscheme {
-	font-size: 16px;
-	margin-bottom: 20px;
-	width: 380px;
-	margin: 0 auto 30px auto;
-}
-.f-col:nth-child(3) {
-	width: 100px;
-}
-.f-col:nth-child(4) {
-	width: 100px;
-}
+@media (max-width: 330px) {
+	#slider ul li {
+		width: 310px;
+	}
 }

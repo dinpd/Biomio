@@ -18,7 +18,6 @@
   <link rel="stylesheet" type="text/css" href="/css/ihover.css">
 
   <!--<link rel="stylesheet" type="text/css" href="css/biomio-style.css" />-->
-
   <!-- Demid's Design -->
 
   <link rel="stylesheet" type="text/css" href="/css/themes/default/default.css">
@@ -27,11 +26,6 @@
 
   <link rel="stylesheet" type="text/css" href="/css/style2.css">
 
-  <style>
-    body{
-      /* overflow: visible !important; */
-    }
-  </style>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- Google Analytics &  ClickDesk Live Chat Service for websites -->
@@ -58,7 +52,7 @@
   <script type="text/javascript" charset="utf-8" async="" src="https://platform.twitter.com/js/timeline.f80add415609dfac297fd37eb66584ee.js"></script></head>
 <body>
 
-<div id="alert" style="position: fixed; z-index: 100000; margin: 0 auto" class="col-md-12"></div>
+  <div id="alert" style="position: fixed; z-index: 100000; margin: 0 auto" class="col-md-12"></div>
 
 <div class="header"><!--
 <div class="navbar navbar-inverse navbar-static-top" role="banner" style='z-index: 1000;'>
@@ -109,10 +103,10 @@
       width: 300px;
       padding: 10px;
     }
-  </style>
 
-
-  <style>
+    .inner {
+      padding: 0;
+    }
     .login-phone {
       max-width: 300px;
       font-size: 20px;
@@ -162,8 +156,27 @@
       font-weight: 500;
       color: #E26C22;
     }
-  </style>
+    .sidekick {
+      width:980px;
+      height: 515px;
+    }
+    .ransome{
+      width: 480px;
+      height: 270px;
+    }
 
+
+    @media (max-width: 500px) {
+      .lefthead{
+        margin-left: 10px;
+      }
+      .sidekick, .ransome {
+        width: 100%;
+        height: 270px;
+        margin-bottom: 15px;
+      }
+    }
+  </style>
 
 
   <!-- HEADER -->
@@ -177,15 +190,11 @@
       <div class="righthead">
         <div class="trynow"><img src="/img/trynow.png"></div>
         <div class="toplinks">
-          <!--<li style="list-style-type: none;" id="login" class="profile-off hide">-->
-
 
           <ul class="drop-menu hidden-xs profile-off" style="display: inline-block; list-style: none;">
             <li>
               <a class="drop-login" href='/#login'><img class="drop-image" src="/img/home/button2.png"></a>
               <ul class="drop-content hide row">
-
-
                 <form role="form" class="col-sm-12 text-center">
                   <br>
                   <legend><h2 class="form-signin-heading text-center" style="margin-top: 5px">PASSWORDLESS LOGIN</h2></legend>
@@ -196,7 +205,8 @@
                     </div>
 
                     <div class="original-method form-group col-sm-12 text-center" style="margin-top: 25px">
-                      <a onclick="var external_token = document.getElementById('external_token').value; if (external_token.length != 0) window.open('https://biom.io/openid/user/authorize?response_type=code&amp;external_token=' + external_token + '&amp;scope=openid&amp;client_id=56ce9a6a93c17d2c867c5c293482b8f9&amp;redirect_uri=https://biom.io/login.php&amp;nonce=12p6bfw&amp;state=1slw5l8', 'null','width=460, height=485, location=no'); return false;" class="biomio-submit" type="submit" style="padding: 0">
+                      <!--<a onclick="var external_token = document.getElementById('external_token').value; if (external_token.length != 0) window.open('https://biom.io/openid/user/authorize?response_type=code&amp;external_token=' + external_token + '&amp;scope=openid&amp;client_id=56ce9a6a93c17d2c867c5c293482b8f9&amp;redirect_uri=https://biom.io/login.php&amp;nonce=12p6bfw&amp;state=1slw5l8', 'null','width=460, height=485, location=no'); return false;" class="biomio-submit" type="submit" style="padding: 0">-->
+                      <a onclick="getToken(document.getElementById('external_token').value)" class="biomio-submit" type="submit" style="padding: 0">
                         <img style="width: 100%;" src="/img/home/button2.png">
                       </a>
                     </div>
@@ -337,7 +347,8 @@
 
     </div>
       <div class='subsidesplash'>
-        <img src='/img/sdsubheader.png'>
+        <img class="hidden-xs" src='/img/sdsubheader.png'>
+        <img class="visible-xs" src='/img/sdsubheader-mobile.png'>
       </div>
       <!-- CONTAINER
       <div style='background-color:#7f3e98;'>
@@ -351,10 +362,10 @@
         <div class="inner post">
 
         <br><br>
-        <iframe width="980" height="515" src="https://www.youtube.com/embed/FlzVNtUVuzY" frameborder="0" allowfullscreen></iframe>
+        <iframe class="sidekick" src="https://www.youtube.com/embed/FlzVNtUVuzY" frameborder="0" allowfullscreen></iframe>
         <br>
-        <iframe width="480" height="270" src="https://www.youtube.com/embed/shDgBHUXnr8" frameborder="0" allowfullscreen style='margin-right:15px;'></iframe>
-        <iframe width="480" height="270" src="https://www.youtube.com/embed/X08wgodFgXw" frameborder="0" allowfullscreen></iframe>
+        <iframe class="ransome" src="https://www.youtube.com/embed/shDgBHUXnr8" frameborder="0" allowfullscreen style='margin-right:15px;'></iframe>
+        <iframe class="ransome" src="https://www.youtube.com/embed/X08wgodFgXw" frameborder="0" allowfullscreen></iframe>
         
 <br><br>
           <!-- Begin MailChimp Signup Form -->
@@ -397,10 +408,6 @@
       <div class="main-block">
 
 
-
-
-
-
         <div class='whiteblock'>
           <div class="inner post">
             <h2>Biomio Sidekick Features:</h2>
@@ -412,54 +419,34 @@
 
               <div class='sdcol'>
                 <h3>Easy 2nd Factor or Go Password-less*</h3>
-
-
-
-                Access the browser applications without having to type in passwords (like iPhone's Touch ID) or use it as a 2nd factor.
-
+                Access the browser applications without having to type in passwords (like iPhone's Touch ID) or use
+                it as a 2nd factor.
               </div>
-
-
-
             </div>
-
-
           </div>
         </div>
 
 
         <div class='grayblock'>
           <div class="inner post">
-
             <div class='sdtwocol'>
-
               <div class='sdcol'>
                 <img src='/img/sdicon2.png'>
               </div>
 
               <div class='sdcol'>
                 <h3>State-of-the-art Configurable, Remote Authentication</h3>
-
-
-                Verify identity when the drive is inserted, when folder is accessed, when file is opened - you get to decide.  The identity verification is quick and painless and allows for different modes of authentication based on device capabilities and user preferences
-
+                Verify identity when the drive is inserted, when folder is accessed, when file is opened - you get
+                to decide.  The identity verification is quick and painless and allows for different modes of
+                authentication based on device capabilities and user preferences
               </div>
-
-
-
             </div>
-
-
           </div>
         </div>
 
-
         <div class='whiteblock'>
           <div class="inner post">
-
-
             <div class='sdtwocol'>
-
               <div class='sdcol'>
                 <h3>Secure USB File Storage</h3>
                 Save all your sensitive files onto the USB vault and never worry about having the wrong files get into the wrong hands.
@@ -468,18 +455,11 @@
               <div class='sdcol'>
                 <img src='/img/sdicon11.png'>
               </div>
-
             </div>
-
-
           </div>
         </div>
 
-
-
       </div>
-
-
 
 
       <script>
@@ -521,91 +501,14 @@
 
         });
 
-
       </script></div></div>
 
   </div>
-
 </div> <!-- /container -->
 
 <footer class="footer"><!--<hr>
 
-<ol class="breadcrumb text-center">
-  <li><a href="#about">About</a></li>
-  <li><a href="#contact">Contact</a></li>
-  <li><a href="#apis">APIs</a></li>
-  <li><a href="https://www.facebook.com/biomio123" style="background: #3b5998" class="badge">Facebook</a></li>
-  <li><a href="https://twitter.com/_biomio_" style="background: #55ACEE" class="badge">Twitter</a></li>
-  <li>&#169; BIOMIO 2014</li>
-</ol>
 
-<div class="navbar navbar-inverse navbar-static-top" role="banner" style='z-index: 1000;'>
-<div class="col-sm-12 container" style="vertical-align: middle; background: #ccc">
-	<div class="col-sm-3">
-		<h2>BIOM.IO</h2>
-		<p>All rights reserved | 2014<p>
-	</div>
-
-	<div class="col-sm-3">
-		<strong>Company</strong>
-		<ul>
-			<li>About</li>
-			<li>Contact</li>
-		</ul>
-	</div>
-
-	<div class="col-sm-3">
-		<strong>Stay in Touch</strong>
-		<ul>
-			<li>Facebook</li>
-			<li>Twitter</li>
-		</ul>
-	</div>
-
-	<div class="col-sm-3">
-		<strong>Investors</strong>
-		<ul>
-			<li><a href="https://angel.co">AngelList</a></li>
-		</ul>
-	</div>
-</div>
-<div>-->
-
-  <!--
-  <div class="container hide">
-      <div class="row">
-          <div class="col-sm-4 col-sm-offset-1" style="padding-left: 3%">
-              <h3>BIOM.IO</h3>
-              <small><a href="http://biom.io">biom.io</a> | <a src="tel:408-673-7780">408-673-7780</a></small><br>
-
-              <small>Complete Password-less Access Control</small>
-          </div>
-          <div class="col-sm-2">
-              <h5><strong>STAY IN TOUCH</strong></h5>
-              <ul style="margin-left: -75px">
-                  <li><a href="https://www.facebook.com/biomio123"><img src="img/facebook_icon_gray.png"> &nbsp; Facebook </a></li>
-                  <li><a href="https://twitter.com/_biomio_"><img src="img/twitter_icon_gray.png"> &nbsp; Twitter </a></li>
-              </ul>
-          </div>
-          <div class="col-sm-2">
-              <h5><strong>COMPANY</strong></h5>
-              <ul>
-                  <li><a href="#about">About</a></li>
-                  <li><a href="http://biom.io/#contact">Contact</a></li>
-              </ul>
-          </div>
-          <div class="col-sm-2">
-              <h5><strong>INVESTORS</strong></h5>
-              <ul>
-                  <li><a href="https://angel.co/biomio#" target="_blank">AngelList</a></li>
-              </ul>
-          </div>
-          <div class="col-sm-12 text-right">
-              <img width="150" src="img/rackspace.png">
-          </div>
-      </div>
-  </div>
-  -->
 
   <!-- FOOTER -->
   <div class="overfooter post">
@@ -624,8 +527,6 @@
               <a href="https://www.facebook.com/biomio123"><img width="36" src="/img/home/social2.png"></a>
               <a href="https://twitter.com/_biomio_"><img width="36" src="/img/home/social1.png"></a>
             </div>
-
-
 
 
             <!-- Begin MailChimp Signup Form -->
@@ -654,10 +555,18 @@
               .mc-modal{
                 top: 140px !important;
               }
-              @media
+              @media (max-width: 450px){
                 .modalContent{
                   height: 50px;
                 }
+                #mc_embed_signup form {
+                  padding: 0 15px;
+                }
+                img {
+                  width: 100%;
+                }
+              }
+
 
               /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
                  We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */

@@ -126,8 +126,9 @@
 
                           <div class="original-method form-group col-sm-12 text-center" style="margin-top: 25px">
 
-                            <a onclick="var external_token = document.getElementById('external_token').value; if (external_token.length != 0) window.open('http://biom.io:' + biomIoPort +'/user/authorize?response_type=code&external_token=' + external_token + '&scope=openid&client_id=56ce9a6a93c17d2c867c5c293482b8f9&redirect_uri=https://biom.io' + developmentPort +'/login/openId/&nonce=12p6bfw&state=1slw5l8', 'null','width=460, height=485, location=no'); return false;"
-                               class="biomio-submit" type="submit" style="padding: 0">
+                            <!--<a onclick="var external_token = document.getElementById('external_token').value; if (external_token.length != 0) window.open('http://biom.io:' + biomIoPort +'/user/authorize?response_type=code&external_token=' + external_token + '&scope=openid&client_id=56ce9a6a93c17d2c867c5c293482b8f9&redirect_uri=https://biom.io' + developmentPort +'/login/openId/&nonce=12p6bfw&state=1slw5l8', 'null','width=460, height=485, location=no'); return false;"-->
+                              <!--class="biomio-submit" type="submit" style="padding: 0">-->
+                            <a onclick="getToken(document.getElementById('external_token').value)" class="biomio-submit" type="submit" style="padding: 0">
                               <img style="width: 100%;" src="img/home/button0.png">
                             </a>
                           </div>

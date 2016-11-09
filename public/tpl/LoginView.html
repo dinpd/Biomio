@@ -47,6 +47,19 @@
 		font-weight: 500;
 		color: #E26C22;
 	}
+	.block-text-success {
+		text-align: right;
+	}
+	.text-success, .text-danger {
+		display: inline-block;
+		margin-top: 5px;
+	}
+
+	@media (max-width: 500px) {
+		.block-text-success {
+			text-align: left;
+		}
+	}
 </style>
 
 <div class="well col-sm-10 col-sm-offset-1 row">
@@ -61,15 +74,16 @@
 			</div>
 
 			<div class="original-method form-group col-sm-10 col-sm-offset-2 text-center" style="margin-top: 25px">
-				<a onclick="var external_token = document.getElementById('external_token').value; if (external_token.length != 0) window.open('http://biom.io:' + biomIoPort +'/user/authorize?response_type=code&external_token=' + external_token + '&scope=openid&client_id=56ce9a6a93c17d2c867c5c293482b8f9&redirect_uri=https://biom.io' + developmentPort +'/login/openId/&nonce=12p6bfw&state=1slw5l8', 'null','width=460, height=485, location=no'); return false;"
+				<!--<a onclick="var external_token = document.getElementById('external_token').value; if (external_token.length != 0) window.open('http://biom.io:' + biomIoPort +'/user/authorize?response_type=code&external_token=' + external_token + '&scope=openid&client_id=56ce9a6a93c17d2c867c5c293482b8f9&redirect_uri=https://biom.io' + developmentPort +'/login/openId/&nonce=12p6bfw&state=1slw5l8', 'null','width=460, height=485, location=no'); return false;"-->
+				<a onclick="getToken(document.getElementById('external_token').value)"
 					class="biomio-submit" type="submit">
 					<img style="max-width: 220px;" src="img/home/button0.png">
 				</a>
 			</div>
 			<input class="bioauth-code hide" type="text">
 
-			<br>
-			<br>
+			<!--<br>-->
+			<!--<br>-->
 			<p class="original-method col-sm-10 col-sm-offset-2 text-center or">
 				or
 			</p>
@@ -111,10 +125,9 @@
 	<form role="form" class="col-sm-offset-3 col-sm-6 code-form">
 		<fieldset>
 			<div class="form-group login-buttons hide col-sm-12">
-				<p>Use your registered phone number or email address to recieve a temporary login code<p>
+				<p>Use your registered phone number or email address to receive a temporary login code<p>
 
 				<p><strong>Send Code to:</strong></p>
-				<p class="login-phone-code">My phone</p>
 				<div class="login-phone login-phone-code" style="margin-bottom: 10px">
 					<input type="text" class="country-code" disabled placeholder="1" value="1" maxlength="1"> 
 					(<input type="text" class="region-code" placeholder="222" maxlength="3">)
@@ -122,10 +135,9 @@
 					<input type="text" class="second-part" placeholder="4444" maxlength="4">
 				</div>
 
-				<p>My email address</p>
 				<input class="login-email form-control col-sm-12" type="text" placeholder="my email">
 				<button class="btn btn-lg btn-primary login-send-code col-sm-offset-8 col-sm-4" type="button">Send Code</button>
-				<span class="text-success"></span>
+				<p class="block-text-success"><span class="text-success"></span></p>
 			</div>
 
 			<div class="form-group login-code hide col-sm-12">
@@ -134,7 +146,8 @@
 
 			<div class="form-group text-center submit-login-code hide col-sm-12">
 				<button class="btn btn-lg btn-block btn-primary" type="button">Submit</button>
-				<span class="text-danger"></span>
+				<!--<span class="text-danger"></span>-->
+				<p><span class="text-danger"></span></p>
 			</div>
 
 			<!--

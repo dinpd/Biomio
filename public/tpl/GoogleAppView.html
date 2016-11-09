@@ -1,5 +1,5 @@
 <div class='main-block'>
-<div class='inner post'><h2>Gmail Protector</h2>
+<div class='inner post emailprotector'><h2>Gmail Protector</h2>
 	<br>
 	<div class='gap-block'>
 	<img src='img/home/gmailapp1.png'>
@@ -11,17 +11,32 @@
 	<p>The goal of this extension is to encrypt the content of your email so that only you and the recipient can see it, and no-one else, whether the server is compromised, email is forwarded, or any number of other reasons.</p>
 	<br>
 
-	<img height="300" style="display:inline-block" src='img/home/DecryptBiomio.gif'>
-	<img height="300" style="display:inline-block" src='img/home/iphone.png'>
+	<div class="container-info">
+		<img class="decryptBiomio"  src='img/home/DecryptBiomio.gif'>
+		<img class="iphone" src='img/home/iphone.png'>
+
+	</div>
 
 
 	<br><br>
-<a href="https://chrome.google.com/webstore/detail/biomio-email-protector-fo/lgefcndmlikkmgielaeiflkmmgboljhm?hl=en" class="graybutton">Download Extension</a>	and <a type="button" class="btn btn-lg btn-success enable-protector">Enable Email Protector</a>
+
+	<a href="https://chrome.google.com/webstore/detail/biomio-email-protector-fo/lgefcndmlikkmgielaeiflkmmgboljhm?hl=en"
+	   class="btn btn-lg graybutton">
+		Download Extension</a>
+		<br class="visible-xs"><span class="and">and </span><br class="visible-xs">
+	<a type="button" class="btn btn-lg btn-success enable-protector">Enable Email Protector</a>
+
 	<br><br>
 	    
 	    <h2>FAQ’s:</h2>
 
 	<style>
+		.decryptBiomio, .iphone {
+			height: 300px;
+			display:inline-block;
+		}
+
+
 		.faq-header {
 			background: #efefef;
 			border: 1px solid #ccc;
@@ -43,6 +58,7 @@
 			border-right: 1px solid #ccc;
 			border-bottom: 1px solid #ccc;
 			padding: 10px 15px;
+			word-wrap: break-word;
 		}
 
 		#faq_2 img, #faq_3 img {
@@ -75,13 +91,52 @@
 		    padding: 10px 15px;
 		    background-color: #fefefe;
 		}
+		@media (max-width: 500px) {
+			.container{
+				padding-left: 0;
+				padding-right: 0;
+			}
+			.iphone {
+				display: none;
+			}
+			.decryptBiomio {
+				width: 100%;
+				height: 220px;
+				margin-left: -10px;
+			}
+			.and{
+				font-size: 20px;
+				display: inline-block;
+				margin-top: 10px;
+				margin-bottom: 10px;
+			}
+			.txtlalignleft {
+				width: 100%;
+			}
+			.faq-header h5 {
+				font-size: 16px;
+			}
+			.col-xs-10,.col-xs-11, .col-xs-2, .col-xs-1 {
+				padding-right: 0;
+				padding-left: 0;
+			}
+			.faq-header{
+				height: 70px;
+			}
+			.image-width {
+				width: 100%;
+			}
+			.faq-header .glyphicon {
+				margin-top: 27px;
+			}
+		}
 	</style>
 
 	<div class='txtlalignleft'>
 		<div class="faq-element">
 			<div class="faq-header col-sm-12" data-toggle="collapse" href="#faq_1">
-				<div class="col-sm-8 col-xs-8"><h5>Why use email protector?</h5></div>
-				<div class="col-sm-4 col-xs-4 text-right"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></div>
+				<div class="col-sm-8 col-xs-10"><h5>Why use email protector?</h5></div>
+				<div class="col-sm-4 col-xs-2 text-right"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></div>
 			</div>
 			<div class="faq-content col-sm-12 collapse" id="faq_1">
 				<p>When we send an email, we consider it pretty safe, right?</p>
@@ -99,21 +154,21 @@
 				<br>
 				<p>By using something like an email protector that encrypts the content of your email, you insure that no matter who gets or finds your communication will not be able to open it without having a proper key or authenticating themselves to be the person you’ve meant to see it.</p>
 				<br>
-				<img src='img/home/gpapic2.png'>
+				<img class="image-width" src='img/home/gpapic2.png'>
 			</div>
 			<div class="faq-header col-sm-12" data-toggle="collapse" href="#faq_2">
-				<div class="col-sm-8 col-xs-8"><h5>How does Email Protector Work?</h5></div>
-				<div class="col-sm-4 col-xs-4 text-right"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></div>
+				<div class="col-sm-8 col-xs-10"><h5>How does Email Protector Work?</h5></div>
+				<div class="col-sm-4 col-xs-2 text-right"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></div>
 			</div>
 			<div class="faq-content col-sm-12 collapse" id="faq_2">
 				<p>Biomio email protector works by encrypting the contents and attachments of your email using PGP encryption (<a href="https://en.wikipedia.org/wiki/Pretty_Good_Privacy" target="_blank">https://en.wikipedia.org/wiki/Pretty_Good_Privacy</a>).  While the concept of PGP encryption is not new, what Biomio does it makes the process of encryption and decryption very easy and natural.  You and the recipient don’t have to worry about the key exchange (we handle all that for you behind the scenes) and authentication happens seamlessly by the recipient pressing their finger on the fingerprint sensor or holding up the camera for face recognition.</p>
 				<br>
 				<p><strong>Sender chooses to encrypt the message:</strong></p>
 					<p><strong>Step 1</strong></p>
-					<img src="img/home/faq/step1.png" height="300">
+					<img class="image-width" src="img/home/faq/step1.png" height="300">
 					<br>
 					<p><strong>Step 2</strong></p>
-					<img src="img/home/faq/step2.png" height="180">
+					<img class="image-width" src="img/home/faq/step2.png" height="180">
 					<br>
 				<br>
 				<p><strong>Message recipient decrypts the message by authenticating using smartphone app:</strong></p>
@@ -127,35 +182,35 @@
 					<img src="img/home/faq/step5.png" height="250">
 					<br>
 					<p><strong>Step 4</strong></p>
-					<img src="img/home/faq/step6.jpg" height="200">
+					<img class="image-width" src="img/home/faq/step6.jpg" height="200">
 					<br>
 				<br>
 			</div>
 			<div class="faq-header col-sm-12" data-toggle="collapse" href="#faq_3">
-				<div class="col-sm-8 col-xs-8"><h5>What happens when I send an email to someone who’s not registered on Biomio?</h5></div>
-				<div class="col-sm-4 col-xs-4 text-right"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></div>
+				<div class="col-sm-8 col-xs-11"><h5>What happens when I send an email to someone who’s not registered on Biomio?</h5></div>
+				<div class="col-sm-4 col-xs-1 text-right"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></div>
 			</div>
 			<div class="faq-content col-sm-12 collapse" id="faq_3">
 				<p>If you send an email to someone who’s not registered on Biomio, when they receive your message, it will begin with a line that prompts them to register an account:</p>
 				<br>
 				<div>
-					<img src="img/home/faq/step7.png" height="200">
+					<img class="image-width" src="img/home/faq/step7.png" height="200">
 				</div>
 				<br>
 				<p>Once they register an account, they will be able to decrypt the content of your email. </p>
 				<br>
 			</div>
 			<div class="faq-header col-sm-12" data-toggle="collapse" href="#faq_4">
-				<div class="col-sm-8 col-xs-8"><h5>Will the recipient of the email be able to forward it to someone else?</h5></div>
-				<div class="col-sm-4 col-xs-4 text-right"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></div>
+				<div class="col-sm-8 col-xs-10"><h5>Will the recipient of the email be able to forward it to someone else?</h5></div>
+				<div class="col-sm-4 col-xs-2 text-right"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></div>
 			</div>
 			<div class="faq-content col-sm-12 collapse" id="faq_4">
 				<p>The recipient will be able to forward your encrypted email to someone else, however the other party will not be able to decrypt it if you haven’t authorized them to do so.</p>
 				<br>
 			</div>
 			<div class="faq-header col-sm-12" data-toggle="collapse" href="#faq_5">
-				<div class="col-sm-8 col-xs-8"><h5>What if the recipient or I don’t use Gmail, can I still use Biomio Email Protector?</h5></div>
-				<div class="col-sm-4 col-xs-4 text-right"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></div>
+				<div class="col-sm-8 col-xs-11"><h5>What if the recipient or I don’t use Gmail, can I still use Biomio Email Protector?</h5></div>
+				<div class="col-sm-4 col-xs-1 text-right"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></div>
 			</div>
 			<div class="faq-content col-sm-12 collapse" id="faq_5">
 				<p>We are working on supporting other email clients, but for now you can most likely still make it work by using Gmail as your email client connecting to your current email server as a POP3 account.</p> 
@@ -165,8 +220,8 @@
 				<br>
 			</div>
 			<div class="faq-header col-sm-12" data-toggle="collapse" href="#faq_6">
-				<div class="col-sm-8 col-xs-8"><h5>Am I in danger by registering my biometrics with Biomio?</h5></div>
-				<div class="col-sm-4 col-xs-4 text-right"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></div>
+				<div class="col-sm-8 col-xs-10"><h5>Am I in danger by registering my biometrics with Biomio?</h5></div>
+				<div class="col-sm-4 col-xs-2 text-right"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></div>
 			</div>
 			<div class="faq-content col-sm-12 collapse" id="faq_6">
 				<p>Biomio is a company that has developed an engine for risk-free password-less authentication.  This includes client and server-side biometrics.   Client-side biometrics is something we’re grown accustomed to with Apple’s touch ID and other mobile phone solutions, where the biometric data never leaves your device.   Server-side biometrics (like face recognition does require server-side processing, however the data is encrypted and stored as s series of points of interest while the original images are thrown out.  This approach is very safe as it goes to the great length to protect your biometric data (if any of it is collected).</p>
