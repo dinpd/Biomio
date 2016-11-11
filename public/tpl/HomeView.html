@@ -2,10 +2,10 @@
   <div class="inner">
     <div class="splashtext">
       <div class="splashcapt">Welcome to <strong>biomio!</strong></div>
-      <div class="splashacapt"><h1>An All-in-one Adaptive Multi-factor <br>
+      <div class="splashacapt"><h1>An All-in-one Adaptive Multi-factor <br class="hidden-xs">
       Authentication and Identity Verification Platform</h1>
       </div>
-      <div style="margin-top:15px">
+      <div style="margin-top:15px" class="splashimages2">
         <img src="img/home/splashimages2.png" style="width: 70%">
       </div>
 
@@ -14,21 +14,20 @@
       </div>
 
     </div>
-          <div class="phonesplash">
-     
-		<img src="img/home/phonesplash.png">
-    <img src="img/phoneslpash.gif" class='phonescreen'>
- <!--   <img src="img/home/phonesplash2.png">
-    <img src="img/home/phonesplash3.png">
-    -->
-
-   
-    
-       </div>
+      <div class="phonesplash hidden-xs">
+        <img src="img/home/phonesplash.png">
+        <img src="img/phoneslpash.gif" class='phonescreen'>
+        <!--   <img src="img/home/phonesplash2.png">
+            <img src="img/home/phonesplash3.png">
+        -->
+      </div>
   </div>
 </div>
 <div class='undersplash'>
-<a href='http://cescybersecurity.com/'><img src='/img/cybersecurity.png' width=100%></a>
+<a href='http://cescybersecurity.com/'>
+    <img class="hidden-xs" src='/img/cybersecurity.png' width=100%>
+    <img class="visible-xs" src='/img/cybersecurity-mobile.png' width=100%>
+</a>
 </div>
 
 <!-- CONTAINER -->
@@ -50,18 +49,17 @@
 
                 <li>
                   <img src="img/home/methods.png">
-                  <div class="underscheme">Biomio connects and unifies identity verification<br> factors into one cohesive platform<br>
+                  <div class="underscheme">Biomio connects and unifies identity verification<br class="hidden-xs"> factors into one cohesive platform<br>
                   </div>
                 </li>
                 <li>
                   <img src="img/home/integration.png">
-                  <div class="underscheme">...with choice of authentication methods based on <br>security targets, environment, and user preferences
+                  <div class="underscheme">...with choice of authentication methods based on <br class="hidden-xs">security targets, environment, and user preferences
                   </div>
                 </li>
                 <li>
                   <img src="img/home/splash4.png">
-                  <div class="underscheme">Unlimited applications with flexible integration
-options<br>
+                  <div class="underscheme">Unlimited applications with flexible integration options<br>
                   </div>
                 </li>
                 <li>
@@ -95,8 +93,11 @@ options<br>
 
      <div class="row" style="background: #eee; padding: 20px 0 40px 0">
       <div class="inner text-center">
-        <h2 style="margin-bottom: 30px">Applications</h2>
-         These applications leverage Biomio platform and provide reference for what is possible<br><br>
+        <h2 style="margin-bottom: 30px">Solutions</h2>
+        <span class="text-description">
+            These solutions leverage Biomio platform and provide reference for what is possible
+        </span>
+          <br><br>
         <div class="col-sm-4" style="padding: 0">
             <div class="ih-item square effect6 from_top_and_bottom">
               <a target="_blank" href="/#login">
@@ -125,6 +126,18 @@ options<br>
                 <div class="img"><img src="./img/home/samplappl3.png" alt="img"></div>
                 <div class="info">
                   <h3>Gmail Encryptor</h3>
+                  <p class="hide">Description goes here</p>
+                </div>
+              </a>
+            </div>
+        </div>
+        
+                <div class="col-sm-4" style="padding: 0">
+            <div class="ih-item square effect6 from_top_and_bottom">
+              <a href="http://koalasso.com/" rel='nofollow'>
+                <div class="img"><img src="./img/home/samplappl61.png" alt="img"></div>
+                <div class="info">
+                  <h3>For companies that run on SaaS</h3>
                   <p class="hide">Description goes here</p>
                 </div>
               </a>
@@ -173,50 +186,55 @@ THE <strong>DREADED PASSWORD PROBLEM</strong>
 </div>
 -->
 
-<h2>Password-related Costs (direct, for average enterprise annually)</h2>
-<br>
-Using passwords to control access is a thing of the past.  Authentication should be done precisely and seamlessly, without being intrusive and without violating privacy laws.  It should tie naturally into various systems and workflows.  It should leave the user with the feeling that they and their data is safe, and it should provide the system administrators with the ability to fine tune the policies to match the security level of the resources they are trying to protect.  Smart authentication requires a smart system behind it, a system that can unify, converge, and differentiate, while providing a great user experience.
-<br><br>
-<div class='mfblock'>
-<img src='/img/mficon4.png'>
-<div class='mfcapt'>
-in lost productivity
-</div>
-<div class='mftext'>
-Including time recovering and resetting passwords, not getting access to the right systems on time
-</div>
-</div>
+        <h2>Password-related Costs (direct, for average enterprise annually)</h2>
+        <br>
+        <span>Using passwords to control access is a thing of the past.  Authentication should be done precisely and
+            seamlessly, without being intrusive and without violating privacy laws.  It should tie naturally into
+            various systems and workflows.  It should leave the user with the feeling that they and their data is safe,
+            and it should provide the system administrators with the ability to fine tune the policies to match the
+            security level of the resources they are trying to protect.  Smart authentication requires a smart system
+            behind it, a system that can unify, converge, and differentiate, while providing a great user experience.
+        </span>
+        <br><br>
+        <div class='mfblock'>
+            <img src='/img/mficon4.png'>
+            <div class='mfcapt'>
+                in lost productivity
+            </div>
+            <div class='mftext'>
+                Including time recovering and resetting passwords, not getting access to the right systems on time
+            </div>
+        </div>
 
-<div class='mfblock'>
-<img src='/img/mficon3.png'>
-<div class='mfcapt'>
-in missed profits
-</div>
-<div class='mftext'>
-Including abandoned login transactions and partial check-outs
-</div>
-</div>
+        <div class='mfblock'>
+            <img src='/img/mficon3.png'>
+            <div class='mfcapt'>
+                in missed profits
+            </div>
+            <div class='mftext'>
+                Including abandoned login transactions and partial check-outs
+            </div>
+        </div>
 
-<div class='mfblock'>
-<img src='/img/mficon2.png'>
-<div class='mfcapt'>
-Cost of a data breach
-</div>
-<div class='mftext'>
-Including abandoned login transactions and partial check-outs
-</div>
-</div>
+        <div class='mfblock'>
+            <img src='/img/mficon2.png'>
+            <div class='mfcapt'>
+                Cost of a data breach
+            </div>
+            <div class='mftext'>
+                Including abandoned login transactions and partial check-outs
+            </div>
+        </div>
 
-<div class='mfblock'>
-<img src='/img/mficon1.png'>
-<div class='mfcapt'>
-in support costs
-</div>
-<div class='mftext'>
-Including password resets and other login-related support
-</div>
-</div>
-
+        <div class='mfblock'>
+            <img src='/img/mficon1.png'>
+            <div class='mfcapt'>
+                in support costs
+            </div>
+            <div class='mftext'>
+                Including password resets and other login-related support
+            </div>
+        </div>
 
 
       </div>

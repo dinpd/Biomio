@@ -158,7 +158,18 @@ border-radius: 0;
 /*=========== register.html ============*/
 
 legend {color:#7d899c; font-family: 'Roboto Condensed', sans-serif;}
-.well {background:none; border:none; border-radius:0; box-shadow:none; -webkit-box-shadow:none}
+.well {
+  background:none;
+  border:none;
+  border-radius:0;
+  box-shadow:none;
+  -webkit-box-shadow:none
+}
+@media (max-width: 500px) {
+  .well{
+    padding: 0;
+  }
+}
 .form-control {border-radius:0; color:#41464f;}
 
 

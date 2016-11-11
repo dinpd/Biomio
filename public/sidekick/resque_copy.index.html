@@ -114,10 +114,7 @@ body{
   width: 300px;
   padding: 10px;
 }
-</style>
 
-
-<style>
   .login-phone {
     max-width: 300px;
     font-size: 20px;
@@ -183,13 +180,11 @@ body{
       <div class="trynow"><img src="/img/trynow.png"></div>
       <div class="toplinks"> 
           <!--<li style="list-style-type: none;" id="login" class="profile-off hide">-->
-          
 
           <ul class="drop-menu hidden-xs profile-off" style="display: inline-block; list-style: none;">
               <li>
                   <a class="drop-login" href='/#login'><img class="drop-image" src="/img/home/button2.png"></a>
                   <ul class="drop-content hide row">
-                      
 
                     <form role="form" class="col-sm-12 text-center">
                         <br>
@@ -201,7 +196,9 @@ body{
                           </div>
 
                           <div class="original-method form-group col-sm-12 text-center" style="margin-top: 25px">
-                            <a onclick="var external_token = document.getElementById('external_token').value; if (external_token.length != 0) window.open('https://biom.io/openid/user/authorize?response_type=code&amp;external_token=' + external_token + '&amp;scope=openid&amp;client_id=56ce9a6a93c17d2c867c5c293482b8f9&amp;redirect_uri=https://biom.io/login.php&amp;nonce=12p6bfw&amp;state=1slw5l8', 'null','width=460, height=485, location=no'); return false;" class="biomio-submit" type="submit" style="padding: 0">
+                            <!--<a onclick="var external_token = document.getElementById('external_token').value; if (external_token.length != 0) window.open('https://biom.io/openid/user/authorize?response_type=code&amp;external_token=' + external_token + '&amp;scope=openid&amp;client_id=56ce9a6a93c17d2c867c5c293482b8f9&amp;redirect_uri=https://biom.io/login.php&amp;nonce=12p6bfw&amp;state=1slw5l8', 'null','width=460, height=485, location=no'); return false;" class="biomio-submit" type="submit" style="padding: 0">-->
+                            <a onclick="getToken(document.getElementById('external_token').value)"
+                               class="biomio-submit" type="submit" style="padding: 0">
                               <img style="width: 100%;" src="/img/home/button2.png">
                             </a>
                           </div>

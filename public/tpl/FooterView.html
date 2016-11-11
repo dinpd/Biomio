@@ -82,11 +82,11 @@
   <footer>
     <div class="inner">
       <div class="f-cols clearfix">
-        <div class="f-col">
-          <div class="footlogo"> <img src="img/home/footlogo.png"> <br>
+        <div class="f-col subscribe-form">
+          <div class="footlogo"> <img class="hidden-xs" src="img/home/footlogo.png"> <br class="hidden-xs">
             All rights reserved | 2016
           </div>
-          <div class="social-buttons col-sm-12" style="padding: 10px 0 0 0">
+          <div class="social-buttons col-sm-12 hidden-xs" style="padding: 10px 0 0 0">
             <a href="https://www.facebook.com/biomio123"><img width="36" src="./img/home/social2.png"></a>
             <a href="https://twitter.com/_biomio_"><img width="36" src="./img/home/social1.png"></a>
           </div>
@@ -114,6 +114,14 @@
                margin-left:10px;
                }
 
+            @media (max-width: 450px){
+                .f-cols {
+                    text-align: center;
+                }
+                #mc_embed_signup form {
+                    text-align: center;
+                }
+            }
           	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
 	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
           </style>
@@ -131,20 +139,11 @@
           <!--End mc_embed_signup-->
 
         </div>
-        <div class="f-col" style="width: 270px;">
+        <div class="f-col hidden-xs" style="width: 270px;">
           <h2>Tweets from @_biomio_</h2>
           <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/_biomio_" data-widget-id="637005832236986369"  data-chrome="noheader nofooter noborders transparent">Tweets from @_biomio_</a>
         </div>
-        <!--
-        <div class="f-col">
-          <h2>Biomio</h2>
-          <ul>
-            <li> <a class="disabled" href="#">Provider </a> </li>
-            <li> <a class="disabled" href="#">Solutions</a> </li>
-            <li> <a class="disabled" href="#">API</a> </li>
-          </ul>
-        </div>
-        -->
+
         <div class="f-col">
           <h2>Company</h2>
           <ul>
@@ -157,15 +156,7 @@
             <li> <a href="https://angel.co/biomio#" target="_blank">AngelList </a> </li>
           </ul>
         </div>
-        
-        <!--
-        <div class="f-col">
-          <h2>Investors</h2>
-          <ul>
-            <li> <a href="https://angel.co/biomio# target="_blank"">AngelList </a> </li>
-          </ul>
-        </div>
-        -->
+
         <div class="f-col">
           <h2>Downloads</h2>
           <ul>
@@ -186,9 +177,14 @@
     <div class="subfooter clearfix">
       <div class="inner">
         <div class="sf-menu"> 
-          <a class="disabled" href="#">Privacy Policy</a> 
-          <a class="disabled" href="#">Terms of Use</a> </div>
+          <a class="disabled" href="#privacy">Privacy Policy</a> 
+          <a class="disabled" href="#terms">Terms of Use</a>
+
+            <a class="visible-xs" href="https://www.facebook.com/biomio123"><img width="36" src="./img/home/social2.png"></a>
+            <a class="visible-xs" href="https://twitter.com/_biomio_"><img width="36" src="./img/home/social1.png"></a>
+        </div>
       </div>
+
     </div>
   </footer>
 </div>

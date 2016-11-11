@@ -1,55 +1,20 @@
-<!--
-<div class="navbar navbar-inverse navbar-static-top" role="banner" style='z-index: 1000;'>
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#main_menu">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="#" class="navbar-brand">BIOMIO</a>
-    </div>
-    <nav id="main_menu" class="collapse navbar-collapse" role="navigation">
-		<ul class="nav navbar-nav navbar-right pull-right" style='z-index: 1000;'>
-	    	
-			<li id="login" class="profile-off hide"><a href="#login">Login</a></li>
-
-	    	<li class="profile-on dropdown hide">
-				<a class="dropdown-toggle" href="#user-info" data-toggle="dropdown"><span class='profile'></span> <b class="caret"></b></a>
-				<ul class="dropdown-menu pull-right" style='z-index: 1000;'>
-					<li id="user_header"><a href="#user-info">User profile</a></li>
-					<li id="provider_header"><a href="#provider-info">Provider profile</a></li>
-					<li><a href="#account-settings">Accout settings</a></li>
-					<li class='logout-menu pointer'><a>Log out</a></li>
-				</ul>
-			</li>
-	   	</ul>
-    </nav>
-  </div>
-</div>
--->
-
 <style>
-.drop-menu {
-  padding: 0;
-  vertical-align: top;
-}
-.drop-menu .drop-image {
-  width: 160px;
-}
-.drop-menu .drop-content {
-  background: #fff;
-  border: 1px solid #ccc;
-  min-height: 300px!important;
-  max-height: 800px!important;
-  width: 300px;
-  padding: 10px;
-}
-</style>
-
-
-<style>
+  .drop-menu {
+    padding: 0;
+    vertical-align: top;
+  }
+  .drop-menu .drop-image {
+    width: 160px;
+  }
+  .drop-menu .drop-content {
+    background: #fff;
+    border: 1px solid #ccc;
+    min-height: 300px!important;
+    max-height: 800px!important;
+    /*width: 300px;*/
+    width: 310px;
+    padding: 10px 0;
+  }
   .login-phone {
     max-width: 300px;
     font-size: 20px;
@@ -99,8 +64,36 @@
     font-weight: 500;
     color: #E26C22;
   }
-</style>
+  .form-group.biomio-email{
+    margin-bottom: 5px;
+  }
+  .description {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  span, p{
+    font-size: 16px;
+  }
+  .login-email{
+    margin-bottom: 15px;
+  }
 
+  @media screen and (max-height: 700px) {
+    .drop-menu .drop-content{
+      padding-top: 0;
+    }
+    legend {
+      margin-bottom: 15px;
+    }
+    p {
+      margin-bottom: 5px;
+    }
+
+  }
+  @media screen and (max-width: 500px) {
+
+  }
+</style>
 
 
 <!-- HEADER -->
@@ -115,7 +108,6 @@
          <div class="trynow"><img src="img/trynow.png"></div>
       <div class="toplinks"> 
           <!--<li style="list-style-type: none;" id="login" class="profile-off hide">-->
-          
 
           <ul class="drop-menu hidden-xs profile-off hide" style="display: inline-block; list-style: none;">
               <li>
@@ -134,14 +126,14 @@
 
                           <div class="original-method form-group col-sm-12 text-center" style="margin-top: 25px">
 
-                            <a onclick="var external_token = document.getElementById('external_token').value; if (external_token.length != 0) window.open('http://biom.io:' + biomIoPort +'/user/authorize?response_type=code&external_token=' + external_token + '&scope=openid&client_id=56ce9a6a93c17d2c867c5c293482b8f9&redirect_uri=https://biom.io' + developmentPort +'/login/openId/&nonce=12p6bfw&state=1slw5l8', 'null','width=460, height=485, location=no'); return false;"
-                              class="biomio-submit" type="submit" style="padding: 0">
+                            <!--<a onclick="var external_token = document.getElementById('external_token').value; if (external_token.length != 0) window.open('http://biom.io:' + biomIoPort +'/user/authorize?response_type=code&external_token=' + external_token + '&scope=openid&client_id=56ce9a6a93c17d2c867c5c293482b8f9&redirect_uri=https://biom.io' + developmentPort +'/login/openId/&nonce=12p6bfw&state=1slw5l8', 'null','width=460, height=485, location=no'); return false;"-->
+                              <!--class="biomio-submit" type="submit" style="padding: 0">-->
+                            <a onclick="getToken(document.getElementById('external_token').value)" class="biomio-submit" type="submit" style="padding: 0">
                               <img style="width: 100%;" src="img/home/button0.png">
                             </a>
                           </div>
                           <input class="bioauth-code hide" type="text">
 
-                          <br>
                           <br>
                           <p class="original-method col-sm-12 text-center or">
                             or
@@ -184,10 +176,10 @@
                       <form role="form" class="col-sm-12 code-form">
                         <fieldset>
                           <div class="form-group login-buttons hide col-sm-12">
-                            <p>Use your registered phone number or email address to recieve a temporary login code<p>
+
 
                             <p><strong>Send Code to:</strong></p>
-                            <p class="login-phone-code">My phone</p>
+                            <p class="description" style="">Use your registered phone number or email address to receive a temporary login code<p>
                             <div class="login-phone login-phone-code" style="margin-bottom: 10px">
                               <input type="text" class="country-code" disabled placeholder="1" value="1" maxlength="1"> 
                               (<input type="text" class="region-code" placeholder="222" maxlength="3">)
@@ -195,7 +187,6 @@
                               <input type="text" class="second-part" placeholder="4444" maxlength="4">
                             </div>
 
-                            <p>My email address</p>
                             <input class="login-email form-control col-sm-12" type="text" placeholder="my email">
                             <button class="btn btn-lg btn-primary login-send-code col-sm-12" type="button">Send Code</button>
                             <span class="text-success"></span>
@@ -210,25 +201,8 @@
                             <span class="text-danger"></span>
                           </div>
 
-                          <!--
-                            <div class="form-group guest-login col-sm-12 text-center">
-                              <button class="btn btn-lg btn-block btn-default" type="submit">Guest Login</button>
-                              <small>for BIOMIO developers and QA</small>
-                            </div>
-
-                            <div class="form-group test-login col-sm-12 text-center">
-                              <button class="btn btn-lg btn-block btn-default" type="submit">Test Login</button>
-                              <small></small>
-                            </div>
-                          -->
-
                         </fieldset>
                       </form>
-
-
-
-
-
 
                   </ul>
               </li>
@@ -239,10 +213,10 @@
           </li>
 
           <a class="profile-off hide"href="#signup" style="vertical-align: top;"> <img src="img/home/signup.png"> Register </a> 
-          <!--</li>-->
           <li style="list-style-type: none;" class="profile-on dropdown hide">
           
-          <a class="dropdown-toggle" href="#user-info" data-toggle="dropdown"><span class='profile'></span> <b class="caret"></b></a>
+          <a class="dropdown-toggle" id="test" href="#user-info" data-toggle="dropdown">
+            <span class='profile'></span> <b class="caret"></b></a>
 
           <ul class="dropdown-menu pull-right" style='z-index: 1000;'>
             <li id="user_header"><a href="#user-info">User profile</a></li>

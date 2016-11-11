@@ -6,9 +6,7 @@
   
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <!--
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">-->
+
   
   <link rel="stylesheet" type="text/css" href="/css/css.css?v=1448902666">
   <link rel="stylesheet" type="text/css" href="/css/fingerprint-style.css?v=1411347131">
@@ -17,19 +15,13 @@
   <link rel="stylesheet" type="text/css" href="/css/bootstrap-switch.min.css">
   <link rel="stylesheet" type="text/css" href="/css/ihover.css">
   
-  <!--<link rel="stylesheet" type="text/css" href="css/biomio-style.css" />-->
-
   <!-- Demid's Design -->
   <link rel="stylesheet" type="text/css" href="/css/themes/default/default.css">
   <link rel="stylesheet" type="text/css" href="/css/animate.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 
   <link rel="stylesheet" type="text/css" href="/css/style2.css">
-<style>
-body{
-/* overflow: visible !important; */
-}
-</style>
+
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- Google Analytics &  ClickDesk Live Chat Service for websites -->
@@ -42,17 +34,7 @@ body{
     ga('create', 'UA-56617539-1', 'auto');
     ga('send', 'pageview');
   </script>
-<!-- 
-  <script type='text/javascript'>
-    var _glc =_glc || []; _glc.push('all_ag9zfmNsaWNrZGVza2NoYXRyDwsSBXVzZXJzGO-W_aECDA');
-    var glcpath = (('https:' == document.location.protocol) ?
-    'https://my.clickdesk.com/clickdesk-ui/browser/' : 'http://my.clickdesk.com/clickdesk-ui/browser/');
-    var glcp = (('https:' == document.location.protocol) ? 'https://' : 'http://');
-    var glcspt = document.createElement('script'); glcspt.type = 'text/javascript'; 
-    glcspt.async = true; glcspt.src = glcpath + 'livechat-new.js';
-    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(glcspt, s);
-  </script>
-   End of Google Analytics & ClickDesk -->
+
   <script type="text/javascript" charset="utf-8" async="" src="https://platform.twitter.com/js/timeline.f80add415609dfac297fd37eb66584ee.js"></script></head>
 <body><div id="StayFocusd-infobar" style="display:none;">
     <img src="chrome-extension://laankejkbhbdhmipfmgcngdelahlfoji/common/img/eye_19x19_red.png">
@@ -114,10 +96,7 @@ body{
   width: 300px;
   padding: 10px;
 }
-</style>
 
-
-<style>
   .login-phone {
     max-width: 300px;
     font-size: 20px;
@@ -170,7 +149,6 @@ body{
 </style>
 
 
-
 <!-- HEADER -->
 <header class="clearfix bigest" id="header_nav">
   <div class="inner">
@@ -201,7 +179,7 @@ body{
                           </div>
 
                           <div class="original-method form-group col-sm-12 text-center" style="margin-top: 25px">
-                            <a onclick="var external_token = document.getElementById('external_token').value; if (external_token.length != 0) window.open('https://biom.io/openid/user/authorize?response_type=code&amp;external_token=' + external_token + '&amp;scope=openid&amp;client_id=56ce9a6a93c17d2c867c5c293482b8f9&amp;redirect_uri=https://biom.io/login.php&amp;nonce=12p6bfw&amp;state=1slw5l8', 'null','width=460, height=485, location=no'); return false;" class="biomio-submit" type="submit" style="padding: 0">
+                            <a onclick="getToken(document.getElementById('external_token').value)" class="biomio-submit" type="submit" style="padding: 0">
                               <img style="width: 100%;" src="/img/home/button2.png">
                             </a>
                           </div>
@@ -274,25 +252,8 @@ body{
                             <span class="text-danger"></span>
                           </div>
 
-                          <!--
-                            <div class="form-group guest-login col-sm-12 text-center">
-                              <button class="btn btn-lg btn-block btn-default" type="submit">Guest Login</button>
-                              <small>for BIOMIO developers and QA</small>
-                            </div>
-
-                            <div class="form-group test-login col-sm-12 text-center">
-                              <button class="btn btn-lg btn-block btn-default" type="submit">Test Login</button>
-                              <small></small>
-                            </div>
-                          -->
-
                         </fieldset>
                       </form>
-
-
-
-
-
 
                   </ul>
               </li>
