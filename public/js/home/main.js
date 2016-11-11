@@ -13,6 +13,8 @@ var AppRouter = Backbone.Router.extend({
         "login"	                     : "login",
         //"account-settings"           : "settings",
         "about"                      : "about",
+        "terms"                      : "terms",
+        "privacy"                    : "privacy",
         "emailprotector"             : "emailprotector",
         "zeroleak"                   : "zeroleak",
         "learnmore"                  : "learnmore",
@@ -109,6 +111,21 @@ var AppRouter = Backbone.Router.extend({
         var height = width / 1280 * 720;
         $(".about-video").height(height);
     },
+    
+    
+    terms: function () {
+        this.main_navigation('home-menu');
+        if (!this.termsView) this.termsView = new App.Views.Terms();
+        this.termsView.render();
+        this.footer();
+    },   
+    
+    privacy: function () {
+        this.main_navigation('home-menu');
+        if (!this.privacyView) this.privacyView = new App.Views.Privacy();
+        this.privacyView.render();
+        this.footer();
+    },         
     
     emailprotector: function () {
         this.main_navigation('home-menu');
@@ -647,6 +664,8 @@ $(document).ready(function() {
                     window.location.hash != '#signup' &&
                     window.location.hash != '#login' &&
                     window.location.hash != '#about' &&
+                    window.location.hash != '#terms' &&
+                    window.location.hash != '#privacy' &&
                     window.location.hash != '#emailprotector' &&
                     window.location.hash != '#learnmore' &&
                     window.location.hash != '#developers' &&
