@@ -1,8 +1,15 @@
+<style>
+    span.replace {
+        font-size: 25px;
+        font-style: bold;
+        text-decoration: underline;
+    }
+</style>
 <div class="mainsplash">
   <div class="inner">
     <div class="splashtext">
       <div class="splashcapt">Welcome to <strong>biomio!</strong></div>
-      <div class="splashacapt"><h1>An All-in-one Adaptive Multi-factor <br class="hidden-xs">
+      <div class="splashacapt "><h1>An All-in-one <span class="replace">  </span> Multi-factor <br class="hidden-xs">
       Authentication and Identity Verification Platform</h1>
       </div>
       <div style="margin-top:15px" class="splashimages2">
@@ -82,6 +89,44 @@
         </ul>
       </div>
     </div>
+
+    <div class='tryblock'>
+        <a class='showtry'>
+            <img src='/img/trybut.png'>
+        </a>
+        <a class='hidetry'  style='display:none;'>
+            <img src='/img/trybut.png'>
+        </a>
+    </div>
+    <div class='trycontent' style='display:none;'>
+        <div class='trybl'>
+            <a href='#signup'><img src='/img/trybut1.png'></a>
+        </div>
+        <div class='trybl'>
+            <img src='/img/trybut2.png'><br>
+            previous session
+        </div>
+        <div class='trybl'>
+            <a href='#login'><img src='/img/trybut3.png'></a><br>
+            with Biomio
+        </div>
+    </div>
+ <script>
+    $( "a.showtry" ).click(function() {
+      $( "div.trycontent" ).show( "slow" );
+      $( "a.showtry" ).hide();
+      $( "a.hidetry" ).show();
+    });
+
+
+    $( "a.hidetry" ).click(function() {
+      $( "div.trycontent" ).hide( "slow" );
+      $( "a.showtry" ).show();
+      $( "a.hidetry" ).hide();
+    });
+
+</script>
+   
     <div class="nextsplash post hide">
       <div class="inner">
         <h2>Give it a Whirl!</h2>
@@ -271,8 +316,18 @@ Hoping to balance today’s requirements with future needs, the National Institu
 
 
 <script>
+$(function(){
+    $(".replace").typed({
+        strings: ["Adaptive", "Frictionless", "Universal"],
+        typeSpeed: 100,
+        loop: true,
+        startDelay: 1000,
+        backDelay: 2000
+    });
+});
+
 jQuery(document).ready(function ($) {
-  
+
   var slideCount = $('#slider ul li').length;
   var slideWidth = $('#slider ul li').width();
   var slideHeight = $('#slider ul li').height();
