@@ -366,6 +366,49 @@ ul#cssmenu li:hover ul, ul#cssmenu ul li:hover ul, ul#cssmenu li.iehover ul, ul#
 	color: #eee;
 	display: inline-block;
 }
+
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+.tryblock {
+    background-color: #e1f6f3;
+    padding: 20px 0;
+}
+
+.trycontent {
+    background-color: #eefaf9;
+    padding: 20px 0;
+    background-image: url(/img/trybg.jpg);
+    background-repeat: repeat-x;
+    background-position: bottom;
+}
+
+.trybl {
+    display: inline-block;
+    vertical-align: top;
+    text-transform: uppercase;
+}
+
+
 .main-block {
 	margin-top: 30px;
 	text-align: center;
@@ -561,12 +604,26 @@ footer {
 	color: #8e8b8d;
 	font-size: 16px;
 	font-weight: 300;
+  display: inline-block;
 	padding-top: 18px;
 }
 .sf-menu a {
 	color: #fff;
 	padding-right: 20px;
 }
+
+.sfp-menu {
+    float: right;
+    display: inline-block;
+    color: #fff;
+    font-size: 16px;
+    padding-top: 18px;
+}
+
+.sfp-menu img {
+height:18px;
+}
+
 .f-col a {
 	color: #fff;
 }
