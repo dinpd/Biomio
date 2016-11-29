@@ -83,6 +83,7 @@ final class ProviderController
         $providerAdmin = ORM::for_table('ProviderAdmins')->create();
         $providerAdmin->profileId = $this->session->id;
         $providerAdmin->providerId = $providerId;
+        $providerAdmin->save();
 
         $this->session->providerId = $providerId;
 
