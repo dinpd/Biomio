@@ -77,7 +77,6 @@ final class UserController
         }
 
           return $response->withRedirect('/#wizard/' . $state);
-
     }
 
     public function get_user_session(Request $request, Response $response, $args)
@@ -103,8 +102,6 @@ final class UserController
         $code = $request->getParam('code');
        // $state = $request->getParam('state'); <<--useless, used in legacy
 
-        $this->logger->info('code:'.$code);
-
         $_request = array();
         $_request['client_id'] = '56ce9a6a93c17d2c867c5c293482b8f9';
         $_request['client_secret'] = '85a879a19387afe791039a88b354a374';
@@ -114,7 +111,7 @@ final class UserController
 
         $url = $this->settings['openIdUri'] . "/user/token";
 
-
+        $this->logger->info('url:'. $url);
 
         $content = json_encode($_request);
         $curl = curl_init($url);
@@ -126,6 +123,7 @@ final class UserController
 
         $json_response = curl_exec($curl);
 
+
         $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
         if ($status != 200) {
@@ -136,7 +134,6 @@ final class UserController
 
         curl_close($curl);
         $_response = json_decode($json_response, true);
-
 
         $id_token = $_response['id_token'];
         $id_token = explode(".", $id_token);
@@ -184,11 +181,18 @@ javascriptResponce;
 
     public function check_email(Request $request, Response $response, $args)
     {
-        if (User::check_email($request->getParam('email'))) {
-            return $response->write('#registered');
+        $user = User::check_email($request->getParam('email'));
+        $data = array();
+        if ($user) {
+            $data['status'] = '#registered';
+            $data['profileId'] = $user->profileId;
+//            return $response->write('#registered');
+            ;
         } else {
-            return $response->write('#fine');
+            $data['status'] = '#not-found';
+//            return $response->write('#fine');
         }
+        return $response->write(json_encode($data));
     }
 
 
@@ -240,7 +244,6 @@ javascriptResponce;
 
         $this->mailerService->welcome_email($email, $first_name, $last_name, $code);
 
-
         return $response->write($profileId);
     }
 
@@ -267,6 +270,7 @@ javascriptResponce;
 
         $user = User::get_user_info($profileId);
         $data['face'] = $user->face;
+
 
         return $response->write(json_encode($data));
 
@@ -340,10 +344,14 @@ javascriptResponce;
         $first_name = $request->getParam('first_name');
         $last_name = $request->getParam('last_name');
 
-        if ($this->session->get('id') === null)
-            return $response->write('#no-session');
+        if ($request->getParam('profileId')) {
+            $profileId = $request->getParam('profileId');
+        } else {
+            if ($this->session->get('id') === null)
+                return $response->write('#no-session');
 
-        $profileId = $this->session->id;
+            $profileId = $this->session->id;
+        }
 
         User::update_profile('first_name', $first_name, $profileId);
         User::update_profile('last_name', $last_name, $profileId);
@@ -425,16 +433,15 @@ javascriptResponce;
 
         $user = User::find_user('id', $profileId);
         if ($user) {
-
             User::update_user($profileId, 'last_ip', Helper::get_remote_addr());
 
-            $userInfo = User::get_user_info($profileId);
-
+            $userInfo = User::get_user_info($profileId)->as_array();
 
             $this->_start_session($profileId,
                 $user->type,
-                $userInfo->first_name,
-                $userInfo->last_name);
+                $userInfo['firstName'],
+                $userInfo['lastName']
+            );
 
             return $response->write(json_encode($this->_get_user_session()));
         }
@@ -449,7 +456,6 @@ javascriptResponce;
         $first_name = "Guest";
         $last_name = "User";
 
-
         $this->_start_session($profileId, $type, $first_name, $last_name);
         return $response->write(json_encode($this->_get_user_session()));
     }
@@ -461,7 +467,6 @@ javascriptResponce;
         $type = "USER";
         $first_name = "Test";
         $last_name = "Acc";
-
 
         $this->_start_session($profileId, $type, $first_name, $last_name);
         $result = $this->_get_user_session();
@@ -515,7 +520,6 @@ javascriptResponce;
     public function change_type(Request $request, Response $response, $args)
     {
         $type = $request->getParam('type');
-
 
         $profileId = $this->session->id;
 
@@ -571,6 +575,7 @@ javascriptResponce;
         $ret = file($url);
 
         $send = explode(":", $ret[0]);
+
         if ($send[0] == "ID")
             return $response->write("#success");
         else
@@ -611,8 +616,12 @@ javascriptResponce;
     // --- Applications --- //
     public function get_mobile_devices(Request $request, Response $response, $args)
     {
+        if ($request->getParam('profileId')) {
+            $profileId = $request->getParam('profileId');
+        } else {
+            $profileId = $this->session->id;
+        }
 
-        $profileId = $this->session->id;
         $mobileDevices = User::get_mobile_devices($profileId);
 
         $data = array();
@@ -625,7 +634,13 @@ javascriptResponce;
     public function add_mobile_device(Request $request, Response $response, $args)
     {
         $name = $request->getParam('name');
-        $profileId = $this->session->id;
+
+        if ($request->getParam('profileId')) {
+            $profileId = $request->getParam('profileId');
+        } else {
+            $profileId = $this->session->id;
+        }
+
 
         $this->logger->info("Profileid:" . $profileId);
 
@@ -642,10 +657,15 @@ javascriptResponce;
         $device_id = $request->getParam('id');
         $application = $request->getParam('application');
 
-        if ($this->session->get('id') === null)
-            return $response->write('#no-session');
+        if ($request->getParam('profileId')) {
+            $profileId = $request->getParam('profileId');
+        } else {
+            if ($this->session->get('id') === null)
+                return $response->write('#no-session');
 
-        $profileId = $this->session->id;
+
+            $profileId = $this->session->id;
+        }
 
         // disable all the codes for this user
         User::update_verification_codes(0, $profileId, $application);
@@ -669,29 +689,30 @@ javascriptResponce;
         $device_id = $request->getParam('device_id');
         $application = $request->getParam('application');
 
+        if ($request->getParam('profileId')) {
+            $profileId = $request->getParam('profileId');
+        } else {
+            if ($this->session->get('id') === null)
+                return $response->write('#no-session');
 
-        if ($this->session->get('id') === null)
-            return $response->write('#no-session');
-
-        $profileId = $this->session->id;
+            $profileId = $this->session->id;
+        }
 
         // disable all the codes for this user
         User::update_verification_codes(0, $profileId, $application);
 
 
         $mobileDevices = User::get_mobile_devices($profileId);
-$this->logger->info('----------------mobileDevices----------------');
-ob_start();
-//print_r($mobileDevices);
-$ska = ob_get_clean();
-$this->logger->info($ska);
+        $this->logger->info('----------------mobileDevices----------------');
+        ob_start();
+        //print_r($mobileDevices);
+        $ska = ob_get_clean();
+        $this->logger->info($ska);
 
         foreach ($mobileDevices as $mobileDevice) {
-
-	$this->logger->info($mobileDevice->device_token);
-
-            if ($mobileDevice->id == $device_id)
-                $key = $mobileDevice->device_token;
+            $this->logger->info($mobileDevice->device_token);
+                if ($mobileDevice->id == $device_id)
+                    $key = $mobileDevice->device_token;
         }
 
         do {
@@ -703,7 +724,7 @@ $this->logger->info($ska);
         $url = $this->settings['gateUri'] . 'training?device_id=' . $key . '&code=' . $code;
 
         $this->logger->info('url is:' . $url);
-	$this->logger->info('key is:'. $key);
+	    $this->logger->info('key is:'. $key);
 	
         Helper::send_post($url);
 
@@ -728,11 +749,10 @@ $this->logger->info($ska);
     public function delete_mobile_device(Request $request, Response $response, $args)
     {
         $device_id = $request->getParam('device_id');
-        $profileId = $this->session->id;
+        $profileId = $request->getParam('profileId');
         User::delete_mobile_device($profileId, $device_id);
         return $response->write("#success");
     }
-
 
     public function get_biometrics(Request $request, Response $response, $args)
     {
@@ -758,9 +778,7 @@ $this->logger->info($ska);
         $userEmails = User::get_user_emails($profileId);
         $data = array();
 
-
         foreach ($userEmails as $userEmail) {
-
             $data[] = array(
                 'id' => $userEmail->id,
                 'email' => $userEmail->email,
@@ -794,13 +812,19 @@ $this->logger->info($ska);
 
     public function add_email(Request $request, Response $response, $args)
     {
-        $profileId = $this->session->id;
+        if ($request->getParam('profileId')) {
+            $profileId = $request->getParam('profileId');
+        } else {
+            $profileId = $this->session->id;
+        }
+
         $email = $request->getParam('email');
 
 	    $emailObject = User::check_email($email);
 
         if ($emailObject)
             return $response->write('#registered');
+
 
         list($user, $domain) = explode('@', $email);
         if (Helper::is_google_mx($domain)) {
@@ -836,7 +860,6 @@ $this->logger->info($ska);
         /* Legacy comments below
            looks like method is not implemented*/
 
-        // bla bla work
         // return picture
         //  return $result;
     }
@@ -896,7 +919,7 @@ $this->logger->info($ska);
         // send code
         //Email::send_email_verification_code($email, $first_name, $last_name, $code);
         $this->mailerService->send_email_verification_code($email, $first_name, $last_name, $code);
-
+//        Helper::sent_email($email, $subject, $body, $from, $from_name);
         return $response->write("#success");
     }
 
@@ -1017,8 +1040,10 @@ $this->logger->info($ska);
 
     public function check_status(Request $request, Response $response, $args)
     {
-        if ($this->session->get('id') === null)
-            return $response->write('#no-session');
+        if (!$request->getParam('profileId')) {
+            if ($this->session->get('id') === null)
+                return $response->write('#no-session');
+        }
 
         $code = $request->getParam('code');
 
