@@ -321,6 +321,7 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
 
     // Emails
     get_user_emails: function () {
+        console.log('get_user_emails');
         $.ajax({
             type: 'POST',
             //url: 'php/login.php',
@@ -328,11 +329,17 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
             dataType: "json",
             data: {cmd: "get_user_emails", extention: 0},
             success: function(data) {
+                console.log('data data data');
+                console.log(data);
                 if (data != null)
                     jQuery.each(data, function(i, email) {
                         var template = render('forms/ProfileEmail', {id: email.id, email: email.email, verified: email.verified, primary: email.primary, extention: email.extention});
                         $('.profile-emails').append(template); 
                     });
+            },
+            error: function(data){
+               console.log('errrr');
+               console.log(data);
             }
         });
     },
@@ -440,29 +447,42 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         });
     },
     verify_region_code: function (e) {
-        var phone = $('.region-code').val();
-        phone = phone.replace(/\D/g,'');
+        var phone = $($('.region-code')[1]).val();
+        //phone = phone.replace(/\D/g,'');
+
+        console.log('region-code');
+        console.log(phone);
+
         $('.region-code').val(phone);
 
         if (phone.length == 3) $('.first-part').focus();
     },
     verify_first_part: function (e) {
-        var phone = $('.first-part').val();
-        phone = phone.replace(/\D/g,'');
+        var phone = $($('.first-part')[1]).val();
+        //phone = phone.replace(/\D/g,'');
         $('.first-part').val(phone);
 
         if (phone.length == 3) $('.second-part').focus();
     },
     verify_second_part: function (e) {
-        var phone = $('.second-part').val();
-        phone = phone.replace(/\D/g,'');
+        var phone = $($('.second-part')[1]).val();
+        //phone = phone.replace(/\D/g,'');
         $('.second-part').val(phone);
 
     },
     request_phone_code: function (e) {
         e.preventDefault();
+
+        console.log('country code:' + $('.country-code').val());
+        console.log('region' + $('.region-code').val());
+        console.log('first-part' + $('.first-part').val());
+        console.log('second part' + $('.second-part').val());
+
         var phone = String($('.country-code').val()) + String($('.region-code').val()) + String($('.first-part').val()) + String($('.second-part').val());
         $('.invalid-code').addClass('hide');
+        console.log('phone');
+        console.log(phone);
+        //phone = '80932859662';
         if (phone.length < 11) message('danger', 'Error: ', 'phone is in wrong format');
         else 
             $.ajax({
