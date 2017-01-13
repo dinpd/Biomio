@@ -97,6 +97,15 @@
         <a class='hidetry'  style='display:none;'>
             <img src='/img/trybut.png'>
         </a>
+        
+        
+           <a class='showsr'>
+            <img src='/img/shedule.png'>
+        </a>
+        <a class='hidesr'  style='display:none;'>
+            <img src='/img/shedule.png'>
+        </a>
+        
     </div>
     <div class='trycontent' style='display:none;'>
         <div class='trybl'>
@@ -111,6 +120,14 @@
             with Biomio
         </div>
     </div>
+    
+      
+
+<div class='srformcontent' style='display:none;'>
+<iframe src="https://biomio.youcanbook.me/?noframe=true&skipHeaderFooter=true" id="ycbmiframebiomio" style="width:100%;border:0px;background-color:transparent;" frameborder="0" allowtransparency="true"></iframe>
+
+</div>
+    
  <script>
     $( "a.showtry" ).click(function() {
       $( "div.trycontent" ).show( "slow" );
@@ -125,7 +142,22 @@
       $( "a.hidetry" ).hide();
     });
 
+
+    $( "a.showsr" ).click(function() {
+      $( "div.srformcontent" ).show( "slow" );
+      $( "a.showsr" ).hide();
+      $( "a.hidesr" ).show();
+    });
+
+
+    $( "a.hidesr" ).click(function() {
+      $( "div.srformcontent" ).hide( "slow" );
+      $( "a.showsr" ).show();
+      $( "a.hidesr" ).hide();
+    });
+
 </script>
+<script>window.addEventListener && window.addEventListener("message", function(event){if (event.origin === "https://biomio.youcanbook.me"){document.getElementById("ycbmiframebiomio").style.height = event.data + "px";}}, false);</script>   
    
     <div class="nextsplash post hide">
       <div class="inner">
