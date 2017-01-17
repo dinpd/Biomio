@@ -54,8 +54,8 @@ App.Views.Header = Backbone.View.extend({
         "keyup .login-phone .first-part"    : "verify_first_part",
         "keyup .login-phone .second-part"   : "verify_second_part",
 
-        "click .guest-login button": "guest_login",
-        "click .test-login button": "test_login",
+        //"click .guest-login button": "guest_login",
+        //"click .test-login button": "test_login",
         "click .switch_methods"   : "switch_methods",
 
         "keyup #external_token" : "refresh_methods",
@@ -134,11 +134,12 @@ App.Views.Header = Backbone.View.extend({
         var email = $('.biomio-email input').val();
         var emailRegex = /\b[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,4}\b/;
 
-        if (email.length == 0)
-            $('.biomio-email span').text('please enter your email');
-        else if (!emailRegex.test(email))
-            $('.biomio-email span').text('email is in a wrong format');
-        else
+        //if (email.length == 0)
+        //    $('.biomio-email span').text('please enter your email');
+        //if (!emailRegex.test(email))
+        //    $('.biomio-email span').text('email is in a wrong format');
+        //else
+        if (email.length != 0) {
             $.ajax({
                 type: 'POST',
                 //url: 'php/login.php',
@@ -157,7 +158,7 @@ App.Views.Header = Backbone.View.extend({
                         var profilePhone = data.phone; // number of phones
 
                         $('.login-phone-code').removeClass('hide');
-                        
+
                         console.log(face);
 
                         if (face != 999) {
@@ -169,14 +170,14 @@ App.Views.Header = Backbone.View.extend({
                                 $('.login-phone-code').addClass('hide');
 
                             /*window.location.replace(
-                                'http://biom.io:5000/user/authorize' +
-                                '?response_type=code' +
-                                '&scope=openid' +
-                                '&client_id=56ce9a6a93c17d2c867c5c293482b8f9' +
-                                //'&external_token=' + email + 
-                                '&redirect_uri=https://biom.io:4433/work/login.php' +
-                                '&nonce=12p6bfw' +
-                                '&state=1slw5l6');*/
+                             'http://biom.io:5000/user/authorize' +
+                             '?response_type=code' +
+                             '&scope=openid' +
+                             '&client_id=56ce9a6a93c17d2c867c5c293482b8f9' +
+                             //'&external_token=' + email +
+                             '&redirect_uri=https://biom.io:4433/work/login.php' +
+                             '&nonce=12p6bfw' +
+                             '&state=1slw5l6');*/
 
                         } else {
                             alert('Biometrics Login is coming soon');
@@ -190,6 +191,8 @@ App.Views.Header = Backbone.View.extend({
                     }
                 }
             });
+        }
+
     },
     biomio_login_phone: function() {
         console.log('here');
@@ -406,7 +409,9 @@ App.Views.Header = Backbone.View.extend({
         var email = $('.biomio-email input').val();
         var emailRegex = /\b[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,4}\b/;
 
-        if (!emailRegex.test(email))
+        if (email.length == 0)
+            $('.biomio-email span').text('please enter your email');
+        else if (!emailRegex.test(email))
             $('.biomio-email span').text('email is in a wrong format');
         else
             $.ajax({

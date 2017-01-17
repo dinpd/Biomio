@@ -76,7 +76,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
                     that.generate_code();
 
                     var template = render('forms/MobileDevice', {id: data, title: name, status: 0});
-                    $('.mobile-devices').append(template); 
+                    $('.mobile-devices').append(template);
                 }
             });
     },
@@ -87,6 +87,8 @@ App.Views.userMobileDevices = Backbone.View.extend({
         $('#qr_div').removeClass('hide');
         $('#qr_code').html('');
         $('#qr_code_text strong').text('');
+
+        console.log('ID::' + id);
         $.ajax({
             type: 'POST',
             //url: 'php/login.php',
@@ -133,7 +135,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
             name = $(e.target).closest('.form-control').attr('value').trim();
         }
         if (this.isEmpty(name) || name.length < 2 || name.length > 20) {
-            message('danger', 'Error: ', "Device name should be at least 2 symbols or less than 20 symbols");
+            message('dangeіскшr', 'Error: ', "Device name should be at least 2 symbols or less than 20 symbols");
         } else {
             $.ajax({
                 type: 'POST',
@@ -206,6 +208,7 @@ App.Views.userMobileDevices = Backbone.View.extend({
                     url: '/login/check_status',
                     data: {cmd: "check_status", code: code},
                     success: function(data) {
+                        console.log('check status for user_mobile_device');
                         if (data == '#verified') {
                             clearInterval(check);
                             $('.form-1-1, .form-1-2, .form-1-4, .form-1-5').addClass('hide');

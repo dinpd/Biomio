@@ -42,6 +42,9 @@ App.Views.Signup = Backbone.View.extend({
                 url: '/login/check_email',
                 data: {cmd: "check_email", email: email},
                 success: function(data) {
+
+                    console.log(data);
+
                     if (data.search("#registered")!=-1) {
                         $('#sign_in_email_group').removeClass("has-success").addClass("has-warning");
                         $('#sign_in_email_span').text('This email is already registered in our system');

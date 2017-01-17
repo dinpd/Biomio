@@ -12,6 +12,7 @@
     RewriteCond %{REQUEST_URI} ^(?!/sidekick/).+ [NC]
     RewriteCond %{REQUEST_URI} ^(?!/sidekick2/).+ [NC]
     RewriteCond %{REQUEST_URI} ^(?!/sidekick3/).+ [NC]
+    RewriteCond %{REQUEST_URI} ^(?!/pr/lipnet).+ [NC]
 
     # RewriteCond %{REQUEST_URI} ^(?!/profileData/).+ [NC]
 
@@ -22,4 +23,5 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [QSA,L]
+#    RewriteRule ^ index.php [QSA,L]
 </IfModule>
