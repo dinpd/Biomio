@@ -4,6 +4,9 @@
         font-style: bold;
         text-decoration: underline;
     }
+.srformcontent{
+	background-color: #f1f5f6;
+}
 </style>
 <div class="mainsplash">
   <div class="inner">
@@ -124,7 +127,7 @@
       
 
 <div class='srformcontent' style='display:none;'>
-<iframe src="https://biomio.youcanbook.me/?noframe=true&skipHeaderFooter=true" id="ycbmiframebiomio" style="width:100%;border:0px;background-color:transparent;" frameborder="0" allowtransparency="true"></iframe>
+<iframe src="https://biomio.youcanbook.me/?noframe=true&skipHeaderFooter=true" id="ycbmiframebiomio" style="width:100%;height:1000px;border:0px;background-color:transparent;" frameborder="0" allowtransparency="true"></iframe>
 
 </div>
     
@@ -134,7 +137,6 @@
       $( "a.showtry" ).hide();
       $( "a.hidetry" ).show();
     });
-
 
     $( "a.hidetry" ).click(function() {
       $( "div.trycontent" ).hide( "slow" );
@@ -157,7 +159,19 @@
     });
 
 </script>
-<script>window.addEventListener && window.addEventListener("message", function(event){if (event.origin === "https://biomio.youcanbook.me"){document.getElementById("ycbmiframebiomio").style.height = event.data + "px";}}, false);</script>   
+<script>
+
+window.addEventListener && window.addEventListener("message", function(event){
+
+	if (event.origin === "https://biomio.youcanbook.me"){
+		if (event.data > 4000 || event.data < 50 ) {
+			document.getElementById("ycbmiframebiomio").style.height ='2399px';
+		}else {
+			document.getElementById("ycbmiframebiomio").style.height =  event.data + "px";
+		}
+	}
+}, false);
+</script>   
    
     <div class="nextsplash post hide">
       <div class="inner">
