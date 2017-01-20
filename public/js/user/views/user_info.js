@@ -4,10 +4,32 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         //this.model.on('change', this.render, this);
     },
     render:function () {
-        var template = render('UserPersonalInfoView', this.model.toJSON());
-        this.$el.html( template );
+
+
         var time = new Date().getTime();
-        this.get_user_info();
+        that = this;
+        $.ajax({
+            type: 'POST',
+            url: '/login/get_user_info',
+            dataType: "json",
+            data: {cmd: "get_user_info"},
+            success: function(data) {
+//                console.log('get_user_info');
+//                console.log(data);
+//                console.log(data.data);
+//                console.log(data.email);
+                var template = render('UserPersonalInfoView', data);
+                that.$el.html( template );
+            },
+error: function (request, status, error) {
+	//console.log(request.responseText);
+        //                console(request.responseText);
+//                console(status);
+//                console(error);
+            }
+        });
+
+  //   this.get_user_info();
         //$.ajax({
         //    url: 'profileData/profilePicture/' + window.profileId + '.jpg',
         //    success: function (data) {
@@ -55,6 +77,7 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         "click .user-emails .profile-email .remove" : "delete_email",
     },
     get_user_info: function (e){
+console.log(234);
         $.ajax({
             type: 'POST',
             url: '/login/get_user_info',
