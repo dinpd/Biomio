@@ -280,13 +280,21 @@ var AppRouter = Backbone.Router.extend({
         this.interface_navigation('User', 'user-info-menu'); 
         if (!this.userInfoModel) this.userInfoModel = new App.Models.UserPersonalInfo();
         if (!this.userInfoView) this.userInfoView = new App.Views.UserPersonalInfo({model: this.userInfoModel});
-        var that = this;
-        this.userInfoModel.url = App.Url + '/users/' + window.profileId;
-        this.userInfoModel.fetch({
-            success: function () {
-                that.userInfoView.render();
-            }
-        });
+        this.userInfoView.render();
+        //var that = this;
+        //this.userInfoModel.url = App.Url + '/users/' + window.profileId;
+        //this.userInfoModel.fetch({
+        //    success: function () {
+        //        that.userInfoView.render();
+        //    }
+        //});
+        this.footer();
+    },
+    user_mobile_devices: function () {
+        if (!check_session()) return;
+        this.interface_navigation('User', 'user-mobile-devices-menu');
+        if (!this.userMobileDevices) this.userMobileDevices = new App.Views.userMobileDevices();
+        this.userMobileDevices.render();
         this.footer();
     },
     phone: function () {
@@ -302,13 +310,7 @@ var AppRouter = Backbone.Router.extend({
         this.userServices.render();
         this.footer();
     },
-    user_mobile_devices: function () {
-        if (!check_session()) return;
-        this.interface_navigation('User', 'user-mobile-devices-menu');
-        if (!this.userMobileDevices) this.userMobileDevices = new App.Views.userMobileDevices();
-        this.userMobileDevices.render();
-        this.footer();
-    },
+
     user_fingerprints: function () {
         if (!check_session()) return;
         this.interface_navigation('User', 'user-bio-menu');

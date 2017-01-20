@@ -623,6 +623,19 @@ javascriptResponce;
         return $response->write(json_encode($data));
     }
 
+    public function get_user_info(Request $request, Response $response, $args){
+        $profileId = $this->session->id;
+        $userInfo = User::get_user_info($profileId);
+
+        $this->_start_session($profileId,
+            $userInfo->type,
+            $userInfo->first_name,
+            $userInfo->last_name);
+
+        return $response->write(json_encode($userInfo));
+
+    }
+
     public function add_mobile_device(Request $request, Response $response, $args)
     {
         $name = $request->getParam('name');
