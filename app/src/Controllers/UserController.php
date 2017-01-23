@@ -105,18 +105,18 @@ final class UserController
 
         $this->logger->info('code:'.$code);
 
-        $_request = array();
-        $_request['client_id'] = '56ce9a6a93c17d2c867c5c293482b8f9';
-        $_request['client_secret'] = '85a879a19387afe791039a88b354a374';
-        $_request['grant_type'] = 'authorization_code';
-        $_request['code'] = $code;
-	    $_request['redirect_uri'] = $this->settings['AIUri'].'/login/openId/';
+        $req = array();
+        $req['client_id'] = '56ce9a6a93c17d2c867c5c293482b8f9';
+        $req['client_secret'] = '85a879a19387afe791039a88b354a374';
+        $req['grant_type'] = 'authorization_code';
+        $req['code'] = $code;
+	    $req['redirect_uri'] = $this->settings['AIUri'].'/login/openId';
 
         $url = $this->settings['openIdUri'] . "/user/token";
 
 
 
-        $content = json_encode($_request);
+        $content = json_encode($req);
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_HEADER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -130,6 +130,7 @@ final class UserController
 
         if ($status != 200) {
             echo ("Error: call to URL $url failed with status $status, response $json_response, curl_error " . curl_error($curl) . ", curl_errno " . curl_errno($curl));
+	    return;
         }
 
         $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
@@ -620,6 +621,16 @@ javascriptResponce;
             $data[] = array('id' => $mobileDevice->id, 'title' => $mobileDevice->title, 'status' => $mobileDevice->status);
 
         return $response->write(json_encode($data));
+    }
+
+    public function get_user_info(Request $request, Response $response, $args){
+
+        $profileId = $this->session->id;
+        $userInfo = User::get_user_info($profileId);
+
+//var_dump($userInfo->as_array());
+        return $response->write(json_encode($userInfo->as_array()));
+
     }
 
     public function add_mobile_device(Request $request, Response $response, $args)

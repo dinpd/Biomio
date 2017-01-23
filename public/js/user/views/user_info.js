@@ -4,19 +4,42 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         //this.model.on('change', this.render, this);
     },
     render:function () {
-        var template = render('UserPersonalInfoView', this.model.toJSON());
-        this.$el.html( template );
+
+
         var time = new Date().getTime();
+        that = this;
         $.ajax({
-            url: 'profileData/profilePicture/' + window.profileId + '.jpg',
-            success: function (data) {
-                $('#user_image_preview').html('<img id="user_image" class="col-sm-12" style="padding: 0px" src ="profileData/profilePicture/' + window.profileId + '.jpg?' + time +'">');
-                $("#user_image_delete").removeClass('disabled');
+            type: 'POST',
+            url: '/login/get_user_info',
+            dataType: "json",
+            data: {cmd: "get_user_info"},
+            success: function(data) {
+//                console.log('get_user_info');
+//                console.log(data);
+//                console.log(data.data);
+//                console.log(data.email);
+                var template = render('UserPersonalInfoView', data);
+                that.$el.html( template );
             },
-            error: function (data) {
-                $('#user_image_preview').html('<img id="user_image" class="col-sm-12" style="padding: 0px" src ="img/smallLogo.png">');
+error: function (request, status, error) {
+	//console.log(request.responseText);
+        //                console(request.responseText);
+//                console(status);
+//                console(error);
             }
         });
+
+  //   this.get_user_info();
+        //$.ajax({
+        //    url: 'profileData/profilePicture/' + window.profileId + '.jpg',
+        //    success: function (data) {
+        //        $('#user_image_preview').html('<img id="user_image" class="col-sm-12" style="padding: 0px" src ="profileData/profilePicture/' + window.profileId + '.jpg?' + time +'">');
+        //        $("#user_image_delete").removeClass('disabled');
+        //    },
+        //    error: function (data) {
+        //        $('#user_image_preview').html('<img id="user_image" class="col-sm-12" style="padding: 0px" src ="img/smallLogo.png">');
+        //    }
+        //});
 
         console.log('render UserPersonalInfo');
 
@@ -52,6 +75,24 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         "click .user-emails .profile-email .verify" : "send_email_verification_code",
         "click .user-emails .form-2-2 button"         : "verify_email",
         "click .user-emails .profile-email .remove" : "delete_email",
+    },
+    get_user_info: function (e){
+console.log(234);
+        $.ajax({
+            type: 'POST',
+            url: '/login/get_user_info',
+            dataType: "json",
+            data: {cmd: "get_user_info"},
+            success: function(data) {
+                console.log('get_user_info');
+                console.log(data);
+                //if (data != null)
+                //    jQuery.each(data, function(i, device) {
+                //        var template = render('forms/MobileDevice', {id: device.id, title: device.title, status: device.status, face: window.face});
+                //        $('.mobile-devices').append(template);
+                //    });
+            }
+        });
     },
     edit_name: function (e) {
         e.preventDefault();

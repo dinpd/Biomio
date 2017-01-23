@@ -119,6 +119,7 @@ $app->group('/login/',function() use($app){
     $app->post('verify_phone_code','App\Controllers\UserController:verify_phone_code');
     $app->post('delete_phone','App\Controllers\UserController:delete_phone');
 
+    $app->post('get_user_info','App\Controllers\UserController:get_user_info');
      // User Services
     // --- Applications --- //
     $app->post('get_mobile_devices','App\Controllers\UserController:get_mobile_devices');
