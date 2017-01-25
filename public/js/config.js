@@ -1,9 +1,9 @@
 // production
 var chromeRuntimeKey = 'lgefcndmlikkmgielaeiflkmmgboljhm';
-var biomIoPort = ':5001'
+var biomIoPort = ':5002'
 var developmentPort = ''; // for prod  developmentPost = ''; is empty
 var displayQrCode = false;
-var basicUrl = 'http://biom.io';
+var basicUrl = 'https://biom.io';
 var openIdProviderToken = basicUrl + biomIoPort +'/user/authorize?response_type=code&external_token={external_token}' +
     '&scope=openid&client_id=56ce9a6a93c17d2c867c5c293482b8f9&nonce=12p6bfw&state=1slw5l8&redirect_uri=https://biom.io' + developmentPort +
     '/login/openId';
