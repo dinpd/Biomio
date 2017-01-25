@@ -3,7 +3,7 @@ return [
     'settings' => [
         'gateUrl' => 'http://gate.biom.io/',
         'gateUri' => 'http://gate.biom.io/',
-        'openIdUri' => 'http://biom.io:5001',
+        'openIdUri' => 'https://biom.io:5002',
         'AIUri'=>'https://biom.io',
 
         'mailer_service' => [
