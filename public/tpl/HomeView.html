@@ -4,9 +4,6 @@
         font-style: bold;
         text-decoration: underline;
     }
-.srformcontent{
-	background-color: #f1f5f6;
-}
 </style>
 <div class="mainsplash">
   <div class="inner">
@@ -149,7 +146,7 @@
       
 
 <div class='srformcontent' style='display:none;'>
-<iframe src="https://biomio.youcanbook.me/?noframe=true&skipHeaderFooter=true" id="ycbmiframebiomio" style="width:100%;height:1000px;border:0px;background-color:transparent;" frameborder="0" allowtransparency="true"></iframe>
+<iframe src="https://biomio.youcanbook.me/?noframe=true&skipHeaderFooter=true" id="ycbmiframebiomio" style="width:100%;border:0px;background-color:transparent;" frameborder="0" allowtransparency="true"></iframe>
 
 </div>
     
@@ -159,6 +156,7 @@
       $( "a.showtry" ).hide();
       $( "a.hidetry" ).show();
     });
+
 
     $( "a.hidetry" ).click(function() {
       $( "div.trycontent" ).hide( "slow" );
@@ -181,19 +179,7 @@
     });
 
 </script>
-<script>
-
-window.addEventListener && window.addEventListener("message", function(event){
-
-	if (event.origin === "https://biomio.youcanbook.me"){
-		if (event.data > 4000 || event.data < 50 ) {
-			document.getElementById("ycbmiframebiomio").style.height ='2399px';
-		}else {
-			document.getElementById("ycbmiframebiomio").style.height =  event.data + "px";
-		}
-	}
-}, false);
-</script>   
+<script>window.addEventListener && window.addEventListener("message", function(event){if (event.origin === "https://biomio.youcanbook.me"){document.getElementById("ycbmiframebiomio").style.height = event.data + "px";}}, false);</script>   
    
     <div class="nextsplash post hide">
       <div class="inner">
@@ -202,7 +188,102 @@ window.addEventListener && window.addEventListener("message", function(event){
             Info</a> <a href="#signup" class="registerbutton">Register Account</a>
         </div>
       </div>
+      
+      
     </div>
+
+
+     <div class="row" style="background: #f3ede6; padding: 20px 0 40px 0">
+      <div class="inner text-center">
+        <h2 style="margin-bottom: 30px">Features</h2>
+          <br><br>
+          
+<div class='featuresblocks'>
+<div class='featblock'>
+
+
+ <img src='/img/features1.png'>
+            <div class='featcapt'>
+               Choice of identity
+verification methods
+            </div>
+               <div class='feattext'>
+              Face recognition, fingerprint sensors, document scanning, FIDO U2F fobs, wearables -  Biomio allows both administrator and the user to determine  the identification methods most suitable to them and appropriate for the situation
+            </div>
+</div>
+
+
+<div class='featblock'>
+
+ <img src='/img/features2.png'>
+            <div class='featcapt'>
+Password
+optional
+            </div>
+               <div class='feattext'>
+            Biomio platform’s ability to combine multiple identity verification techniques to achieve passwordless logins, eliminating the most hack-proof and inconvenient authentication method.
+            </div>
+</div>
+
+
+<div class='featblock'>
+
+ <img src='/img/features3.png'>
+            <div class='featcapt'>
+Access Delegation
+            </div>
+               <div class='feattext'>
+            Delegating access provides users with ability to share their account without sharing their password.  In addition to delegation, Biomio can enable split logins, approval-based logins and variety of other custom login workflows.
+
+            </div>
+</div>
+
+
+
+
+<div class='featblock'>
+
+ <img src='/img/features4.png'>
+            <div class='featcapt'>
+Identify and
+Verify
+            </div>
+               <div class='feattext'>
+            Use the platform to identify the user, verify their identity, or serve as 2nd, 3rd, 4th, nth factors during the login process.
+            </div>
+</div>
+
+<div class='featblock'>
+
+ <img src='/img/features5.png'>
+            <div class='featcapt'>
+  oAuth, SDK, and Node.js
+Integration
+            </div>
+               <div class='feattext'>
+            Use oAuth2 to integrate with web sites, SDK’s to integrate with mobile applications, and Node.js library to integrate with IoT, or decide which interface is right for your application.
+
+            </div>
+</div>
+
+
+<div class='featblock'>
+
+ <img src='/img/features6.png'>
+            <div class='featcapt'>
+ Web, Mobile,
+System, and IOT
+            </div>
+               <div class='feattext'>
+The applications and topologies of today are multifaceted.  Biomio provides a single access control / authentication / identity verification system for all of your use cases and modalities.
+            </div>
+</div>
+
+
+
+</div>
+</div>    
+</div>
 
      <div class="row" style="background: #eee; padding: 20px 0 40px 0">
       <div class="inner text-center">
@@ -285,6 +366,9 @@ window.addEventListener && window.addEventListener("message", function(event){
         
       </div>
     </div>
+    
+
+    
 
          <div class="row threethings" >
       <div class="inner">

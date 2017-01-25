@@ -516,6 +516,29 @@ ul#cssmenu li:hover ul, ul#cssmenu ul li:hover ul, ul#cssmenu li.iehover ul, ul#
 	transform: rotateY(360deg);
 	opacity: 0.8;
 }
+
+
+.featuresblocks {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.featblock {
+    width: 315px;
+    text-align: center;
+}
+
+.featcapt {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.feattext {
+font-size:16px;
+}
+
 .main-features td img , .features td img {
 	transition-property: opacity transform;
 	transition-duration: 0.8s;
