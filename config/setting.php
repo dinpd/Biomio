@@ -1,9 +1,9 @@
 <?php
 return [
     'settings' => [
-        'gateUrl' => 'http://ai-dev.biom.io/',
-        'gateUri' => 'http://ai-dev.biom.io/',
-        'openIdUri' => 'https://ai-dev.biom.io:5002',
+        'gateUrl' => 'http://gate-dev.biom.io/',
+        'gateUri' => 'http://gate-dev.biom.io/',
+        'openIdUri' => 'https://idp-dev.biom.io',
         'AIUri'=>'https://ai-dev.biom.io',
 
         'mailer_service' => [
@@ -44,7 +44,7 @@ return [
 
     ],
     'db' => [
-        'host' => '6da7f2ba42c999a5da5b0937632bd595a03f65c1.rackspaceclouddb.com',
+        'host' => '52.24.223.244',
         'user' => 'biomio_admin',
         'password' => 'admin',
         'dbName' => 'biomio_db_test',
