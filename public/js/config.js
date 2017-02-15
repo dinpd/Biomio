@@ -1,7 +1,7 @@
 // development
 var chromeRuntimeKey = 'ooilnppgcbcdgmomhgnbjjkbcpfemlnj';
 var biomIoPort = ':443'; // 5001 -> for production
-var developmentPort = ':443'; // from prod  developmentPort = ''; is empty
+var developmentPort = ''; // from prod  developmentPort = ''; is empty
 var displayQrCode = false;
 var basicUrl = 'https://idp-dev.biom.io';
 
