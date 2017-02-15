@@ -128,9 +128,9 @@ final class UserController
 
         $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
-        if ($status != 200) {
+        if ($status >= 400) {
             echo ("Error: call to URL $url failed with status $status, response $json_response, curl_error " . curl_error($curl) . ", curl_errno " . curl_errno($curl));
-	    return;
+            return;
         }
 
         $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
