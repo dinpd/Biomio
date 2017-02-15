@@ -24,8 +24,8 @@ App.Views.Login = Backbone.View.extend({
         "keyup .login-phone .first-part"    : "verify_first_part",
         "keyup .login-phone .second-part"   : "verify_second_part",
 
-        "click .guest-login button": "guest_login",
-        "click .test-login button": "test_login",
+        //"click .guest-login button": "guest_login",
+        //"click .test-login button": "test_login",
         "click .switch_methods"   : "switch_methods",
 
         "keyup #external_token" : "refresh_methods",

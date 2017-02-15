@@ -77,6 +77,7 @@ final class UserController
         }
 
           return $response->withRedirect('/#wizard/' . $state);
+
     }
 
     public function get_user_session(Request $request, Response $response, $args)
@@ -102,18 +103,20 @@ final class UserController
         $code = $request->getParam('code');
        // $state = $request->getParam('state'); <<--useless, used in legacy
 
-        $_request = array();
-        $_request['client_id'] = '56ce9a6a93c17d2c867c5c293482b8f9';
-        $_request['client_secret'] = '85a879a19387afe791039a88b354a374';
-        $_request['grant_type'] = 'authorization_code';
-        $_request['code'] = $code;
-	    $_request['redirect_uri'] = $this->settings['AIUri'].'/login/openId/';
+        $this->logger->info('code:'.$code);
+
+        $req = array();
+        $req['client_id'] = '56ce9a6a93c17d2c867c5c293482b8f9';
+        $req['client_secret'] = '85a879a19387afe791039a88b354a374';
+        $req['grant_type'] = 'authorization_code';
+        $req['code'] = $code;
+	    $req['redirect_uri'] = $this->settings['AIUri'].'/login/openId';
 
         $url = $this->settings['openIdUri'] . "/user/token";
 
-        $this->logger->info('url:'. $url);
 
-        $content = json_encode($_request);
+
+        $content = json_encode($req);
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_HEADER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -123,17 +126,18 @@ final class UserController
 
         $json_response = curl_exec($curl);
 
-
         $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
         if ($status != 200) {
             echo ("Error: call to URL $url failed with status $status, response $json_response, curl_error " . curl_error($curl) . ", curl_errno " . curl_errno($curl));
+	    return;
         }
 
         $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
         curl_close($curl);
         $_response = json_decode($json_response, true);
+
 
         $id_token = $_response['id_token'];
         $id_token = explode(".", $id_token);
@@ -244,6 +248,7 @@ javascriptResponce;
 
         $this->mailerService->welcome_email($email, $first_name, $last_name, $code);
 
+
         return $response->write($profileId);
     }
 
@@ -270,7 +275,6 @@ javascriptResponce;
 
         $user = User::get_user_info($profileId);
         $data['face'] = $user->face;
-
 
         return $response->write(json_encode($data));
 
@@ -433,6 +437,7 @@ javascriptResponce;
 
         $user = User::find_user('id', $profileId);
         if ($user) {
+
             User::update_user($profileId, 'last_ip', Helper::get_remote_addr());
 
             $userInfo = User::get_user_info($profileId)->as_array();
@@ -456,6 +461,7 @@ javascriptResponce;
         $first_name = "Guest";
         $last_name = "User";
 
+
         $this->_start_session($profileId, $type, $first_name, $last_name);
         return $response->write(json_encode($this->_get_user_session()));
     }
@@ -467,6 +473,7 @@ javascriptResponce;
         $type = "USER";
         $first_name = "Test";
         $last_name = "Acc";
+
 
         $this->_start_session($profileId, $type, $first_name, $last_name);
         $result = $this->_get_user_session();
@@ -520,6 +527,7 @@ javascriptResponce;
     public function change_type(Request $request, Response $response, $args)
     {
         $type = $request->getParam('type');
+
 
         $profileId = $this->session->id;
 
@@ -575,7 +583,6 @@ javascriptResponce;
         $ret = file($url);
 
         $send = explode(":", $ret[0]);
-
         if ($send[0] == "ID")
             return $response->write("#success");
         else
@@ -631,6 +638,16 @@ javascriptResponce;
         return $response->write(json_encode($data));
     }
 
+    public function get_user_info(Request $request, Response $response, $args){
+
+        $profileId = $this->session->id;
+        $userInfo = User::get_user_info($profileId);
+
+//var_dump($userInfo->as_array());
+        return $response->write(json_encode($userInfo->as_array()));
+
+    }
+
     public function add_mobile_device(Request $request, Response $response, $args)
     {
         $name = $request->getParam('name');
@@ -662,7 +679,6 @@ javascriptResponce;
         } else {
             if ($this->session->get('id') === null)
                 return $response->write('#no-session');
-
 
             $profileId = $this->session->id;
         }
@@ -754,6 +770,7 @@ javascriptResponce;
         return $response->write("#success");
     }
 
+
     public function get_biometrics(Request $request, Response $response, $args)
     {
         $biometrics = $request->getParam('biometrics');
@@ -774,11 +791,17 @@ javascriptResponce;
     public function get_user_emails(Request $request, Response $response, $args)
     {
         $extention = $request->getParam('extention');
-        $profileId = $this->session->id;
+        if ($request->getParam('profileId')) {
+            $profileId = $request->getParam('profileId');
+        } else {
+            $profileId = $this->session->id;
+        }
         $userEmails = User::get_user_emails($profileId);
         $data = array();
 
+
         foreach ($userEmails as $userEmail) {
+
             $data[] = array(
                 'id' => $userEmail->id,
                 'email' => $userEmail->email,
@@ -824,7 +847,6 @@ javascriptResponce;
 
         if ($emailObject)
             return $response->write('#registered');
-
 
         list($user, $domain) = explode('@', $email);
         if (Helper::is_google_mx($domain)) {
@@ -919,7 +941,7 @@ javascriptResponce;
         // send code
         //Email::send_email_verification_code($email, $first_name, $last_name, $code);
         $this->mailerService->send_email_verification_code($email, $first_name, $last_name, $code);
-//        Helper::sent_email($email, $subject, $body, $from, $from_name);
+
         return $response->write("#success");
     }
 

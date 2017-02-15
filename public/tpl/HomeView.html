@@ -31,10 +31,32 @@
   </div>
 </div>
 <div class='undersplash'>
-<a href='http://cescybersecurity.com/'>
+
+<div style='width:100%; background-image:url(/img/practical.png);bakcground-size:contain;'>
+
+<table style='width:100%;'>
+<tr>
+<td><img src='/img/practical0.png' width=100%></td>
+<td><a href='https://www.eventbrite.com/e/practical-user-management-for-web-and-mobile-developers-tickets-2508137908'><img src='/img/practical1.png' width=100%></a></td>
+<td><a href='https://www.eventbrite.com/e/practical-user-management-for-web-and-mobile-developers-sf-tickets-31185215820'><img src='/img/practical2.png' width=100%></a></td>
+<td><img src='/img/practical3.png' width=100%></td>
+</tr>
+</table>
+
+
+</div>
+
+
+
+    
+
+
+<!-- <a href='http://cescybersecurity.com/'>
     <img class="hidden-xs" src='/img/cybersecurity.png' width=100%>
     <img class="visible-xs" src='/img/cybersecurity-mobile.png' width=100%>
-</a>
+</a> -->
+
+
 </div>
 
 <!-- CONTAINER -->
@@ -97,6 +119,15 @@
         <a class='hidetry'  style='display:none;'>
             <img src='/img/trybut.png'>
         </a>
+        
+        
+           <a class='showsr'>
+            <img src='/img/shedule.png'>
+        </a>
+        <a class='hidesr'  style='display:none;'>
+            <img src='/img/shedule.png'>
+        </a>
+        
     </div>
     <div class='trycontent' style='display:none;'>
         <div class='trybl'>
@@ -111,6 +142,14 @@
             with Biomio
         </div>
     </div>
+    
+      
+
+<div class='srformcontent' style='display:none;'>
+<iframe src="https://biomio.youcanbook.me/?noframe=true&skipHeaderFooter=true" id="ycbmiframebiomio" style="width:100%;border:0px;background-color:transparent;" frameborder="0" allowtransparency="true"></iframe>
+
+</div>
+    
  <script>
     $( "a.showtry" ).click(function() {
       $( "div.trycontent" ).show( "slow" );
@@ -125,7 +164,22 @@
       $( "a.hidetry" ).hide();
     });
 
+
+    $( "a.showsr" ).click(function() {
+      $( "div.srformcontent" ).show( "slow" );
+      $( "a.showsr" ).hide();
+      $( "a.hidesr" ).show();
+    });
+
+
+    $( "a.hidesr" ).click(function() {
+      $( "div.srformcontent" ).hide( "slow" );
+      $( "a.showsr" ).show();
+      $( "a.hidesr" ).hide();
+    });
+
 </script>
+<script>window.addEventListener && window.addEventListener("message", function(event){if (event.origin === "https://biomio.youcanbook.me"){document.getElementById("ycbmiframebiomio").style.height = event.data + "px";}}, false);</script>   
    
     <div class="nextsplash post hide">
       <div class="inner">
@@ -134,7 +188,102 @@
             Info</a> <a href="#signup" class="registerbutton">Register Account</a>
         </div>
       </div>
+      
+      
     </div>
+
+
+     <div class="row" style="background: #f3ede6; padding: 20px 0 40px 0">
+      <div class="inner text-center">
+        <h2 style="margin-bottom: 30px">Features</h2>
+          <br><br>
+          
+<div class='featuresblocks'>
+<div class='featblock'>
+
+
+ <img src='/img/features1.png'>
+            <div class='featcapt'>
+               Choice of identity
+verification methods
+            </div>
+               <div class='feattext'>
+              Face recognition, fingerprint sensors, document scanning, FIDO U2F fobs, wearables -  Biomio allows both administrator and the user to determine  the identification methods most suitable to them and appropriate for the situation
+            </div>
+</div>
+
+
+<div class='featblock'>
+
+ <img src='/img/features2.png'>
+            <div class='featcapt'>
+Password
+optional
+            </div>
+               <div class='feattext'>
+            Biomio platform’s ability to combine multiple identity verification techniques to achieve passwordless logins, eliminating the most hack-proof and inconvenient authentication method.
+            </div>
+</div>
+
+
+<div class='featblock'>
+
+ <img src='/img/features3.png'>
+            <div class='featcapt'>
+Access Delegation
+            </div>
+               <div class='feattext'>
+            Delegating access provides users with ability to share their account without sharing their password.  In addition to delegation, Biomio can enable split logins, approval-based logins and variety of other custom login workflows.
+
+            </div>
+</div>
+
+
+
+
+<div class='featblock'>
+
+ <img src='/img/features4.png'>
+            <div class='featcapt'>
+Identify and
+Verify
+            </div>
+               <div class='feattext'>
+            Use the platform to identify the user, verify their identity, or serve as 2nd, 3rd, 4th, nth factors during the login process.
+            </div>
+</div>
+
+<div class='featblock'>
+
+ <img src='/img/features5.png'>
+            <div class='featcapt'>
+  oAuth, SDK, and Node.js
+Integration
+            </div>
+               <div class='feattext'>
+            Use oAuth2 to integrate with web sites, SDK’s to integrate with mobile applications, and Node.js library to integrate with IoT, or decide which interface is right for your application.
+
+            </div>
+</div>
+
+
+<div class='featblock'>
+
+ <img src='/img/features6.png'>
+            <div class='featcapt'>
+ Web, Mobile,
+System, and IOT
+            </div>
+               <div class='feattext'>
+The applications and topologies of today are multifaceted.  Biomio provides a single access control / authentication / identity verification system for all of your use cases and modalities.
+            </div>
+</div>
+
+
+
+</div>
+</div>    
+</div>
 
      <div class="row" style="background: #eee; padding: 20px 0 40px 0">
       <div class="inner text-center">
@@ -217,6 +366,9 @@
         
       </div>
     </div>
+    
+
+    
 
          <div class="row threethings" >
       <div class="inner">

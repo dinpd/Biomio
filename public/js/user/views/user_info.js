@@ -4,19 +4,42 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         //this.model.on('change', this.render, this);
     },
     render:function () {
-        var template = render('UserPersonalInfoView', this.model.toJSON());
-        this.$el.html( template );
+
+
         var time = new Date().getTime();
+        that = this;
         $.ajax({
-            url: 'profileData/profilePicture/' + window.profileId + '.jpg',
-            success: function (data) {
-                $('#user_image_preview').html('<img id="user_image" class="col-sm-12" style="padding: 0px" src ="profileData/profilePicture/' + window.profileId + '.jpg?' + time +'">');
-                $("#user_image_delete").removeClass('disabled');
+            type: 'POST',
+            url: '/login/get_user_info',
+            dataType: "json",
+            data: {cmd: "get_user_info"},
+            success: function(data) {
+//                console.log('get_user_info');
+//                console.log(data);
+//                console.log(data.data);
+//                console.log(data.email);
+                var template = render('UserPersonalInfoView', data);
+                that.$el.html( template );
             },
-            error: function (data) {
-                $('#user_image_preview').html('<img id="user_image" class="col-sm-12" style="padding: 0px" src ="img/smallLogo.png">');
+error: function (request, status, error) {
+	//console.log(request.responseText);
+        //                console(request.responseText);
+//                console(status);
+//                console(error);
             }
         });
+
+  //   this.get_user_info();
+        //$.ajax({
+        //    url: 'profileData/profilePicture/' + window.profileId + '.jpg',
+        //    success: function (data) {
+        //        $('#user_image_preview').html('<img id="user_image" class="col-sm-12" style="padding: 0px" src ="profileData/profilePicture/' + window.profileId + '.jpg?' + time +'">');
+        //        $("#user_image_delete").removeClass('disabled');
+        //    },
+        //    error: function (data) {
+        //        $('#user_image_preview').html('<img id="user_image" class="col-sm-12" style="padding: 0px" src ="img/smallLogo.png">');
+        //    }
+        //});
 
         console.log('render UserPersonalInfo');
 
@@ -52,6 +75,24 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         "click .user-emails .profile-email .verify" : "send_email_verification_code",
         "click .user-emails .form-2-2 button"         : "verify_email",
         "click .user-emails .profile-email .remove" : "delete_email",
+    },
+    get_user_info: function (e){
+console.log(234);
+        $.ajax({
+            type: 'POST',
+            url: '/login/get_user_info',
+            dataType: "json",
+            data: {cmd: "get_user_info"},
+            success: function(data) {
+                console.log('get_user_info');
+                console.log(data);
+                //if (data != null)
+                //    jQuery.each(data, function(i, device) {
+                //        var template = render('forms/MobileDevice', {id: device.id, title: device.title, status: device.status, face: window.face});
+                //        $('.mobile-devices').append(template);
+                //    });
+            }
+        });
     },
     edit_name: function (e) {
         e.preventDefault();
@@ -321,6 +362,7 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
 
     // Emails
     get_user_emails: function () {
+        console.log('get_user_emails');
         $.ajax({
             type: 'POST',
             //url: 'php/login.php',
@@ -328,11 +370,17 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
             dataType: "json",
             data: {cmd: "get_user_emails", extention: 0},
             success: function(data) {
+                console.log('data data data');
+                console.log(data);
                 if (data != null)
                     jQuery.each(data, function(i, email) {
                         var template = render('forms/ProfileEmail', {id: email.id, email: email.email, verified: email.verified, primary: email.primary, extention: email.extention});
                         $('.profile-emails').append(template); 
                     });
+            },
+            error: function(data){
+               console.log('errrr');
+               console.log(data);
             }
         });
     },
@@ -440,29 +488,42 @@ App.Views.UserPersonalInfo = Backbone.View.extend({
         });
     },
     verify_region_code: function (e) {
-        var phone = $('.region-code').val();
-        phone = phone.replace(/\D/g,'');
+        var phone = $($('.region-code')[1]).val();
+        //phone = phone.replace(/\D/g,'');
+
+        console.log('region-code');
+        console.log(phone);
+
         $('.region-code').val(phone);
 
         if (phone.length == 3) $('.first-part').focus();
     },
     verify_first_part: function (e) {
-        var phone = $('.first-part').val();
-        phone = phone.replace(/\D/g,'');
+        var phone = $($('.first-part')[1]).val();
+        //phone = phone.replace(/\D/g,'');
         $('.first-part').val(phone);
 
         if (phone.length == 3) $('.second-part').focus();
     },
     verify_second_part: function (e) {
-        var phone = $('.second-part').val();
-        phone = phone.replace(/\D/g,'');
+        var phone = $($('.second-part')[1]).val();
+        //phone = phone.replace(/\D/g,'');
         $('.second-part').val(phone);
 
     },
     request_phone_code: function (e) {
         e.preventDefault();
+
+        console.log('country code:' + $('.country-code').val());
+        console.log('region' + $('.region-code').val());
+        console.log('first-part' + $('.first-part').val());
+        console.log('second part' + $('.second-part').val());
+
         var phone = String($('.country-code').val()) + String($('.region-code').val()) + String($('.first-part').val()) + String($('.second-part').val());
         $('.invalid-code').addClass('hide');
+        console.log('phone');
+        console.log(phone);
+        //phone = '80932859662';
         if (phone.length < 11) message('danger', 'Error: ', 'phone is in wrong format');
         else 
             $.ajax({

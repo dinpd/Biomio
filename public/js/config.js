@@ -13,6 +13,7 @@ var openIdProvider = basicUrl + biomIoPort +'/user/authorize?response_type=code'
     '/login/openId';
 
 
+
 var getToken = function(external_token){
     if(displayQrCode) {
         window.open(openIdProvider,'null','width=460, height=485, location=no');
