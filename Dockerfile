@@ -26,7 +26,7 @@ RUN touch /var/log/supervisord/supervisord.log
 
 RUN mkdir /root/.ssh
 COPY runscript.sh /opt/runscript.sh
-COPY conf/default /etc/nginx/sites-available/default
+#COPY conf/default /etc/nginx/sites-available/default
 COPY supervisord.conf /opt/supervisord.conf
 
 #BIOMIO Gate get code
@@ -64,6 +64,7 @@ RUN mkdir -p /opt/biomioai/storage/log && \
     touch /opt/biomioai/storage/log/server.log && \
     chmod a+w /opt/biomioai/storage/log/server.log
 
+COPY /opt/biomioai/default /etc/nginx/sites-available/default
 #COPY conf/config.js /opt/biomioai/public/js/config.js
 #COPY conf/setting.php /opt/biomioai/config/setting.php
 
