@@ -64,7 +64,7 @@ RUN mkdir -p /opt/biomioai/storage/log && \
     touch /opt/biomioai/storage/log/server.log && \
     chmod a+w /opt/biomioai/storage/log/server.log
 
-COPY /opt/biomioai/default /etc/nginx/sites-available/default
+COPY /opt/biomioai/nginx.conf /etc/nginx/sites-available/default
 #COPY conf/config.js /opt/biomioai/public/js/config.js
 #COPY conf/setting.php /opt/biomioai/config/setting.php
 
