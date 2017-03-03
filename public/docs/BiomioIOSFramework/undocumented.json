@@ -1,40 +1,6 @@
 {
   "warnings": [
-    {
-      "file": "/Users/romanslyepko/Projects/BIOMIO iOS Framework/BIOMIO_Framework/BMFMain.h",
-      "line": 11,
-      "symbol": "BiomioDelegate",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/romanslyepko/Projects/BIOMIO iOS Framework/BIOMIO_Framework/BMFMain.h",
-      "line": 26,
-      "symbol": "BMFMain",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/romanslyepko/Projects/BIOMIO iOS Framework/BIOMIO_Framework/BMFMain.h",
-      "line": 28,
-      "symbol": "BMFMain.delegate",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/romanslyepko/Projects/BIOMIO iOS Framework/BIOMIO_Framework/BMFMain.h",
-      "line": 30,
-      "symbol": "BMFMain.+sharedBiomio",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/romanslyepko/Projects/BIOMIO iOS Framework/BIOMIO_Framework/BMFMain.h",
-      "line": 104,
-      "symbol": "BMFMain.-isRegistered",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
-      "warning": "undocumented"
-    }
+
   ],
   "source_directory": "/Users/romanslyepko/Projects/BIOMIO iOS Framework/BIOMIO_Framework"
 }
