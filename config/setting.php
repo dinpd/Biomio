@@ -1,8 +1,8 @@
 <?php
 return [
     'settings' => [
-        'gateUrl' => 'http://gate.biom.io/',
-        'gateUri' => 'http://gate.biom.io/',
+        'gateUrl' => 'https://gate.biom.io:444/',
+        'gateUri' => 'https://gate.biom.io:444/',
         'openIdUri' => 'https://biom.io:5002',
         'AIUri'=>'https://biom.io',
 
