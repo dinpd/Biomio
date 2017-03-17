@@ -644,7 +644,8 @@ footer {
 }
 
 .sfp-menu img {
-height:18px;
+    width: 100px;
+    margin-left: 15px;
 }
 
 .f-col a {
