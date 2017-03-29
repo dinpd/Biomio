@@ -20,6 +20,7 @@ class User
 
     public static function add_profile($first_name, $last_name, $email, $type, $ip, $extention, $gateUri)
     {
+        ORM::get_db()->beginTransaction();
 
         $profile = ORM::for_table('Profiles')->create();
         $profile->last_ip = $ip;
@@ -47,6 +48,8 @@ class User
         $pgpKeysData->user = $profile->id();
         $pgpKeysData->email = $email;
         $pgpKeysData->save();
+
+	ORM::get_db()->commit();
 
         //legacy things
         // $url = 'http://10.209.33.61:90/new_email/' . $email;
@@ -78,8 +81,14 @@ class User
     {
         $profile = ORM::for_table('Profiles')->where('id', $profileId)->find_one();
         if ($profile) {
-            $profile->set($fieldname, $value);
-            $profile->save();
+            try {
+                $profile->set($fieldname, $value);
+                $profile->save();
+            } catch (\PDOException $e) {
+                echo $e->getMessage();
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
         }
         return $profile;
     }
@@ -101,8 +110,16 @@ class User
     public static function update_user_info($profileId, $field, $value)
     {
         $userInfo = ORM::for_table('UserInfo')->where('profileId', $profileId)->find_one();
-        $userInfo->set($field, $value);
-        $userInfo->save();
+	if ($userInfo) {
+            try {
+                $userInfo->set($field, $value);
+                $userInfo->save();
+            } catch (\PDOException $e) {
+                echo $e->getMessage();
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
+        }
         return $userInfo;
     }
 
@@ -113,8 +130,14 @@ class User
             ->find_one();
 
         if ($verificationCode) {
-            $verificationCode->set('status', $status);
-            $verificationCode->save();
+            try {
+                $verificationCode->set('status', $status);
+                $verificationCode->save();
+            } catch (\PDOException $e) {
+                echo $e->getMessage();
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
         }
         return $verificationCode;
     }
@@ -126,8 +149,14 @@ class User
             ->find_one();
 
         if ($verificationCode) {
-            $verificationCode->set('status', $status);
-            $verificationCode->save();
+            try {
+                $verificationCode->set('status', $status);
+                $verificationCode->save();
+            } catch (\PDOException $e) {
+                echo $e->getMessage();
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
         }
         return $verificationCode;
     }
@@ -184,27 +213,38 @@ class User
 
     public static function update_profile($index, $value, $profileId)
     {
-
         if ($index == 'training') {
             $userProfile = ORM::for_table('Profiles')->where('id', $profileId)->find_one();
             if ($userProfile) {
-                $userProfile->training = $value;
-                $userProfile->save();
+                try {
+                    $userProfile->training = $value;
+                    $userProfile->save();
+                } catch (\PDOException $e) {
+                    echo $e->getMessage();
+                } catch (Exception $e) {
+                    echo $e->getMessage();
+                }
             }
             return $userProfile;
         }
 
         $userInfo = ORM::for_table('UserInfo')->where('profileId', $profileId)->find_one();
-        if ($userInfo) {
-            switch ($index) {
-                case 'first_name':
-                    $userInfo->firstName = $value;
-                    break;
-                case 'last_name':
-                    $userInfo->lastName = $value;
-                    break;
+	if ($userInfo) {
+            try {
+                switch ($index) {
+                    case 'first_name':
+                        $userInfo->firstName = $value;
+                        break;
+                    case 'last_name':
+                        $userInfo->lastName = $value;
+                        break;
+                }
+		$userInfo->save();
+            } catch (\PDOException $e) {
+                echo $e->getMessage();
+            } catch (Exception $e) {
+                echo $e->getMessage();
             }
-            $userInfo->save();
         }
         return $userInfo;
 
@@ -249,12 +289,24 @@ class User
     public static function update_temp_phone_codes($profileId, $status)
     {
         //TODOs: may it need to use raw query
+        ORM::get_db()->beginTransaction();
+
         $tempPhoneCodes = ORM::for_table('TempPhoneCodes')->where('profileId', $profileId)->find_many();
         foreach ($tempPhoneCodes as $tempPhoneCode) {
-            $tempPhoneCode->status = $status;
-            $tempPhoneCode->save();
+            try {
+                $tempPhoneCode->status = $status;
+                $tempPhoneCode->save();
+            } catch (\PDOException $e) {
+                echo $e->getMessage();
+                ORM::get_db()->rollback();
+		return;
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                ORM::get_db()->rollback();
+		return;
+            }
         }
-
+        ORM::get_db()->commit();
     }
 
 
@@ -295,9 +347,15 @@ class User
     public static function delete_phone($profileId, $phone)
     {
         $phone = ORM::for_table('Phones')->where(['profileId' => $profileId, 'phone' => $phone])->find_one();
-        return $phone->delete();
-
-
+        try {
+	    $phone->delete();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return;
+        }
     }
 
 
@@ -331,19 +389,30 @@ class User
            We select from UserServices by `id`, using variable named `$device_id`,
            so primary key for UserServices cannot be an device_id respectively.
         */
+        ORM::get_db()->beginTransaction();
 
         $userServices = ORM::for_table('UserServices')->where(['profileId' => $profileId, 'id' => $device_id])->find_many();
-        foreach ($userServices as $userService) {
-            $userService->title = $title;
-            $userService->save();
+	foreach ($userServices as $userService) {
+            try {
+                $userService->title = $title;
+                $userService->save();
+            } catch (\PDOException $e) {
+                echo $e->getMessage();
+                ORM::get_db()->rollback();
+		return;
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                ORM::get_db()->rollback();
+		return;
+            }
         }
-
+        ORM::get_db()->commit();
     }
 
 
     public static function delete_mobile_device($profileId, $device_id)
     {
-
+        ORM::get_db()->beginTransaction();
 
         $userServices = ORM::for_table('UserServices')->where(['profileId' => $profileId, 'id' => $device_id])->find_many();
 
@@ -352,23 +421,51 @@ class User
 
             $userService = ORM::for_table('UserServices')->where(['profileId' => $profileId, 'id' => $device_id])->find_one();
             if ($userService) {
-                $userService->delete();
+                try {
+                    $userService->delete();
+                } catch (\PDOException $e) {
+                    echo $e->getMessage();
+                    ORM::get_db()->rollback();
+                    return;
+                } catch (Exception $e) {
+                    echo $e->getMessage();
+                    ORM::get_db()->rollback();
+                    return;
+                }
             }
 
             $app_uinf = ORM::for_table('application_userinformation')->where('application', $token)->find_one();
-            if ($app_uinf) {
-                $app_uinf->delete();
-            };
-
+	    if ($app_uinf) {
+		try {
+                    $app_uinf->delete();
+                } catch (\PDOException $e) {
+                    echo $e->getMessage();
+                    ORM::get_db()->rollback();
+                    return;
+                } catch (Exception $e) {
+                    echo $e->getMessage();
+                    ORM::get_db()->rollback();
+                    return;
+                }
+            }
 
             $application = ORM::for_table('Applications')->where('app_id', $token)->find_one();
-            if ($application) {
-                $application->delete();
-            };
-
+	    if ($application) {
+		try {
+                    $application->delete();
+                } catch (\PDOException $e) {
+                    echo $e->getMessage();
+                    ORM::get_db()->rollback();
+                    return;
+                } catch (Exception $e) {
+                    echo $e->getMessage();
+                    ORM::get_db()->rollback();
+                    return;
+                }
+            }
             //save_log('Applications', $token);
         }
-
+        ORM::get_db()->commit();
     }
 
 
@@ -434,18 +531,40 @@ class User
 
     public static function delete_email($profileId, $email)
     {
+        ORM::get_db()->beginTransaction();
 
         $emailRecord = ORM::for_table('Emails')->where(['profileId' => $profileId, 'email' => $email])->find_one();
 
         if ($emailRecord) {
-            $emailRecord->delete();
+            try {
+                $emailRecord->delete();
+            } catch (\PDOException $e) {
+                echo $e->getMessage();
+                ORM::get_db()->rollback();
+                return;
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                ORM::get_db()->rollback();
+                return;
+            }
         }
 
         $pgpKeyData = ORM::for_table('PgpKeysData')->where(['user' => $profileId, 'email' => $email])->find_one();
 
-        if ($pgpKeyData) {
-            $pgpKeyData->delete();
+	if ($pgpKeyData) {
+            try {
+                $pgpKeyData->delete();
+            } catch (\PDOException $e) {
+                echo $e->getMessage();
+                ORM::get_db()->rollback();
+                return;
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                ORM::get_db()->rollback();
+		return;
+            }
         }
+        ORM::get_db()->commit();
 
         self::save_log('PgpKeysData', $email);
     }
@@ -463,12 +582,24 @@ class User
 
     public static function update_temp_email_codes($profileId, $status)
     {
+        ORM::get_db()->beginTransaction();
         $emailTempCodes = ORM::for_table('TempEmailCodes')->where(['profileId' => $profileId, 'status' => 1])->find_many();
 
-        foreach ($emailTempCodes as $emailTempCode) {
-            $emailTempCode->status = $status;
-            $emailTempCode->save();
+	foreach ($emailTempCodes as $emailTempCode) {
+            try {
+                $emailTempCode->status = $status;
+                $emailTempCode->save();
+            } catch (\PDOException $e) {
+                echo $e->getMessage();
+                ORM::get_db()->rollback();
+                return;
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                ORM::get_db()->rollback();
+		return;
+            }
         }
+        ORM::get_db()->commit();
     }
 
 
@@ -496,12 +627,24 @@ class User
 
     public static function update_email($profileId, $email, $field, $value)
     {
+        ORM::get_db()->beginTransaction();
         $emails = ORM::for_table('Emails')->where(['profileId' => $profileId, 'email' => $email])->find_many();
 
-        foreach ($emails as $email) {
-            $email->set($field, $value);
-            $email->save();
+	foreach ($emails as $email) {
+            try {
+                $email->set($field, $value);
+                $email->save();
+            } catch (\PDOException $e) {
+                echo $e->getMessage();
+                ORM::get_db()->rollback();
+                return;
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                ORM::get_db()->rollback();
+		return;
+            }
         }
+        ORM::get_db()->commit();
     }
 
 
@@ -513,8 +656,14 @@ class User
     public static function save_extension_settings($profileId, $settings)
     {
         $extensionSetting = ORM::for_table('Extension_Settings')->where('profileId', $profileId)->find_one();
-        $extensionSetting->settings = $settings;
-        $extensionSetting->save();
+        try {
+            $extensionSetting->settings = $settings;
+            $extensionSetting->save();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     public static function insert_extension_settings($profileId, $settings)
