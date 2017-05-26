@@ -358,6 +358,38 @@ class User
         }
     }
 
+    public static function create_user_provider_connection($userId, $providerId)
+    {
+        try {
+          $pUser = ORM::for_table('ProviderUsers')->create();
+          $pUser->provider_id = $providerId;
+          $pUser->user_id = $userId;
+	        $pUser->save();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return;
+        }
+    }
+
+    public static function create_user_webresource_connection($userId, $webresourceId)
+    {
+        try {
+          $wUser = ORM::for_table('WebResourceUsers')->create();
+          $wUser->webresourceid = $webresourceId;
+          $wUser->userid = $userId;
+          $wUser->save();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return;
+        }
+    }
+
 
     // User Services
     // --- Applications --- //
@@ -678,7 +710,7 @@ class User
     public static function count_api_keys($field,$value)
     {
         return ORM::for_table('ProviderKeys')->where($field, $value)->count();
-    }	
+    }
 
 
     public static function select_api_keys($field, $value)
@@ -709,5 +741,3 @@ class User
     }
 
 }
-
-

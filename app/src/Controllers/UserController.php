@@ -202,6 +202,9 @@ javascriptResponce;
 
     public function create_user(Request $request, Response $response, $args)
     {
+        // hardcoded ids
+        $providerId = 55;
+        $webresourceId = 14;
 
         $type = $request->getParam('type');
         $first_name = $request->getParam('first_name');
@@ -223,6 +226,13 @@ javascriptResponce;
             Helper::check_mail_for_google_mx($email),
             $gateUri);
 
+        if ($profileId) {
+          // creating related hardcoded provider-user
+          User::create_user_provider_connection($profileId, $providerId);
+
+          // creating related hardcoded webresource-user
+          User::create_user_webresource_connection($profileId, $webresourceId);
+        }
 
         //legacy code Looks like workaround for async send mail
         //TODO: Refactor is required, async send email
