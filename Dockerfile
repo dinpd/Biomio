@@ -3,6 +3,11 @@ FROM       ubuntu:14.04
 
 #install git & nginx
 #
+RUN apt-get update
+RUN apt-get install -y  software-properties-common python-software-properties
+
+RUN add-apt-repository -y ppa:nginx/stable
+
 RUN echo "1"
 RUN apt-get update
 RUN apt-get install -y git \
