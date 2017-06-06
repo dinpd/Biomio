@@ -107,7 +107,7 @@ final class UserController
 
         $req = array();
         $req['client_id'] = '56ce9a6a93c17d2c867c5c293482b8f9';
-        $req['client_secret'] = '85a879a19387afe791039a88b354a374';
+        $req['client_secret'] = 'da672322d633f4eeee2273e48f8a636554eb9c8688fbb8964e0fa6597bcce6a889bba9fd4aa338fe9fcc89b5239a29e8f7cd7ed72b825e6d85dc4f3e23d1a937';
         $req['grant_type'] = 'authorization_code';
         $req['code'] = $code;
 	    $req['redirect_uri'] = $this->settings['AIUri'].'/login/openId';
