@@ -208,28 +208,70 @@ App.Views.Header = Backbone.View.extend({
         $('#login-buttons').html('');
     },
     login_send_code: function() {
-        var phone = String($('.country-code').val()) + String($('.region-code').val()) + String($('.first-part').val()) + String($('.second-part').val());
+        var email = $('.login-buttons .login-email').val();
+
+        $('.login-phone-code').removeClass('hide');
+        // 1) check if email exists in a system
+        var emailRegex = /\b[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,4}\b/;
+
+        if (email.length == 0) {
+            $('.login-buttons span').removeClass('text-danger').addClass('text-success').text('please enter your email');
+        }
+        else if (!emailRegex.test(email)) {
+            $('.login-buttons span').removeClass('text-danger').addClass('text-success').text('email is in a wrong format');
+        }
+        else {
+            $.ajax({
+                type: 'POST',
+                // url: 'php/login.php',
+                url: '/login/login_check',
+                dataType: "json",
+                data: {cmd: "login_check", email: email},
+                success: function(data) {
+                    if (data.response == "#fine") {
+                        $('.login-buttons span').removeClass('text-danger').addClass('text-success').text('This email is not registered in our system');
+                    } else {
+                        set_cookie('biomio_email', email, 360);
+                        window.tempId = data.id;
+                        var face = data.face; // 1 or 0
+                        var profilePhone = data.phone; // number of phones
+                        clearInterval(check);
+
+
+                        var cmd = 'send_email_login_code';
+                        var message = 'email';
+                        var value = email;
+
+                        $.ajax({
+                            type: 'POST',
+                            //url: 'php/login.php',
+                            url: '/login/' + cmd,
+                            data: {cmd: cmd, profileId: window.tempId, value: value},
+                            success: function (data) {
+                                if (data == "#success") {
+                                    $('.login-buttons span').removeClass('text-danger').addClass('text-success').text('Sent to your ' + message);
+                                    $('.login-code').removeClass('hide');
+                                    $('.submit-login-code').removeClass('hide');
+                                } else if (data == "#not-found") {
+                                    $('.login-buttons span').removeClass('hide').removeClass('text-success').addClass('text-danger').html("Entered " + message + " doesn't belong to this account");
+                                }
+
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+
+
+
+       /* var phone = String($('.country-code').val()) + String($('.region-code').val()) + String($('.first-part').val()) + String($('.second-part').val());
         var email = $('.login-buttons .login-email').val();
 
         if (phone.length != 1) { var cmd = 'send_phone_login_code'; var message = 'phone'; value = phone; }
         else if (email.length != 0) { var cmd = 'send_email_login_code'; var message = 'email'; value = email; }
-        else alert('you should enter phone or email');
-
-        $.ajax({
-            type: 'POST',
-            //url: 'php/login.php',
-            url: '/login/'+cmd,
-            data: {cmd: cmd, profileId: window.tempId, value: value},
-            success: function(data) {
-                if (data == "#success") {
-                    $('.login-buttons span').removeClass('text-danger').addClass('text-success').text('Sent to your ' + message);
-                    $('.login-code').removeClass('hide');
-                    $('.submit-login-code').removeClass('hide');
-                } else if (data =="#not-found") {
-                    $('.login-buttons span').removeClass('hide').removeClass('text-success').addClass('text-danger').html("Entered " + message + " doesn't belong to this account");
-                }
-            }
-        });
+        else alert('you should enter phone or email');*/
     },
 
     // 4) submit entered code
@@ -397,7 +439,7 @@ App.Views.Header = Backbone.View.extend({
         else clearInterval(check);
     },
     switch_methods: function() {
-        var that = this;
+        /*var that = this;
 
         $('.biomio-email span').text('');
         $('#sign_in_email_span').text('');
@@ -443,7 +485,12 @@ App.Views.Header = Backbone.View.extend({
                         $('.login-buttons').removeClass('hide');
                     }
                 }
-            });
+            });*/
+
+        $('.login-phone-code').removeClass('hide');
+        $('.original-method').addClass('hide');
+        $('.biometrics-login').addClass('hide');
+        $('.login-buttons').removeClass('hide');
     },
     refresh_methods: function() {
         $('.login-buttons').addClass('hide');  
