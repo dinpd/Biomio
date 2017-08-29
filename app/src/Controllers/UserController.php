@@ -775,7 +775,7 @@ javascriptResponce;
     public function delete_mobile_device(Request $request, Response $response, $args)
     {
         $device_id = $request->getParam('device_id');
-        $profileId = $request->getParam('profileId');
+        $profileId = $this->session->id;
         User::delete_mobile_device($profileId, $device_id);
         return $response->write("#success");
     }
